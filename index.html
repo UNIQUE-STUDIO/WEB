@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="description" content="Unique Web Studio – Создание профессиональных сайтов с автоматической системой. Быстро, современно, качественно.">
-    <meta name="description-en" content="Unique Web Studio – Professional website creation with automated system. Fast, modern, high-quality.">
-    <meta name="keywords" content="создание сайтов, веб-студия, лендинг, интернет-магазин, уникальный дизайн">
+    <meta name="description" content="Unique Web Studio – Создание профессиональных сайтов с автоматической системой">
+    <meta name="description-en" content="Unique Web Studio – Professional website creation with automated system">
+    <meta name="keywords" content="создание сайтов, веб-студия, лендинг, интернет-магазин">
     <meta name="author" content="Unique Web Studio">
     <meta property="og:title" content="Unique Web Studio | Создание сайтов">
     <meta property="og:description" content="Быстрое и умное создание сайтов по доступным ценам">
@@ -19,7 +19,28 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <style>
+        /* CSS Variables for smooth dark mode */
+        :root {
+            --bg-primary: #fefcf7;
+            --text-primary: #2c2b28;
+            --card-bg: #ffffff;
+            --header-bg: rgba(254, 252, 247, 0.85);
+            --border-color: rgba(0,0,0,0.05);
+            --footer-bg: #2c2b28;
+            --footer-text: #ccc;
+        }
+        body.dark {
+            --bg-primary: #1e1e2a;
+            --text-primary: #e4e4e7;
+            --card-bg: #2d2d3a;
+            --header-bg: rgba(30, 30, 42, 0.85);
+            --border-color: rgba(255,255,255,0.05);
+            --footer-bg: #111;
+            --footer-text: #ccc;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -28,35 +49,28 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background: #fefcf7;
-            color: #2c2b28;
+            background: var(--bg-primary);
+            color: var(--text-primary);
             transition: background 0.3s ease, color 0.3s ease;
             line-height: 1.6;
             overflow-x: hidden;
         }
 
-        body.dark {
-            background: #1e1e2a;
-            color: #e4e4e7;
+        /* Progress bar */
+        .progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: rgba(200, 169, 106, 0.2);
+            z-index: 1001;
         }
-
-        body.dark .card,
-        body.dark .modal-content,
-        body.dark .faq-item,
-        body.dark .status-card,
-        body.dark .testimonial-card {
-            background: #2d2d3a;
-            color: #e4e4e7;
-        }
-
-        body.dark .btn-outline {
-            border-color: #c8a96a;
-            color: #c8a96a;
-        }
-
-        body.dark .btn-outline:hover {
+        .progress-bar {
+            height: 100%;
             background: #c8a96a;
-            color: #1e1e2a;
+            width: 0%;
+            transition: width 0.1s;
         }
 
         .container {
@@ -69,17 +83,12 @@
         .header {
             position: sticky;
             top: 0;
-            background: rgba(254, 252, 247, 0.85);
+            background: var(--header-bg);
             backdrop-filter: blur(12px);
             z-index: 1000;
             padding: 16px 0;
             transition: all 0.3s;
-            border-bottom: 1px solid rgba(0,0,0,0.05);
-        }
-
-        body.dark .header {
-            background: rgba(30, 30, 42, 0.85);
-            border-bottom-color: rgba(255,255,255,0.05);
+            border-bottom: 1px solid var(--border-color);
         }
 
         .header .container {
@@ -206,7 +215,6 @@
             color: white;
         }
 
-        /* sections */
         section {
             padding: 80px 0;
         }
@@ -225,7 +233,7 @@
         }
 
         .card {
-            background: white;
+            background: var(--card-bg);
             border-radius: 24px;
             overflow: hidden;
             box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05);
@@ -234,24 +242,10 @@
             text-align: center;
         }
 
-        .card:hover {
-            transform: translateY(-8px) rotateY(2deg);
-            box-shadow: 0 20px 30px -10px rgba(0,0,0,0.15);
+        .card.tilt {
+            transition: transform 0.2s ease-out;
         }
 
-        .card img {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-            border-radius: 16px;
-            transition: transform 0.3s;
-        }
-
-        .card:hover img {
-            transform: scale(1.05);
-        }
-
-        /* filter buttons */
         .filter-buttons {
             display: flex;
             justify-content: center;
@@ -275,100 +269,170 @@
             color: white;
         }
 
-        /* stats */
-        .stats-grid {
+        /* Portfolio search */
+        .search-portfolio {
             display: flex;
             justify-content: center;
-            flex-wrap: wrap;
-            gap: 40px;
+            margin-bottom: 30px;
+        }
+        .search-portfolio input {
+            padding: 12px 20px;
+            border-radius: 40px;
+            border: 1px solid #ddd;
+            width: 100%;
+            max-width: 400px;
+            font-size: 1rem;
+        }
+        body.dark .search-portfolio input {
+            background: #2d2d3a;
+            border-color: #c8a96a;
+            color: white;
         }
 
-        .stat-item {
+        /* Skeleton loader */
+        .skeleton-card {
+            background: #e0e0e0;
+            border-radius: 24px;
+            height: 280px;
+            animation: pulse 1.5s infinite;
+        }
+        body.dark .skeleton-card {
+            background: #3a3a4a;
+        }
+        @keyframes pulse {
+            0% { opacity: 0.6; }
+            50% { opacity: 1; }
+            100% { opacity: 0.6; }
+        }
+
+        /* Price calculator */
+        .calculator {
+            background: var(--card-bg);
+            border-radius: 24px;
+            padding: 30px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .calc-field {
+            margin-bottom: 20px;
+        }
+        .calc-field label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        .calc-field input, .calc-field select {
+            width: 100%;
+            padding: 12px;
+            border-radius: 12px;
+            border: 1px solid #ddd;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+        }
+        .calc-result {
+            font-size: 1.5rem;
+            font-weight: bold;
             text-align: center;
-        }
-
-        .stat-number {
-            font-size: 3rem;
-            font-weight: 800;
+            margin-top: 20px;
             color: #c8a96a;
         }
 
-        /* testimonial swiper */
-        .testimonial-card {
-            background: white;
+        /* Countdown timer */
+        .countdown {
+            background: linear-gradient(135deg, #c8a96a, #a07e48);
+            color: white;
             padding: 30px;
             border-radius: 24px;
             text-align: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-top: 40px;
+        }
+        .timer {
+            font-size: 2rem;
+            font-weight: bold;
+            letter-spacing: 2px;
         }
 
-        /* faq */
-        .faq-item {
-            background: white;
-            border-radius: 20px;
-            margin-bottom: 16px;
-            overflow: hidden;
-            transition: all 0.2s;
-        }
-
-        .faq-question {
-            padding: 20px;
-            font-weight: 600;
+        /* Review form with stars */
+        .star-rating {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            font-size: 2rem;
             cursor: pointer;
+            margin: 20px 0;
+        }
+        .star-rating span {
+            transition: color 0.2s;
+        }
+        .star-rating span.active, .star-rating span:hover {
+            color: #ffc107;
+        }
+
+        /* Floating buttons */
+        .floating-buttons {
+            position: fixed;
+            bottom: 100px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            z-index: 998;
+        }
+        .floating-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #25d366;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            text-decoration: none;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            transition: transform 0.2s;
+        }
+        .floating-btn.telegram {
+            background: #0088cc;
+        }
+        .floating-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* Map */
+        #map {
+            height: 300px;
+            border-radius: 24px;
+            margin-top: 20px;
+        }
+
+        /* Cookie consent */
+        .cookie-consent {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 15px 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
             display: flex;
             justify-content: space-between;
             align-items: center;
-        }
-
-        .faq-answer {
-            padding: 0 20px 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+            z-index: 1000;
             display: none;
         }
-
-        .faq-answer.active {
-            display: block;
+        .cookie-consent button {
+            background: #c8a96a;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 30px;
+            cursor: pointer;
         }
 
-        /* status card (bottom) */
-        .status-section {
-            padding: 40px 0;
-        }
-
-        .status-card {
-            background: #fff8e7;
-            border-left: 5px solid #c8a96a;
-            padding: 24px;
-            border-radius: 20px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-        }
-
-        .status-card h3 {
-            color: #c8a96a;
-            margin-bottom: 12px;
-        }
-
-        /* parallax */
-        .parallax {
-            background: url('https://picsum.photos/1920/600?grayscale') center/cover fixed;
-            padding: 100px 0;
-            text-align: center;
-            color: white;
-            position: relative;
-            z-index: 1;
-        }
-
-        .parallax::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.5);
-            z-index: -1;
-        }
-
-        /* scroll top */
+        /* Scroll top */
         .scroll-top {
             position: fixed;
             bottom: 30px;
@@ -386,12 +450,11 @@
             transition: opacity 0.3s;
             z-index: 999;
         }
-
         .scroll-top.visible {
             opacity: 1;
         }
 
-        /* modals */
+        /* Modal improvements */
         .modal {
             display: none;
             position: fixed;
@@ -404,16 +467,14 @@
             align-items: center;
             z-index: 2000;
         }
-
         .modal-content {
-            background: white;
+            background: var(--card-bg);
             padding: 32px;
             border-radius: 32px;
             max-width: 500px;
             width: 90%;
             position: relative;
         }
-
         .close-modal {
             position: absolute;
             top: 16px;
@@ -421,35 +482,26 @@
             font-size: 24px;
             cursor: pointer;
         }
-
         footer {
-            background: #2c2b28;
-            color: #ccc;
+            background: var(--footer-bg);
+            color: var(--footer-text);
             padding: 48px 0 24px;
             margin-top: 40px;
         }
-
-        body.dark footer {
-            background: #111;
-        }
-
         .footer-content {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 40px;
         }
-
         @media (max-width: 768px) {
-            .section-title {
-                font-size: 2rem;
-            }
-            section {
-                padding: 50px 0;
-            }
+            .section-title { font-size: 2rem; }
+            section { padding: 50px 0; }
         }
     </style>
 </head>
 <body>
+    <div class="progress-container"><div class="progress-bar" id="progressBar"></div></div>
+
     <header class="header">
         <div class="container">
             <div class="logo">Unique Web Studio</div>
@@ -457,7 +509,7 @@
             <div class="nav-links">
                 <a href="#services" data-i18n="nav_services">Услуги</a>
                 <a href="#portfolio" data-i18n="nav_portfolio">Портфолио</a>
-                <a href="#testimonials" data-i18n="nav_testimonials">Отзывы</a>
+                <a href="#reviews" data-i18n="nav_reviews">Отзывы</a>
                 <a href="#contact" data-i18n="nav_contact">Контакты</a>
                 <button class="lang-switch" id="langSwitch">EN</button>
                 <button class="dark-toggle" id="darkToggle">🌙</button>
@@ -466,7 +518,7 @@
     </header>
 
     <main>
-        <!-- Hero with typed text -->
+        <!-- Hero -->
         <section data-aos="fade-up">
             <div class="container" style="text-align: center;">
                 <h1><span id="typed-text"></span></h1>
@@ -485,15 +537,15 @@
             <div class="container">
                 <h2 class="section-title" data-i18n="services_title">Услуги</h2>
                 <div class="grid">
-                    <div class="card" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="card tilt" data-aos="zoom-in" data-aos-delay="100">
                         <h3 data-i18n="service_landing">Landing Page</h3>
                         <p data-i18n="service_landing_price">от 6000₽</p>
                     </div>
-                    <div class="card" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="card tilt" data-aos="zoom-in" data-aos-delay="200">
                         <h3 data-i18n="service_shop">Online Shop</h3>
                         <p data-i18n="service_shop_price">от 6000₽</p>
                     </div>
-                    <div class="card" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="card tilt" data-aos="zoom-in" data-aos-delay="300">
                         <h3 data-i18n="service_business">Business Website</h3>
                         <p data-i18n="service_business_price">от 6000₽</p>
                     </div>
@@ -501,92 +553,84 @@
             </div>
         </section>
 
-        <!-- Stats with counters -->
+        <!-- Price Calculator -->
         <section data-aos="fade-up">
             <div class="container">
-                <h2 class="section-title" data-i18n="stats_title">Наш опыт</h2>
-                <div class="stats-grid">
-                    <div class="stat-item"><div class="stat-number" data-target="50">0</div><p data-i18n="stats_projects">проектов</p></div>
-                    <div class="stat-item"><div class="stat-number" data-target="95">0</div><p data-i18n="stats_satisfaction">% довольных клиентов</p></div>
-                    <div class="stat-item"><div class="stat-number" data-target="7">0</div><p data-i18n="stats_years">лет работы</p></div>
+                <h2 class="section-title" data-i18n="calculator_title">Калькулятор стоимости</h2>
+                <div class="calculator">
+                    <div class="calc-field">
+                        <label data-i18n="calc_pages">Количество страниц:</label>
+                        <input type="number" id="pages" min="1" max="20" value="1">
+                    </div>
+                    <div class="calc-field">
+                        <label data-i18n="calc_domain">Домен:</label>
+                        <select id="domain">
+                            <option value="0">.ru (бесплатно)</option>
+                            <option value="1000">.com (+1000₽)</option>
+                        </select>
+                    </div>
+                    <div class="calc-field">
+                        <label data-i18n="calc_features">Дополнительно:</label>
+                        <label><input type="checkbox" id="catalog"> Каталог товаров (+3000₽)</label>
+                        <label><input type="checkbox" id="seo"> SEO-оптимизация (+2000₽)</label>
+                    </div>
+                    <div class="calc-result" id="calcResult">0 ₽</div>
                 </div>
             </div>
         </section>
 
-        <!-- Portfolio with filters -->
+        <!-- Countdown -->
+        <div class="container">
+            <div class="countdown" data-aos="fade-up">
+                <h3 data-i18n="offer_title">🔥 Специальное предложение! Скидка 15%</h3>
+                <div class="timer" id="countdownTimer">--:--:--</div>
+            </div>
+        </div>
+
+        <!-- Portfolio with search and filter -->
         <section id="portfolio" data-aos="fade-up">
             <div class="container">
                 <h2 class="section-title" data-i18n="portfolio_title">Наши проекты</h2>
+                <div class="search-portfolio">
+                    <input type="text" id="portfolioSearch" placeholder="Поиск..." data-i18n="search_placeholder">
+                </div>
                 <div class="filter-buttons">
                     <button class="filter-btn active" data-filter="all">Все</button>
                     <button class="filter-btn" data-filter="shop">Магазины</button>
                     <button class="filter-btn" data-filter="business">Бизнес</button>
                     <button class="filter-btn" data-filter="personal">Личные</button>
                 </div>
-                <div class="grid" id="portfolioGrid"></div>
+                <div class="grid" id="portfolioGrid">
+                    <!-- Skeleton loaders will appear -->
+                </div>
             </div>
         </section>
 
-        <!-- Testimonials Swiper -->
-        <section id="testimonials" data-aos="fade-up">
+        <!-- Reviews section with submission -->
+        <section id="reviews" data-aos="fade-up">
             <div class="container">
-                <h2 class="section-title" data-i18n="testimonials_title">Отзывы клиентов</h2>
+                <h2 class="section-title" data-i18n="reviews_title">Отзывы клиентов</h2>
                 <div class="swiper testimonial-swiper">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide"><div class="testimonial-card">“Отличный сервис, сайт сделали за 2 дня!” — Анна</div></div>
-                        <div class="swiper-slide"><div class="testimonial-card">“Очень доволен результатом, спасибо!” — Иван</div></div>
-                        <div class="swiper-slide"><div class="testimonial-card">“Профессионально и быстро. Рекомендую.” — Мария</div></div>
+                    <div class="swiper-wrapper" id="reviewsSwiperWrapper">
+                        <!-- Dynamic reviews from localStorage -->
                     </div>
                     <div class="swiper-pagination"></div>
                 </div>
-            </div>
-        </section>
-
-        <!-- Parallax section -->
-        <div class="parallax" data-aos="fade-up">
-            <div class="container">
-                <h2 data-i18n="parallax_title">Готовы начать?</h2>
-                <button class="btn" id="parallaxBtn" data-i18n="parallax_btn">Связаться с нами</button>
-            </div>
-        </div>
-
-        <!-- FAQ -->
-        <section data-aos="fade-up">
-            <div class="container">
-                <h2 class="section-title" data-i18n="faq_title">Часто задаваемые вопросы</h2>
-                <div class="faq-list">
-                    <div class="faq-item"><div class="faq-question">❓ Как получить демо? <span>+</span></div><div class="faq-answer">Нажмите кнопку «Получить демо сайт», заполните форму, и мы отправим ссылку на демо в течение 5 минут.</div></div>
-                    <div class="faq-item"><div class="faq-question">❓ Как происходит оплата? <span>+</span></div><div class="faq-answer">Оплата через UnitPay после утверждения макета. Вы получите ссылку на оплату.</div></div>
-                    <div class="faq-item"><div class="faq-question">❓ Есть ли возврат? <span>+</span></div><div class="faq-answer">Да, политика возврата описана в пользовательском соглашении. Вы можете оставить жалобу на почту partners@unitpay.ru.</div></div>
+                <div style="text-align: center; margin-top: 40px;">
+                    <button class="btn" id="addReviewBtn" data-i18n="add_review_btn">Оставить отзыв</button>
                 </div>
             </div>
         </section>
 
-        <!-- Payment package selection (new) -->
+        <!-- Map -->
         <section data-aos="fade-up">
             <div class="container">
-                <h2 class="section-title" data-i18n="payment_title">Выберите пакет</h2>
-                <div class="grid">
-                    <div class="card">
-                        <h3>Landing Page</h3>
-                        <p class="price">6000₽</p>
-                        <button class="btn pay-btn" data-price="6000" data-package="landing">Заказать</button>
-                    </div>
-                    <div class="card">
-                        <h3>Online Shop</h3>
-                        <p class="price">12000₽</p>
-                        <button class="btn pay-btn" data-price="12000" data-package="shop">Заказать</button>
-                    </div>
-                    <div class="card">
-                        <h3>Business Website</h3>
-                        <p class="price">9000₽</p>
-                        <button class="btn pay-btn" data-price="9000" data-package="business">Заказать</button>
-                    </div>
-                </div>
+                <h2 class="section-title" data-i18n="map_title">Наш офис</h2>
+                <div id="map"></div>
             </div>
         </section>
 
-        <!-- Contact -->
+        <!-- Contact & Payment Packages -->
         <section id="contact" data-aos="fade-up">
             <div class="container" style="text-align: center;">
                 <h2 class="section-title" data-i18n="contact_title">Контакты</h2>
@@ -596,20 +640,23 @@
                     <a href="https://wa.me/79651776233" target="_blank">WhatsApp</a> |
                     <a href="https://vk.com/unique__business" target="_blank">VK</a>
                 </p>
+                <h3 data-i18n="payment_title">Выберите пакет</h3>
+                <div class="grid" style="margin-top: 30px;">
+                    <div class="card"><h3>Landing Page</h3><p>6000₽</p><button class="btn pay-btn" data-price="6000">Заказать</button></div>
+                    <div class="card"><h3>Online Shop</h3><p>12000₽</p><button class="btn pay-btn" data-price="12000">Заказать</button></div>
+                    <div class="card"><h3>Business Website</h3><p>9000₽</p><button class="btn pay-btn" data-price="9000">Заказать</button></div>
+                </div>
             </div>
         </section>
 
-        <!-- Status section (moved to bottom) -->
+        <!-- Status section (bottom) -->
         <div class="status-section container" data-aos="fade-up">
             <div class="status-card">
                 <h3 data-i18n="status_title">⚠️ Статус проекта / Project Status</h3>
                 <div data-i18n="status_text">
                     <p><strong>Проект vk.com/unique__business находится на доработке после модерации.</strong></p>
-                    <p>Для активации необходимо разместить на проекте:</p>
-                    <ul><li>Пользовательское соглашение</li><li>Подробную политику возвратов (с указанием куда писать жалобу и сроки ответа)</li></ul>
-                    <p>Дополнительно на почту <a href="mailto:partners@unitpay.ru">partners@unitpay.ru</a> прислать:</p>
-                    <ul><li>Информацию по привлечению клиентов</li><li>Подтверждения ранее выполненных заказов (1-2)</li></ul>
-                    <p>Вопросы пишите на <a href="mailto:partners@unitpay.ru">partners@unitpay.ru</a>.</p>
+                    <p>Для активации необходимо разместить на проекте: Пользовательское соглашение, подробную политику возвратов.</p>
+                    <p>Дополнительно на почту <a href="mailto:partners@unitpay.ru">partners@unitpay.ru</a> прислать информацию по привлечению клиентов и подтверждения заказов.</p>
                 </div>
             </div>
         </div>
@@ -625,65 +672,74 @@
         </div>
     </footer>
 
+    <!-- Floating buttons -->
+    <div class="floating-buttons">
+        <a href="https://wa.me/79651776233" class="floating-btn" target="_blank">💬</a>
+        <a href="https://t.me/UNIQE_WEB_STUDIO" class="floating-btn telegram" target="_blank">📱</a>
+    </div>
+
+    <div class="scroll-top" id="scrollTop">↑</div>
+
     <!-- Modals -->
     <div id="demoModal" class="modal"><div class="modal-content"><span class="close-modal">&times;</span><h3 data-i18n="demo_modal_title">Получить демо сайт</h3><form id="demoForm"><input type="text" id="demoName" placeholder="Ваше имя" required><br><br><input type="text" id="demoPhone" placeholder="Телефон" required><br><br><input type="text" id="demoVk" placeholder="Ссылка VK" required><br><br><button type="submit" class="btn">Отправить</button></form><div id="demoResult"></div></div></div>
     <div id="consultModal" class="modal"><div class="modal-content"><span class="close-modal">&times;</span><h3 data-i18n="consult_modal_title">Заявка на консультацию</h3><form id="consultForm"><input type="text" id="consultName" placeholder="Имя" required><br><br><input type="email" id="consultEmail" placeholder="Email" required><br><br><textarea id="consultMessage" placeholder="Сообщение"></textarea><br><br><button type="submit" class="btn">Отправить</button></form><div id="consultResult"></div></div></div>
+    <div id="reviewModal" class="modal"><div class="modal-content"><span class="close-modal">&times;</span><h3 data-i18n="review_modal_title">Оставить отзыв</h3><form id="reviewForm"><input type="text" id="reviewName" placeholder="Ваше имя" required><br><br><div class="star-rating" id="starRating"><span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span></div><textarea id="reviewText" placeholder="Ваш отзыв" rows="3" required></textarea><br><br><button type="submit" class="btn">Отправить</button></form><div id="reviewResult"></div></div></div>
     <div id="policyModal" class="modal"><div class="modal-content"><span class="close-modal">&times;</span><h3>Пользовательское соглашение</h3><p>Полный текст соглашения будет размещен здесь в соответствии с требованиями UnitPay.</p></div></div>
     <div id="refundModal" class="modal"><div class="modal-content"><span class="close-modal">&times;</span><h3>Политика возвратов</h3><p>Возврат возможен в течение 14 дней. Для подачи жалобы пишите на partners@unitpay.ru.</p></div></div>
     <div id="exitModal" class="modal"><div class="modal-content"><span class="close-modal">&times;</span><h3 data-i18n="exit_title">Не уходите!</h3><p data-i18n="exit_text">Оставьте заявку и получите скидку 10% на любой пакет.</p><button class="btn" id="exitBtn">Получить скидку</button></div></div>
 
-    <div class="scroll-top" id="scrollTop">↑</div>
+    <!-- Cookie consent -->
+    <div id="cookieConsent" class="cookie-consent">
+        <span data-i18n="cookie_text">Мы используем cookies для улучшения работы сайта. Продолжая, вы соглашаетесь с этим.</span>
+        <button id="acceptCookies">OK</button>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
-        // Translations
+        // ================== TRANSLATIONS ==================
         const translations = {
             ru: {
-                nav_services: "Услуги", nav_portfolio: "Портфолио", nav_testimonials: "Отзывы", nav_contact: "Контакты",
+                nav_services: "Услуги", nav_portfolio: "Портфолио", nav_reviews: "Отзывы", nav_contact: "Контакты",
                 hero_desc: "Система автоматического создания сайтов. Быстро, современно и без лишних сложностей.",
                 hero_demo_btn: "Получить демо сайт", hero_consult_btn: "Оставить заявку",
                 services_title: "Услуги", service_landing: "Landing Page", service_landing_price: "от 6000₽",
                 service_shop: "Online Shop", service_shop_price: "от 6000₽", service_business: "Business Website", service_business_price: "от 6000₽",
-                stats_title: "Наш опыт", stats_projects: "проектов", stats_satisfaction: "% довольных клиентов", stats_years: "лет работы",
-                portfolio_title: "Наши проекты", testimonials_title: "Отзывы клиентов",
-                faq_title: "Часто задаваемые вопросы", contact_title: "Контакты",
+                calculator_title: "Калькулятор стоимости", calc_pages: "Количество страниц:", calc_domain: "Домен:", calc_features: "Дополнительно:",
+                offer_title: "🔥 Специальное предложение! Скидка 15%",
+                portfolio_title: "Наши проекты", search_placeholder: "Поиск...",
+                reviews_title: "Отзывы клиентов", add_review_btn: "Оставить отзыв", map_title: "Наш офис",
+                contact_title: "Контакты", payment_title: "Выберите пакет",
                 footer_policy: "Пользовательское соглашение", footer_refund: "Политика возвратов",
                 demo_modal_title: "Получить демо сайт", consult_modal_title: "Заявка на консультацию",
-                payment_title: "Выберите пакет", parallax_title: "Готовы начать?", parallax_btn: "Связаться с нами",
-                exit_title: "Не уходите!", exit_text: "Оставьте заявку и получите скидку 10% на любой пакет.",
+                review_modal_title: "Оставить отзыв", exit_title: "Не уходите!", exit_text: "Оставьте заявку и получите скидку 10% на любой пакет.",
+                cookie_text: "Мы используем cookies для улучшения работы сайта. Продолжая, вы соглашаетесь с этим.",
                 status_title: "⚠️ Статус проекта / Project Status",
-                status_text: `<p><strong>Проект vk.com/unique__business находится на доработке после модерации.</strong></p><p>Для активации необходимо разместить на проекте:</p><ul><li>Пользовательское соглашение</li><li>Подробную политику возвратов (с указанием куда писать жалобу и сроки ответа)</li></ul><p>Дополнительно на почту <a href="mailto:partners@unitpay.ru">partners@unitpay.ru</a> прислать:</p><ul><li>Информацию по привлечению клиентов</li><li>Подтверждения ранее выполненных заказов (1-2)</li></ul><p>Вопросы пишите на <a href="mailto:partners@unitpay.ru">partners@unitpay.ru</a>.</p>`
+                status_text: `<p><strong>Проект vk.com/unique__business находится на доработке после модерации.</strong></p><p>Для активации необходимо разместить на проекте: Пользовательское соглашение, подробную политику возвратов.</p><p>Дополнительно на почту <a href="mailto:partners@unitpay.ru">partners@unitpay.ru</a> прислать информацию по привлечению клиентов и подтверждения заказов.</p>`
             },
             en: {
-                nav_services: "Services", nav_portfolio: "Portfolio", nav_testimonials: "Testimonials", nav_contact: "Contacts",
+                nav_services: "Services", nav_portfolio: "Portfolio", nav_reviews: "Reviews", nav_contact: "Contacts",
                 hero_desc: "Automated website creation system. Fast, modern, and hassle-free.",
                 hero_demo_btn: "Get demo site", hero_consult_btn: "Request consultation",
                 services_title: "Services", service_landing: "Landing Page", service_landing_price: "from 6000₽",
                 service_shop: "Online Shop", service_shop_price: "from 6000₽", service_business: "Business Website", service_business_price: "from 6000₽",
-                stats_title: "Our Experience", stats_projects: "projects", stats_satisfaction: "% satisfied clients", stats_years: "years",
-                portfolio_title: "Our Projects", testimonials_title: "Client Testimonials",
-                faq_title: "FAQ", contact_title: "Contacts",
+                calculator_title: "Price Calculator", calc_pages: "Number of pages:", calc_domain: "Domain:", calc_features: "Extras:",
+                offer_title: "🔥 Special offer! 15% discount",
+                portfolio_title: "Our Projects", search_placeholder: "Search...",
+                reviews_title: "Client Reviews", add_review_btn: "Leave a review", map_title: "Our Office",
+                contact_title: "Contacts", payment_title: "Choose a package",
                 footer_policy: "Terms of Use", footer_refund: "Refund Policy",
                 demo_modal_title: "Get demo site", consult_modal_title: "Request consultation",
-                payment_title: "Choose a package", parallax_title: "Ready to start?", parallax_btn: "Contact us",
-                exit_title: "Don't go!", exit_text: "Leave a request and get 10% discount on any package.",
+                review_modal_title: "Leave a review", exit_title: "Don't go!", exit_text: "Leave a request and get 10% discount on any package.",
+                cookie_text: "We use cookies to improve your experience. By continuing, you agree.",
                 status_title: "⚠️ Project Status",
-                status_text: `<p><strong>The project vk.com/unique__business is being revised after moderation.</strong></p><p>To activate, you need to place on the project:</p><ul><li>Terms of Use</li><li>Detailed refund policy (including where to file a complaint and response time)</li></ul><p>Additionally send to <a href="mailto:partners@unitpay.ru">partners@unitpay.ru</a>:</p><ul><li>Information on customer acquisition</li><li>Confirmations of previously completed orders (1-2)</li></ul><p>For questions, write to <a href="mailto:partners@unitpay.ru">partners@unitpay.ru</a>.</p>`
+                status_text: `<p><strong>The project vk.com/unique__business is being revised after moderation.</strong></p><p>To activate, you need to place on the project: Terms of Use, detailed refund policy.</p><p>Additionally send to <a href="mailto:partners@unitpay.ru">partners@unitpay.ru</a> information on customer acquisition and order confirmations.</p>`
             }
         };
 
         let currentLang = localStorage.getItem('lang') || 'ru';
-        const portfolioData = [
-            { img: "https://picsum.photos/300/200?1", title: "Fashion Shop", category: "shop" },
-            { img: "https://picsum.photos/300/200?2", title: "Restaurant", category: "business" },
-            { img: "https://picsum.photos/300/200?3", title: "Corporate Site", category: "business" },
-            { img: "https://picsum.photos/300/200?4", title: "Portfolio", category: "personal" },
-            { img: "https://picsum.photos/300/200?5", title: "Personal Brand", category: "personal" },
-            { img: "https://picsum.photos/300/200?6", title: "Tech Startup", category: "business" }
-        ];
-
         function applyLanguage(lang) {
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
@@ -705,7 +761,7 @@
             localStorage.setItem('dark', document.body.classList.contains('dark'));
         });
 
-        // Language switch
+        // Language
         document.getElementById('langSwitch').addEventListener('click', () => {
             currentLang = currentLang === 'ru' ? 'en' : 'ru';
             applyLanguage(currentLang);
@@ -720,70 +776,174 @@
             typeSpeed: 50, backSpeed: 30, loop: true
         });
 
-        // AOS init
         AOS.init({ duration: 800, once: true });
 
-        // Counters
-        const counters = document.querySelectorAll('.stat-number');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const el = entry.target;
-                    const target = parseInt(el.getAttribute('data-target'));
-                    let current = 0;
-                    const step = target / 50;
-                    const timer = setInterval(() => {
-                        current += step;
-                        if (current >= target) {
-                            el.innerText = target;
-                            clearInterval(timer);
-                        } else {
-                            el.innerText = Math.floor(current);
-                        }
-                    }, 20);
-                    observer.unobserve(el);
-                }
-            });
-        }, { threshold: 0.5 });
-        counters.forEach(c => observer.observe(c));
+        // Progress bar
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('progressBar').style.width = scrolled + '%';
+        });
 
-        // Portfolio render & filter
-        function renderPortfolio(category = 'all') {
+        // Countdown timer (until end of day)
+        function updateCountdown() {
+            const now = new Date();
+            const endOfDay = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 23, 59, 59);
+            const diff = endOfDay - now;
+            if (diff <= 0) {
+                document.getElementById('countdownTimer').innerText = "00:00:00";
+                return;
+            }
+            const hours = Math.floor(diff / 3600000);
+            const minutes = Math.floor((diff % 3600000) / 60000);
+            const seconds = Math.floor((diff % 60000) / 1000);
+            document.getElementById('countdownTimer').innerText = `${hours.toString().padStart(2,'0')}:${minutes.toString().padStart(2,'0')}:${seconds.toString().padStart(2,'0')}`;
+        }
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+
+        // Price calculator
+        function updatePrice() {
+            let base = 6000;
+            const pages = parseInt(document.getElementById('pages').value) || 1;
+            base += (pages - 1) * 2000;
+            if (document.getElementById('domain').value === "1000") base += 1000;
+            if (document.getElementById('catalog').checked) base += 3000;
+            if (document.getElementById('seo').checked) base += 2000;
+            document.getElementById('calcResult').innerText = base + " ₽";
+        }
+        document.querySelectorAll('#pages, #domain, #catalog, #seo').forEach(el => el.addEventListener('change', updatePrice));
+        updatePrice();
+
+        // Portfolio with search and filter + skeleton loading
+        const portfolioData = [
+            { img: "https://picsum.photos/300/200?1", title: "Fashion Shop", category: "shop" },
+            { img: "https://picsum.photos/300/200?2", title: "Restaurant", category: "business" },
+            { img: "https://picsum.photos/300/200?3", title: "Corporate Site", category: "business" },
+            { img: "https://picsum.photos/300/200?4", title: "Portfolio", category: "personal" },
+            { img: "https://picsum.photos/300/200?5", title: "Personal Brand", category: "personal" },
+            { img: "https://picsum.photos/300/200?6", title: "Tech Startup", category: "business" }
+        ];
+
+        function renderPortfolio(filter = 'all', search = '') {
             const grid = document.getElementById('portfolioGrid');
             grid.innerHTML = '';
-            portfolioData.filter(item => category === 'all' || item.category === category).forEach(item => {
+            const filtered = portfolioData.filter(item => (filter === 'all' || item.category === filter) && item.title.toLowerCase().includes(search.toLowerCase()));
+            if (filtered.length === 0) {
+                grid.innerHTML = '<p style="text-align:center;">Ничего не найдено</p>';
+                return;
+            }
+            filtered.forEach(item => {
                 const card = document.createElement('div');
-                card.className = 'card';
+                card.className = 'card tilt';
                 card.innerHTML = `<img src="${item.img}" loading="lazy"><h3>${item.title}</h3>`;
                 grid.appendChild(card);
             });
+            // Re-apply tilt effect
+            document.querySelectorAll('.tilt').forEach(el => {
+                el.addEventListener('mousemove', (e) => {
+                    const rect = el.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    const xRot = (y / rect.height - 0.5) * 10;
+                    const yRot = (x / rect.width - 0.5) * -10;
+                    el.style.transform = `perspective(500px) rotateX(${xRot}deg) rotateY(${yRot}deg)`;
+                });
+                el.addEventListener('mouseleave', () => {
+                    el.style.transform = '';
+                });
+            });
         }
-        renderPortfolio();
+
+        // Simulate skeleton loading
+        function showSkeleton() {
+            const grid = document.getElementById('portfolioGrid');
+            grid.innerHTML = '';
+            for (let i = 0; i < 6; i++) {
+                const skeleton = document.createElement('div');
+                skeleton.className = 'skeleton-card';
+                grid.appendChild(skeleton);
+            }
+        }
+        showSkeleton();
+        setTimeout(() => {
+            renderPortfolio();
+        }, 800);
+
+        let currentFilter = 'all';
         document.querySelectorAll('.filter-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
-                renderPortfolio(btn.getAttribute('data-filter'));
+                currentFilter = btn.getAttribute('data-filter');
+                renderPortfolio(currentFilter, document.getElementById('portfolioSearch').value);
             });
         });
-
-        // Swiper
-        new Swiper('.testimonial-swiper', { loop: true, pagination: { el: '.swiper-pagination', clickable: true }, autoplay: { delay: 4000 } });
-
-        // FAQ
-        document.querySelectorAll('.faq-question').forEach(q => {
-            q.addEventListener('click', () => {
-                const answer = q.nextElementSibling;
-                answer.classList.toggle('active');
-                q.querySelector('span').innerHTML = answer.classList.contains('active') ? '−' : '+';
-            });
+        document.getElementById('portfolioSearch').addEventListener('input', (e) => {
+            renderPortfolio(currentFilter, e.target.value);
         });
 
-        // Modals
+        // Reviews from localStorage
+        let reviews = JSON.parse(localStorage.getItem('reviews')) || [
+            { name: "Анна", rating: 5, text: "Отличный сервис, сайт сделали за 2 дня!" },
+            { name: "Иван", rating: 5, text: "Очень доволен результатом, спасибо!" },
+            { name: "Мария", rating: 4, text: "Профессионально и быстро. Рекомендую." }
+        ];
+
+        function renderReviews() {
+            const wrapper = document.getElementById('reviewsSwiperWrapper');
+            wrapper.innerHTML = '';
+            reviews.forEach(rev => {
+                const slide = document.createElement('div');
+                slide.className = 'swiper-slide';
+                let stars = '';
+                for (let i = 1; i <= 5; i++) stars += i <= rev.rating ? '★' : '☆';
+                slide.innerHTML = `<div class="testimonial-card"><strong>${rev.name}</strong><div>${stars}</div><p>${rev.text}</p></div>`;
+                wrapper.appendChild(slide);
+            });
+            new Swiper('.testimonial-swiper', { loop: true, pagination: { el: '.swiper-pagination', clickable: true }, autoplay: { delay: 4000 } });
+        }
+        renderReviews();
+
+        // Add review modal
+        let selectedRating = 5;
+        document.getElementById('starRating').addEventListener('click', (e) => {
+            if (e.target.tagName === 'SPAN') {
+                const stars = [...document.querySelectorAll('#starRating span')];
+                const idx = stars.indexOf(e.target);
+                selectedRating = idx + 1;
+                stars.forEach((s, i) => {
+                    s.classList.toggle('active', i < selectedRating);
+                    s.innerText = i < selectedRating ? '★' : '☆';
+                });
+            }
+        });
+        document.getElementById('addReviewBtn').addEventListener('click', () => openModal('review'));
+        document.getElementById('reviewForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('reviewName').value;
+            const text = document.getElementById('reviewText').value;
+            if (name && text) {
+                reviews.unshift({ name, rating: selectedRating, text });
+                localStorage.setItem('reviews', JSON.stringify(reviews));
+                renderReviews();
+                closeAllModals();
+                document.getElementById('reviewResult').innerHTML = 'Спасибо! Ваш отзыв добавлен.';
+                setTimeout(() => document.getElementById('reviewResult').innerHTML = '', 3000);
+            }
+        });
+
+        // Map
+        const map = L.map('map').setView([55.751244, 37.618423], 13);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '© OpenStreetMap' }).addTo(map);
+        L.marker([55.751244, 37.618423]).addTo(map).bindPopup('Unique Web Studio').openPopup();
+
+        // Modal handling
         const modals = {
             demo: document.getElementById('demoModal'), consult: document.getElementById('consultModal'),
-            policy: document.getElementById('policyModal'), refund: document.getElementById('refundModal'),
-            exit: document.getElementById('exitModal')
+            review: document.getElementById('reviewModal'), policy: document.getElementById('policyModal'),
+            refund: document.getElementById('refundModal'), exit: document.getElementById('exitModal')
         };
         function openModal(modal) { modals[modal].style.display = 'flex'; }
         function closeAllModals() { Object.values(modals).forEach(m => m.style.display = 'none'); }
@@ -794,9 +954,9 @@
         document.getElementById('consultBtn').addEventListener('click', () => openModal('consult'));
         document.getElementById('policyLink').addEventListener('click', (e) => { e.preventDefault(); openModal('policy'); });
         document.getElementById('refundLink').addEventListener('click', (e) => { e.preventDefault(); openModal('refund'); });
-        document.getElementById('parallaxBtn').addEventListener('click', () => openModal('consult'));
+        document.getElementById('exitBtn').addEventListener('click', () => { closeAllModals(); openModal('consult'); });
 
-        // Exit intent modal
+        // Exit intent
         let exitShown = false;
         document.addEventListener('mouseleave', (e) => {
             if (e.clientY <= 0 && !exitShown && localStorage.getItem('exitShown') !== 'true') {
@@ -805,30 +965,21 @@
                 openModal('exit');
             }
         });
-        document.getElementById('exitBtn').addEventListener('click', () => { closeAllModals(); openModal('consult'); });
 
-        // Forms submission (mock, backend needed)
+        // Form submissions (mock)
         document.getElementById('demoForm').addEventListener('submit', async (e) => {
             e.preventDefault();
-            const data = { name: document.getElementById('demoName').value, phone: document.getElementById('demoPhone').value, vk: document.getElementById('demoVk').value };
-            // Simulate fetch to Flask endpoint
             document.getElementById('demoResult').innerHTML = 'Спасибо! Демо будет отправлено в течение 5 минут.';
-            // In production: fetch('/api/demo_request', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify(data) });
         });
         document.getElementById('consultForm').addEventListener('submit', async (e) => {
             e.preventDefault();
-            const data = { name: document.getElementById('consultName').value, email: document.getElementById('consultEmail').value, message: document.getElementById('consultMessage').value };
             document.getElementById('consultResult').innerHTML = 'Спасибо! Мы свяжемся с вами в ближайшее время.';
         });
-
-        // Payment buttons (mock)
         document.querySelectorAll('.pay-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                alert(`Оплата ${btn.getAttribute('data-price')}₽ через UnitPay будет доступна после утверждения макета.`);
-            });
+            btn.addEventListener('click', () => alert(`Оплата ${btn.getAttribute('data-price')}₽ через UnitPay будет доступна после утверждения макета.`));
         });
 
-        // Scroll to top
+        // Scroll top
         const scrollBtn = document.getElementById('scrollTop');
         window.addEventListener('scroll', () => scrollBtn.classList.toggle('visible', window.scrollY > 300));
         scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
@@ -839,7 +990,7 @@
         mobileBtn.addEventListener('click', () => navLinks.classList.toggle('active'));
         document.querySelectorAll('.nav-links a').forEach(link => link.addEventListener('click', () => navLinks.classList.remove('active')));
 
-        // Smooth scroll for anchor links
+        // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -848,7 +999,16 @@
             });
         });
 
-        // JSON-LD for SEO
+        // Cookie consent
+        if (!localStorage.getItem('cookiesAccepted')) {
+            document.getElementById('cookieConsent').style.display = 'flex';
+        }
+        document.getElementById('acceptCookies').addEventListener('click', () => {
+            localStorage.setItem('cookiesAccepted', 'true');
+            document.getElementById('cookieConsent').style.display = 'none';
+        });
+
+        // JSON-LD
         const script = document.createElement('script');
         script.type = 'application/ld+json';
         script.textContent = JSON.stringify({
