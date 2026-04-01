@@ -314,31 +314,177 @@
         .checkbox-group input {
             width: auto;
         }
+        /* Admin panel styles */
         .admin-panel {
             position: fixed;
             top: 0;
-            right: -400px;
-            width: 380px;
+            right: -600px;
+            width: 600px;
             height: 100vh;
             background: var(--white);
-            box-shadow: -2px 0 25px rgba(0,0,0,0.1);
+            box-shadow: -2px 0 25px rgba(0,0,0,0.15);
             z-index: 2000;
             transition: right 0.3s;
             overflow-y: auto;
             padding: 24px;
+            font-size: 14px;
         }
         .admin-panel.open { right: 0; }
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--brown-light);
+            padding-bottom: 10px;
+        }
         .admin-close {
-            float: right;
             cursor: pointer;
             font-size: 1.5rem;
+        }
+        .admin-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--brown-light);
+            flex-wrap: wrap;
+        }
+        .admin-tab {
+            padding: 8px 16px;
+            cursor: pointer;
+            border-radius: 20px;
+            transition: 0.2s;
+        }
+        .admin-tab.active {
+            background: var(--gold);
+            color: white;
+        }
+        .stats-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        .stat-card {
+            background: var(--beige);
+            padding: 16px;
+            border-radius: 16px;
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--gold-dark);
+        }
+        .leads-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+        .leads-table th, .leads-table td {
+            border: 1px solid var(--brown-light);
+            padding: 8px;
+            text-align: left;
+        }
+        .btn-icon {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+            margin: 0 4px;
             color: var(--brown);
         }
-        .admin-item {
-            border-bottom: 1px solid var(--brown-light);
-            padding: 12px 0;
-            font-size: 0.85rem;
+        .btn-icon:hover { color: var(--gold); }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            justify-content: center;
+            align-items: center;
+            z-index: 2100;
         }
+        .modal-content {
+            background: var(--white);
+            padding: 24px;
+            border-radius: 24px;
+            max-width: 500px;
+            width: 90%;
+        }
+        .form-group { margin-bottom: 16px; }
+        input, textarea, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--brown-light);
+            border-radius: 12px;
+            font-family: inherit;
+        }
+        textarea { min-height: 80px; }
+        button.btn {
+            background: var(--gold);
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 40px;
+            cursor: pointer;
+        }
+        .log-area {
+            background: #f4f4f4;
+            padding: 12px;
+            border-radius: 12px;
+            font-family: monospace;
+            font-size: 12px;
+            white-space: pre-wrap;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .loading { text-align: center; padding: 20px; }
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 16px;
+        }
+        .pagination button {
+            padding: 4px 10px;
+            border: 1px solid var(--brown-light);
+            background: white;
+            cursor: pointer;
+        }
+        /* Overlay для обязательного согласия */
+        .consent-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.85);
+            z-index: 10000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(5px);
+        }
+        .consent-overlay .modal {
+            display: flex !important;
+            position: relative;
+            background: transparent;
+            z-index: 10001;
+        }
+        .consent-overlay .modal-content {
+            max-width: 550px;
+            width: 90%;
+            background: var(--white);
+            border-radius: 32px;
+            padding: 32px;
+        }
+        #consentModal .close-modal {
+            display: none;
+        }
+        /* остальные стили */
         .floating-buttons {
             position: fixed;
             bottom: 100px;
@@ -383,64 +529,6 @@
             z-index: 99;
         }
         .scroll-top.visible { opacity: 1; }
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.7);
-            justify-content: center;
-            align-items: center;
-            z-index: 2001;
-        }
-        .modal-content {
-            background: var(--white);
-            padding: 32px;
-            border-radius: 32px;
-            max-width: 550px;
-            width: 90%;
-            position: relative;
-            max-height: 85vh;
-            overflow-y: auto;
-        }
-        .close-modal {
-            position: absolute;
-            top: 18px;
-            right: 22px;
-            cursor: pointer;
-            font-size: 1.3rem;
-            font-weight: bold;
-            color: var(--brown);
-        }
-        /* Consent modal z-index lower than policy/refund */
-        #consentModal {
-            z-index: 2000;
-        }
-        #policyModal, #refundModal {
-            z-index: 2002;
-        }
-        #consentModal .close-modal {
-            display: none;
-        }
-        .cookie-consent {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            right: 20px;
-            background: var(--white);
-            border-radius: 20px;
-            padding: 15px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 15px;
-            z-index: 1000;
-            box-shadow: var(--shadow);
-            display: none;
-        }
         footer {
             background: var(--brown-dark);
             color: #E9DFD3;
@@ -477,6 +565,23 @@
         }
         .contact-info a:hover {
             color: var(--gold);
+        }
+        .cookie-consent {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            background: var(--white);
+            border-radius: 20px;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+            display: none;
         }
     </style>
 </head>
@@ -569,7 +674,7 @@
 <div class="floating-buttons"><a href="https://wa.me/79651776233" class="floating-btn" target="_blank"><i class="fab fa-whatsapp"></i></a><a href="https://t.me/UNIQE_WEB_STUDIO" class="floating-btn telegram" target="_blank"><i class="fab fa-telegram"></i></a><a href="https://vk.com/unique__business" class="floating-btn vk" target="_blank"><i class="fab fa-vk"></i></a></div>
 <div class="scroll-top" id="scrollTop"><i class="fas fa-arrow-up"></i></div>
 
-<!-- Модальные окна -->
+<!-- Модальные окна для заявок -->
 <div id="demoModal" class="modal"><div class="modal-content"><span class="close-modal">&times;</span><h3 data-i18n="demo_modal_title">Получить демо сайт</h3><form id="demoForm"><input type="text" id="demoName" placeholder="Ваше имя" required data-i18n-placeholder="demo_name"><br><br><input type="text" id="demoPhone" placeholder="Телефон" required data-i18n-placeholder="demo_phone"><br><br><input type="text" id="demoVk" placeholder="Ссылка VK" required data-i18n-placeholder="demo_vk"><br><br><div class="checkbox-group"><input type="checkbox" id="demoAgree" required><label for="demoAgree" data-i18n="agree_label">Я согласен с <a href="#" id="demoPolicyLink">Пользовательским соглашением</a> и <a href="#" id="demoRefundLink">Политикой возвратов</a></label></div><button type="submit" class="btn" data-i18n="send_btn">Отправить</button></form><div id="demoResult"></div></div></div>
 <div id="consultModal" class="modal"><div class="modal-content"><span class="close-modal">&times;</span><h3 data-i18n="consult_modal_title">Заявка на консультацию</h3><form id="consultForm"><input type="text" id="consultName" placeholder="Имя" required data-i18n-placeholder="consult_name"><br><br><input type="email" id="consultEmail" placeholder="Email" required data-i18n-placeholder="consult_email"><br><br><textarea id="consultMessage" placeholder="Сообщение" data-i18n-placeholder="consult_message"></textarea><br><br><div class="checkbox-group"><input type="checkbox" id="consultAgree" required><label for="consultAgree" data-i18n="agree_label">Я согласен с <a href="#" id="consultPolicyLink">Пользовательским соглашением</a> и <a href="#" id="consultRefundLink">Политикой возвратов</a></label></div><button type="submit" class="btn" data-i18n="send_btn">Отправить</button></form><div id="consultResult"></div></div></div>
 <div id="reviewModal" class="modal"><div class="modal-content"><span class="close-modal">&times;</span><h3 data-i18n="review_modal_title">Оставить отзыв</h3><form id="reviewForm"><input type="text" id="reviewName" placeholder="Ваше имя" required data-i18n-placeholder="review_name"><br><br><div class="star-rating" id="starRating" style="display:flex; justify-content:center; gap:10px; font-size:2rem; cursor:pointer;"><span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span></div><textarea id="reviewText" placeholder="Ваш отзыв" rows="3" required data-i18n-placeholder="review_text"></textarea><br><br><div class="checkbox-group"><input type="checkbox" id="reviewAgree" required><label for="reviewAgree" data-i18n="agree_label">Я согласен с <a href="#" id="reviewPolicyLink">Пользовательским соглашением</a> и <a href="#" id="reviewRefundLink">Политикой возвратов</a></label></div><button type="submit" class="btn" data-i18n="send_btn">Отправить</button></form><div id="reviewResult"></div></div></div>
@@ -618,43 +723,30 @@
     </div>
 </div>
 
-<div id="adminPanel" class="admin-panel"><span class="admin-close" id="adminClose">&times;</span><h3 data-i18n="admin_title">Панель администратора</h3><div id="adminStats"></div><h4 data-i18n="admin_consents">Принятые согласия</h4><div id="adminConsents"></div><h4 data-i18n="admin_demo">Заявки на демо</h4><div id="adminDemoRequests"></div><h4 data-i18n="admin_consult">Заявки на консультацию</h4><div id="adminConsultRequests"></div><h4 data-i18n="admin_edit">Запросы на доработку</h4><div id="adminEditRequests"></div><h4 data-i18n="admin_reviews">Отзывы</h4><div id="adminReviews"></div></div>
+<!-- Новая панель администратора -->
+<div id="adminPanel" class="admin-panel">
+    <div class="admin-header">
+        <h2 data-i18n="admin_title">Панель администратора</h2>
+        <span class="admin-close" id="adminClose">&times;</span>
+    </div>
+    <div class="admin-tabs">
+        <div class="admin-tab active" data-tab="dashboard" data-i18n="tab_dashboard">Дашборд</div>
+        <div class="admin-tab" data-tab="leads" data-i18n="tab_leads">Лиды</div>
+        <div class="admin-tab" data-tab="settings" data-i18n="tab_settings">Настройки</div>
+        <div class="admin-tab" data-tab="logs" data-i18n="tab_logs">Логи</div>
+    </div>
+    <div id="adminContent"></div>
+</div>
+
+<div id="messageModal" class="modal"><div class="modal-content"><h3 data-i18n="send_message_title">Отправить сообщение</h3><form id="sendMessageForm"><input type="hidden" id="msgLeadId"><div class="form-group"><label data-i18n="message_text">Текст сообщения</label><textarea id="msgText" required></textarea></div><button type="submit" class="btn" data-i18n="send_btn">Отправить</button><button type="button" class="btn btn-outline" id="closeMsgModal" style="margin-left: 8px;" data-i18n="cancel">Отмена</button></form><div id="msgResult"></div></div></div>
+<div id="historyModal" class="modal"><div class="modal-content"><h3 data-i18n="message_history">История сообщений</h3><div id="historyList"></div><button type="button" class="btn" id="closeHistoryModal" data-i18n="close">Закрыть</button></div></div>
 <div id="cookieConsent" class="cookie-consent"><span data-i18n="cookie_text">Мы используем cookies для улучшения работы сайта. Продолжая, вы соглашаетесь с этим.</span><button id="acceptCookies" class="btn">OK</button></div>
 
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.8.0/dist/vanilla-tilt.min.js"></script>
 <script>
-    // ---------- Consent Management ----------
-    let consentGiven = localStorage.getItem('consentAccepted') === 'true';
-    let consentRecords = JSON.parse(localStorage.getItem('consentRecords')) || [];
-
-    function storeConsentRecord() {
-        const record = { timestamp: new Date().toLocaleString(), userAgent: navigator.userAgent };
-        consentRecords.push(record);
-        localStorage.setItem('consentRecords', JSON.stringify(consentRecords));
-        localStorage.setItem('consentAccepted', 'true');
-        consentGiven = true;
-    }
-
-    function requireConsentAndExecute(callback) {
-        if (consentGiven) {
-            callback();
-        } else {
-            window.pendingConsentCallback = callback;
-            openModal('consent');
-        }
-    }
-
-    function onConsentAccepted() {
-        if (window.pendingConsentCallback) {
-            const cb = window.pendingConsentCallback;
-            window.pendingConsentCallback = null;
-            cb();
-        }
-    }
-
-    // ---------- Language ----------
+    // ==================== Языковые переводы (полные, как в исходнике) ====================
     const translations = {
         ru: {
             nav_services: "Услуги", nav_portfolio: "Портфолио", nav_blog: "Блог", nav_reviews: "Отзывы", nav_contact: "Контакты",
@@ -681,7 +773,13 @@
             consent_policy: "Пользовательское соглашение", consent_refund: "Политика возвратов", consent_checkbox: "Я принимаю условия", consent_accept: "Продолжить", consent_warning: "Без принятия условий отправка заявок невозможна.",
             admin_title: "Панель администратора", admin_consents: "Принятые согласия", admin_demo: "Заявки на демо", admin_consult: "Заявки на консультацию", admin_edit: "Запросы на доработку", admin_reviews: "Отзывы",
             cookie_text: "Мы используем cookies для улучшения работы сайта. Продолжая, вы соглашаетесь с этим.",
-            footer_policy: "Пользовательское соглашение", footer_refund: "Политика возвратов"
+            footer_policy: "Пользовательское соглашение", footer_refund: "Политика возвратов",
+            tab_dashboard: "Дашборд", tab_leads: "Лиды", tab_settings: "Настройки", tab_logs: "Логи",
+            send_message_title: "Отправить сообщение", message_text: "Текст сообщения", cancel: "Отмена",
+            message_history: "История сообщений", close: "Закрыть", delete_confirm: "Удалить лид?",
+            no_data: "Нет данных", loading: "Загрузка...", stats_total: "Всего лидов", stats_new: "Новых", stats_sent: "Отправлено", stats_paid: "Оплачено",
+            settings_cities: "Города (через запятую)", settings_keywords: "Ключевые слова (через запятую)", save_settings: "Сохранить",
+            logs_title: "Логи worker", refresh: "Обновить", send_message: "Отправить сообщение", view_history: "История", delete: "Удалить"
         },
         en: {
             nav_services: "Services", nav_portfolio: "Portfolio", nav_blog: "Blog", nav_reviews: "Reviews", nav_contact: "Contacts",
@@ -708,9 +806,17 @@
             consent_policy: "Terms of Use", consent_refund: "Refund Policy", consent_checkbox: "I accept the terms", consent_accept: "Continue", consent_warning: "Without acceptance, requests cannot be sent.",
             admin_title: "Admin Panel", admin_consents: "Consents given", admin_demo: "Demo requests", admin_consult: "Consultation requests", admin_edit: "Edit requests", admin_reviews: "Reviews",
             cookie_text: "We use cookies to improve your experience. By continuing, you agree.",
-            footer_policy: "Terms of Use", footer_refund: "Refund Policy"
+            footer_policy: "Terms of Use", footer_refund: "Refund Policy",
+            tab_dashboard: "Dashboard", tab_leads: "Leads", tab_settings: "Settings", tab_logs: "Logs",
+            send_message_title: "Send message", message_text: "Message text", cancel: "Cancel",
+            message_history: "Message history", close: "Close", delete_confirm: "Delete lead?",
+            no_data: "No data", loading: "Loading...", stats_total: "Total leads", stats_new: "New", stats_sent: "Sent", stats_paid: "Paid",
+            settings_cities: "Cities (comma separated)", settings_keywords: "Keywords (comma separated)", save_settings: "Save",
+            logs_title: "Worker logs", refresh: "Refresh", send_message: "Send message", view_history: "History", delete: "Delete"
         }
     };
+
+    // ==================== Управление языком ====================
     let currentLang = localStorage.getItem('lang') || 'ru';
     function applyLanguage(lang) {
         currentLang = lang;
@@ -728,6 +834,9 @@
         });
         document.documentElement.lang = lang === 'ru' ? 'ru' : 'en';
         localStorage.setItem('lang', lang);
+        if (document.getElementById('adminPanel').classList.contains('open')) {
+            renderActiveTab();
+        }
     }
     document.getElementById('langSwitch').addEventListener('click', () => {
         const newLang = currentLang === 'ru' ? 'en' : 'ru';
@@ -737,10 +846,10 @@
     applyLanguage(currentLang);
     document.getElementById('langSwitch').innerText = currentLang === 'ru' ? 'EN' : 'RU';
 
+    // ==================== Остальная логика (портфолио, отзывы, заявки) ====================
     AOS.init({ duration: 800, once: true });
     VanillaTilt.init(document.querySelectorAll(".service-card, .portfolio-card"), { max: 8, speed: 400, glare: true, "max-glare": 0.2 });
 
-    // Portfolio data
     const portfolioData = [
         { title: "Студия красоты", category: "landing", svg: '<svg width="70" height="70" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 2a10 10 0 0 1 10 10 10 10 0 0 1-10 10 10 10 0 0 1-10-10 10 10 0 0 1 10-10z"/><path d="M12 6v6l4 2"/></svg>' },
         { title: "Магазин одежды", category: "shop", svg: '<svg width="70" height="70" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>' },
@@ -775,7 +884,6 @@
     document.getElementById('portfolioSearch').addEventListener('input', (e) => renderPortfolio(currentFilter, e.target.value));
     renderPortfolio();
 
-    // Blog
     const blogPosts = [
         { title: "Как выбрать Landing Page для бизнеса", excerpt: "Советы по выбору одностраничного сайта.", svg: '<svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 4h16v16H4zM8 8h8M8 12h6M8 16h4"/></svg>' },
         { title: "SEO оптимизация: что нужно знать", excerpt: "Основные принципы продвижения.", svg: '<svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12h8"/></svg>' },
@@ -789,7 +897,6 @@
         blogGrid.appendChild(card);
     });
 
-    // Reviews
     let reviews = JSON.parse(localStorage.getItem('reviews')) || [
         { name: "Анна", rating: 5, text: "Отличный сервис, сайт сделали за 2 дня!", approved: true },
         { name: "Иван", rating: 5, text: "Очень доволен результатом, спасибо!", approved: true },
@@ -820,32 +927,89 @@
         }
     });
 
-    // Storage
     let demoRequests = JSON.parse(localStorage.getItem('demoRequests')) || [];
     let consultRequests = JSON.parse(localStorage.getItem('consultRequests')) || [];
     let editRequests = JSON.parse(localStorage.getItem('editRequests')) || [];
+    let consentRecords = JSON.parse(localStorage.getItem('consentRecords')) || [];
+    let consentGiven = localStorage.getItem('consentAccepted') === 'true';
+
+    function storeConsentRecord() {
+        const record = { timestamp: new Date().toLocaleString(), userAgent: navigator.userAgent };
+        consentRecords.push(record);
+        localStorage.setItem('consentRecords', JSON.stringify(consentRecords));
+        localStorage.setItem('consentAccepted', 'true');
+        consentGiven = true;
+        // حذف overlay بعد از تایید
+        const overlay = document.getElementById('consentOverlay');
+        if (overlay) overlay.remove();
+    }
+
+    function requireConsentAndExecute(callback) {
+        if (consentGiven) {
+            callback();
+        } else {
+            window.pendingConsentCallback = callback;
+            showConsentOverlay();
+        }
+    }
+
+    function showConsentOverlay() {
+        if (document.getElementById('consentOverlay')) return;
+        const overlay = document.createElement('div');
+        overlay.id = 'consentOverlay';
+        overlay.className = 'consent-overlay';
+        const consentModal = document.getElementById('consentModal');
+        if (consentModal) {
+            overlay.appendChild(consentModal.cloneNode(true));
+            document.body.appendChild(overlay);
+            const clonedModal = overlay.querySelector('#consentModal');
+            clonedModal.style.display = 'flex';
+            // پیوندهای داخل مودال کلون شده
+            const policyLink = clonedModal.querySelector('#consentPolicyLink');
+            const refundLink = clonedModal.querySelector('#consentRefundLink');
+            if (policyLink) policyLink.addEventListener('click', (e) => { e.preventDefault(); openModal('policy'); });
+            if (refundLink) refundLink.addEventListener('click', (e) => { e.preventDefault(); openModal('refund'); });
+            const acceptBtn = clonedModal.querySelector('#acceptConsent');
+            const consentCheck = clonedModal.querySelector('#consentAgree');
+            acceptBtn.addEventListener('click', () => {
+                if (consentCheck.checked) {
+                    storeConsentRecord();
+                    if (window.pendingConsentCallback) {
+                        const cb = window.pendingConsentCallback;
+                        window.pendingConsentCallback = null;
+                        cb();
+                    }
+                } else {
+                    alert(translations[currentLang].consent_warning);
+                }
+            });
+        }
+    }
+
+    function onConsentAccepted() {
+        if (window.pendingConsentCallback) {
+            const cb = window.pendingConsentCallback;
+            window.pendingConsentCallback = null;
+            cb();
+        }
+    }
 
     function saveToLocal(key, data) {
         let arr = JSON.parse(localStorage.getItem(key)) || [];
         arr.push(data);
         localStorage.setItem(key, JSON.stringify(arr));
     }
-
     function attachPolicyLinks(prefix) {
         const policyLink = document.getElementById(`${prefix}PolicyLink`);
         const refundLink = document.getElementById(`${prefix}RefundLink`);
         if (policyLink) policyLink.addEventListener('click', (e) => { e.preventDefault(); openModal('policy'); });
         if (refundLink) refundLink.addEventListener('click', (e) => { e.preventDefault(); openModal('refund'); });
     }
-    attachPolicyLinks('demo');
-    attachPolicyLinks('consult');
-    attachPolicyLinks('review');
-    attachPolicyLinks('edit');
-    attachPolicyLinks('consent');
+    attachPolicyLinks('demo'); attachPolicyLinks('consult'); attachPolicyLinks('review'); attachPolicyLinks('edit'); attachPolicyLinks('consent');
     document.getElementById('policyLink')?.addEventListener('click', (e) => { e.preventDefault(); openModal('policy'); });
     document.getElementById('refundLink')?.addEventListener('click', (e) => { e.preventDefault(); openModal('refund'); });
 
-    // Form submissions
+    // Формы заявок (با requireConsentAndExecute)
     document.getElementById('demoForm').addEventListener('submit', (e) => {
         e.preventDefault();
         requireConsentAndExecute(() => {
@@ -855,7 +1019,6 @@
             setTimeout(() => closeAllModals(), 2000);
         });
     });
-
     document.getElementById('consultForm').addEventListener('submit', (e) => {
         e.preventDefault();
         requireConsentAndExecute(() => {
@@ -865,7 +1028,6 @@
             setTimeout(() => closeAllModals(), 2000);
         });
     });
-
     document.getElementById('editForm').addEventListener('submit', (e) => {
         e.preventDefault();
         requireConsentAndExecute(() => {
@@ -876,7 +1038,6 @@
             setTimeout(() => document.getElementById('editResult').innerHTML = '', 3000);
         });
     });
-
     document.getElementById('reviewForm').addEventListener('submit', (e) => {
         e.preventDefault();
         requireConsentAndExecute(() => {
@@ -891,7 +1052,6 @@
             }
         });
     });
-
     document.querySelectorAll('.pay-btn').forEach(btn => {
         btn.addEventListener('click', () => {
             requireConsentAndExecute(() => {
@@ -899,35 +1059,27 @@
             });
         });
     });
-
     function openModal(modalId) {
         const modal = document.getElementById(modalId + 'Modal');
         if (modal) modal.style.display = 'flex';
     }
-
     function closeModal(modalElement) {
         if (modalElement) modalElement.style.display = 'none';
     }
-
     function closeAllModals() {
         document.querySelectorAll('.modal').forEach(m => m.style.display = 'none');
     }
-
-    // Закрытие только текущего модального окна по кнопке "×"
     document.querySelectorAll('.close-modal').forEach(btn => {
         btn.addEventListener('click', function(e) {
             const modal = this.closest('.modal');
             if (modal) closeModal(modal);
         });
     });
-
-    // Закрытие по клику вне модального окна (кроме consent)
     window.addEventListener('click', e => {
         if (e.target.classList.contains('modal') && e.target.id !== 'consentModal') {
             closeModal(e.target);
         }
     });
-
     document.getElementById('getDemoBtn').addEventListener('click', () => {
         requireConsentAndExecute(() => openModal('demo'));
     });
@@ -937,43 +1089,11 @@
     document.getElementById('addReviewBtn').addEventListener('click', () => {
         requireConsentAndExecute(() => openModal('review'));
     });
-
-    // Accept consent
-    document.getElementById('acceptConsent').addEventListener('click', () => {
-        if (document.getElementById('consentAgree').checked) {
-            storeConsentRecord();
-            closeModal(document.getElementById('consentModal'));
-            onConsentAccepted();
-        } else {
-            alert(translations[currentLang].consent_warning);
-        }
-    });
-
-    // Admin panel
-    const adminPanel = document.getElementById('adminPanel');
-    document.getElementById('adminToggleBtn').addEventListener('click', () => {
-        const pwd = prompt("Введите пароль:");
-        if (pwd === "admin123") {
-            adminPanel.classList.add('open');
-            function updateAdmin() {
-                document.getElementById('adminStats').innerHTML = `<p>Всего заявок: ${demoRequests.length+consultRequests.length+editRequests.length}</p>`;
-                document.getElementById('adminConsents').innerHTML = consentRecords.map(r => `<div class="admin-item">${r.timestamp}<br><small>${r.userAgent.substring(0,60)}...</small></div>`).join('')||'Нет';
-                document.getElementById('adminDemoRequests').innerHTML = demoRequests.map(r=>`<div class="admin-item">${r.name} - ${r.phone}<br><small>${r.date}</small></div>`).join('')||'Нет';
-                document.getElementById('adminConsultRequests').innerHTML = consultRequests.map(r=>`<div class="admin-item">${r.name} (${r.email})<br>${r.message}<br><small>${r.date}</small></div>`).join('')||'Нет';
-                document.getElementById('adminEditRequests').innerHTML = editRequests.map(r=>`<div class="admin-item">${r.name} - ${r.site}<br>${r.description}<br><small>${r.date}</small></div>`).join('')||'Нет';
-                document.getElementById('adminReviews').innerHTML = reviews.map(r=>`<div class="admin-item">${r.name} - ${r.rating}★<br>${r.text}</div>`).join('')||'Нет';
-            }
-            updateAdmin();
-        } else alert("Неверный пароль");
-    });
-    document.getElementById('adminClose').addEventListener('click', () => adminPanel.classList.remove('open'));
-
-    // Show consent modal if not given yet
+    // نمایش overlay در ابتدا اگر قبلاً تایید نکرده باشد
     if (!consentGiven) {
-        setTimeout(() => openModal('consent'), 200);
+        setTimeout(() => showConsentOverlay(), 200);
     }
 
-    // Exit intent
     let exitShown = false;
     document.addEventListener('mouseleave', (e) => {
         if (e.clientY <= 0 && !exitShown && localStorage.getItem('exitShown') !== 'true' && consentGiven) {
@@ -984,18 +1104,15 @@
     });
     document.getElementById('exitBtn').addEventListener('click', () => { closeAllModals(); openModal('consult'); });
 
-    // Scroll top
     const scrollBtn = document.getElementById('scrollTop');
     window.addEventListener('scroll', () => scrollBtn.classList.toggle('visible', window.scrollY > 300));
     scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
-    // Mobile menu
     const mobileBtn = document.querySelector('.mobile-menu');
     const nav = document.querySelector('.nav');
     mobileBtn.addEventListener('click', () => nav.classList.toggle('active'));
     document.querySelectorAll('.nav a').forEach(link => link.addEventListener('click', () => nav.classList.remove('active')));
 
-    // Smooth scroll
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
@@ -1004,11 +1121,246 @@
         });
     });
 
-    // Cookie consent
     if (!localStorage.getItem('cookiesAccepted')) document.getElementById('cookieConsent').style.display = 'flex';
     document.getElementById('acceptCookies').addEventListener('click', () => {
         localStorage.setItem('cookiesAccepted', 'true');
         document.getElementById('cookieConsent').style.display = 'none';
+    });
+
+    // ==================== НОВАЯ ЛОГИКА ПАНЕЛИ АДМИНИСТРАТОРА (без изменений) ====================
+    let currentAdminTab = 'dashboard';
+    let leadsData = [];
+    let leadsPage = 1;
+    const leadsPerPage = 10;
+
+    async function fetchStats() {
+        const res = await fetch('/api/stats');
+        if (res.ok) return await res.json();
+        return { total: 0, new: 0, sent: 0, paid: 0 };
+    }
+    async function fetchLeads() {
+        const res = await fetch('/api/leads');
+        if (res.ok) {
+            leadsData = await res.json();
+            return leadsData;
+        }
+        return [];
+    }
+    async function deleteLead(id) {
+        if (!confirm(translations[currentLang].delete_confirm)) return;
+        const res = await fetch(`/api/leads/${id}`, { method: 'DELETE' });
+        if (res.ok) {
+            await renderLeadsTable();
+        } else {
+            alert('Ошибка удаления');
+        }
+    }
+    async function sendMessage(leadId, text) {
+        const res = await fetch('/api/send_message', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ lead_id: leadId, message: text })
+        });
+        return res.ok;
+    }
+    async function fetchMessageHistory(leadId) {
+        const res = await fetch(`/api/messages/${leadId}`);
+        if (res.ok) return await res.json();
+        return [];
+    }
+    async function fetchSettings() {
+        const res = await fetch('/api/settings');
+        if (res.ok) return await res.json();
+        return { cities: [], keywords: [] };
+    }
+    async function saveSettings(settings) {
+        const res = await fetch('/api/settings', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(settings)
+        });
+        return res.ok;
+    }
+    async function fetchLogs() {
+        const res = await fetch('/api/logs');
+        if (res.ok) return await res.json();
+        return { logs: [] };
+    }
+    async function renderDashboard() {
+        const container = document.getElementById('adminContent');
+        container.innerHTML = `<div class="loading">${translations[currentLang].loading}</div>`;
+        const stats = await fetchStats();
+        container.innerHTML = `
+            <div class="stats-cards">
+                <div class="stat-card"><div class="stat-number">${stats.total}</div><div>${translations[currentLang].stats_total}</div></div>
+                <div class="stat-card"><div class="stat-number">${stats.new}</div><div>${translations[currentLang].stats_new}</div></div>
+                <div class="stat-card"><div class="stat-number">${stats.sent}</div><div>${translations[currentLang].stats_sent}</div></div>
+                <div class="stat-card"><div class="stat-number">${stats.paid}</div><div>${translations[currentLang].stats_paid}</div></div>
+            </div>
+            <p>📊 Последние 10 лидов:</p>
+            <div id="recentLeads"></div>
+        `;
+        const leads = await fetchLeads();
+        const recent = leads.slice(0, 10);
+        const t = translations[currentLang];
+        const html = `
+            <table class="leads-table">
+                <thead><tr><th>ID</th><th>${t.nav_services}</th><th>Город</th><th>Статус</th></tr></thead>
+                <tbody>
+                    ${recent.map(l => `<tr><td>${l.id}</td><td>${l.name}</td><td>${l.city || '-'}</td><td>${l.status}</td></tr>`).join('')}
+                </tbody>
+            </table>
+        `;
+        document.getElementById('recentLeads').innerHTML = html;
+    }
+    async function renderLeadsTable() {
+        const container = document.getElementById('adminContent');
+        container.innerHTML = `<div class="loading">${translations[currentLang].loading}</div>`;
+        if (!leadsData.length) await fetchLeads();
+        const start = (leadsPage-1)*leadsPerPage;
+        const pageLeads = leadsData.slice(start, start+leadsPerPage);
+        const t = translations[currentLang];
+        let html = `
+            <div style="margin-bottom: 16px;">
+                <input type="text" id="leadSearch" placeholder="🔍 ${t.search_placeholder}" style="width: 200px;">
+            </div>
+            <table class="leads-table">
+                <thead><tr><th>ID</th><th>${t.nav_services}</th><th>Город</th><th>Категория</th><th>Статус</th><th>Действия</th></tr></thead>
+                <tbody>
+        `;
+        pageLeads.forEach(lead => {
+            html += `
+                <tr>
+                    <td>${lead.id}</td>
+                    <td>${lead.name}</td>
+                    <td>${lead.city || '-'}</td>
+                    <td>${lead.category || '-'}</td>
+                    <td>${lead.status}</td>
+                    <td>
+                        <button class="btn-icon" onclick="openSendMessage(${lead.id})" title="${t.send_message}"><i class="fas fa-envelope"></i></button>
+                        <button class="btn-icon" onclick="openHistory(${lead.id})" title="${t.view_history}"><i class="fas fa-history"></i></button>
+                        <button class="btn-icon" onclick="deleteLead(${lead.id})" title="${t.delete}"><i class="fas fa-trash"></i></button>
+                    </td>
+                </tr>
+            `;
+        });
+        html += `</tbody></table><div class="pagination" id="pagination"></div>`;
+        container.innerHTML = html;
+        const totalPages = Math.ceil(leadsData.length / leadsPerPage);
+        const paginationDiv = document.getElementById('pagination');
+        for (let i=1; i<=totalPages; i++) {
+            const btn = document.createElement('button');
+            btn.textContent = i;
+            if (i === leadsPage) btn.style.fontWeight = 'bold';
+            btn.onclick = () => { leadsPage = i; renderLeadsTable(); };
+            paginationDiv.appendChild(btn);
+        }
+        document.getElementById('leadSearch').addEventListener('input', (e) => {
+            const term = e.target.value.toLowerCase();
+            const filtered = leadsData.filter(l => l.name.toLowerCase().includes(term) || (l.city && l.city.toLowerCase().includes(term)));
+            leadsData = filtered;
+            leadsPage = 1;
+            renderLeadsTable();
+        });
+    }
+    async function renderSettings() {
+        const container = document.getElementById('adminContent');
+        container.innerHTML = `<div class="loading">${translations[currentLang].loading}</div>`;
+        const settings = await fetchSettings();
+        container.innerHTML = `
+            <form id="settingsForm">
+                <div class="form-group"><label>${translations[currentLang].settings_cities}</label><input type="text" id="citiesInput" value="${(settings.cities || []).join(', ')}"></div>
+                <div class="form-group"><label>${translations[currentLang].settings_keywords}</label><input type="text" id="keywordsInput" value="${(settings.keywords || []).join(', ')}"></div>
+                <button type="submit" class="btn">${translations[currentLang].save_settings}</button>
+                <div id="settingsResult"></div>
+            </form>
+        `;
+        document.getElementById('settingsForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const cities = document.getElementById('citiesInput').value.split(',').map(s => s.trim()).filter(Boolean);
+            const keywords = document.getElementById('keywordsInput').value.split(',').map(s => s.trim()).filter(Boolean);
+            const ok = await saveSettings({ cities, keywords });
+            document.getElementById('settingsResult').innerHTML = ok ? '✅ Сохранено' : '❌ Ошибка';
+            setTimeout(() => document.getElementById('settingsResult').innerHTML = '', 3000);
+        });
+    }
+    async function renderLogs() {
+        const container = document.getElementById('adminContent');
+        container.innerHTML = `<div class="loading">${translations[currentLang].loading}</div>`;
+        const data = await fetchLogs();
+        container.innerHTML = `
+            <h3>${translations[currentLang].logs_title}</h3>
+            <div class="log-area" id="logArea">${(data.logs || []).join('\n') || translations[currentLang].no_data}</div>
+            <button class="btn" id="refreshLogs" style="margin-top: 16px;">${translations[currentLang].refresh}</button>
+        `;
+        document.getElementById('refreshLogs').addEventListener('click', renderLogs);
+    }
+    function renderActiveTab() {
+        if (currentAdminTab === 'dashboard') renderDashboard();
+        else if (currentAdminTab === 'leads') renderLeadsTable();
+        else if (currentAdminTab === 'settings') renderSettings();
+        else if (currentAdminTab === 'logs') renderLogs();
+    }
+    document.querySelectorAll('.admin-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+            document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            currentAdminTab = tab.getAttribute('data-tab');
+            renderActiveTab();
+        });
+    });
+    const adminPanel = document.getElementById('adminPanel');
+    document.getElementById('adminToggleBtn').addEventListener('click', () => {
+        const pwd = prompt("Введите пароль администратора:");
+        if (pwd === "admin123") {
+            adminPanel.classList.add('open');
+            renderActiveTab();
+        } else alert("Неверный пароль");
+    });
+    document.getElementById('adminClose').addEventListener('click', () => adminPanel.classList.remove('open'));
+    function openSendMessage(leadId) {
+        document.getElementById('msgLeadId').value = leadId;
+        document.getElementById('messageModal').style.display = 'flex';
+    }
+    window.openSendMessage = openSendMessage;
+    document.getElementById('sendMessageForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const leadId = document.getElementById('msgLeadId').value;
+        const text = document.getElementById('msgText').value;
+        const resultDiv = document.getElementById('msgResult');
+        resultDiv.innerHTML = translations[currentLang].loading;
+        const success = await sendMessage(leadId, text);
+        resultDiv.innerHTML = success ? '✅ Отправлено' : '❌ Ошибка';
+        if (success) {
+            setTimeout(() => {
+                document.getElementById('messageModal').style.display = 'none';
+                document.getElementById('msgText').value = '';
+                resultDiv.innerHTML = '';
+            }, 1500);
+        }
+    });
+    document.getElementById('closeMsgModal').addEventListener('click', () => {
+        document.getElementById('messageModal').style.display = 'none';
+    });
+    async function openHistory(leadId) {
+        const history = await fetchMessageHistory(leadId);
+        const listDiv = document.getElementById('historyList');
+        if (history.length === 0) {
+            listDiv.innerHTML = translations[currentLang].no_data;
+        } else {
+            listDiv.innerHTML = history.map(h => `<div style="border-bottom:1px solid #ddd; padding:8px;"><strong>${h.message_type}</strong> (${h.sent_at})<br>${h.message || '—'}</div>`).join('');
+        }
+        document.getElementById('historyModal').style.display = 'flex';
+    }
+    window.openHistory = openHistory;
+    document.getElementById('closeHistoryModal').addEventListener('click', () => {
+        document.getElementById('historyModal').style.display = 'none';
+    });
+    window.deleteLead = deleteLead;
+    window.addEventListener('click', (e) => {
+        if (e.target.classList.contains('modal')) {
+            e.target.style.display = 'none';
+        }
     });
 </script>
 </body>
