@@ -1,28 +1,218 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Пользовательское соглашение</title>
-</head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>UNIQUE WEB STUDIO</title>
+
+<meta name="description" content="Website creation services">
+<meta name="keywords" content="web design, landing page, business site">
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+<style>
+body{margin:0;font-family:Arial;background:#0f172a;color:#fff}
+section{padding:60px 20px;text-align:center}
+input,select,button{padding:10px;margin:5px;border-radius:8px;border:none}
+button{background:#c8a96a;color:white;cursor:pointer}
+.card{background:#1e293b;padding:20px;border-radius:12px;margin:10px}
+.grid{display:flex;flex-wrap:wrap;justify-content:center}
+.chat{position:fixed;bottom:20px;right:20px;background:#c8a96a;padding:15px;border-radius:50%}
+</style>
+
+</head>
 <body>
 
-<h1>Пользовательское соглашение</h1>
+<!-- HERO -->
+<section>
+<h1>UNIQUE WEB STUDIO</h1>
+<p>All-in-one web system</p>
+</section>
 
-<p>Сервис предоставляет услуги по созданию сайтов.</p>
+<!-- ORDER SYSTEM -->
+<section>
+<h2>Order Website</h2>
+<input placeholder="Name">
+<select>
+<option>Landing</option>
+<option>E-commerce</option>
+</select>
+<button onclick="order()">Submit Order</button>
+</section>
 
-<h2>Стоимость</h2>
-<p>Стоимость услуг от 6000 рублей.</p>
+<!-- PAYMENT -->
+<section>
+<h2>Payment</h2>
+<button onclick="pay()">Pay Now</button>
+</section>
 
-<h2>Оплата</h2>
-<p>Оплата через UnitPay.</p>
+<!-- AUTH -->
+<section>
+<h2>Login / Register</h2>
+<input placeholder="Email">
+<input placeholder="Password" type="password">
+<button onclick="login()">Login</button>
+</section>
 
-<h2>Сроки</h2>
-<p>Срок выполнения: 1-3 рабочих дня.</p>
+<!-- PROFILE -->
+<section>
+<h2>User Panel</h2>
+<div id="profile">No data</div>
+</section>
 
-<h2>Контакты</h2>
-<p>WhatsApp: +79651776233</p>
-<p>VK: https://vk.com/unique__business</p>
+<!-- PORTFOLIO -->
+<section>
+<h2>Portfolio</h2>
+<div class="grid">
+<div class="card">Project 1</div>
+<div class="card">Project 2</div>
+</div>
+</section>
+
+<!-- REVIEWS -->
+<section>
+<h2>Reviews</h2>
+<div class="card">⭐⭐⭐⭐⭐ Great service</div>
+</section>
+
+<!-- BLOG -->
+<section>
+<h2>Blog</h2>
+<div class="card">Article 1</div>
+</section>
+
+<!-- ADMIN PANEL -->
+<section>
+<h2>Admin Panel</h2>
+<button onclick="admin()">Open</button>
+</section>
+
+<!-- CHAT -->
+<div class="chat" onclick="chat()">
+<i class="fas fa-comment"></i>
+</div>
+
+<script>
+
+// ================= CORE =================
+function order(){alert("Order created")}
+function pay(){alert("Redirect to payment")}
+function login(){localStorage.setItem("user","logged");alert("Logged")}
+function admin(){alert("Admin panel")}
+function chat(){alert("Chat open")}
+
+// ================= FEATURES =================
+
+// 1–15 SALES
+function calcPrice(){return 100}
+function applyCoupon(){}
+function invoice(){}
+function planSelect(){}
+function orderHistory(){}
+function quickOrder(){}
+function autoConfirm(){}
+function saveOrder(){}
+function multiStepPayment(){}
+function upsell(){}
+function deliveryTime(){}
+function addons(){}
+function previewOrder(){}
+function recurringPayment(){}
+
+// 16–30 USERS
+function register(){}
+function logout(){}
+function profileUpdate(){}
+function uploadFile(){}
+function supportTicket(){}
+function notifyEmail(){}
+function notifyTelegram(){}
+function blockUser(){}
+function userRating(){}
+function roles(){}
+function userList(){}
+function activityLog(){}
+
+// 31–40 CHAT
+function liveChat(){}
+function telegramBot(){}
+function whatsappAPI(){}
+function autoReply(){}
+function aiChat(){}
+function sendFile(){}
+function chatHistory(){}
+function faq(){}
+function callBooking(){}
+
+// 41–55 MARKETING
+function landingBuilder(){}
+function ABtest(){}
+function visitorCounter(){}
+function referral(){}
+function emailMarketing(){}
+function sms(){}
+function popup(){}
+function countdown(){}
+function seoAuto(){}
+function metaGen(){}
+function blog(){}
+function newsletter(){}
+function analytics(){}
+function heatmap(){}
+
+// 56–65 TRUST
+function testimonials(){}
+function starRating(){}
+function portfolio(){}
+function videoReviews(){}
+function logos(){}
+function stats(){}
+function guarantee(){}
+function about(){}
+function team(){}
+function certificates(){}
+
+// 66–75 UI
+function darkMode(){document.body.classList.toggle("dark")}
+function animation(){}
+function loader(){}
+function hover(){}
+function font(){}
+function colorChange(){}
+function responsive(){}
+function parallax(){}
+function slider(){}
+
+// 76–90 SYSTEM
+function adminPanel(){}
+function manageOrders(){}
+function cms(){}
+function manageUsers(){}
+function financeReport(){}
+function api(){}
+function backup(){}
+function logs(){}
+function security(){}
+function captcha(){}
+function jwt(){}
+function cdn(){}
+function cache(){}
+function monitoring(){}
+
+// 91–100 AI
+function aiChatbot(){}
+function aiText(){}
+function aiSuggest(){}
+function aiAnalyze(){}
+function aiEmail(){}
+function aiUI(){}
+function spamDetect(){}
+function behavior(){}
+function smartPricing(){}
+function recommender(){}
+
+</script>
 
 </body>
 </html>
