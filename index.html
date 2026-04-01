@@ -1,20 +1,188 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <title>UNIQUE BUSINESS</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UNIQUE WEB</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(to bottom, #f5f1e9, #efe6d6);
+    color: #333;
+    scroll-behavior: smooth;
+}
+
+header {
+    padding: 60px 20px;
+    text-align: center;
+    background: #e8dcc7;
+}
+
+h1 {
+    font-size: 40px;
+}
+
+.btn {
+    background: #c8a97e;
+    color: white;
+    padding: 12px 30px;
+    border-radius: 25px;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 20px;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: #b8966b;
+}
+
+.section {
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.cards {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    margin: 15px;
+    border-radius: 15px;
+    width: 250px;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+}
+
+.portfolio img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.footer {
+    background: #e8dcc7;
+    padding: 20px;
+    text-align: center;
+}
+
+/* WhatsApp Button */
+.whatsapp {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background: #25D366;
+    color: white;
+    padding: 15px;
+    border-radius: 50%;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+/* Animation */
+.fade {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: 1s;
+}
+
+.fade.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+</style>
 </head>
 
 <body>
 
-    <h1>UNIQUE BUSINESS</h1>
+<header>
+    <h1>UNIQUE WEB</h1>
+    <p>Создаем сайты, которые приносят клиентов</p>
+    <a href="#contact" class="btn">Заказать сайт</a>
+</header>
 
-    <p>Мы создаем сайты для вашего бизнеса.</p>
+<div class="section fade">
+    <h2>Наши услуги</h2>
+    <div class="cards">
+        <div class="card">Лендинг страницы</div>
+        <div class="card">Корпоративные сайты</div>
+        <div class="card">Интернет-магазины</div>
+    </div>
+</div>
 
-    <hr>
+<div class="section portfolio fade">
+    <h2>Наши работы</h2>
+    <div class="cards">
+        <div class="card">
+            <img src="https://via.placeholder.com/250x150">
+            <p>Luxury Brand</p>
+        </div>
+        <div class="card">
+            <img src="https://via.placeholder.com/250x150">
+            <p>Online Shop</p>
+        </div>
+        <div class="card">
+            <img src="https://via.placeholder.com/250x150">
+            <p>Business Site</p>
+        </div>
+    </div>
+</div>
 
-    <a href="terms.html">Пользовательское соглашение</a><br><br>
-    <a href="refund.html">Политика возврата</a>
+<div class="section fade">
+    <h2>Почему выбирают нас</h2>
+    <div class="cards">
+        <div class="card">⚡ Быстро</div>
+        <div class="card">💰 Доступно</div>
+        <div class="card">🎨 Современно</div>
+    </div>
+</div>
+
+<div class="section fade">
+    <h2>Отзывы клиентов</h2>
+    <div class="cards">
+        <div class="card">Отличная работа! 👍</div>
+        <div class="card">Очень быстро сделали сайт</div>
+        <div class="card">Рекомендую!</div>
+    </div>
+</div>
+
+<div class="section fade" id="contact">
+    <h2>Связаться с нами</h2>
+    <p>Email: uniqe.studio@yandex.com</p>
+    <a class="btn" href="mailto:uniqe.studio@yandex.com">Написать на Email</a>
+</div>
+
+<div class="footer">
+    © 2026 UNIQUE WEB
+</div>
+
+<!-- WhatsApp -->
+<a class="whatsapp" href="https://wa.me/+79651776233">💬</a>
+
+<script>
+const elements = document.querySelectorAll('.fade');
+
+window.addEventListener('scroll', () => {
+    elements.forEach(el => {
+        const position = el.getBoundingClientRect().top;
+        const screen = window.innerHeight;
+
+        if(position < screen - 100){
+            el.classList.add('show');
+        }
+    });
+});
+</script>
 
 </body>
 </html>
