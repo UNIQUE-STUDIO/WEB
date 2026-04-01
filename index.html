@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>UNIQUE STUDIO</title>
 
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
 <style>
 body {
     margin: 0;
@@ -13,31 +15,157 @@ body {
     color: #333;
 }
 
+/* HEADER */
 header {
-    background: #fff;
-    padding: 15px 40px;
+    position: sticky;
+    top: 0;
+    background: rgba(255,255,255,0.8);
+    backdrop-filter: blur(10px);
     display: flex;
     justify-content: space-between;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    padding: 15px 20px;
+    z-index: 1000;
 }
 
-nav a {
-    margin: 0 10px;
-    text-decoration: none;
-    color: #333;
+.logo {
     font-weight: bold;
 }
 
+.menu {
+    display: flex;
+}
+
+.menu a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: #333;
+}
+
+.menu-btn {
+    display: none;
+    font-size: 20px;
+}
+
+/* HERO */
 .hero {
     text-align: center;
-    padding: 100px 20px;
-    background: linear-gradient(#f5f0e6, #ffffff);
+    padding: 80px 20px;
 }
 
-.hero h1 {
-    font-size: 40px;
+.btn {
+    background: #c8a96a;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 25px;
+    border: none;
+    margin-top: 20px;
 }
 
+/* CARDS */
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.card {
+    background: white;
+    margin: 15px;
+    padding: 20px;
+    width: 250px;
+    border-radius: 15px;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+}
+
+/* SOCIAL */
+.social i {
+    font-size: 24px;
+    margin: 10px;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+    .menu {
+        display: none;
+        flex-direction: column;
+        background: white;
+        position: absolute;
+        top: 60px;
+        right: 20px;
+        padding: 10px;
+        border-radius: 10px;
+    }
+
+    .menu.show {
+        display: flex;
+    }
+
+    .menu-btn {
+        display: block;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">UNIQUE STUDIO</div>
+
+    <div class="menu" id="menu">
+        <a href="#">Главная</a>
+        <a href="#">Услуги</a>
+        <a href="#">Портфолио</a>
+        <a href="#">Контакты</a>
+    </div>
+
+    <div class="menu-btn" onclick="toggleMenu()">
+        ☰
+    </div>
+</header>
+
+<section class="hero">
+    <h1>Создаем сайты для бизнеса</h1>
+    <p>Современный дизайн и разработка</p>
+    <button class="btn">Заказать сайт</button>
+</section>
+
+<section class="cards">
+    <div class="card">Лендинг</div>
+    <div class="card">Интернет-магазин</div>
+    <div class="card">Дизайн</div>
+</section>
+
+<section class="cards">
+    <div class="card">
+        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085" width="100%">
+        <p>Сайт компании</p>
+    </div>
+</section>
+
+<section style="text-align:center; padding:40px;">
+    <h2>Контакты</h2>
+    <p>uniqe.studio@yandex.com</p>
+
+    <div class="social">
+        <i class="fab fa-telegram"></i>
+        <i class="fab fa-whatsapp"></i>
+        <i class="fab fa-vk"></i>
+    </div>
+</section>
+
+<script>
+function toggleMenu(){
+    document.getElementById("menu").classList.toggle("show");
+}
+</script>
+
+</body>
+</html>
 .btn {
     background: #c8a96a;
     color: white;
