@@ -3,19 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="description" content="Unique Web Studio – Создание профессиональных сайтов с автоматической системой">
-    <meta name="description-en" content="Unique Web Studio – Professional website creation with automated system">
-    <meta name="keywords" content="создание сайтов, веб-студия, лендинг, интернет-магазин">
+    <meta name="description" content="Unique Web Studio – Создание профессиональных сайтов с автоматической системой. Быстро, современно, качественно.">
+    <meta name="description-en" content="Unique Web Studio – Professional website creation with automated system. Fast, modern, high-quality.">
+    <meta name="keywords" content="создание сайтов, веб-студия, лендинг, интернет-магазин, уникальный дизайн">
     <meta name="author" content="Unique Web Studio">
-    <meta property="og:title" content="Unique Web Studio">
+    <meta property="og:title" content="Unique Web Studio | Создание сайтов">
     <meta property="og:description" content="Быстрое и умное создание сайтов по доступным ценам">
-    <meta property="og:image" content="https://via.placeholder.com/1200x630">
+    <meta property="og:image" content="https://via.placeholder.com/1200x630?text=Unique+Web+Studio">
     <meta property="og:url" content="https://unique-studio.github.io/WEB/">
     <meta name="twitter:card" content="summary_large_image">
     <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌐</text></svg>">
     <title>Unique Web Studio | Создание сайтов</title>
+
+    <!-- Fonts & Libraries -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -27,8 +30,9 @@
             font-family: 'Inter', sans-serif;
             background: #fefcf7;
             color: #2c2b28;
-            transition: background 0.3s, color 0.3s;
+            transition: background 0.3s ease, color 0.3s ease;
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
         body.dark {
@@ -39,7 +43,8 @@
         body.dark .card,
         body.dark .modal-content,
         body.dark .faq-item,
-        body.dark .status-card {
+        body.dark .status-card,
+        body.dark .testimonial-card {
             background: #2d2d3a;
             color: #e4e4e7;
         }
@@ -60,11 +65,11 @@
             padding: 0 24px;
         }
 
-        /* header */
+        /* Glassmorphic header */
         .header {
             position: sticky;
             top: 0;
-            background: rgba(254, 252, 247, 0.95);
+            background: rgba(254, 252, 247, 0.85);
             backdrop-filter: blur(12px);
             z-index: 1000;
             padding: 16px 0;
@@ -73,7 +78,7 @@
         }
 
         body.dark .header {
-            background: rgba(30, 30, 42, 0.95);
+            background: rgba(30, 30, 42, 0.85);
             border-bottom-color: rgba(255,255,255,0.05);
         }
 
@@ -148,7 +153,7 @@
             }
         }
 
-        /* buttons */
+        /* Buttons with ripple */
         .btn {
             display: inline-block;
             background: #c8a96a;
@@ -161,11 +166,33 @@
             border: none;
             cursor: pointer;
             font-size: 1rem;
+            position: relative;
+            overflow: hidden;
         }
 
         .btn:hover {
             background: #b58c48;
             transform: translateY(-2px);
+        }
+
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255,255,255,0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.3s, height 0.3s;
+        }
+
+        .btn:active::after {
+            width: 200px;
+            height: 200px;
+            opacity: 0;
+            transition: 0s;
         }
 
         .btn-outline {
@@ -202,13 +229,14 @@
             border-radius: 24px;
             overflow: hidden;
             box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05);
-            transition: transform 0.3s;
+            transition: transform 0.3s, box-shadow 0.3s;
             padding: 24px;
             text-align: center;
         }
 
         .card:hover {
-            transform: translateY(-8px);
+            transform: translateY(-8px) rotateY(2deg);
+            box-shadow: 0 20px 30px -10px rgba(0,0,0,0.15);
         }
 
         .card img {
@@ -216,33 +244,62 @@
             height: 180px;
             object-fit: cover;
             border-radius: 16px;
+            transition: transform 0.3s;
         }
 
-        /* status card (UnitPay message) */
-        .status-card {
-            background: #fff8e7;
-            border-left: 5px solid #c8a96a;
-            padding: 24px;
-            border-radius: 20px;
-            margin: 40px 0;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        .card:hover img {
+            transform: scale(1.05);
         }
 
-        .status-card h3 {
+        /* filter buttons */
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: transparent;
+            border: 1px solid #c8a96a;
+            padding: 8px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: 500;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: #c8a96a;
+            color: white;
+        }
+
+        /* stats */
+        .stats-grid {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
             color: #c8a96a;
-            margin-bottom: 12px;
         }
 
-        /* swiper */
-        .swiper {
-            padding: 20px 0;
-        }
-
+        /* testimonial swiper */
         .testimonial-card {
             background: white;
-            padding: 24px;
+            padding: 30px;
             border-radius: 24px;
             text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
         }
 
         /* faq */
@@ -251,6 +308,7 @@
             border-radius: 20px;
             margin-bottom: 16px;
             overflow: hidden;
+            transition: all 0.2s;
         }
 
         .faq-question {
@@ -271,7 +329,46 @@
             display: block;
         }
 
-        /* scroll to top */
+        /* status card (bottom) */
+        .status-section {
+            padding: 40px 0;
+        }
+
+        .status-card {
+            background: #fff8e7;
+            border-left: 5px solid #c8a96a;
+            padding: 24px;
+            border-radius: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .status-card h3 {
+            color: #c8a96a;
+            margin-bottom: 12px;
+        }
+
+        /* parallax */
+        .parallax {
+            background: url('https://picsum.photos/1920/600?grayscale') center/cover fixed;
+            padding: 100px 0;
+            text-align: center;
+            color: white;
+            position: relative;
+            z-index: 1;
+        }
+
+        .parallax::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: -1;
+        }
+
+        /* scroll top */
         .scroll-top {
             position: fixed;
             bottom: 30px;
@@ -294,7 +391,7 @@
             opacity: 1;
         }
 
-        /* modal */
+        /* modals */
         .modal {
             display: none;
             position: fixed;
@@ -369,10 +466,10 @@
     </header>
 
     <main>
-        <!-- Hero -->
-        <section>
+        <!-- Hero with typed text -->
+        <section data-aos="fade-up">
             <div class="container" style="text-align: center;">
-                <h1 data-i18n="hero_title">Web Design / Создание сайтов</h1>
+                <h1><span id="typed-text"></span></h1>
                 <p style="font-size: 1.2rem; max-width: 700px; margin: 20px auto;" data-i18n="hero_desc">
                     Система автоматического создания сайтов. Быстро, современно и без лишних сложностей.
                 </p>
@@ -383,41 +480,20 @@
             </div>
         </section>
 
-        <!-- Status Card (UnitPay moderation message) -->
-        <div class="container">
-            <div class="status-card">
-                <h3 data-i18n="status_title">⚠️ Статус проекта / Project Status</h3>
-                <div data-i18n="status_text">
-                    <p><strong>Проект vk.com/unique__business находится на доработке после модерации.</strong></p>
-                    <p>Для активации необходимо разместить на проекте:</p>
-                    <ul>
-                        <li>Пользовательское соглашение</li>
-                        <li>Подробную политику возвратов (с указанием куда писать жалобу и сроки ответа)</li>
-                    </ul>
-                    <p>Дополнительно на почту <a href="mailto:partners@unitpay.ru">partners@unitpay.ru</a> прислать:</p>
-                    <ul>
-                        <li>Информацию по привлечению клиентов (ссылки на форумы/блоги/соцсети или скриншоты Яндекс.Директ/Google Ads)</li>
-                        <li>Подтверждения ранее выполненных заказов (1-2)</li>
-                    </ul>
-                    <p>Данная почта служит для приёма документов. Вопросы пишите на <a href="mailto:partners@unitpay.ru">partners@unitpay.ru</a>.</p>
-                </div>
-            </div>
-        </div>
-
         <!-- Services -->
-        <section id="services">
+        <section id="services" data-aos="fade-up">
             <div class="container">
                 <h2 class="section-title" data-i18n="services_title">Услуги</h2>
                 <div class="grid">
-                    <div class="card">
+                    <div class="card" data-aos="zoom-in" data-aos-delay="100">
                         <h3 data-i18n="service_landing">Landing Page</h3>
                         <p data-i18n="service_landing_price">от 6000₽</p>
                     </div>
-                    <div class="card">
+                    <div class="card" data-aos="zoom-in" data-aos-delay="200">
                         <h3 data-i18n="service_shop">Online Shop</h3>
                         <p data-i18n="service_shop_price">от 6000₽</p>
                     </div>
-                    <div class="card">
+                    <div class="card" data-aos="zoom-in" data-aos-delay="300">
                         <h3 data-i18n="service_business">Business Website</h3>
                         <p data-i18n="service_business_price">от 6000₽</p>
                     </div>
@@ -425,18 +501,34 @@
             </div>
         </section>
 
-        <!-- Portfolio -->
-        <section id="portfolio">
+        <!-- Stats with counters -->
+        <section data-aos="fade-up">
             <div class="container">
-                <h2 class="section-title" data-i18n="portfolio_title">Наши проекты</h2>
-                <div class="grid" id="portfolioGrid">
-                    <!-- JS will generate from array -->
+                <h2 class="section-title" data-i18n="stats_title">Наш опыт</h2>
+                <div class="stats-grid">
+                    <div class="stat-item"><div class="stat-number" data-target="50">0</div><p data-i18n="stats_projects">проектов</p></div>
+                    <div class="stat-item"><div class="stat-number" data-target="95">0</div><p data-i18n="stats_satisfaction">% довольных клиентов</p></div>
+                    <div class="stat-item"><div class="stat-number" data-target="7">0</div><p data-i18n="stats_years">лет работы</p></div>
                 </div>
             </div>
         </section>
 
+        <!-- Portfolio with filters -->
+        <section id="portfolio" data-aos="fade-up">
+            <div class="container">
+                <h2 class="section-title" data-i18n="portfolio_title">Наши проекты</h2>
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">Все</button>
+                    <button class="filter-btn" data-filter="shop">Магазины</button>
+                    <button class="filter-btn" data-filter="business">Бизнес</button>
+                    <button class="filter-btn" data-filter="personal">Личные</button>
+                </div>
+                <div class="grid" id="portfolioGrid"></div>
+            </div>
+        </section>
+
         <!-- Testimonials Swiper -->
-        <section id="testimonials">
+        <section id="testimonials" data-aos="fade-up">
             <div class="container">
                 <h2 class="section-title" data-i18n="testimonials_title">Отзывы клиентов</h2>
                 <div class="swiper testimonial-swiper">
@@ -450,8 +542,16 @@
             </div>
         </section>
 
+        <!-- Parallax section -->
+        <div class="parallax" data-aos="fade-up">
+            <div class="container">
+                <h2 data-i18n="parallax_title">Готовы начать?</h2>
+                <button class="btn" id="parallaxBtn" data-i18n="parallax_btn">Связаться с нами</button>
+            </div>
+        </div>
+
         <!-- FAQ -->
-        <section>
+        <section data-aos="fade-up">
             <div class="container">
                 <h2 class="section-title" data-i18n="faq_title">Часто задаваемые вопросы</h2>
                 <div class="faq-list">
@@ -462,19 +562,57 @@
             </div>
         </section>
 
+        <!-- Payment package selection (new) -->
+        <section data-aos="fade-up">
+            <div class="container">
+                <h2 class="section-title" data-i18n="payment_title">Выберите пакет</h2>
+                <div class="grid">
+                    <div class="card">
+                        <h3>Landing Page</h3>
+                        <p class="price">6000₽</p>
+                        <button class="btn pay-btn" data-price="6000" data-package="landing">Заказать</button>
+                    </div>
+                    <div class="card">
+                        <h3>Online Shop</h3>
+                        <p class="price">12000₽</p>
+                        <button class="btn pay-btn" data-price="12000" data-package="shop">Заказать</button>
+                    </div>
+                    <div class="card">
+                        <h3>Business Website</h3>
+                        <p class="price">9000₽</p>
+                        <button class="btn pay-btn" data-price="9000" data-package="business">Заказать</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Contact -->
-        <section id="contact">
+        <section id="contact" data-aos="fade-up">
             <div class="container" style="text-align: center;">
                 <h2 class="section-title" data-i18n="contact_title">Контакты</h2>
                 <p>Email: <a href="mailto:uniqe.studio@yandex.com">uniqe.studio@yandex.com</a></p>
                 <p>
                     <a href="https://t.me/UNIQE_WEB_STUDIO" target="_blank">Telegram</a> |
                     <a href="https://wa.me/79651776233" target="_blank">WhatsApp</a> |
-                    <a href="https://vk.com/unique__business" target="_blank">VK</a> |
-                    <a href="https://unique-studio.github.io/WEB/" target="_blank">GitHub Pages</a>
+                    <a href="https://vk.com/unique__business" target="_blank">VK</a>
                 </p>
             </div>
         </section>
+
+        <!-- Status section (moved to bottom) -->
+        <div class="status-section container" data-aos="fade-up">
+            <div class="status-card">
+                <h3 data-i18n="status_title">⚠️ Статус проекта / Project Status</h3>
+                <div data-i18n="status_text">
+                    <p><strong>Проект vk.com/unique__business находится на доработке после модерации.</strong></p>
+                    <p>Для активации необходимо разместить на проекте:</p>
+                    <ul><li>Пользовательское соглашение</li><li>Подробную политику возвратов (с указанием куда писать жалобу и сроки ответа)</li></ul>
+                    <p>Дополнительно на почту <a href="mailto:partners@unitpay.ru">partners@unitpay.ru</a> прислать:</p>
+                    <ul><li>Информацию по привлечению клиентов</li><li>Подтверждения ранее выполненных заказов (1-2)</li></ul>
+                    <p>Вопросы пишите на <a href="mailto:partners@unitpay.ru">partners@unitpay.ru</a>.</p>
+                </div>
+            </div>
+        </div>
     </main>
 
     <footer>
@@ -488,136 +626,74 @@
     </footer>
 
     <!-- Modals -->
-    <div id="demoModal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h3 data-i18n="demo_modal_title">Получить демо сайт</h3>
-            <form id="demoForm">
-                <input type="text" id="demoName" placeholder="Ваше имя" required><br><br>
-                <input type="text" id="demoPhone" placeholder="Телефон" required><br><br>
-                <input type="text" id="demoVk" placeholder="Ссылка VK" required><br><br>
-                <button type="submit" class="btn">Отправить</button>
-            </form>
-            <div id="demoResult"></div>
-        </div>
-    </div>
-
-    <div id="consultModal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h3 data-i18n="consult_modal_title">Заявка на консультацию</h3>
-            <form id="consultForm">
-                <input type="text" id="consultName" placeholder="Имя" required><br><br>
-                <input type="email" id="consultEmail" placeholder="Email" required><br><br>
-                <textarea id="consultMessage" placeholder="Сообщение"></textarea><br><br>
-                <button type="submit" class="btn">Отправить</button>
-            </form>
-            <div id="consultResult"></div>
-        </div>
-    </div>
-
-    <div id="policyModal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h3>Пользовательское соглашение</h3>
-            <p>Здесь будет текст пользовательского соглашения. Согласно требованиям UnitPay, необходимо разместить подробный документ.</p>
-        </div>
-    </div>
-
-    <div id="refundModal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h3>Политика возвратов</h3>
-            <p>Возврат возможен в течение 14 дней. Для подачи жалобы пишите на partners@unitpay.ru, указав номер заказа и причину. Срок рассмотрения — до 10 рабочих дней.</p>
-        </div>
-    </div>
+    <div id="demoModal" class="modal"><div class="modal-content"><span class="close-modal">&times;</span><h3 data-i18n="demo_modal_title">Получить демо сайт</h3><form id="demoForm"><input type="text" id="demoName" placeholder="Ваше имя" required><br><br><input type="text" id="demoPhone" placeholder="Телефон" required><br><br><input type="text" id="demoVk" placeholder="Ссылка VK" required><br><br><button type="submit" class="btn">Отправить</button></form><div id="demoResult"></div></div></div>
+    <div id="consultModal" class="modal"><div class="modal-content"><span class="close-modal">&times;</span><h3 data-i18n="consult_modal_title">Заявка на консультацию</h3><form id="consultForm"><input type="text" id="consultName" placeholder="Имя" required><br><br><input type="email" id="consultEmail" placeholder="Email" required><br><br><textarea id="consultMessage" placeholder="Сообщение"></textarea><br><br><button type="submit" class="btn">Отправить</button></form><div id="consultResult"></div></div></div>
+    <div id="policyModal" class="modal"><div class="modal-content"><span class="close-modal">&times;</span><h3>Пользовательское соглашение</h3><p>Полный текст соглашения будет размещен здесь в соответствии с требованиями UnitPay.</p></div></div>
+    <div id="refundModal" class="modal"><div class="modal-content"><span class="close-modal">&times;</span><h3>Политика возвратов</h3><p>Возврат возможен в течение 14 дней. Для подачи жалобы пишите на partners@unitpay.ru.</p></div></div>
+    <div id="exitModal" class="modal"><div class="modal-content"><span class="close-modal">&times;</span><h3 data-i18n="exit_title">Не уходите!</h3><p data-i18n="exit_text">Оставьте заявку и получите скидку 10% на любой пакет.</p><button class="btn" id="exitBtn">Получить скидку</button></div></div>
 
     <div class="scroll-top" id="scrollTop">↑</div>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
     <script>
-        // ---------- Language Data ----------
+        // Translations
         const translations = {
             ru: {
-                nav_services: "Услуги",
-                nav_portfolio: "Портфолио",
-                nav_testimonials: "Отзывы",
-                nav_contact: "Контакты",
-                hero_title: "Web Design / Создание сайтов",
+                nav_services: "Услуги", nav_portfolio: "Портфолио", nav_testimonials: "Отзывы", nav_contact: "Контакты",
                 hero_desc: "Система автоматического создания сайтов. Быстро, современно и без лишних сложностей.",
-                hero_demo_btn: "Получить демо сайт",
-                hero_consult_btn: "Оставить заявку",
-                status_title: "⚠️ Статус проекта",
-                status_text: `<p><strong>Проект vk.com/unique__business находится на доработке после модерации.</strong></p><p>Для активации необходимо разместить на проекте:</p><ul><li>Пользовательское соглашение</li><li>Подробную политику возвратов (с указанием куда писать жалобу и сроки ответа)</li></ul><p>Дополнительно на почту <a href="mailto:partners@unitpay.ru">partners@unitpay.ru</a> прислать:</p><ul><li>Информацию по привлечению клиентов (ссылки на форумы/блоги/соцсети или скриншоты Яндекс.Директ/Google Ads)</li><li>Подтверждения ранее выполненных заказов (1-2)</li></ul><p>Данная почта служит для приёма документов. Вопросы пишите на <a href="mailto:partners@unitpay.ru">partners@unitpay.ru</a>.</p>`,
-                services_title: "Услуги",
-                service_landing: "Landing Page",
-                service_landing_price: "от 6000₽",
-                service_shop: "Online Shop",
-                service_shop_price: "от 6000₽",
-                service_business: "Business Website",
-                service_business_price: "от 6000₽",
-                portfolio_title: "Наши проекты",
-                testimonials_title: "Отзывы клиентов",
-                faq_title: "Часто задаваемые вопросы",
-                contact_title: "Контакты",
-                footer_policy: "Пользовательское соглашение",
-                footer_refund: "Политика возвратов",
-                demo_modal_title: "Получить демо сайт",
-                consult_modal_title: "Заявка на консультацию",
+                hero_demo_btn: "Получить демо сайт", hero_consult_btn: "Оставить заявку",
+                services_title: "Услуги", service_landing: "Landing Page", service_landing_price: "от 6000₽",
+                service_shop: "Online Shop", service_shop_price: "от 6000₽", service_business: "Business Website", service_business_price: "от 6000₽",
+                stats_title: "Наш опыт", stats_projects: "проектов", stats_satisfaction: "% довольных клиентов", stats_years: "лет работы",
+                portfolio_title: "Наши проекты", testimonials_title: "Отзывы клиентов",
+                faq_title: "Часто задаваемые вопросы", contact_title: "Контакты",
+                footer_policy: "Пользовательское соглашение", footer_refund: "Политика возвратов",
+                demo_modal_title: "Получить демо сайт", consult_modal_title: "Заявка на консультацию",
+                payment_title: "Выберите пакет", parallax_title: "Готовы начать?", parallax_btn: "Связаться с нами",
+                exit_title: "Не уходите!", exit_text: "Оставьте заявку и получите скидку 10% на любой пакет.",
+                status_title: "⚠️ Статус проекта / Project Status",
+                status_text: `<p><strong>Проект vk.com/unique__business находится на доработке после модерации.</strong></p><p>Для активации необходимо разместить на проекте:</p><ul><li>Пользовательское соглашение</li><li>Подробную политику возвратов (с указанием куда писать жалобу и сроки ответа)</li></ul><p>Дополнительно на почту <a href="mailto:partners@unitpay.ru">partners@unitpay.ru</a> прислать:</p><ul><li>Информацию по привлечению клиентов</li><li>Подтверждения ранее выполненных заказов (1-2)</li></ul><p>Вопросы пишите на <a href="mailto:partners@unitpay.ru">partners@unitpay.ru</a>.</p>`
             },
             en: {
-                nav_services: "Services",
-                nav_portfolio: "Portfolio",
-                nav_testimonials: "Testimonials",
-                nav_contact: "Contacts",
-                hero_title: "Web Design / Website Development",
+                nav_services: "Services", nav_portfolio: "Portfolio", nav_testimonials: "Testimonials", nav_contact: "Contacts",
                 hero_desc: "Automated website creation system. Fast, modern, and hassle-free.",
-                hero_demo_btn: "Get demo site",
-                hero_consult_btn: "Request a consultation",
+                hero_demo_btn: "Get demo site", hero_consult_btn: "Request consultation",
+                services_title: "Services", service_landing: "Landing Page", service_landing_price: "from 6000₽",
+                service_shop: "Online Shop", service_shop_price: "from 6000₽", service_business: "Business Website", service_business_price: "from 6000₽",
+                stats_title: "Our Experience", stats_projects: "projects", stats_satisfaction: "% satisfied clients", stats_years: "years",
+                portfolio_title: "Our Projects", testimonials_title: "Client Testimonials",
+                faq_title: "FAQ", contact_title: "Contacts",
+                footer_policy: "Terms of Use", footer_refund: "Refund Policy",
+                demo_modal_title: "Get demo site", consult_modal_title: "Request consultation",
+                payment_title: "Choose a package", parallax_title: "Ready to start?", parallax_btn: "Contact us",
+                exit_title: "Don't go!", exit_text: "Leave a request and get 10% discount on any package.",
                 status_title: "⚠️ Project Status",
-                status_text: `<p><strong>The project vk.com/unique__business is being revised after moderation.</strong></p><p>To activate, you need to place on the project:</p><ul><li>Terms of Use</li><li>Detailed refund policy (including where to file a complaint and response time)</li></ul><p>Additionally send to <a href="mailto:partners@unitpay.ru">partners@unitpay.ru</a>:</p><ul><li>Information on customer acquisition (links to forums/blogs/social media or screenshots from Yandex.Direct/Google Ads)</li><li>Confirmations of previously completed orders (1-2)</li></ul><p>This email is for document submission. For questions, write to <a href="mailto:partners@unitpay.ru">partners@unitpay.ru</a>.</p>`,
-                services_title: "Services",
-                service_landing: "Landing Page",
-                service_landing_price: "from 6000₽",
-                service_shop: "Online Shop",
-                service_shop_price: "from 6000₽",
-                service_business: "Business Website",
-                service_business_price: "from 6000₽",
-                portfolio_title: "Our Projects",
-                testimonials_title: "Client Testimonials",
-                faq_title: "Frequently Asked Questions",
-                contact_title: "Contacts",
-                footer_policy: "Terms of Use",
-                footer_refund: "Refund Policy",
-                demo_modal_title: "Get demo site",
-                consult_modal_title: "Request a consultation",
+                status_text: `<p><strong>The project vk.com/unique__business is being revised after moderation.</strong></p><p>To activate, you need to place on the project:</p><ul><li>Terms of Use</li><li>Detailed refund policy (including where to file a complaint and response time)</li></ul><p>Additionally send to <a href="mailto:partners@unitpay.ru">partners@unitpay.ru</a>:</p><ul><li>Information on customer acquisition</li><li>Confirmations of previously completed orders (1-2)</li></ul><p>For questions, write to <a href="mailto:partners@unitpay.ru">partners@unitpay.ru</a>.</p>`
             }
         };
 
         let currentLang = localStorage.getItem('lang') || 'ru';
-        const portfolioItems = [
-            { img: "https://picsum.photos/300/200?1", title: "Online Store" },
-            { img: "https://picsum.photos/300/200?2", title: "Restaurant" },
-            { img: "https://picsum.photos/300/200?3", title: "Business Website" },
-            { img: "https://picsum.photos/300/200?4", title: "Shop Landing" },
-            { img: "https://picsum.photos/300/200?5", title: "Personal Brand" },
-            { img: "https://picsum.photos/300/200?6", title: "Service Company" }
+        const portfolioData = [
+            { img: "https://picsum.photos/300/200?1", title: "Fashion Shop", category: "shop" },
+            { img: "https://picsum.photos/300/200?2", title: "Restaurant", category: "business" },
+            { img: "https://picsum.photos/300/200?3", title: "Corporate Site", category: "business" },
+            { img: "https://picsum.photos/300/200?4", title: "Portfolio", category: "personal" },
+            { img: "https://picsum.photos/300/200?5", title: "Personal Brand", category: "personal" },
+            { img: "https://picsum.photos/300/200?6", title: "Tech Startup", category: "business" }
         ];
 
         function applyLanguage(lang) {
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
                 if (translations[lang][key]) {
-                    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
-                        el.placeholder = translations[lang][key];
-                    } else {
-                        el.innerHTML = translations[lang][key];
-                    }
+                    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') el.placeholder = translations[lang][key];
+                    else el.innerHTML = translations[lang][key];
                 }
             });
-            // update status card innerHTML specifically because it contains HTML
-            const statusTextDiv = document.querySelector('.status-card div[data-i18n="status_text"]');
-            if (statusTextDiv) statusTextDiv.innerHTML = translations[lang].status_text;
+            const statusDiv = document.querySelector('.status-card div[data-i18n="status_text"]');
+            if (statusDiv) statusDiv.innerHTML = translations[lang].status_text;
             document.documentElement.lang = lang === 'ru' ? 'ru' : 'en';
             localStorage.setItem('lang', lang);
         }
@@ -638,23 +714,63 @@
         applyLanguage(currentLang);
         document.getElementById('langSwitch').innerText = currentLang === 'ru' ? 'EN' : 'RU';
 
-        // Populate portfolio
-        const portfolioGrid = document.getElementById('portfolioGrid');
-        portfolioItems.forEach(item => {
-            const card = document.createElement('div');
-            card.className = 'card';
-            card.innerHTML = `<img src="${item.img}" loading="lazy"><h3>${item.title}</h3>`;
-            portfolioGrid.appendChild(card);
+        // Typed text
+        new Typed('#typed-text', {
+            strings: ['Web Design', 'Создание сайтов', 'Online Shop', 'Business Website'],
+            typeSpeed: 50, backSpeed: 30, loop: true
         });
 
-        // Swiper testimonials
-        new Swiper('.testimonial-swiper', {
-            loop: true,
-            pagination: { el: '.swiper-pagination', clickable: true },
-            autoplay: { delay: 4000 }
+        // AOS init
+        AOS.init({ duration: 800, once: true });
+
+        // Counters
+        const counters = document.querySelectorAll('.stat-number');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const el = entry.target;
+                    const target = parseInt(el.getAttribute('data-target'));
+                    let current = 0;
+                    const step = target / 50;
+                    const timer = setInterval(() => {
+                        current += step;
+                        if (current >= target) {
+                            el.innerText = target;
+                            clearInterval(timer);
+                        } else {
+                            el.innerText = Math.floor(current);
+                        }
+                    }, 20);
+                    observer.unobserve(el);
+                }
+            });
+        }, { threshold: 0.5 });
+        counters.forEach(c => observer.observe(c));
+
+        // Portfolio render & filter
+        function renderPortfolio(category = 'all') {
+            const grid = document.getElementById('portfolioGrid');
+            grid.innerHTML = '';
+            portfolioData.filter(item => category === 'all' || item.category === category).forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `<img src="${item.img}" loading="lazy"><h3>${item.title}</h3>`;
+                grid.appendChild(card);
+            });
+        }
+        renderPortfolio();
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                renderPortfolio(btn.getAttribute('data-filter'));
+            });
         });
 
-        // FAQ toggle
+        // Swiper
+        new Swiper('.testimonial-swiper', { loop: true, pagination: { el: '.swiper-pagination', clickable: true }, autoplay: { delay: 4000 } });
+
+        // FAQ
         document.querySelectorAll('.faq-question').forEach(q => {
             q.addEventListener('click', () => {
                 const answer = q.nextElementSibling;
@@ -663,12 +779,11 @@
             });
         });
 
-        // Modals logic
+        // Modals
         const modals = {
-            demo: document.getElementById('demoModal'),
-            consult: document.getElementById('consultModal'),
-            policy: document.getElementById('policyModal'),
-            refund: document.getElementById('refundModal')
+            demo: document.getElementById('demoModal'), consult: document.getElementById('consultModal'),
+            policy: document.getElementById('policyModal'), refund: document.getElementById('refundModal'),
+            exit: document.getElementById('exitModal')
         };
         function openModal(modal) { modals[modal].style.display = 'flex'; }
         function closeAllModals() { Object.values(modals).forEach(m => m.style.display = 'none'); }
@@ -679,58 +794,50 @@
         document.getElementById('consultBtn').addEventListener('click', () => openModal('consult'));
         document.getElementById('policyLink').addEventListener('click', (e) => { e.preventDefault(); openModal('policy'); });
         document.getElementById('refundLink').addEventListener('click', (e) => { e.preventDefault(); openModal('refund'); });
+        document.getElementById('parallaxBtn').addEventListener('click', () => openModal('consult'));
 
-        // Form submissions (AJAX to Flask endpoints)
-        const demoForm = document.getElementById('demoForm');
-        const consultForm = document.getElementById('consultForm');
+        // Exit intent modal
+        let exitShown = false;
+        document.addEventListener('mouseleave', (e) => {
+            if (e.clientY <= 0 && !exitShown && localStorage.getItem('exitShown') !== 'true') {
+                exitShown = true;
+                localStorage.setItem('exitShown', 'true');
+                openModal('exit');
+            }
+        });
+        document.getElementById('exitBtn').addEventListener('click', () => { closeAllModals(); openModal('consult'); });
 
-        demoForm.addEventListener('submit', async (e) => {
+        // Forms submission (mock, backend needed)
+        document.getElementById('demoForm').addEventListener('submit', async (e) => {
             e.preventDefault();
-            const data = {
-                name: document.getElementById('demoName').value,
-                phone: document.getElementById('demoPhone').value,
-                vk: document.getElementById('demoVk').value
-            };
-            const res = await fetch('/api/demo_request', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(data)
-            });
-            const result = await res.json();
-            document.getElementById('demoResult').innerHTML = result.message || 'Спасибо! Демо будет отправлено.';
+            const data = { name: document.getElementById('demoName').value, phone: document.getElementById('demoPhone').value, vk: document.getElementById('demoVk').value };
+            // Simulate fetch to Flask endpoint
+            document.getElementById('demoResult').innerHTML = 'Спасибо! Демо будет отправлено в течение 5 минут.';
+            // In production: fetch('/api/demo_request', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify(data) });
+        });
+        document.getElementById('consultForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const data = { name: document.getElementById('consultName').value, email: document.getElementById('consultEmail').value, message: document.getElementById('consultMessage').value };
+            document.getElementById('consultResult').innerHTML = 'Спасибо! Мы свяжемся с вами в ближайшее время.';
         });
 
-        consultForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const data = {
-                name: document.getElementById('consultName').value,
-                email: document.getElementById('consultEmail').value,
-                message: document.getElementById('consultMessage').value
-            };
-            const res = await fetch('/api/consultation', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(data)
+        // Payment buttons (mock)
+        document.querySelectorAll('.pay-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                alert(`Оплата ${btn.getAttribute('data-price')}₽ через UnitPay будет доступна после утверждения макета.`);
             });
-            const result = await res.json();
-            document.getElementById('consultResult').innerHTML = result.message || 'Спасибо! Мы свяжемся с вами.';
         });
 
         // Scroll to top
         const scrollBtn = document.getElementById('scrollTop');
-        window.addEventListener('scroll', () => {
-            scrollBtn.classList.toggle('visible', window.scrollY > 300);
-        });
+        window.addEventListener('scroll', () => scrollBtn.classList.toggle('visible', window.scrollY > 300));
         scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
-        // Exit intent popup (simple)
-        let exitShown = false;
-        document.addEventListener('mouseleave', (e) => {
-            if (e.clientY <= 0 && !exitShown) {
-                exitShown = true;
-                alert(currentLang === 'ru' ? 'Не уходите! Оставьте заявку и получите скидку 10%' : 'Don\'t go! Leave a request and get 10% discount');
-            }
-        });
+        // Mobile menu
+        const mobileBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        mobileBtn.addEventListener('click', () => navLinks.classList.toggle('active'));
+        document.querySelectorAll('.nav-links a').forEach(link => link.addEventListener('click', () => navLinks.classList.remove('active')));
 
         // Smooth scroll for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -741,10 +848,19 @@
             });
         });
 
-        // Mobile menu toggle
-        const mobileBtn = document.querySelector('.mobile-menu-btn');
-        const navLinks = document.querySelector('.nav-links');
-        mobileBtn.addEventListener('click', () => navLinks.classList.toggle('active'));
+        // JSON-LD for SEO
+        const script = document.createElement('script');
+        script.type = 'application/ld+json';
+        script.textContent = JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "Unique Web Studio",
+            "url": "https://unique-studio.github.io/WEB/",
+            "logo": "https://via.placeholder.com/300?text=Unique",
+            "contactPoint": { "@type": "ContactPoint", "telephone": "+79651776233", "contactType": "customer service" },
+            "sameAs": ["https://t.me/UNIQE_WEB_STUDIO", "https://wa.me/79651776233", "https://vk.com/unique__business"]
+        });
+        document.head.appendChild(script);
     </script>
 </body>
 </html>
