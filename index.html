@@ -3,284 +3,323 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="description" content="Unique Web Studio – Создание профессиональных сайтов для бизнеса. Разработка лендингов, интернет-магазинов, корпоративных сайтов.">
-    <meta name="description-en" content="Unique Web Studio – Professional website creation for business. Landing pages, online stores, corporate websites.">
-    <meta name="keywords" content="создание сайтов, веб-студия, лендинг, интернет-магазин, разработка сайтов москва">
-    <meta name="author" content="Unique Web Studio">
-    <meta property="og:title" content="Unique Web Studio | Создание сайтов для бизнеса">
-    <meta property="og:description" content="Разработка сайтов под ключ. Современный дизайн, высокая конверсия, поддержка.">
-    <meta property="og:image" content="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200">
-    <meta property="og:url" content="https://unique-studio.github.io/WEB/">
-    <meta name="twitter:card" content="summary_large_image">
-    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌐</text></svg>">
     <title>Unique Web Studio | Создание сайтов для бизнеса</title>
-
     <!-- Fonts & Libraries -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
+        /* Color Palette */
         :root {
-            --bg-primary: #fefcf7;
-            --text-primary: #2c2b28;
-            --card-bg: #ffffff;
-            --header-bg: rgba(254, 252, 247, 0.85);
-            --border-color: rgba(0,0,0,0.05);
-            --footer-bg: #2c2b28;
-            --footer-text: #ccc;
-            --accent: #c8a96a;
-            --accent-dark: #b58c48;
+            --cream: #FDF8F0;
+            --beige: #F5EDE0;
+            --brown-light: #D6C6B0;
+            --brown: #A67B5A;
+            --brown-dark: #5E3A2C;
+            --gold: #C8A96A;
+            --gold-dark: #B58C48;
+            --text-dark: #3E2A1F;
+            --text-light: #6B4E3A;
+            --white: #FFFFFF;
+            --shadow: 0 10px 30px rgba(0,0,0,0.05);
+            --transition: all 0.3s ease;
         }
-        body.dark {
-            --bg-primary: #1e1e2a;
-            --text-primary: #e4e4e7;
-            --card-bg: #2d2d3a;
-            --header-bg: rgba(30, 30, 42, 0.85);
-            --border-color: rgba(255,255,255,0.05);
-            --footer-bg: #111;
-            --footer-text: #ccc;
-        }
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
         body {
             font-family: 'Inter', sans-serif;
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            transition: background 0.3s ease, color 0.3s ease;
+            background: var(--cream);
+            color: var(--text-dark);
             line-height: 1.6;
             overflow-x: hidden;
         }
-
-        /* Progress bar */
-        .progress-container {
-            position: fixed;
-            top: 0;
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 700;
+            line-height: 1.3;
+            color: var(--brown-dark);
+        }
+        h1 { font-size: 3.5rem; margin-bottom: 1rem; }
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+        }
+        h2:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
             left: 0;
-            width: 100%;
-            height: 4px;
-            background: rgba(200, 169, 106, 0.2);
-            z-index: 1001;
+            width: 60px;
+            height: 3px;
+            background: var(--gold);
+            border-radius: 3px;
         }
-        .progress-bar {
-            height: 100%;
-            background: var(--accent);
-            width: 0%;
-            transition: width 0.1s;
-        }
-
         .container {
-            max-width: 1280px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 0 24px;
         }
-
+        section {
+            padding: 80px 0;
+        }
+        .btn {
+            display: inline-block;
+            background: var(--gold);
+            color: white;
+            padding: 12px 32px;
+            border-radius: 40px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        .btn:hover {
+            background: var(--gold-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--gold);
+            color: var(--gold);
+        }
+        .btn-outline:hover {
+            background: var(--gold);
+            color: white;
+        }
         /* Header */
         .header {
-            position: sticky;
+            position: fixed;
             top: 0;
-            background: var(--header-bg);
-            backdrop-filter: blur(12px);
+            width: 100%;
+            background: rgba(253, 248, 240, 0.95);
+            backdrop-filter: blur(10px);
             z-index: 1000;
             padding: 16px 0;
-            transition: all 0.3s;
-            border-bottom: 1px solid var(--border-color);
+            transition: var(--transition);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
-
         .header .container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            flex-wrap: wrap;
         }
-
         .logo {
             font-size: 1.8rem;
             font-weight: 800;
-            background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+            background: linear-gradient(135deg, var(--gold), var(--brown));
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
         }
-
-        .nav-links {
+        .nav {
             display: flex;
             gap: 24px;
             align-items: center;
         }
-
-        .nav-links a {
+        .nav a {
             text-decoration: none;
-            color: inherit;
+            color: var(--text-dark);
             font-weight: 500;
-            transition: color 0.2s;
+            transition: var(--transition);
         }
-
-        .nav-links a:hover {
-            color: var(--accent);
+        .nav a:hover {
+            color: var(--gold);
         }
-
-        .lang-switch, .dark-toggle, .admin-toggle {
+        .lang-switch, .admin-toggle {
             background: none;
-            border: 1px solid var(--accent);
+            border: 1px solid var(--gold);
             padding: 6px 12px;
             border-radius: 30px;
             cursor: pointer;
             font-weight: 500;
-            transition: all 0.2s;
+            transition: var(--transition);
         }
-
-        .lang-switch:hover, .dark-toggle:hover, .admin-toggle:hover {
-            background: var(--accent);
+        .lang-switch:hover, .admin-toggle:hover {
+            background: var(--gold);
             color: white;
         }
-
-        .mobile-menu-btn {
+        .mobile-menu {
             display: none;
-            font-size: 1.8rem;
-            background: none;
-            border: none;
+            font-size: 1.5rem;
             cursor: pointer;
         }
-
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-                width: 100%;
+            .nav {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 80%;
+                height: 100vh;
+                background: var(--cream);
                 flex-direction: column;
-                padding: 20px 0;
+                padding: 40px;
+                transition: 0.3s;
+                box-shadow: 2px 0 10px rgba(0,0,0,0.1);
             }
-            .nav-links.active {
-                display: flex;
+            .nav.active {
+                left: 0;
             }
-            .mobile-menu-btn {
+            .mobile-menu {
                 display: block;
             }
+            h1 { font-size: 2.2rem; }
+            h2 { font-size: 1.8rem; }
         }
-
-        /* Buttons */
-        .btn {
-            display: inline-block;
-            background: var(--accent);
-            color: white;
-            padding: 12px 28px;
-            border-radius: 40px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: transform 0.2s, background 0.2s;
-            border: none;
-            cursor: pointer;
-            font-size: 1rem;
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, var(--beige), var(--cream));
+            background-attachment: fixed;
             position: relative;
-            overflow: hidden;
         }
-
-        .btn:hover {
-            background: var(--accent-dark);
-            transform: translateY(-2px);
+        .hero .container {
+            position: relative;
+            z-index: 2;
         }
-
-        .btn-outline {
-            background: transparent;
-            border: 2px solid var(--accent);
-            color: var(--accent);
-        }
-
-        .btn-outline:hover {
-            background: var(--accent);
-            color: white;
-        }
-
-        section {
-            padding: 80px 0;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 48px;
-            font-weight: 700;
-        }
-
-        .grid {
+        /* Cards */
+        .services-grid, .portfolio-grid, .blog-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
+            margin-top: 40px;
         }
-
-        .card {
-            background: var(--card-bg);
+        .service-card, .portfolio-card, .blog-card {
+            background: var(--white);
             border-radius: 24px;
             overflow: hidden;
-            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05);
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
         }
-
-        .card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 30px -10px rgba(0,0,0,0.15);
+        .service-card:hover, .portfolio-card:hover, .blog-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
         }
-
-        .card img {
+        .service-card .content, .portfolio-card .content, .blog-card .content {
+            padding: 24px;
+        }
+        .portfolio-card img, .blog-card img {
             width: 100%;
             height: 200px;
             object-fit: cover;
-            transition: transform 0.3s;
+            transition: transform 0.5s;
         }
-
-        .card:hover img {
+        .portfolio-card:hover img, .blog-card:hover img {
             transform: scale(1.05);
         }
-
-        .card-content {
-            padding: 24px;
+        .price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--gold);
+            margin: 15px 0;
         }
-
-        /* Portfolio filters */
-        .filter-buttons {
+        /* Portfolio controls */
+        .portfolio-controls {
             display: flex;
             justify-content: center;
+            gap: 20px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .filter-buttons {
+            display: flex;
             gap: 15px;
-            margin-bottom: 40px;
             flex-wrap: wrap;
         }
-
         .filter-btn {
             background: transparent;
-            border: 1px solid var(--accent);
-            padding: 8px 20px;
-            border-radius: 30px;
+            border: 1px solid var(--gold);
+            padding: 8px 24px;
+            border-radius: 40px;
             cursor: pointer;
-            transition: all 0.2s;
+            transition: var(--transition);
             font-weight: 500;
         }
-
         .filter-btn.active, .filter-btn:hover {
-            background: var(--accent);
+            background: var(--gold);
             color: white;
         }
-
-        /* Countdown */
-        .countdown {
-            background: linear-gradient(135deg, var(--accent), var(--accent-dark));
-            color: white;
+        .search-input {
+            padding: 8px 16px;
+            border: 1px solid var(--brown-light);
+            border-radius: 40px;
+            width: 250px;
+            font-family: inherit;
+        }
+        /* Testimonials */
+        .testimonial-card {
+            background: var(--white);
             padding: 30px;
             border-radius: 24px;
             text-align: center;
-            margin: 40px 0;
+            box-shadow: var(--shadow);
         }
-        .timer {
-            font-size: 2rem;
-            font-weight: bold;
-            letter-spacing: 2px;
+        .testimonial-card .stars {
+            color: var(--gold);
+            margin: 15px 0;
+            font-size: 1.2rem;
         }
-
+        /* Forms */
+        .form-group {
+            margin-bottom: 20px;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 14px 18px;
+            border: 1px solid var(--brown-light);
+            border-radius: 12px;
+            background: var(--white);
+            font-family: inherit;
+            transition: var(--transition);
+        }
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px rgba(200,169,106,0.2);
+        }
+        /* Status card */
+        .status-card {
+            background: var(--beige);
+            border-left: 5px solid var(--gold);
+            padding: 24px;
+            border-radius: 20px;
+        }
+        /* Admin panel */
+        .admin-panel {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 380px;
+            height: 100vh;
+            background: var(--white);
+            box-shadow: -2px 0 20px rgba(0,0,0,0.1);
+            z-index: 2000;
+            transition: right 0.3s;
+            overflow-y: auto;
+            padding: 24px;
+        }
+        .admin-panel.open {
+            right: 0;
+        }
+        .admin-close {
+            float: right;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+        .admin-item {
+            border-bottom: 1px solid var(--brown-light);
+            padding: 12px 0;
+        }
         /* Floating buttons */
         .floating-buttons {
             position: fixed;
@@ -289,7 +328,7 @@
             display: flex;
             flex-direction: column;
             gap: 12px;
-            z-index: 998;
+            z-index: 99;
         }
         .floating-btn {
             width: 50px;
@@ -308,14 +347,27 @@
         .floating-btn.telegram { background: #0088cc; }
         .floating-btn.vk { background: #4680c2; }
         .floating-btn:hover { transform: scale(1.1); }
-
-        /* Map */
-        #map {
-            height: 300px;
-            border-radius: 24px;
-            margin-top: 20px;
+        /* Scroll top */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            left: 20px;
+            background: var(--gold);
+            color: white;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 99;
         }
-
+        .scroll-top.visible {
+            opacity: 1;
+        }
         /* Modal */
         .modal {
             display: none;
@@ -327,10 +379,10 @@
             background: rgba(0,0,0,0.7);
             justify-content: center;
             align-items: center;
-            z-index: 2000;
+            z-index: 2001;
         }
         .modal-content {
-            background: var(--card-bg);
+            background: var(--white);
             padding: 32px;
             border-radius: 32px;
             max-width: 500px;
@@ -339,600 +391,601 @@
         }
         .close-modal {
             position: absolute;
-            top: 16px;
+            top: 20px;
             right: 20px;
-            font-size: 24px;
             cursor: pointer;
+            font-size: 1.2rem;
         }
-
-        /* Admin panel */
-        .admin-panel {
+        /* Cookie consent */
+        .cookie-consent {
             position: fixed;
-            top: 0;
-            right: -400px;
-            width: 380px;
-            height: 100vh;
-            background: var(--card-bg);
-            box-shadow: -2px 0 10px rgba(0,0,0,0.1);
-            z-index: 1100;
-            transition: right 0.3s;
-            overflow-y: auto;
-            padding: 20px;
-        }
-        .admin-panel.open {
-            right: 0;
-        }
-        .admin-panel h3 {
-            margin-bottom: 20px;
-        }
-        .admin-close {
-            float: right;
-            cursor: pointer;
-            font-size: 24px;
-        }
-        .admin-item {
-            border-bottom: 1px solid var(--border-color);
-            padding: 15px 0;
-        }
-
-        /* Status card */
-        .status-section {
-            padding: 40px 0;
-        }
-        .status-card {
-            background: #fff8e7;
-            border-left: 5px solid var(--accent);
-            padding: 24px;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            background: var(--white);
             border-radius: 20px;
-        }
-        body.dark .status-card {
-            background: #2d2d3a;
-        }
-
-        /* Scroll top */
-        .scroll-top {
-            position: fixed;
-            bottom: 30px;
-            left: 30px;
-            background: var(--accent);
-            color: white;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
+            padding: 15px 20px;
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            opacity: 0;
-            transition: opacity 0.3s;
-            z-index: 999;
+            flex-wrap: wrap;
+            gap: 15px;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+            display: none;
         }
-        .scroll-top.visible {
-            opacity: 1;
+        /* Countdown */
+        .countdown {
+            background: linear-gradient(135deg, var(--gold), var(--brown));
+            color: white;
+            padding: 30px;
+            border-radius: 24px;
+            text-align: center;
+            margin: 40px 0;
         }
-
+        .timer {
+            font-size: 2rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
         footer {
-            background: var(--footer-bg);
-            color: var(--footer-text);
+            background: var(--brown-dark);
+            color: var(--brown-light);
             padding: 48px 0 24px;
-            margin-top: 40px;
+            text-align: center;
         }
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px;
+        footer a {
+            color: var(--gold);
+            text-decoration: none;
         }
-        .social-links a {
-            color: var(--footer-text);
-            margin-right: 15px;
-            font-size: 1.4rem;
-            transition: color 0.2s;
-        }
-        .social-links a:hover {
-            color: var(--accent);
-        }
-
         @media (max-width: 768px) {
-            .section-title { font-size: 2rem; }
             section { padding: 50px 0; }
-            .admin-panel { width: 100%; right: -100%; }
         }
     </style>
 </head>
 <body>
-    <div class="progress-container"><div class="progress-bar" id="progressBar"></div></div>
 
-    <header class="header">
-        <div class="container">
-            <div class="logo">Unique Web Studio</div>
-            <button class="mobile-menu-btn">☰</button>
-            <div class="nav-links">
-                <a href="#services" data-i18n="nav_services">Услуги</a>
-                <a href="#portfolio" data-i18n="nav_portfolio">Портфолио</a>
-                <a href="#reviews" data-i18n="nav_reviews">Отзывы</a>
-                <a href="#contact" data-i18n="nav_contact">Контакты</a>
-                <button class="admin-toggle" id="adminToggle"><i class="fas fa-user-shield"></i></button>
-                <button class="lang-switch" id="langSwitch">EN</button>
-                <button class="dark-toggle" id="darkToggle"><i class="fas fa-moon"></i></button>
+<header class="header">
+    <div class="container">
+        <div class="logo">Unique Web Studio</div>
+        <div class="mobile-menu"><i class="fas fa-bars"></i></div>
+        <div class="nav">
+            <a href="#services">Услуги</a>
+            <a href="#portfolio">Портфолио</a>
+            <a href="#blog">Блог</a>
+            <a href="#reviews">Отзывы</a>
+            <a href="#contact">Контакты</a>
+            <button class="lang-switch" id="langSwitch">EN</button>
+            <button class="admin-toggle" id="adminToggleBtn"><i class="fas fa-chart-line"></i></button>
+        </div>
+    </div>
+</header>
+
+<!-- Hero -->
+<section class="hero" id="hero">
+    <div class="container">
+        <h1 id="heroTitle">Создаем сайты, которые работают на вас</h1>
+        <p id="heroDesc">Современный дизайн, высокая конверсия, полная поддержка. Закажите сайт уже сегодня.</p>
+        <div class="btn-group">
+            <button class="btn" id="getDemoBtn">Получить демо</button>
+            <button class="btn btn-outline" id="consultBtn">Заказать консультацию</button>
+        </div>
+    </div>
+</section>
+
+<!-- Services -->
+<section id="services">
+    <div class="container text-center" data-aos="fade-up">
+        <h2 id="servicesTitle">Наши услуги</h2>
+        <div class="services-grid">
+            <div class="service-card" data-aos="zoom-in" data-aos-delay="100">
+                <div class="content">
+                    <h3 id="serviceLanding">Landing Page</h3>
+                    <p id="serviceLandingDesc">Одностраничный сайт с высокой конверсией для вашего бизнеса.</p>
+                    <div class="price">от 6 000 ₽</div>
+                    <button class="btn pay-btn" data-price="6000" data-package="landing">Заказать</button>
+                </div>
+            </div>
+            <div class="service-card" data-aos="zoom-in" data-aos-delay="200">
+                <div class="content">
+                    <h3 id="serviceShop">Интернет-магазин</h3>
+                    <p id="serviceShopDesc">Полноценная платформа для продаж с корзиной и оплатой.</p>
+                    <div class="price">от 12 000 ₽</div>
+                    <button class="btn pay-btn" data-price="12000" data-package="shop">Заказать</button>
+                </div>
+            </div>
+            <div class="service-card" data-aos="zoom-in" data-aos-delay="300">
+                <div class="content">
+                    <h3 id="serviceBusiness">Корпоративный сайт</h3>
+                    <p id="serviceBusinessDesc">Представительский сайт с уникальным дизайном.</p>
+                    <div class="price">от 9 000 ₽</div>
+                    <button class="btn pay-btn" data-price="9000" data-package="business">Заказать</button>
+                </div>
             </div>
         </div>
-    </header>
+    </div>
+</section>
 
-    <main>
-        <!-- Hero -->
-        <section data-aos="fade-up">
-            <div class="container" style="text-align: center;">
-                <h1><span id="typed-text"></span></h1>
-                <p style="font-size: 1.2rem; max-width: 700px; margin: 20px auto;" data-i18n="hero_desc">
-                    Создаем сайты, которые приносят клиентов. Разработка под ключ для вашего бизнеса.
-                </p>
-                <div>
-                    <button class="btn" id="getDemoBtn" data-i18n="hero_demo_btn">Получить демо сайт</button>
-                    <button class="btn btn-outline" id="consultBtn" data-i18n="hero_consult_btn">Оставить заявку</button>
-                </div>
-            </div>
-        </section>
+<!-- Countdown Offer -->
+<div class="container">
+    <div class="countdown" data-aos="fade-up">
+        <h3 id="offerTitle">🔥 Спецпредложение! Скидка 15% на первый заказ</h3>
+        <div class="timer" id="countdownTimer">--:--:--</div>
+    </div>
+</div>
 
-        <!-- Services -->
-        <section id="services" data-aos="fade-up">
-            <div class="container">
-                <h2 class="section-title" data-i18n="services_title">Наши услуги</h2>
-                <div class="grid">
-                    <div class="card">
-                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=300&fit=crop" alt="Landing Page">
-                        <div class="card-content">
-                            <h3 data-i18n="service_landing">Landing Page</h3>
-                            <p data-i18n="service_landing_desc">Одностраничный сайт с высокой конверсией для вашего продукта или услуги.</p>
-                            <p><strong data-i18n="service_landing_price">от 6 000 ₽</strong></p>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <img src="https://images.unsplash.com/photo-1472851294608-062f824d29cc?w=400&h=300&fit=crop" alt="Online Shop">
-                        <div class="card-content">
-                            <h3 data-i18n="service_shop">Интернет-магазин</h3>
-                            <p data-i18n="service_shop_desc">Полноценная торговая площадка с корзиной, оплатой и доставкой.</p>
-                            <p><strong data-i18n="service_shop_price">от 12 000 ₽</strong></p>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=300&fit=crop" alt="Corporate Site">
-                        <div class="card-content">
-                            <h3 data-i18n="service_business">Корпоративный сайт</h3>
-                            <p data-i18n="service_business_desc">Представительский сайт для компании с уникальным дизайном.</p>
-                            <p><strong data-i18n="service_business_price">от 9 000 ₽</strong></p>
-                        </div>
-                    </div>
-                </div>
+<!-- Portfolio with Search and Filter -->
+<section id="portfolio">
+    <div class="container" data-aos="fade-up">
+        <h2 id="portfolioTitle">Наши проекты</h2>
+        <div class="portfolio-controls">
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">Все</button>
+                <button class="filter-btn" data-filter="landing">Лендинги</button>
+                <button class="filter-btn" data-filter="shop">Магазины</button>
+                <button class="filter-btn" data-filter="corp">Корпоративные</button>
             </div>
-        </section>
-
-        <!-- Special Offer Countdown -->
-        <div class="container">
-            <div class="countdown" data-aos="fade-up">
-                <h3 data-i18n="offer_title">🔥 Спецпредложение! Скидка 15% на первый заказ</h3>
-                <div class="timer" id="countdownTimer">--:--:--</div>
-            </div>
+            <input type="text" id="portfolioSearch" class="search-input" placeholder="Поиск...">
         </div>
+        <div class="portfolio-grid" id="portfolioGrid"></div>
+    </div>
+</section>
 
-        <!-- Portfolio -->
-        <section id="portfolio" data-aos="fade-up">
-            <div class="container">
-                <h2 class="section-title" data-i18n="portfolio_title">Наши проекты</h2>
-                <div class="filter-buttons">
-                    <button class="filter-btn active" data-filter="all">Все</button>
-                    <button class="filter-btn" data-filter="landing">Лендинги</button>
-                    <button class="filter-btn" data-filter="shop">Магазины</button>
-                    <button class="filter-btn" data-filter="corp">Корпоративные</button>
-                </div>
-                <div class="grid" id="portfolioGrid"></div>
-            </div>
-        </section>
+<!-- Blog Section -->
+<section id="blog">
+    <div class="container" data-aos="fade-up">
+        <h2 id="blogTitle">Блог</h2>
+        <div class="blog-grid" id="blogGrid"></div>
+    </div>
+</section>
 
-        <!-- Edit Request Section -->
-        <section id="edit-request" data-aos="fade-up">
-            <div class="container">
-                <h2 class="section-title" data-i18n="edit_title">Заказать доработку сайта</h2>
-                <div style="max-width: 600px; margin: 0 auto; background: var(--card-bg); padding: 30px; border-radius: 24px;">
-                    <form id="editForm">
-                        <input type="text" id="editName" placeholder="Ваше имя" required style="width:100%; padding:12px; margin-bottom:15px; border-radius:12px; border:1px solid #ddd;">
-                        <input type="email" id="editEmail" placeholder="Email" required style="width:100%; padding:12px; margin-bottom:15px; border-radius:12px; border:1px solid #ddd;">
-                        <input type="url" id="editSite" placeholder="Ссылка на сайт" required style="width:100%; padding:12px; margin-bottom:15px; border-radius:12px; border:1px solid #ddd;">
-                        <textarea id="editDescription" placeholder="Опишите, что нужно доработать" rows="4" required style="width:100%; padding:12px; margin-bottom:15px; border-radius:12px; border:1px solid #ddd;"></textarea>
-                        <button type="submit" class="btn" style="width:100%">Отправить запрос</button>
-                    </form>
-                    <div id="editResult"></div>
-                </div>
-            </div>
-        </section>
+<!-- Reviews -->
+<section id="reviews">
+    <div class="container" data-aos="fade-up">
+        <h2 id="reviewsTitle">Отзывы клиентов</h2>
+        <div class="swiper reviews-swiper">
+            <div class="swiper-wrapper" id="reviewsSwiperWrapper"></div>
+            <div class="swiper-pagination"></div>
+        </div>
+        <div style="text-align: center; margin-top: 30px;">
+            <button class="btn btn-outline" id="addReviewBtn">Оставить отзыв</button>
+        </div>
+    </div>
+</section>
 
-        <!-- Reviews -->
-        <section id="reviews" data-aos="fade-up">
-            <div class="container">
-                <h2 class="section-title" data-i18n="reviews_title">Отзывы клиентов</h2>
-                <div class="swiper testimonial-swiper">
-                    <div class="swiper-wrapper" id="reviewsSwiperWrapper"></div>
-                    <div class="swiper-pagination"></div>
-                </div>
-                <div style="text-align: center; margin-top: 40px;">
-                    <button class="btn" id="addReviewBtn" data-i18n="add_review_btn">Оставить отзыв</button>
-                </div>
-            </div>
-        </section>
+<!-- Edit Request -->
+<section id="edit-request">
+    <div class="container" data-aos="fade-up">
+        <h2 id="editTitle">Заказать доработку сайта</h2>
+        <form id="editForm" style="max-width: 600px; margin: 0 auto;">
+            <div class="form-group"><input type="text" id="editName" placeholder="Ваше имя" required></div>
+            <div class="form-group"><input type="email" id="editEmail" placeholder="Email" required></div>
+            <div class="form-group"><input type="url" id="editSite" placeholder="Ссылка на сайт" required></div>
+            <div class="form-group"><textarea id="editDescription" rows="4" placeholder="Опишите, что нужно доработать"></textarea></div>
+            <button type="submit" class="btn">Отправить запрос</button>
+            <div id="editResult"></div>
+        </form>
+    </div>
+</section>
 
-        <!-- Map -->
-        <section data-aos="fade-up">
-            <div class="container">
-                <h2 class="section-title" data-i18n="map_title">Наш офис</h2>
-                <div id="map"></div>
-            </div>
-        </section>
-
-        <!-- Contact -->
-        <section id="contact" data-aos="fade-up">
-            <div class="container" style="text-align: center;">
-                <h2 class="section-title" data-i18n="contact_title">Контакты</h2>
-                <p>Email: <a href="mailto:uniqe.studio@yandex.com">uniqe.studio@yandex.com</a></p>
-                <p>Телефон: <a href="tel:+79651776233">+7 (965) 177-62-33</a></p>
+<!-- Contact & Status -->
+<section id="contact">
+    <div class="container" data-aos="fade-up">
+        <h2 id="contactTitle">Контакты</h2>
+        <div style="display: flex; flex-wrap: wrap; gap: 40px; justify-content: space-between;">
+            <div>
+                <p><i class="fas fa-envelope"></i> <a href="mailto:uniqe.studio@yandex.com">uniqe.studio@yandex.com</a></p>
+                <p><i class="fas fa-phone-alt"></i> <a href="tel:+79651776233">+7 (965) 177-62-33</a></p>
                 <div class="social-links" style="margin-top: 20px;">
                     <a href="https://t.me/UNIQE_WEB_STUDIO" target="_blank"><i class="fab fa-telegram fa-2x"></i></a>
                     <a href="https://wa.me/79651776233" target="_blank"><i class="fab fa-whatsapp fa-2x"></i></a>
                     <a href="https://vk.com/unique__business" target="_blank"><i class="fab fa-vk fa-2x"></i></a>
                 </div>
             </div>
-        </section>
-
-        <!-- Status Section (UnitPay message) -->
-        <div class="status-section container" data-aos="fade-up">
             <div class="status-card">
-                <h3 data-i18n="status_title">⚠️ Статус проекта / Project Status</h3>
-                <div data-i18n="status_text">
+                <h3 id="statusTitle">⚠️ Статус проекта / Project Status</h3>
+                <div id="unitpayMessage">
                     <p><strong>Проект vk.com/unique__business находится на доработке после модерации.</strong></p>
                     <p>Для активации необходимо разместить на проекте: Пользовательское соглашение, подробную политику возвратов.</p>
                     <p>Дополнительно на почту <a href="mailto:partners@unitpay.ru">partners@unitpay.ru</a> прислать информацию по привлечению клиентов и подтверждения заказов.</p>
                 </div>
             </div>
         </div>
-    </main>
-
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div>© 2025 Unique Web Studio</div>
-                <div><a href="#" id="policyLink" data-i18n="footer_policy">Пользовательское соглашение</a></div>
-                <div><a href="#" id="refundLink" data-i18n="footer_refund">Политика возвратов</a></div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Floating buttons -->
-    <div class="floating-buttons">
-        <a href="https://wa.me/79651776233" class="floating-btn" target="_blank"><i class="fab fa-whatsapp"></i></a>
-        <a href="https://t.me/UNIQE_WEB_STUDIO" class="floating-btn telegram" target="_blank"><i class="fab fa-telegram"></i></a>
-        <a href="https://vk.com/unique__business" class="floating-btn vk" target="_blank"><i class="fab fa-vk"></i></a>
     </div>
+</section>
 
-    <div class="scroll-top" id="scrollTop"><i class="fas fa-arrow-up"></i></div>
-
-    <!-- Modals -->
-    <div id="demoModal" class="modal"><div class="modal-content"><span class="close-modal">&times;</span><h3 data-i18n="demo_modal_title">Получить демо сайт</h3><form id="demoForm"><input type="text" id="demoName" placeholder="Ваше имя" required><br><br><input type="text" id="demoPhone" placeholder="Телефон" required><br><br><input type="text" id="demoVk" placeholder="Ссылка VK" required><br><br><button type="submit" class="btn">Отправить</button></form><div id="demoResult"></div></div></div>
-    <div id="consultModal" class="modal"><div class="modal-content"><span class="close-modal">&times;</span><h3 data-i18n="consult_modal_title">Заявка на консультацию</h3><form id="consultForm"><input type="text" id="consultName" placeholder="Имя" required><br><br><input type="email" id="consultEmail" placeholder="Email" required><br><br><textarea id="consultMessage" placeholder="Сообщение"></textarea><br><br><button type="submit" class="btn">Отправить</button></form><div id="consultResult"></div></div></div>
-    <div id="reviewModal" class="modal"><div class="modal-content"><span class="close-modal">&times;</span><h3 data-i18n="review_modal_title">Оставить отзыв</h3><form id="reviewForm"><input type="text" id="reviewName" placeholder="Ваше имя" required><br><br><div class="star-rating" id="starRating" style="display:flex; justify-content:center; gap:10px; font-size:2rem;"><span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span></div><textarea id="reviewText" placeholder="Ваш отзыв" rows="3" required></textarea><br><br><button type="submit" class="btn">Отправить</button></form><div id="reviewResult"></div></div></div>
-    <div id="policyModal" class="modal"><div class="modal-content"><span class="close-modal">&times;</span><h3>Пользовательское соглашение</h3><p>Полный текст соглашения будет размещен здесь в соответствии с требованиями UnitPay.</p></div></div>
-    <div id="refundModal" class="modal"><div class="modal-content"><span class="close-modal">&times;</span><h3>Политика возвратов</h3><p>Возврат возможен в течение 14 дней. Для подачи жалобы пишите на partners@unitpay.ru.</p></div></div>
-    <div id="exitModal" class="modal"><div class="modal-content"><span class="close-modal">&times;</span><h3 data-i18n="exit_title">Не уходите!</h3><p data-i18n="exit_text">Оставьте заявку и получите скидку 10% на любой пакет.</p><button class="btn" id="exitBtn">Получить скидку</button></div></div>
-
-    <!-- Admin Panel -->
-    <div id="adminPanel" class="admin-panel">
-        <span class="admin-close" id="adminClose">&times;</span>
-        <h3><i class="fas fa-chart-line"></i> Панель администратора</h3>
-        <div id="adminStats"></div>
-        <h4>Заявки на демо</h4>
-        <div id="adminDemoRequests"></div>
-        <h4>Заявки на консультацию</h4>
-        <div id="adminConsultRequests"></div>
-        <h4>Запросы на доработку</h4>
-        <div id="adminEditRequests"></div>
+<footer>
+    <div class="container">
+        <p>&copy; 2025 Unique Web Studio. Все права защищены.</p>
+        <p><a href="#" id="policyLink">Пользовательское соглашение</a> | <a href="#" id="refundLink">Политика возвратов</a></p>
     </div>
+</footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script>
-        // Translations
-        const translations = {
-            ru: {
-                nav_services: "Услуги", nav_portfolio: "Портфолио", nav_reviews: "Отзывы", nav_contact: "Контакты",
-                hero_desc: "Создаем сайты, которые приносят клиентов. Разработка под ключ для вашего бизнеса.",
-                hero_demo_btn: "Получить демо сайт", hero_consult_btn: "Оставить заявку",
-                services_title: "Наши услуги",
-                service_landing: "Landing Page", service_landing_desc: "Одностраничный сайт с высокой конверсией для вашего продукта или услуги.", service_landing_price: "от 6 000 ₽",
-                service_shop: "Интернет-магазин", service_shop_desc: "Полноценная торговая площадка с корзиной, оплатой и доставкой.", service_shop_price: "от 12 000 ₽",
-                service_business: "Корпоративный сайт", service_business_desc: "Представительский сайт для компании с уникальным дизайном.", service_business_price: "от 9 000 ₽",
-                offer_title: "🔥 Спецпредложение! Скидка 15% на первый заказ",
-                portfolio_title: "Наши проекты", edit_title: "Заказать доработку сайта",
-                reviews_title: "Отзывы клиентов", add_review_btn: "Оставить отзыв", map_title: "Наш офис",
-                contact_title: "Контакты", footer_policy: "Пользовательское соглашение", footer_refund: "Политика возвратов",
-                demo_modal_title: "Получить демо сайт", consult_modal_title: "Заявка на консультацию",
-                review_modal_title: "Оставить отзыв", exit_title: "Не уходите!", exit_text: "Оставьте заявку и получите скидку 10% на любой пакет.",
-                status_title: "⚠️ Статус проекта / Project Status",
-                status_text: `<p><strong>Проект vk.com/unique__business находится на доработке после модерации.</strong></p><p>Для активации необходимо разместить на проекте: Пользовательское соглашение, подробную политику возвратов.</p><p>Дополнительно на почту <a href="mailto:partners@unitpay.ru">partners@unitpay.ru</a> прислать информацию по привлечению клиентов и подтверждения заказов.</p>`
-            },
-            en: {
-                nav_services: "Services", nav_portfolio: "Portfolio", nav_reviews: "Reviews", nav_contact: "Contacts",
-                hero_desc: "We create websites that bring clients. Full-cycle development for your business.",
-                hero_demo_btn: "Get demo site", hero_consult_btn: "Request consultation",
-                services_title: "Our Services",
-                service_landing: "Landing Page", service_landing_desc: "High-converting one-page website for your product or service.", service_landing_price: "from 6,000 ₽",
-                service_shop: "Online Store", service_shop_desc: "Full-featured e-commerce platform with cart, payment, and delivery.", service_shop_price: "from 12,000 ₽",
-                service_business: "Corporate Website", service_business_desc: "Corporate website with unique design for your company.", service_business_price: "from 9,000 ₽",
-                offer_title: "🔥 Special offer! 15% discount on first order",
-                portfolio_title: "Our Projects", edit_title: "Order website edit",
-                reviews_title: "Client Reviews", add_review_btn: "Leave a review", map_title: "Our Office",
-                contact_title: "Contacts", footer_policy: "Terms of Use", footer_refund: "Refund Policy",
-                demo_modal_title: "Get demo site", consult_modal_title: "Request consultation",
-                review_modal_title: "Leave a review", exit_title: "Don't go!", exit_text: "Leave a request and get 10% discount on any package.",
-                status_title: "⚠️ Project Status",
-                status_text: `<p><strong>The project vk.com/unique__business is being revised after moderation.</strong></p><p>To activate, you need to place on the project: Terms of Use, detailed refund policy.</p><p>Additionally send to <a href="mailto:partners@unitpay.ru">partners@unitpay.ru</a> information on customer acquisition and order confirmations.</p>`
-            }
-        };
+<!-- Floating Buttons -->
+<div class="floating-buttons">
+    <a href="https://wa.me/79651776233" class="floating-btn" target="_blank"><i class="fab fa-whatsapp"></i></a>
+    <a href="https://t.me/UNIQE_WEB_STUDIO" class="floating-btn telegram" target="_blank"><i class="fab fa-telegram"></i></a>
+    <a href="https://vk.com/unique__business" class="floating-btn vk" target="_blank"><i class="fab fa-vk"></i></a>
+</div>
+<div class="scroll-top" id="scrollTop"><i class="fas fa-arrow-up"></i></div>
 
-        let currentLang = localStorage.getItem('lang') || 'ru';
-        function applyLanguage(lang) {
-            document.querySelectorAll('[data-i18n]').forEach(el => {
-                const key = el.getAttribute('data-i18n');
-                if (translations[lang][key]) {
-                    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') el.placeholder = translations[lang][key];
-                    else el.innerHTML = translations[lang][key];
-                }
-            });
-            const statusDiv = document.querySelector('.status-card div[data-i18n="status_text"]');
-            if (statusDiv) statusDiv.innerHTML = translations[lang].status_text;
-            document.documentElement.lang = lang === 'ru' ? 'ru' : 'en';
-            localStorage.setItem('lang', lang);
+<!-- Modals -->
+<div id="demoModal" class="modal"><div class="modal-content"><span class="close-modal">&times;</span><h3>Получить демо сайт</h3><form id="demoForm"><input type="text" id="demoName" placeholder="Ваше имя" required><br><br><input type="text" id="demoPhone" placeholder="Телефон" required><br><br><input type="text" id="demoVk" placeholder="Ссылка VK" required><br><br><button type="submit" class="btn">Отправить</button></form><div id="demoResult"></div><div id="demoPreview" style="margin-top:15px; font-size:0.9em;"></div></div></div>
+<div id="consultModal" class="modal"><div class="modal-content"><span class="close-modal">&times;</span><h3>Заявка на консультацию</h3><form id="consultForm"><input type="text" id="consultName" placeholder="Имя" required><br><br><input type="email" id="consultEmail" placeholder="Email" required><br><br><textarea id="consultMessage" placeholder="Сообщение"></textarea><br><br><button type="submit" class="btn">Отправить</button></form><div id="consultResult"></div></div></div>
+<div id="reviewModal" class="modal"><div class="modal-content"><span class="close-modal">&times;</span><h3>Оставить отзыв</h3><form id="reviewForm"><input type="text" id="reviewName" placeholder="Ваше имя" required><br><br><div class="star-rating" id="starRating" style="display:flex; justify-content:center; gap:10px; font-size:2rem; cursor:pointer;"><span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span></div><textarea id="reviewText" placeholder="Ваш отзыв" rows="3" required></textarea><br><br><button type="submit" class="btn">Отправить</button></form><div id="reviewResult"></div></div></div>
+<div id="policyModal" class="modal"><div class="modal-content"><span class="close-modal">&times;</span><h3>Пользовательское соглашение</h3><p>Полный текст соглашения будет размещен здесь в соответствии с требованиями UnitPay.</p></div></div>
+<div id="refundModal" class="modal"><div class="modal-content"><span class="close-modal">&times;</span><h3>Политика возвратов</h3><p>Возврат возможен в течение 14 дней. Для подачи жалобы пишите на partners@unitpay.ru.</p></div></div>
+<div id="exitModal" class="modal"><div class="modal-content"><span class="close-modal">&times;</span><h3>Не уходите!</h3><p>Оставьте заявку и получите скидку 10% на любой пакет.</p><button class="btn" id="exitBtn">Получить скидку</button></div></div>
+<div id="videoModal" class="modal"><div class="modal-content"><span class="close-modal">&times;</span><iframe id="videoIframe" width="100%" height="315" src="" frameborder="0" allowfullscreen></iframe></div></div>
+
+<!-- Admin Panel -->
+<div id="adminPanel" class="admin-panel">
+    <span class="admin-close" id="adminClose">&times;</span>
+    <h3>Панель администратора</h3>
+    <div id="adminStats"></div>
+    <h4>Заявки на демо</h4>
+    <div id="adminDemoRequests"></div>
+    <h4>Заявки на консультацию</h4>
+    <div id="adminConsultRequests"></div>
+    <h4>Запросы на доработку</h4>
+    <div id="adminEditRequests"></div>
+</div>
+
+<!-- Cookie Consent -->
+<div id="cookieConsent" class="cookie-consent">
+    <span>Мы используем cookies для улучшения работы сайта. Продолжая, вы соглашаетесь с этим.</span>
+    <button id="acceptCookies" class="btn">OK</button>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.8.0/dist/vanilla-tilt.min.js"></script>
+<script>
+    // --- Translations (simple object for demo) ---
+    const translations = {
+        ru: {
+            heroTitle: "Создаем сайты, которые работают на вас",
+            heroDesc: "Современный дизайн, высокая конверсия, полная поддержка. Закажите сайт уже сегодня.",
+            getDemoBtn: "Получить демо",
+            consultBtn: "Заказать консультацию",
+            servicesTitle: "Наши услуги",
+            serviceLanding: "Landing Page",
+            serviceLandingDesc: "Одностраничный сайт с высокой конверсией для вашего бизнеса.",
+            serviceShop: "Интернет-магазин",
+            serviceShopDesc: "Полноценная платформа для продаж с корзиной и оплатой.",
+            serviceBusiness: "Корпоративный сайт",
+            serviceBusinessDesc: "Представительский сайт с уникальным дизайном.",
+            offerTitle: "🔥 Спецпредложение! Скидка 15% на первый заказ",
+            portfolioTitle: "Наши проекты",
+            blogTitle: "Блог",
+            reviewsTitle: "Отзывы клиентов",
+            editTitle: "Заказать доработку сайта",
+            contactTitle: "Контакты",
+            statusTitle: "⚠️ Статус проекта / Project Status",
+            searchPlaceholder: "Поиск...",
+            addReviewBtn: "Оставить отзыв"
+        },
+        en: {
+            heroTitle: "We create websites that work for you",
+            heroDesc: "Modern design, high conversion, full support. Order your website today.",
+            getDemoBtn: "Get demo",
+            consultBtn: "Request consultation",
+            servicesTitle: "Our Services",
+            serviceLanding: "Landing Page",
+            serviceLandingDesc: "High-converting one-page website for your business.",
+            serviceShop: "Online Store",
+            serviceShopDesc: "Full-featured e-commerce platform with cart and payment.",
+            serviceBusiness: "Corporate Website",
+            serviceBusinessDesc: "Corporate website with unique design.",
+            offerTitle: "🔥 Special offer! 15% off first order",
+            portfolioTitle: "Our Projects",
+            blogTitle: "Blog",
+            reviewsTitle: "Client Reviews",
+            editTitle: "Order website edit",
+            contactTitle: "Contacts",
+            statusTitle: "⚠️ Project Status",
+            searchPlaceholder: "Search...",
+            addReviewBtn: "Leave a review"
         }
+    };
+    let currentLang = 'ru';
+    function applyLanguage(lang) {
+        currentLang = lang;
+        const t = translations[lang];
+        document.getElementById('heroTitle').innerText = t.heroTitle;
+        document.getElementById('heroDesc').innerText = t.heroDesc;
+        document.getElementById('getDemoBtn').innerText = t.getDemoBtn;
+        document.getElementById('consultBtn').innerText = t.consultBtn;
+        document.getElementById('servicesTitle').innerText = t.servicesTitle;
+        document.getElementById('serviceLanding').innerText = t.serviceLanding;
+        document.getElementById('serviceLandingDesc').innerText = t.serviceLandingDesc;
+        document.getElementById('serviceShop').innerText = t.serviceShop;
+        document.getElementById('serviceShopDesc').innerText = t.serviceShopDesc;
+        document.getElementById('serviceBusiness').innerText = t.serviceBusiness;
+        document.getElementById('serviceBusinessDesc').innerText = t.serviceBusinessDesc;
+        document.getElementById('offerTitle').innerText = t.offerTitle;
+        document.getElementById('portfolioTitle').innerText = t.portfolioTitle;
+        document.getElementById('blogTitle').innerText = t.blogTitle;
+        document.getElementById('reviewsTitle').innerText = t.reviewsTitle;
+        document.getElementById('editTitle').innerText = t.editTitle;
+        document.getElementById('contactTitle').innerText = t.contactTitle;
+        document.getElementById('statusTitle').innerText = t.statusTitle;
+        document.getElementById('portfolioSearch').placeholder = t.searchPlaceholder;
+        document.getElementById('addReviewBtn').innerText = t.addReviewBtn;
+    }
+    document.getElementById('langSwitch').addEventListener('click', () => {
+        const newLang = currentLang === 'ru' ? 'en' : 'ru';
+        applyLanguage(newLang);
+        document.getElementById('langSwitch').innerText = newLang === 'ru' ? 'EN' : 'RU';
+    });
+    applyLanguage('ru');
+    document.getElementById('langSwitch').innerText = 'EN';
 
-        // Dark mode
-        if (localStorage.getItem('dark') === 'true') document.body.classList.add('dark');
-        document.getElementById('darkToggle').addEventListener('click', () => {
-            document.body.classList.toggle('dark');
-            localStorage.setItem('dark', document.body.classList.contains('dark'));
+    // AOS
+    AOS.init({ duration: 800, once: true });
+
+    // Tilt effect
+    VanillaTilt.init(document.querySelectorAll(".service-card, .portfolio-card"), {
+        max: 10, speed: 400, glare: true, "max-glare": 0.3,
+    });
+
+    // Countdown timer
+    function updateCountdown() {
+        const now = new Date();
+        const end = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 23, 59, 59);
+        const diff = end - now;
+        if (diff <= 0) { document.getElementById('countdownTimer').innerText = "00:00:00"; return; }
+        const h = Math.floor(diff / 3600000);
+        const m = Math.floor((diff % 3600000) / 60000);
+        const s = Math.floor((diff % 60000) / 1000);
+        document.getElementById('countdownTimer').innerText = `${h.toString().padStart(2,'0')}:${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`;
+    }
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    // Portfolio data
+    const portfolioData = [
+        { img: "https://picsum.photos/id/20/400/250", title: "Студия красоты", category: "landing", video: "https://www.youtube.com/embed/dQw4w9WgXcQ" },
+        { img: "https://picsum.photos/id/30/400/250", title: "Магазин одежды", category: "shop", video: "https://www.youtube.com/embed/dQw4w9WgXcQ" },
+        { img: "https://picsum.photos/id/40/400/250", title: "Ресторан", category: "landing", video: "https://www.youtube.com/embed/dQw4w9WgXcQ" },
+        { img: "https://picsum.photos/id/50/400/250", title: "IT-компания", category: "corp", video: "https://www.youtube.com/embed/dQw4w9WgXcQ" },
+        { img: "https://picsum.photos/id/60/400/250", title: "Мебельный магазин", category: "shop", video: "https://www.youtube.com/embed/dQw4w9WgXcQ" },
+        { img: "https://picsum.photos/id/70/400/250", title: "Маркетинговое агентство", category: "corp", video: "https://www.youtube.com/embed/dQw4w9WgXcQ" }
+    ];
+    function renderPortfolio(filter = 'all', search = '') {
+        const grid = document.getElementById('portfolioGrid');
+        grid.innerHTML = '';
+        const filtered = portfolioData.filter(item =>
+            (filter === 'all' || item.category === filter) &&
+            item.title.toLowerCase().includes(search.toLowerCase())
+        );
+        filtered.forEach(item => {
+            const card = document.createElement('div');
+            card.className = 'portfolio-card';
+            card.innerHTML = `
+                <img src="${item.img}" loading="lazy">
+                <div class="content">
+                    <h3>${item.title}</h3>
+                    <button class="btn video-play" data-video="${item.video}" style="margin-top:10px;">Смотреть видео</button>
+                </div>
+            `;
+            grid.appendChild(card);
         });
-
-        // Language
-        document.getElementById('langSwitch').addEventListener('click', () => {
-            currentLang = currentLang === 'ru' ? 'en' : 'ru';
-            applyLanguage(currentLang);
-            document.getElementById('langSwitch').innerText = currentLang === 'ru' ? 'EN' : 'RU';
-        });
-        applyLanguage(currentLang);
-        document.getElementById('langSwitch').innerText = currentLang === 'ru' ? 'EN' : 'RU';
-
-        // Typed text
-        new Typed('#typed-text', {
-            strings: ['Создание сайтов для бизнеса', 'Website Development for Business', 'Landing Pages', 'Online Stores'],
-            typeSpeed: 50, backSpeed: 30, loop: true
-        });
-
-        AOS.init({ duration: 800, once: true });
-
-        // Progress bar
-        window.addEventListener('scroll', () => {
-            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scrolled = (winScroll / height) * 100;
-            document.getElementById('progressBar').style.width = scrolled + '%';
-        });
-
-        // Countdown
-        function updateCountdown() {
-            const now = new Date();
-            const endOfDay = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 23, 59, 59);
-            const diff = endOfDay - now;
-            if (diff <= 0) { document.getElementById('countdownTimer').innerText = "00:00:00"; return; }
-            const hours = Math.floor(diff / 3600000);
-            const minutes = Math.floor((diff % 3600000) / 60000);
-            const seconds = Math.floor((diff % 60000) / 1000);
-            document.getElementById('countdownTimer').innerText = `${hours.toString().padStart(2,'0')}:${minutes.toString().padStart(2,'0')}:${seconds.toString().padStart(2,'0')}`;
-        }
-        updateCountdown();
-        setInterval(updateCountdown, 1000);
-
-        // Portfolio with real-like Russian business links
-        const portfolioData = [
-            { img: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=400&h=250&fit=crop", title: "Студия красоты "Блеск"", category: "landing", link: "https://example.com/beauty" },
-            { img: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=400&h=250&fit=crop", title: "Магазин одежды "Style"", category: "shop", link: "https://example.com/fashion" },
-            { img: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=400&h=250&fit=crop", title: "Ресторан "Вкус"", category: "landing", link: "https://example.com/restaurant" },
-            { img: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=250&fit=crop", title: "IT-компания "ТехноПро"", category: "corp", link: "https://example.com/it" },
-            { img: "https://images.unsplash.com/photo-1472851294608-062f824d29cc?w=400&h=250&fit=crop", title: "Мебель "Дом"", category: "shop", link: "https://example.com/furniture" },
-            { img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=250&fit=crop", title: "Агентство "Маркетинг+"", category: "corp", link: "https://example.com/marketing" }
-        ];
-
-        function renderPortfolio(filter = 'all') {
-            const grid = document.getElementById('portfolioGrid');
-            grid.innerHTML = '';
-            const filtered = portfolioData.filter(item => filter === 'all' || item.category === filter);
-            filtered.forEach(item => {
-                const card = document.createElement('div');
-                card.className = 'card';
-                card.innerHTML = `<a href="${item.link}" target="_blank" style="text-decoration:none; color:inherit;"><img src="${item.img}" loading="lazy"><div class="card-content"><h3>${item.title}</h3></div></a>`;
-                grid.appendChild(card);
-            });
-        }
-
-        let currentFilter = 'all';
-        document.querySelectorAll('.filter-btn').forEach(btn => {
+        document.querySelectorAll('.video-play').forEach(btn => {
             btn.addEventListener('click', () => {
-                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                currentFilter = btn.getAttribute('data-filter');
-                renderPortfolio(currentFilter);
+                const videoUrl = btn.getAttribute('data-video');
+                document.getElementById('videoIframe').src = videoUrl;
+                document.getElementById('videoModal').style.display = 'flex';
             });
         });
-        renderPortfolio();
+    }
+    let currentFilter = 'all';
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            currentFilter = btn.getAttribute('data-filter');
+            renderPortfolio(currentFilter, document.getElementById('portfolioSearch').value);
+        });
+    });
+    document.getElementById('portfolioSearch').addEventListener('input', (e) => {
+        renderPortfolio(currentFilter, e.target.value);
+    });
+    renderPortfolio();
 
-        // Reviews from localStorage
-        let reviews = JSON.parse(localStorage.getItem('reviews')) || [
-            { name: "Анна", rating: 5, text: "Отличный сервис, сайт сделали за 2 дня! Очень довольна результатом." },
-            { name: "Иван", rating: 5, text: "Профессиональный подход, все выполнено в срок. Рекомендую!" },
-            { name: "Мария", rating: 4, text: "Хорошая студия, сделали качественный лендинг. Спасибо!" }
-        ];
+    // Blog data
+    const blogPosts = [
+        { img: "https://picsum.photos/id/1/400/250", title: "Как выбрать Landing Page для бизнеса", excerpt: "Советы по выбору одностраничного сайта." },
+        { img: "https://picsum.photos/id/2/400/250", title: "SEO оптимизация: что нужно знать", excerpt: "Основные принципы продвижения." },
+        { img: "https://picsum.photos/id/3/400/250", title: "Тренды веб-дизайна 2025", excerpt: "Новые стили и технологии." }
+    ];
+    const blogGrid = document.getElementById('blogGrid');
+    blogPosts.forEach(post => {
+        const card = document.createElement('div');
+        card.className = 'blog-card';
+        card.innerHTML = `<img src="${post.img}" loading="lazy"><div class="content"><h3>${post.title}</h3><p>${post.excerpt}</p><button class="btn btn-outline" style="font-size:0.8rem;">Читать</button></div>`;
+        blogGrid.appendChild(card);
+    });
 
-        function renderReviews() {
-            const wrapper = document.getElementById('reviewsSwiperWrapper');
-            wrapper.innerHTML = '';
-            reviews.forEach(rev => {
-                const slide = document.createElement('div');
-                slide.className = 'swiper-slide';
-                let stars = '';
-                for (let i = 1; i <= 5; i++) stars += i <= rev.rating ? '★' : '☆';
-                slide.innerHTML = `<div class="testimonial-card" style="background: var(--card-bg); padding: 24px; border-radius: 24px;"><strong>${rev.name}</strong><div style="color: #ffc107;">${stars}</div><p>${rev.text}</p></div>`;
-                wrapper.appendChild(slide);
-            });
-            new Swiper('.testimonial-swiper', { loop: true, pagination: { el: '.swiper-pagination', clickable: true }, autoplay: { delay: 4000 } });
+    // Reviews
+    let reviews = JSON.parse(localStorage.getItem('reviews')) || [
+        { name: "Анна", rating: 5, text: "Отличный сервис, сайт сделали за 2 дня!", approved: true },
+        { name: "Иван", rating: 5, text: "Очень доволен результатом, спасибо!", approved: true },
+        { name: "Мария", rating: 4, text: "Профессионально и быстро. Рекомендую.", approved: true }
+    ];
+    function renderReviews() {
+        const wrapper = document.getElementById('reviewsSwiperWrapper');
+        wrapper.innerHTML = '';
+        reviews.filter(r => r.approved).forEach(rev => {
+            const slide = document.createElement('div');
+            slide.className = 'swiper-slide';
+            let stars = '';
+            for (let i = 1; i <= 5; i++) stars += i <= rev.rating ? '★' : '☆';
+            slide.innerHTML = `<div class="testimonial-card"><strong>${rev.name}</strong><div class="stars">${stars}</div><p>${rev.text}</p></div>`;
+            wrapper.appendChild(slide);
+        });
+        new Swiper('.reviews-swiper', { loop: true, pagination: { el: '.swiper-pagination', clickable: true }, autoplay: { delay: 4000 } });
+    }
+    renderReviews();
+
+    // Star rating for new review
+    let selectedRating = 5;
+    document.getElementById('starRating').addEventListener('click', (e) => {
+        if (e.target.tagName === 'SPAN') {
+            const stars = [...document.querySelectorAll('#starRating span')];
+            const idx = stars.indexOf(e.target);
+            selectedRating = idx + 1;
+            stars.forEach((s, i) => s.innerText = i < selectedRating ? '★' : '☆');
         }
-        renderReviews();
+    });
 
-        // Map
-        const map = L.map('map').setView([55.751244, 37.618423], 13);
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '© OpenStreetMap' }).addTo(map);
-        L.marker([55.751244, 37.618423]).addTo(map).bindPopup('Unique Web Studio<br>Москва, ул. Тверская, 1').openPopup();
+    // Storage for admin
+    let demoRequests = JSON.parse(localStorage.getItem('demoRequests')) || [];
+    let consultRequests = JSON.parse(localStorage.getItem('consultRequests')) || [];
+    let editRequests = JSON.parse(localStorage.getItem('editRequests')) || [];
 
-        // Modal handling
-        const modals = {
-            demo: document.getElementById('demoModal'), consult: document.getElementById('consultModal'),
-            review: document.getElementById('reviewModal'), policy: document.getElementById('policyModal'),
-            refund: document.getElementById('refundModal'), exit: document.getElementById('exitModal')
-        };
-        function openModal(modal) { modals[modal].style.display = 'flex'; }
-        function closeAllModals() { Object.values(modals).forEach(m => m.style.display = 'none'); }
-        document.querySelectorAll('.close-modal').forEach(btn => btn.addEventListener('click', closeAllModals));
-        window.addEventListener('click', e => { if (e.target.classList.contains('modal')) closeAllModals(); });
+    // Helper: send to backend (mock with localStorage)
+    function saveToLocal(key, data) {
+        let arr = JSON.parse(localStorage.getItem(key)) || [];
+        arr.push(data);
+        localStorage.setItem(key, JSON.stringify(arr));
+    }
 
-        document.getElementById('getDemoBtn').addEventListener('click', () => openModal('demo'));
-        document.getElementById('consultBtn').addEventListener('click', () => openModal('consult'));
-        document.getElementById('policyLink').addEventListener('click', (e) => { e.preventDefault(); openModal('policy'); });
-        document.getElementById('refundLink').addEventListener('click', (e) => { e.preventDefault(); openModal('refund'); });
-        document.getElementById('addReviewBtn').addEventListener('click', () => openModal('review'));
-
-        // Star rating
-        let selectedRating = 5;
-        document.getElementById('starRating').addEventListener('click', (e) => {
-            if (e.target.tagName === 'SPAN') {
-                const stars = [...document.querySelectorAll('#starRating span')];
-                const idx = stars.indexOf(e.target);
-                selectedRating = idx + 1;
-                stars.forEach((s, i) => {
-                    s.innerText = i < selectedRating ? '★' : '☆';
-                });
-            }
-        });
-
-        // Form submissions with localStorage for admin
-        let demoRequests = JSON.parse(localStorage.getItem('demoRequests')) || [];
-        let consultRequests = JSON.parse(localStorage.getItem('consultRequests')) || [];
-        let editRequests = JSON.parse(localStorage.getItem('editRequests')) || [];
-
-        document.getElementById('demoForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const data = { name: document.getElementById('demoName').value, phone: document.getElementById('demoPhone').value, vk: document.getElementById('demoVk').value, date: new Date().toLocaleString() };
-            demoRequests.push(data);
-            localStorage.setItem('demoRequests', JSON.stringify(demoRequests));
-            document.getElementById('demoResult').innerHTML = 'Спасибо! Демо будет отправлено в течение 5 минут.';
-            setTimeout(() => document.getElementById('demoResult').innerHTML = '', 3000);
+    // Form submissions
+    document.getElementById('demoForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const data = { name: document.getElementById('demoName').value, phone: document.getElementById('demoPhone').value, vk: document.getElementById('demoVk').value, date: new Date().toLocaleString() };
+        saveToLocal('demoRequests', data);
+        demoRequests.push(data);
+        document.getElementById('demoResult').innerHTML = 'Спасибо! Демо будет отправлено в течение 5 минут.';
+        document.getElementById('demoPreview').innerHTML = `Ваш демо-сайт будет доступен по ссылке: <a href="#">demo.unique-studio.ru/${data.name.replace(/\s/g, '')}</a>`;
+        setTimeout(() => { document.getElementById('demoResult').innerHTML = ''; document.getElementById('demoPreview').innerHTML = ''; }, 5000);
+        closeAllModals();
+        if (Notification.permission === "granted") new Notification("Новая заявка на демо!", { body: `От ${data.name}` });
+    });
+    document.getElementById('consultForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const data = { name: document.getElementById('consultName').value, email: document.getElementById('consultEmail').value, message: document.getElementById('consultMessage').value, date: new Date().toLocaleString() };
+        saveToLocal('consultRequests', data);
+        consultRequests.push(data);
+        document.getElementById('consultResult').innerHTML = 'Спасибо! Мы свяжемся с вами в ближайшее время.';
+        setTimeout(() => document.getElementById('consultResult').innerHTML = '', 3000);
+        closeAllModals();
+        if (Notification.permission === "granted") new Notification("Новая заявка на консультацию!", { body: `От ${data.name}` });
+    });
+    document.getElementById('editForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const data = { name: document.getElementById('editName').value, email: document.getElementById('editEmail').value, site: document.getElementById('editSite').value, description: document.getElementById('editDescription').value, date: new Date().toLocaleString() };
+        saveToLocal('editRequests', data);
+        editRequests.push(data);
+        document.getElementById('editResult').innerHTML = 'Запрос отправлен! Мы свяжемся с вами.';
+        setTimeout(() => document.getElementById('editResult').innerHTML = '', 3000);
+        document.getElementById('editForm').reset();
+        if (Notification.permission === "granted") new Notification("Новый запрос на доработку!", { body: `От ${data.name}` });
+    });
+    document.getElementById('reviewForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('reviewName').value;
+        const text = document.getElementById('reviewText').value;
+        if (name && text) {
+            reviews.unshift({ name, rating: selectedRating, text, approved: true });
+            localStorage.setItem('reviews', JSON.stringify(reviews));
+            renderReviews();
             closeAllModals();
-        });
-
-        document.getElementById('consultForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const data = { name: document.getElementById('consultName').value, email: document.getElementById('consultEmail').value, message: document.getElementById('consultMessage').value, date: new Date().toLocaleString() };
-            consultRequests.push(data);
-            localStorage.setItem('consultRequests', JSON.stringify(consultRequests));
-            document.getElementById('consultResult').innerHTML = 'Спасибо! Мы свяжемся с вами в ближайшее время.';
-            setTimeout(() => document.getElementById('consultResult').innerHTML = '', 3000);
-            closeAllModals();
-        });
-
-        document.getElementById('editForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const data = { name: document.getElementById('editName').value, email: document.getElementById('editEmail').value, site: document.getElementById('editSite').value, description: document.getElementById('editDescription').value, date: new Date().toLocaleString() };
-            editRequests.push(data);
-            localStorage.setItem('editRequests', JSON.stringify(editRequests));
-            document.getElementById('editResult').innerHTML = 'Запрос отправлен! Мы свяжемся с вами.';
-            setTimeout(() => document.getElementById('editResult').innerHTML = '', 3000);
-            document.getElementById('editForm').reset();
-        });
-
-        document.getElementById('reviewForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const name = document.getElementById('reviewName').value;
-            const text = document.getElementById('reviewText').value;
-            if (name && text) {
-                reviews.unshift({ name, rating: selectedRating, text });
-                localStorage.setItem('reviews', JSON.stringify(reviews));
-                renderReviews();
-                closeAllModals();
-                document.getElementById('reviewResult').innerHTML = 'Спасибо! Ваш отзыв добавлен.';
-                setTimeout(() => document.getElementById('reviewResult').innerHTML = '', 3000);
-            }
-        });
-
-        // Admin panel
-        function updateAdminPanel() {
-            document.getElementById('adminStats').innerHTML = `<p>Всего заявок: ${demoRequests.length + consultRequests.length + editRequests.length}</p>`;
-            document.getElementById('adminDemoRequests').innerHTML = demoRequests.map(r => `<div class="admin-item">${r.name} - ${r.phone}<br><small>${r.date}</small></div>`).join('') || 'Нет заявок';
-            document.getElementById('adminConsultRequests').innerHTML = consultRequests.map(r => `<div class="admin-item">${r.name} (${r.email})<br>${r.message}<br><small>${r.date}</small></div>`).join('') || 'Нет заявок';
-            document.getElementById('adminEditRequests').innerHTML = editRequests.map(r => `<div class="admin-item">${r.name} - ${r.site}<br>${r.description}<br><small>${r.date}</small></div>`).join('') || 'Нет заявок';
+            document.getElementById('reviewResult').innerHTML = 'Спасибо! Ваш отзыв добавлен.';
+            setTimeout(() => document.getElementById('reviewResult').innerHTML = '', 3000);
         }
-        updateAdminPanel();
+    });
 
-        const adminPanel = document.getElementById('adminPanel');
-        document.getElementById('adminToggle').addEventListener('click', () => { adminPanel.classList.add('open'); updateAdminPanel(); });
-        document.getElementById('adminClose').addEventListener('click', () => adminPanel.classList.remove('open'));
+    // Payment buttons
+    document.querySelectorAll('.pay-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            alert('Демо-режим: оплата через UnitPay. В реальном проекте здесь будет ссылка на оплату.');
+        });
+    });
 
-        // Exit intent
-        let exitShown = false;
-        document.addEventListener('mouseleave', (e) => {
-            if (e.clientY <= 0 && !exitShown && localStorage.getItem('exitShown') !== 'true') {
-                exitShown = true;
-                localStorage.setItem('exitShown', 'true');
-                openModal('exit');
+    // Admin panel with password
+    const adminPanel = document.getElementById('adminPanel');
+    document.getElementById('adminToggleBtn').addEventListener('click', () => {
+        const pwd = prompt("Введите пароль администратора:");
+        if (pwd === "admin123") {
+            adminPanel.classList.add('open');
+            function updateAdminPanel() {
+                document.getElementById('adminStats').innerHTML = `<p>Всего заявок: ${demoRequests.length + consultRequests.length + editRequests.length}</p>`;
+                document.getElementById('adminDemoRequests').innerHTML = demoRequests.map(r => `<div class="admin-item">${r.name} - ${r.phone}<br><small>${r.date}</small></div>`).join('') || 'Нет заявок';
+                document.getElementById('adminConsultRequests').innerHTML = consultRequests.map(r => `<div class="admin-item">${r.name} (${r.email})<br>${r.message}<br><small>${r.date}</small></div>`).join('') || 'Нет заявок';
+                document.getElementById('adminEditRequests').innerHTML = editRequests.map(r => `<div class="admin-item">${r.name} - ${r.site}<br>${r.description}<br><small>${r.date}</small></div>`).join('') || 'Нет заявок';
             }
-        });
-        document.getElementById('exitBtn').addEventListener('click', () => { closeAllModals(); openModal('consult'); });
-
-        // Scroll top
-        const scrollBtn = document.getElementById('scrollTop');
-        window.addEventListener('scroll', () => scrollBtn.classList.toggle('visible', window.scrollY > 300));
-        scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-
-        // Mobile menu
-        const mobileBtn = document.querySelector('.mobile-menu-btn');
-        const navLinks = document.querySelector('.nav-links');
-        mobileBtn.addEventListener('click', () => navLinks.classList.toggle('active'));
-        document.querySelectorAll('.nav-links a').forEach(link => link.addEventListener('click', () => navLinks.classList.remove('active')));
-
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) target.scrollIntoView({ behavior: 'smooth' });
-            });
-        });
-
-        // Cookie consent
-        if (!localStorage.getItem('cookiesAccepted')) {
-            const cookieDiv = document.createElement('div');
-            cookieDiv.className = 'cookie-consent';
-            cookieDiv.innerHTML = `<span>${currentLang === 'ru' ? 'Мы используем cookies для улучшения работы сайта.' : 'We use cookies to improve your experience.'}</span><button id="acceptCookies">OK</button>`;
-            document.body.appendChild(cookieDiv);
-            cookieDiv.style.cssText = 'position:fixed; bottom:20px; left:20px; right:20px; background:var(--card-bg); border-radius:20px; padding:15px; display:flex; justify-content:space-between; align-items:center; z-index:1000;';
-            document.getElementById('acceptCookies').addEventListener('click', () => {
-                localStorage.setItem('cookiesAccepted', 'true');
-                cookieDiv.remove();
-            });
+            updateAdminPanel();
+        } else {
+            alert("Неверный пароль");
         }
-    </script>
+    });
+    document.getElementById('adminClose').addEventListener('click', () => adminPanel.classList.remove('open'));
+
+    // Request notification permission
+    if ("Notification" in window && Notification.permission !== "denied") Notification.requestPermission();
+
+    // Modals
+    const modals = {
+        demo: document.getElementById('demoModal'),
+        consult: document.getElementById('consultModal'),
+        review: document.getElementById('reviewModal'),
+        policy: document.getElementById('policyModal'),
+        refund: document.getElementById('refundModal'),
+        exit: document.getElementById('exitModal'),
+        video: document.getElementById('videoModal')
+    };
+    function openModal(modal) { modals[modal].style.display = 'flex'; }
+    function closeAllModals() { Object.values(modals).forEach(m => m.style.display = 'none'); document.getElementById('videoIframe').src = ''; }
+    document.querySelectorAll('.close-modal').forEach(btn => btn.addEventListener('click', closeAllModals));
+    window.addEventListener('click', e => { if (e.target.classList.contains('modal')) closeAllModals(); });
+
+    document.getElementById('getDemoBtn').addEventListener('click', () => openModal('demo'));
+    document.getElementById('consultBtn').addEventListener('click', () => openModal('consult'));
+    document.getElementById('addReviewBtn').addEventListener('click', () => openModal('review'));
+    document.getElementById('policyLink').addEventListener('click', (e) => { e.preventDefault(); openModal('policy'); });
+    document.getElementById('refundLink').addEventListener('click', (e) => { e.preventDefault(); openModal('refund'); });
+
+    // Exit intent
+    let exitShown = false;
+    document.addEventListener('mouseleave', (e) => {
+        if (e.clientY <= 0 && !exitShown && localStorage.getItem('exitShown') !== 'true') {
+            exitShown = true;
+            localStorage.setItem('exitShown', 'true');
+            openModal('exit');
+        }
+    });
+    document.getElementById('exitBtn').addEventListener('click', () => { closeAllModals(); openModal('consult'); });
+
+    // Scroll to top
+    const scrollBtn = document.getElementById('scrollTop');
+    window.addEventListener('scroll', () => scrollBtn.classList.toggle('visible', window.scrollY > 300));
+    scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    // Mobile menu
+    const mobileBtn = document.querySelector('.mobile-menu');
+    const nav = document.querySelector('.nav');
+    mobileBtn.addEventListener('click', () => nav.classList.toggle('active'));
+    document.querySelectorAll('.nav a').forEach(link => link.addEventListener('click', () => nav.classList.remove('active')));
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) target.scrollIntoView({ behavior: 'smooth' });
+        });
+    });
+
+    // Cookie consent
+    if (!localStorage.getItem('cookiesAccepted')) {
+        document.getElementById('cookieConsent').style.display = 'flex';
+    }
+    document.getElementById('acceptCookies').addEventListener('click', () => {
+        localStorage.setItem('cookiesAccepted', 'true');
+        document.getElementById('cookieConsent').style.display = 'none';
+    });
+</script>
 </body>
 </html>
