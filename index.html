@@ -1520,114 +1520,30 @@ const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzUJzb4RCubySoic_HVe
     document.getElementById('fillFromVkBtn')?.addEventListener('click',()=>alert('Demo: VK data filled automatically'));
 
     // ==================== FORM SUBMISSIONS TO APPS SCRIPT ====================
+    // ==================== FORM SUBMISSIONS TO APPS SCRIPT (XMLHttpRequest - CORS safe, no page refresh) ====================
     async function sendToAppsScript(formData, action) {
         formData.append('action', action);
-        const response = await fetch(SCRIPT_URL, { method: 'POST', body: formData });
-        return await response.json();
-    }
-
-    // Update form submissions to include language field
-    document.getElementById('demoForm').addEventListener('submit', async (e) => {
-        e.preventDefault();
-        if (!document.getElementById('demoAgree').checked) { alert(translations[currentLang].consent_warning); return; }
-        const formData = new FormData(e.target);
-        // The 'Preferred Language' field is already included via its name attribute
-        try {
-            const result = await sendToAppsScript(formData, 'demoRequest');
-            if (result.success) {
-                alert(`✅ ${translations[currentLang].send_btn} ID: ${result.lead_id}`);
-                localStorage.setItem('last_lead_id', result.lead_id);
-                closeAllModals();
-                e.target.reset();
-            } else alert('❌ ' + result.message);
-        } catch(err) { alert('Network error'); }
-    });
-    document.getElementById('consultForm').addEventListener('submit', async (e) => {
-        e.preventDefault();
-        if (!document.getElementById('consultAgree').checked) { alert(translations[currentLang].consent_warning); return; }
-        const formData = new FormData(e.target);
-        try {
-            const result = await sendToAppsScript(formData, 'consultRequest');
-            if (result.success) alert(`✅ ${translations[currentLang].send_btn}`);
-            else alert('❌ ' + result.message);
-            closeAllModals();
-            e.target.reset();
-        } catch(err) { alert('Network error'); }
-    });
-    document.getElementById('editForm').addEventListener('submit', async (e) => {
-        e.preventDefault();
-        if (!document.getElementById('editAgree').checked) { alert(translations[currentLang].consent_warning); return; }
-        const formData = new FormData(e.target);
-        try {
-            const result = await sendToAppsScript(formData, 'editRequest');
-            if (result.success) alert(`✅ ${translations[currentLang].send_btn}`);
-            else alert('❌ ' + result.message);
-            document.getElementById('editForm').reset();
-        } catch(err) { alert('Network error'); }
-    });
-    document.getElementById('paymentForm').addEventListener('submit', async (e) => {
-        e.preventDefault();
-        if (!document.getElementById('paymentAgree').checked) { alert(translations[currentLang].consent_warning); return; }
-        const formData = new FormData(e.target);
-        try {
-            const result = await sendToAppsScript(formData, 'submitPayment');
-            if (result.success) alert('✅ Payment info submitted. Awaiting confirmation.');
-            else alert('❌ ' + result.message);
-            closeAllModals();
-            e.target.reset();
-        } catch(err) { alert('Network error'); }
-    });
-
-    document.getElementById('orderServiceForm').addEventListener('submit', async (e) => {
-        e.preventDefault();
-        if (!document.getElementById('orderAgree').checked) { alert(translations[currentLang].consent_warning); return; }
-        const formData = new FormData(e.target);
-        try {
-            const result = await sendToAppsScript(formData, 'serviceOrder');
-            if (result.success) alert(`✅ Order submitted! We'll contact you soon.`);
-            else alert('❌ ' + result.message);
-            closeAllModals();
-            e.target.reset();
-        } catch(err) { alert('Network error'); }
-    });
-
-    async function confirmPayment(leadId) {
-    if (!confirm(`Confirm payment for lead ${leadId}? This will mark it as paid and (optionally) trigger site generation.`)) return;
-    const formData = new FormData();
-    formData.append('action', 'confirmPayment');
-    formData.append('lead_id', leadId);
-    formData.append('site_url', '');
-    formData.append('site_password', '');
-    
-    return new Promise((resolve) => {
-        const xhr = new XMLHttpRequest();
-        xhr.open('POST', SCRIPT_URL, true);
-        xhr.onload = function() {
-            if (xhr.status === 200) {
-                try {
-                    const result = JSON.parse(xhr.responseText);
-                    if (result.success) {
-                        alert('✅ Payment confirmed! Refresh the page to see updated status.');
-                        renderLeadsTable();
-                    } else {
-                        alert('❌ ' + result.message);
+        return new Promise((resolve) => {
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', SCRIPT_URL, true);
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    try {
+                        const result = JSON.parse(xhr.responseText);
+                        resolve(result);
+                    } catch(e) {
+                        resolve({ success: true, message: 'Submitted' });
                     }
-                } catch(e) {
-                    alert('✅ Payment confirmed (response parse error)');
-                    renderLeadsTable();
+                } else {
+                    resolve({ success: false, message: 'Server error: ' + xhr.status });
                 }
-            } else {
-                alert('❌ Server error: ' + xhr.status);
-            }
-            resolve();
-        };
-        xhr.onerror = function() {
-            alert('❌ Network error');
-            resolve();
-        };
-        xhr.send(formData);
-    });
-}
+            };
+            xhr.onerror = function() {
+                resolve({ success: false, message: 'Network error' });
+            };
+            xhr.send(formData);
+        });
+    }
     // ========== FIXED: showLeadDetailsById - displays ALL fields with proper formatting ==========
     function showLeadDetailsById(leadId) {
         const lead = leadsData.find(l => String(l['Lead ID']) === String(leadId));
