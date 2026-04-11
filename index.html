@@ -1515,72 +1515,17 @@
     });
     document.getElementById('fillFromVkBtn')?.addEventListener('click',()=>alert('Demo: VK data filled automatically'));
 
-    // ==================== FORM SUBMISSIONS TO APPS SCRIPT (CORS-safe method) ====================
+    // ==================== FORM SUBMISSIONS TO APPS SCRIPT (CORS resolved) ====================
     async function sendToAppsScript(formData, action) {
         formData.append('action', action);
-        return new Promise((resolve, reject) => {
-            const iframeId = 'hidden_iframe_' + Date.now();
-            const iframe = document.createElement('iframe');
-            iframe.name = iframeId;
-            iframe.id = iframeId;
-            iframe.style.display = 'none';
-            document.body.appendChild(iframe);
-            
-            const form = document.createElement('form');
-            form.method = 'POST';
-            form.action = SCRIPT_URL;
-            form.target = iframeId;
-            form.style.display = 'none';
-            
-            for (let [key, value] of formData.entries()) {
-                const input = document.createElement('input');
-                input.type = 'hidden';
-                input.name = key;
-                input.value = value;
-                form.appendChild(input);
-            }
-            
-            document.body.appendChild(form);
-            
-            let resolved = false;
-            const timeout = setTimeout(() => {
-                if (!resolved) {
-                    resolved = true;
-                    cleanup();
-                    resolve({ success: true, message: 'Submitted (timeout, but likely saved)' });
-                }
-            }, 8000);
-            
-            const cleanup = () => {
-                clearTimeout(timeout);
-                if (iframe.parentNode) iframe.parentNode.removeChild(iframe);
-                if (form.parentNode) form.parentNode.removeChild(form);
-            };
-            
-            iframe.onload = () => {
-                if (resolved) return;
-                resolved = true;
-                let responseText = '';
-                try {
-                    if (iframe.contentDocument && iframe.contentDocument.body) {
-                        responseText = iframe.contentDocument.body.innerText || iframe.contentDocument.body.textContent || '';
-                    }
-                } catch(e) { /* cross-origin may block, ignore */ }
-                cleanup();
-                if (responseText && responseText.trim()) {
-                    try {
-                        const result = JSON.parse(responseText);
-                        resolve(result);
-                    } catch(e) {
-                        resolve({ success: true, message: 'Submitted' });
-                    }
-                } else {
-                    resolve({ success: true, message: 'Submitted' });
-                }
-            };
-            
-            form.submit();
-        });
+        try {
+            const response = await fetch(SCRIPT_URL, { method: 'POST', body: formData });
+            const result = await response.json();
+            return result;
+        } catch(err) {
+            console.error('Fetch error:', err);
+            return { success: false, message: 'Network error: ' + err.message };
+        }
     }
 
     document.getElementById('demoForm').addEventListener('submit', async (e) => {
@@ -1828,7 +1773,7 @@
                     <button class="btn-icon" onclick="confirmPayment('${leadIdSafe}')"><i class="fas fa-check-circle"></i></button>
                     <button class="btn-icon" onclick="alert('Delete lead ${leadIdSafe}')"><i class="fas fa-trash"></i></button>
                   </td>
-            <tr>`;
+             </tr>`;
         });
         tbody.innerHTML = html;
         const selectAllCheckbox = document.getElementById('selectAllLeads');
