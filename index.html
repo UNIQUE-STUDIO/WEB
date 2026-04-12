@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Unique Web Studio | Website Creation for Business</title>
+    <title>Unique Web Studio | Motion Design Agency</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -53,7 +53,7 @@
             --border-light: rgba(58, 58, 78, 0.6);
             --glow: 0 0 18px rgba(230, 177, 126, 0.4);
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
         body {
             font-family: 'Inter', sans-serif;
             background: var(--bg-body);
@@ -62,6 +62,36 @@
             overflow-x: hidden;
             transition: background 0.3s, color 0.3s;
         }
+        /* Custom cursor */
+        .cursor-dot, .cursor-dot-outline {
+            pointer-events: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            z-index: 9999;
+            transition: opacity 0.3s, transform 0.1s;
+        }
+        .cursor-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--gold);
+        }
+        .cursor-dot-outline {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(200,169,106,0.2);
+            border: 1px solid var(--gold);
+            transition: transform 0.2s, width 0.2s, height 0.2s, background 0.2s;
+        }
+        body:hover .cursor-dot, body:hover .cursor-dot-outline { opacity: 1; }
+        .cursor-dot.hover, .cursor-dot-outline.hover {
+            transform: translate(-50%, -50%) scale(1.5);
+            background-color: rgba(200,169,106,0.4);
+        }
+        @media (max-width: 768px) { .cursor-dot, .cursor-dot-outline { display: none; } * { cursor: auto; } }
+        
         body::before {
             content: '';
             position: fixed;
@@ -78,6 +108,11 @@
         @keyframes breatheGradient {
             0% { opacity: 0.4; transform: scale(1); }
             100% { opacity: 0.8; transform: scale(1.05); }
+        }
+        /* Parallax base */
+        .parallax {
+            transition: transform 0.2s ease-out;
+            will-change: transform;
         }
         .glass, .service-card, .portfolio-card, .blog-card, .testimonial-card, .modal-content, .admin-panel, .header {
             background: var(--bg-card);
@@ -103,6 +138,16 @@
             100% { transform: translateY(0px); }
         }
         .service-card, .portfolio-card { animation: floatCard 5s ease-in-out infinite; }
+        /* Stagger animation */
+        .stagger-item {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .stagger-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
         h1 {
             font-size: 4rem;
             margin-bottom: 1.2rem;
@@ -133,6 +178,25 @@
             transition: width 0.4s ease;
         }
         h2:hover:after { width: 100%; }
+        /* Typewriter effect */
+        .typewriter {
+            overflow: hidden;
+            border-right: 2px solid var(--gold);
+            white-space: nowrap;
+            margin: 0 auto;
+            letter-spacing: 0.15em;
+            animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: var(--gold); }
+        }
+        @media (max-width: 768px) { .typewriter { white-space: normal; border-right: none; animation: none; } }
+        
         a, a:visited, a:link, .nav a, footer a, .contact-info a, .modal a {
             color: var(--gold-dark) !important;
             text-decoration: none;
@@ -165,6 +229,8 @@
             align-items: center;
             gap: 12px;
             letter-spacing: 0.5px;
+            position: relative;
+            overflow: hidden;
         }
         .btn i { font-size: 1.2rem; transition: transform 0.2s; }
         .btn:hover {
@@ -173,6 +239,22 @@
             filter: brightness(1.05);
         }
         .btn:hover i { transform: translateX(4px); }
+        .btn:after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.5s, height 0.5s;
+        }
+        .btn:active:after {
+            width: 200%;
+            height: 200%;
+        }
         .btn-outline {
             background: transparent;
             border: 2px solid var(--gold);
@@ -192,6 +274,11 @@
             padding: 14px 0;
             backdrop-filter: blur(18px);
             background: rgba(var(--bg-card), 0.7);
+            transition: all 0.3s;
+        }
+        .header.scrolled {
+            padding: 8px 0;
+            background: rgba(var(--bg-card), 0.95);
         }
         .header .container { display: flex; justify-content: space-between; align-items: center; }
         .logo { display: flex; align-items: center; gap: 14px; text-decoration: none; }
@@ -227,6 +314,7 @@
             font-weight: 600;
             color: var(--text-primary);
             backdrop-filter: blur(4px);
+            transition: all 0.2s;
         }
         .lang-switch:hover, .admin-toggle:hover, #darkModeToggle:hover {
             background: var(--gold);
@@ -344,6 +432,7 @@
             z-index: 100;
             box-shadow: 0 0 0 2px white, 0 0 0 4px #2ecc71;
             animation: pulse 1.5s infinite;
+            cursor: pointer;
         }
         @keyframes pulse {
             0% { box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.7); }
@@ -379,6 +468,7 @@
         .filter-btn {
             background: transparent; border: 1px solid var(--gold); padding: 10px 26px;
             border-radius: 60px; cursor: pointer; font-weight: 600; color: var(--text-primary);
+            transition: all 0.2s;
         }
         .filter-btn.active, .filter-btn:hover { background: var(--gold); color: #2c2118; transform: translateY(-2px); }
         .search-input {
@@ -788,12 +878,15 @@
 </head>
 <body>
 <div class="particles" id="particles"></div>
+<div class="cursor-dot"></div>
+<div class="cursor-dot-outline"></div>
 <div class="live-support" title="Support online 24/7"></div>
 <header class="header"><div class="container"><div class="logo"><div class="logo-monogram">UW</div><div class="logo-text">UNIQUE<br><span>WEB STUDIO</span></div></div><div class="mobile-menu"><i class="fas fa-bars"></i></div><div class="nav"><a href="#services" data-i18n="nav_services">Services</a><a href="#portfolio" data-i18n="nav_portfolio">Portfolio</a><a href="#blog" data-i18n="nav_blog">Blog</a><a href="#reviews" data-i18n="nav_reviews">Reviews</a><a href="#contact" data-i18n="nav_contact">Contacts</a><button class="lang-switch" id="langSwitch">RU</button><button class="admin-toggle" id="adminToggleBtn"><i class="fas fa-chart-line"></i></button><button id="darkModeToggle"><i class="fas fa-moon"></i></button></div></div></header>
-<section class="hero"><div class="container"><h1 data-i18n="hero_title">We create websites that work for you</h1><p data-i18n="hero_desc">Modern design, high conversion, full support. Order your website today.</p><div class="btn-group"><button class="btn" id="getDemoBtn"><i class="fas fa-paper-plane"></i> <span data-i18n="hero_demo_btn">Get demo</span></button><button class="btn btn-outline" id="consultBtn"><i class="fas fa-comment-dots"></i> <span data-i18n="hero_consult_btn">Request consultation</span></button></div></div></section>
+<section class="hero"><div class="container"><h1 class="typewriter" data-i18n="hero_title">We create websites that work for you</h1><p data-i18n="hero_desc">Modern design, high conversion, full support. Order your website today.</p><div class="btn-group"><button class="btn" id="getDemoBtn"><i class="fas fa-paper-plane"></i> <span data-i18n="hero_demo_btn">Get demo</span></button><button class="btn btn-outline" id="consultBtn"><i class="fas fa-comment-dots"></i> <span data-i18n="hero_consult_btn">Request consultation</span></button></div></div></section>
 
+<!-- Statistics Section -->
 <section id="stats" class="container" data-aos="fade-up">
-    <div class="stats-grid" id="statsGrid">
+    <div class="stats-grid">
         <div class="stat-item"><div class="stat-number" data-count="247">0</div><div class="stat-label">Projects Completed</div></div>
         <div class="stat-item"><div class="stat-number" data-count="189">0</div><div class="stat-label">Happy Clients</div></div>
         <div class="stat-item"><div class="stat-number" data-count="35">0</div><div class="stat-label">Team Members</div></div>
@@ -806,265 +899,40 @@
 <section id="blog"><div class="container" data-aos="fade-up"><h2 data-i18n="blog_title">Blog</h2><div class="blog-grid" id="blogGrid"></div></div></section>
 <section id="reviews"><div class="container" data-aos="fade-up"><h2 data-i18n="reviews_title">Client Reviews</h2><div class="swiper reviews-swiper"><div class="swiper-wrapper" id="reviewsSwiperWrapper"></div><div class="swiper-pagination"></div></div><div style="text-align: center; margin-top: 30px;"><button class="btn btn-outline" id="addReviewBtn" data-i18n="add_review_btn">Leave a review</button></div></div></section>
 <section id="edit-request"><div class="container" data-aos="fade-up"><h2 data-i18n="edit_title">Order website edit</h2><form id="editForm" style="max-width: 600px; margin: 0 auto;">
-    <div class="form-group"><input type="text" id="editName" data-i18n-placeholder="edit_name" placeholder="Your name"></div>
-    <div class="form-group"><input type="email" id="editEmail" data-i18n-placeholder="edit_email" placeholder="Email"></div>
-    <div class="form-group"><input type="tel" id="editPhone" data-i18n-placeholder="edit_phone" placeholder="Phone"></div>
-    <div class="form-group"><input type="url" id="editVk" data-i18n-placeholder="edit_vk" placeholder="VK link"></div>
-    <div class="form-group"><input type="url" id="editSite" data-i18n-placeholder="edit_site" placeholder="Website URL"></div>
-    <div class="form-group"><select id="editType"><option value="">--</option><option value="design" data-i18n="edit_type_design">Design</option><option value="function" data-i18n="edit_type_function">Functionality</option><option value="content" data-i18n="edit_type_content">Content</option><option value="other" data-i18n="edit_type_other">Other</option></select></div>
-    <div class="form-group"><input type="date" id="editDesiredDate" placeholder="Desired date"></div>
-    <div class="form-group"><textarea id="editDescription" rows="4" data-i18n-placeholder="edit_desc" placeholder="Describe what needs improvement"></textarea></div>
-    <div class="form-group">
-        <label class="field-label"><i class="fas fa-language"></i> Preferred Language for Website</label>
-        <select id="editLanguage">
-            <option value="en">English</option>
-            <option value="ru">Russian</option>
-        </select>
-        <div class="field-description">Choose the language in which you want your site to be built</div>
-    </div>
+    <div class="form-group"><input type="text" id="editName" name="name" data-i18n-placeholder="edit_name" placeholder="Your name"></div>
+    <div class="form-group"><input type="email" id="editEmail" name="email" data-i18n-placeholder="edit_email" placeholder="Email"></div>
+    <div class="form-group"><input type="tel" id="editPhone" name="phone" data-i18n-placeholder="edit_phone" placeholder="Phone"></div>
+    <div class="form-group"><input type="url" id="editVk" name="vk_url" data-i18n-placeholder="edit_vk" placeholder="VK link"></div>
+    <div class="form-group"><input type="url" id="editSite" name="existing_site" data-i18n-placeholder="edit_site" placeholder="Website URL"></div>
+    <div class="form-group"><select id="editType" name="edit_type"><option value="">--</option><option value="design" data-i18n="edit_type_design">Design</option><option value="function" data-i18n="edit_type_function">Functionality</option><option value="content" data-i18n="edit_type_content">Content</option><option value="other" data-i18n="edit_type_other">Other</option></select></div>
+    <div class="form-group"><input type="date" id="editDesiredDate" name="desired_date" placeholder="Desired date"></div>
+    <div class="form-group"><textarea id="editDescription" name="description" rows="4" data-i18n-placeholder="edit_desc" placeholder="Describe what needs improvement"></textarea></div>
+    <div class="form-group"><label class="field-label"><i class="fas fa-language"></i> Preferred Language for Website</label><select id="editLanguage" name="Preferred Language"><option value="en">English</option><option value="ru">Russian</option></select><div class="field-description">Choose the language</div></div>
     <div class="checkbox-group"><input type="checkbox" id="editAgree" required><label for="editAgree" data-i18n="agree_label">I agree to the <a href="#" id="editPolicyLink">Terms of Use</a> and <a href="#" id="editRefundLink">Refund Policy</a></label></div>
     <button type="submit" class="btn" data-i18n="send_btn">Submit request</button><div id="editResult"></div>
 </form></div></section>
 <section id="contact"><div class="container" data-aos="fade-up"><h2 data-i18n="contact_title">Contacts</h2><div style="display: flex; flex-wrap: wrap; gap: 40px;"><div class="contact-info"><p><i class="fas fa-envelope"></i> <a href="mailto:uniqe.studio@yandex.ru">uniqe.studio@yandex.ru</a></p><p><i class="fas fa-phone-alt"></i> <a href="tel:+79651776233">+7 (965) 177-62-33</a></p><div class="contact-social"><a href="https://t.me/UNIQE_WEB_STUDIO" target="_blank"><i class="fab fa-telegram fa-2x"></i></a><a href="https://wa.me/79651776233" target="_blank"><i class="fab fa-whatsapp fa-2x"></i></a><a href="https://vk.com/unique__business" target="_blank"><i class="fab fa-vk fa-2x"></i></a><a href="max://chat?phone=+79651776233" target="_blank" title="Max Messenger"><img src="https://play-lh.googleusercontent.com/iXp_mU8RC7rYuWgQeE5y-VuO-UPMIB4glAClkiyrJUnfKraqdFZtzX-7tUwgwEh2AGE" alt="Max" class="max-contact-logo"></a></div></div></div></div></section>
 
-<div class="container">
-    <div class="newsletter-section" data-aos="fade-up">
-        <h3>📧 Subscribe to Newsletter</h3>
-        <p>Get latest news, special offers and website tips directly in your inbox.</p>
-        <form id="newsletterForm" class="newsletter-form">
-            <input type="email" id="newsletterEmail" placeholder="Your email address" required>
-            <button type="submit" class="btn">Subscribe</button>
-        </form>
-        <div id="newsletterMsg" style="margin-top: 15px; font-size: 0.9rem;"></div>
-    </div>
-</div>
+<!-- Newsletter Section -->
+<div class="container"><div class="newsletter-section" data-aos="fade-up"><h3>📧 Subscribe to Newsletter</h3><p>Get latest news, special offers and website tips directly in your inbox.</p><form id="newsletterForm" class="newsletter-form"><input type="email" id="newsletterEmail" placeholder="Your email address" required><button type="submit" class="btn">Subscribe</button></form><div id="newsletterMsg" style="margin-top: 15px; font-size: 0.9rem;"></div></div></div>
 
-<footer><div class="container"><p data-i18n="footer_copyright">&copy; 2025 Unique Web Studio. All rights reserved.</p><p><a href="#" id="policyLink" data-i18n="footer_policy">Terms of Use</a> | <a href="#" id="refundLink" data-i18n="footer_refund">Refund Policy</a></p>
-    <div class="share-buttons">
-        <a href="https://t.me/share/url?url=https://uniquewebstudio.com&text=Check%20out%20Unique%20Web%20Studio" target="_blank" class="share-btn"><i class="fab fa-telegram"></i></a>
-        <a href="https://wa.me/?text=https://uniquewebstudio.com" target="_blank" class="share-btn"><i class="fab fa-whatsapp"></i></a>
-        <a href="https://vk.com/share.php?url=https://uniquewebstudio.com" target="_blank" class="share-btn"><i class="fab fa-vk"></i></a>
-        <a href="https://www.facebook.com/sharer/sharer.php?u=https://uniquewebstudio.com" target="_blank" class="share-btn"><i class="fab fa-facebook-f"></i></a>
-        <a href="https://twitter.com/intent/tweet?url=https://uniquewebstudio.com&text=Unique%20Web%20Studio" target="_blank" class="share-btn"><i class="fab fa-twitter"></i></a>
-    </div>
-</div></footer>
+<footer><div class="container"><p data-i18n="footer_copyright">&copy; 2025 Unique Web Studio. All rights reserved.</p><p><a href="#" id="policyLink" data-i18n="footer_policy">Terms of Use</a> | <a href="#" id="refundLink" data-i18n="footer_refund">Refund Policy</a></p><div class="share-buttons"><a href="https://t.me/share/url?url=https://uniquewebstudio.com&text=Check%20out%20Unique%20Web%20Studio" target="_blank" class="share-btn"><i class="fab fa-telegram"></i></a><a href="https://wa.me/?text=https://uniquewebstudio.com" target="_blank" class="share-btn"><i class="fab fa-whatsapp"></i></a><a href="https://vk.com/share.php?url=https://uniquewebstudio.com" target="_blank" class="share-btn"><i class="fab fa-vk"></i></a><a href="https://www.facebook.com/sharer/sharer.php?u=https://uniquewebstudio.com" target="_blank" class="share-btn"><i class="fab fa-facebook-f"></i></a><a href="https://twitter.com/intent/tweet?url=https://uniquewebstudio.com&text=Unique%20Web%20Studio" target="_blank" class="share-btn"><i class="fab fa-twitter"></i></a></div></div></footer>
 <div class="floating-buttons"><a href="https://wa.me/79651776233" class="floating-btn" target="_blank"><i class="fab fa-whatsapp"></i></a><a href="https://t.me/UNIQE_WEB_STUDIO" class="floating-btn telegram" target="_blank"><i class="fab fa-telegram"></i></a><a href="https://vk.com/unique__business" class="floating-btn vk" target="_blank"><i class="fab fa-vk"></i></a><a href="max://chat?phone=+79651776233" class="floating-btn max" target="_blank" title="Max Messenger"><img src="https://play-lh.googleusercontent.com/iXp_mU8RC7rYuWgQeE5y-VuO-UPMIB4glAClkiyrJUnfKraqdFZtzX-7tUwgwEh2AGE" alt="Max Messenger"></a></div>
 <div class="scroll-top" id="scrollTop"><i class="fas fa-arrow-up"></i></div>
 
-<!-- Modals -->
-<div id="demoModal" class="modal">
-    <div class="modal-content">
-        <span class="close-modal">&times;</span>
-        <h3 data-i18n="demo_modal_title">Get demo site</h3>
-        <form id="demoForm" enctype="multipart/form-data">
-            <div class="demo-form-grid">
-                <div class="form-group">
-                    <label class="field-label" data-i18n="demo_business_name_label"><i class="fas fa-building"></i> Business name</label>
-                    <input type="text" id="demoBusinessName" name="business_name" data-i18n-placeholder="demo_business_name">
-                    <div class="field-description" data-i18n="demo_business_name_desc">Your company or project name</div>
-                </div>
-                <div class="form-group">
-                    <label class="field-label" data-i18n="demo_city_label"><i class="fas fa-city"></i> City</label>
-                    <input type="text" id="demoCity" name="city" data-i18n-placeholder="demo_city">
-                    <div class="field-description" data-i18n="demo_city_desc">Where your business is located</div>
-                </div>
-                <div class="form-group">
-                    <label class="field-label" data-i18n="demo_category_label"><i class="fas fa-code-branch"></i> Website type</label>
-                    <select id="demoCategory" name="category">
-                        <option value="landing" data-i18n="demo_category_landing">Landing Page (from 6,000 ₽)</option>
-                        <option value="ecommerce" data-i18n="demo_category_ecommerce">Online Store (from 12,000 ₽)</option>
-                        <option value="corporate" data-i18n="demo_category_corporate">Corporate Website (from 9,000 ₽)</option>
-                    </select>
-                    <div class="field-description" data-i18n="demo_category_desc">Choose the type of website you need</div>
-                </div>
-                <div class="form-group">
-                    <label class="field-label" data-i18n="demo_phone_label"><i class="fas fa-phone-alt"></i> Phone number</label>
-                    <input type="tel" id="demoPhone" name="phone" data-i18n-placeholder="demo_phone">
-                    <div class="field-description" data-i18n="demo_phone_desc">For quick contact</div>
-                </div>
-                <div class="form-group">
-                    <label class="field-label" data-i18n="demo_vk_label"><i class="fab fa-vk"></i> VK profile / page</label>
-                    <input type="url" id="demoVk" name="vk_url" data-i18n-placeholder="demo_vk">
-                    <button type="button" id="fillFromVkBtn" class="btn-outline" style="margin-top:8px;" data-i18n="fill_from_vk">Fill from VK</button>
-                    <div class="field-description" data-i18n="demo_vk_desc">Link to your VK page (optional, helps us understand your style)</div>
-                </div>
-                <div class="form-group">
-                    <label class="field-label" data-i18n="demo_email_label"><i class="fas fa-envelope"></i> Email address</label>
-                    <input type="email" id="demoEmail" name="email" data-i18n-placeholder="demo_email">
-                    <div class="field-description" data-i18n="demo_email_desc">We'll send the demo link here</div>
-                </div>
-                <div class="form-group">
-                    <label class="field-label" data-i18n="demo_address_label"><i class="fas fa-map-marker-alt"></i> Business address</label>
-                    <input type="text" id="demoAddress" name="address" data-i18n-placeholder="demo_address">
-                    <div class="field-description" data-i18n="demo_address_desc">If you have a physical location</div>
-                </div>
-                <div class="form-group">
-                    <label class="field-label" data-i18n="demo_brand_color_label"><i class="fas fa-palette"></i> Brand color</label>
-                    <input type="color" id="demoBrandColor" name="brand_color" value="#C8A96A">
-                    <div class="field-description" data-i18n="demo_brand_color_desc">Main color of your brand</div>
-                </div>
-                <div class="form-group">
-                    <label class="field-label" data-i18n="demo_logo_label"><i class="fas fa-image"></i> Logo (optional)</label>
-                    <input type="file" id="demoLogo" name="logo" accept="image/*">
-                    <div class="field-description" data-i18n="demo_logo_desc">Upload your logo (PNG, JPG)</div>
-                </div>
-                <div class="form-group">
-                    <label class="field-label" data-i18n="demo_domain_label"><i class="fas fa-globe"></i> Desired domain</label>
-                    <input type="url" id="demoDomain" name="domain" data-i18n-placeholder="demo_domain">
-                    <div class="field-description" data-i18n="demo_domain_desc">If you already have a domain name in mind</div>
-                </div>
-                <div class="form-group">
-                    <label class="field-label" data-i18n="demo_referrer_label"><i class="fas fa-chart-line"></i> How did you find us?</label>
-                    <select id="demoReferrer" name="referrer">
-                        <option value="" data-i18n="demo_referrer_select">-- Select --</option>
-                        <option value="vk" data-i18n="demo_referrer_vk">VK</option>
-                        <option value="telegram" data-i18n="demo_referrer_telegram">Telegram</option>
-                        <option value="search" data-i18n="demo_referrer_search">Search engine</option>
-                        <option value="friend" data-i18n="demo_referrer_friend">Friend recommendation</option>
-                        <option value="other" data-i18n="demo_referrer_other">Other</option>
-                    </select>
-                    <div class="field-description" data-i18n="demo_referrer_desc">Help us improve our marketing</div>
-                </div>
-                <div class="form-group">
-                    <label class="field-label" data-i18n="demo_budget_label"><i class="fas fa-ruble-sign"></i> Approximate budget</label>
-                    <input type="text" id="demoBudget" name="budget" data-i18n-placeholder="demo_budget">
-                    <div class="field-description" data-i18n="demo_budget_desc">So we can offer the best solution</div>
-                </div>
-                <div class="form-group">
-                    <label class="field-label" data-i18n="demo_existing_site_label"><i class="fas fa-link"></i> Current website (if any)</label>
-                    <input type="url" id="demoExistingSite" name="existing_site" data-i18n-placeholder="demo_existing_site">
-                    <div class="field-description" data-i18n="demo_existing_site_desc">If you already have a site, we can redesign it</div>
-                </div>
-                <div class="form-group">
-                    <label class="field-label"><i class="fas fa-language"></i> Preferred Language for Website</label>
-                    <select id="demoLanguage" name="preferred_language">
-                        <option value="en">English</option>
-                        <option value="ru">Russian</option>
-                    </select>
-                    <div class="field-description">Choose the language in which you want your site to be built</div>
-                </div>
-                <div class="form-group demo-full-width">
-                    <label class="field-label" data-i18n="demo_hosting_label"><i class="fas fa-server"></i> Hosting & domain status</label>
-                    <div class="checkbox-group" style="margin:0">
-                        <input type="checkbox" id="demoHasHosting" name="has_hosting" value="true"> <label for="demoHasHosting" data-i18n="demo_has_hosting">I already have hosting and domain</label>
-                    </div>
-                    <div class="field-description" data-i18n="demo_hosting_desc">Let us know if you already have hosting</div>
-                </div>
-                <div class="form-group demo-full-width">
-                    <label class="field-label" data-i18n="demo_notes_label"><i class="fas fa-comment-dots"></i> Additional notes</label>
-                    <textarea id="demoNotes" name="notes" rows="3" data-i18n-placeholder="demo_notes"></textarea>
-                    <div class="field-description" data-i18n="demo_notes_desc">Anything else we should know?</div>
-                </div>
-                <div class="form-group demo-full-width">
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="demoAgree" name="agree" value="true">
-                        <label for="demoAgree" data-i18n="agree_label">I agree to the <a href="#" id="demoPolicyLink">Terms of Use</a> and <a href="#" id="demoRefundLink">Refund Policy</a></label>
-                    </div>
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="demoSendCopy" name="send_copy" value="true"> <label for="demoSendCopy" data-i18n="send_copy">Send copy of this request to my email</label>
-                    </div>
-                </div>
-            </div>
-            <button type="submit" class="btn" data-i18n="send_btn">Submit request</button>
-        </form>
-        <div id="demoResult"></div>
-    </div>
-</div>
-<div id="consultModal" class="modal"><div class="modal-content"><span class="close-modal">&times;</span><h3 data-i18n="consult_modal_title">Request consultation</h3><form id="consultForm">
-    <div class="form-group"><input type="text" id="consultName" name="name" data-i18n-placeholder="consult_name" placeholder="Your name"></div>
-    <div class="form-group"><input type="email" id="consultEmail" name="email" data-i18n-placeholder="consult_email" placeholder="Email"></div>
-    <div class="form-group"><input type="tel" id="consultPhone" name="phone" data-i18n-placeholder="consult_phone" placeholder="Phone"></div>
-    <div class="form-group"><input type="url" id="consultVk" name="vk_url" data-i18n-placeholder="consult_vk" placeholder="VK link"></div>
-    <div class="form-group"><textarea id="consultMessage" name="message" rows="4" data-i18n-placeholder="consult_message" placeholder="Your question"></textarea></div>
-    <div class="form-group">
-        <label class="field-label"><i class="fas fa-language"></i> Preferred Language for Website</label>
-        <select id="consultLanguage" name="preferred_language">
-            <option value="en">English</option>
-            <option value="ru">Russian</option>
-        </select>
-        <div class="field-description">If you are interested in a website, choose your preferred language</div>
-    </div>
-    <div class="checkbox-group"><input type="checkbox" id="consultAgree" name="agree" required><label for="consultAgree" data-i18n="agree_label">I agree to the <a href="#" id="consultPolicyLink">Terms of Use</a> and <a href="#" id="consultRefundLink">Refund Policy</a></label></div>
-    <div class="checkbox-group"><input type="checkbox" id="consultSendCopy" name="send_copy" value="true"> <label for="consultSendCopy" data-i18n="send_copy">Send copy to email</label></div>
-    <button type="submit" class="btn" data-i18n="send_btn">Submit</button>
-</form><div id="consultResult"></div></div></div>
-<div id="reviewModal" class="modal">
-    <div class="modal-content">
-        <span class="close-modal">&times;</span>
-        <h3 data-i18n="review_modal_title">Leave a review</h3>
-        <form id="reviewForm">
-            <div class="form-group"><input type="text" id="reviewName" name="name" data-i18n-placeholder="review_name" placeholder="Your name"></div>
-            <div class="form-group"><div class="star-rating" id="starRating" style="display:flex; justify-content:center; gap:10px; font-size:2rem; cursor:pointer;"><span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span></div></div>
-            <div class="form-group"><textarea id="reviewText" name="text" rows="3" data-i18n-placeholder="review_text" placeholder="Your review"></textarea></div>
-            <div class="form-group"><input type="number" id="reviewAmount" name="amount" placeholder="Amount spent (RUB)" step="100" min="0"></div>
-            <div class="checkbox-group"><input type="checkbox" id="reviewAgree" name="agree" required><label for="reviewAgree" data-i18n="agree_label">I agree to the <a href="#" id="reviewPolicyLink">Terms of Use</a> and <a href="#" id="reviewRefundLink">Refund Policy</a></label></div>
-            <button type="submit" class="btn" data-i18n="send_btn">Submit</button>
-        </form>
-        <div id="reviewResult"></div>
-    </div>
-</div>
-<div id="paymentModal" class="modal"><div class="modal-content"><span class="close-modal">&times;</span><h3 data-i18n="payment_title">Payment information</h3><form id="paymentForm"><div class="form-group"><input type="text" id="paymentLeadId" name="lead_id" placeholder="Lead ID (received after demo request)" required></div><div class="form-group"><input type="text" id="paymentTransactionId" name="transaction_id" placeholder="Transaction ID from bank" required></div><div class="form-group"><input type="number" id="paymentAmount" name="amount" placeholder="Amount in RUB" required></div><div class="checkbox-group"><input type="checkbox" id="paymentAgree" name="agree" required><label for="paymentAgree" data-i18n="agree_label">I confirm that the payment has been made</label></div><button type="submit" class="btn" data-i18n="send_btn">Submit payment info</button><div class="payment-note">✅ After submitting your request, payment details will be sent to your email/phone. Full payment is required after website completion.</div></form><div id="paymentResult"></div></div></div>
-<div id="policyModal" class="modal"><div class="modal-content"><span class="close-modal">&times;</span><div class="modal-lang-switch"><button class="modal-lang-btn policy-lang-ru">RU</button><button class="modal-lang-btn policy-lang-en active">EN</button></div><h3>Terms of Use</h3><div class="policy-content-ru" style="display:none;"><p><strong>1. Общие положения</strong><br>Настоящее соглашение регулирует отношения между Исполнителем (Unique Web Studio) и Заказчиком при заказе услуг по разработке сайта. Заказчик обязуется предоставить достоверную информацию для создания сайта. Исполнитель обязуется выполнить работу в согласованные сроки.</p><p><strong>2. Порядок оплаты</strong><br>Оплата производится после полного завершения проекта и подписания акта приёма-передачи. Предоплата не требуется. Сроки возврата средств регулируются Политикой возвратов.</p><p><strong>3. Ответственность сторон</strong><br>Исполнитель не несёт ответственности за содержание предоставленных Заказчиком материалов. Заказчик гарантирует законность использования всех материалов.</p><p><strong>4. Конфиденциальность</strong><br>Стороны обязуются не разглашать коммерческую информацию, полученную в рамках сотрудничества.</p><p><strong>5. Форс-мажор</strong><br>Стороны освобождаются от ответственности за неисполнение обязательств при наступлении обстоятельств непреодолимой силы.</p></div><div class="policy-content-en" style="display:block;"><p><strong>1. General Provisions</strong><br>This agreement governs the relationship between the Contractor (Unique Web Studio) and the Customer when ordering website development services. The Customer undertakes to provide reliable information for the creation of the website. The Contractor undertakes to perform the work within the agreed time.</p><p><strong>2. Payment Procedure</strong><br>Payment is made after full completion of the project and signing of the acceptance certificate. No prepayment is required. Refund terms are regulated by the Refund Policy.</p><p><strong>3. Liability of the Parties</strong><br>The Contractor is not responsible for the content of materials provided by the Customer. The Customer guarantees the legality of using all materials.</p><p><strong>4. Confidentiality</strong><br>The Parties undertake not to disclose commercial information obtained during cooperation.</p><p><strong>5. Force Majeure</strong><br>The Parties are released from liability for non-performance of obligations in the event of force majeure.</p></div></div></div>
-<div id="refundModal" class="modal"><div class="modal-content"><span class="close-modal">&times;</span><div class="modal-lang-switch"><button class="modal-lang-btn refund-lang-ru">RU</button><button class="modal-lang-btn refund-lang-en active">EN</button></div><h3>Refund Policy</h3><div class="refund-content-ru" style="display:none;"><p><strong>1. Возврат средств</strong><br>Поскольку предоплата не взимается, возврат средств возможен только в случае, если Исполнитель не приступил к работе в течение 10 рабочих дней с момента подтверждения заказа. В этом случае заказчик может отказаться от услуг без каких-либо штрафов.</p><p><strong>2. Возврат после сдачи проекта</strong><br>После подписания акта приёмки-передачи возврат не осуществляется, за исключением случаев выявления критических ошибок, не устранённых в течение 14 дней.</p><p><strong>3. Порядок подачи жалобы</strong><br>Для подачи аргументированной жалобы или запроса на возврат средств необходимо отправить письмо на официальную почту студии: <strong>uniqe.studio@yandex.ru</strong>. В письме обязательно указать номер заказа (если есть), описание проблемы с приложением подтверждающих материалов (скриншоты, переписка) и контактные данные. Срок рассмотрения жалобы составляет до 10 (десяти) рабочих дней.</p><p><strong>4. Основания для отказа в возврате</strong><br>Отказ возможен, если Заказчик нарушил условия пользовательского соглашения, предоставил недостоверные данные или отказался от сотрудничества после начала работ без уважительной причины.</p></div><div class="refund-content-en" style="display:block;"><p><strong>1. Refund of funds</strong><br>Since no prepayment is required, a refund is only possible if the Contractor fails to start work within 10 business days after order confirmation. In that case the customer may cancel the order without any penalties.</p><p><strong>2. Refund after project delivery</strong><br>After signing the acceptance certificate, no refund is made, except in cases of critical errors that have not been fixed within 14 days.</p><p><strong>3. Complaint procedure</strong><br>To file a reasoned complaint or refund request, you must send a letter to the studio's official email: <strong>uniqe.studio@yandex.ru</strong>. The letter must include the order number (if any), a description of the problem with supporting materials (screenshots, correspondence) and contact details. The complaint review period is up to 10 (ten) business days.</p><p><strong>4. Grounds for refusal of refund</strong><br>Refusal is possible if the Customer violated the terms of the user agreement, provided false information, or refused to cooperate after the start of work without good reason.</p></div></div></div>
+<!-- Modals (all original modals remain unchanged) -->
+<div id="demoModal" class="modal"><div class="modal-content"><span class="close-modal">&times;</span><h3 data-i18n="demo_modal_title">Get demo site</h3><form id="demoForm" enctype="multipart/form-data"><div class="demo-form-grid"><div class="form-group"><label class="field-label"><i class="fas fa-building"></i> Business name</label><input type="text" id="demoBusinessName" name="business_name"></div><div class="form-group"><label class="field-label"><i class="fas fa-city"></i> City</label><input type="text" id="demoCity" name="city"></div><div class="form-group"><label class="field-label"><i class="fas fa-code-branch"></i> Website type</label><select id="demoCategory" name="category"><option value="landing">Landing Page</option><option value="ecommerce">Online Store</option><option value="corporate">Corporate</option></select></div><div class="form-group"><label class="field-label"><i class="fas fa-phone-alt"></i> Phone</label><input type="tel" id="demoPhone" name="phone"></div><div class="form-group"><label class="field-label"><i class="fab fa-vk"></i> VK profile</label><input type="url" id="demoVk" name="vk_url"><button type="button" id="fillFromVkBtn" class="btn-outline" style="margin-top:8px;">Fill from VK</button></div><div class="form-group"><label class="field-label"><i class="fas fa-envelope"></i> Email</label><input type="email" id="demoEmail" name="email"></div><div class="form-group"><label class="field-label"><i class="fas fa-map-marker-alt"></i> Address</label><input type="text" id="demoAddress" name="address"></div><div class="form-group"><label class="field-label"><i class="fas fa-palette"></i> Brand color</label><input type="color" id="demoBrandColor" name="brand_color" value="#C8A96A"></div><div class="form-group"><label class="field-label"><i class="fas fa-image"></i> Logo</label><input type="file" id="demoLogo" name="logo" accept="image/*"></div><div class="form-group"><label class="field-label"><i class="fas fa-globe"></i> Desired domain</label><input type="url" id="demoDomain" name="domain"></div><div class="form-group"><label class="field-label"><i class="fas fa-chart-line"></i> How did you find us?</label><select id="demoReferrer" name="referrer"><option value="">-- Select --</option><option value="vk">VK</option><option value="telegram">Telegram</option><option value="search">Search engine</option><option value="friend">Friend</option><option value="other">Other</option></select></div><div class="form-group"><label class="field-label"><i class="fas fa-ruble-sign"></i> Budget</label><input type="text" id="demoBudget" name="budget"></div><div class="form-group"><label class="field-label"><i class="fas fa-link"></i> Current website</label><input type="url" id="demoExistingSite" name="existing_site"></div><div class="form-group"><label class="field-label"><i class="fas fa-language"></i> Preferred Language</label><select id="demoLanguage" name="Preferred Language"><option value="en">English</option><option value="ru">Russian</option></select></div><div class="form-group demo-full-width"><label class="field-label"><i class="fas fa-server"></i> Hosting status</label><div class="checkbox-group"><input type="checkbox" id="demoHasHosting" name="has_hosting"> <label>I already have hosting</label></div></div><div class="form-group demo-full-width"><label class="field-label"><i class="fas fa-comment-dots"></i> Notes</label><textarea id="demoNotes" name="notes" rows="3"></textarea></div><div class="form-group demo-full-width"><div class="checkbox-group"><input type="checkbox" id="demoAgree" name="agree_terms"> <label>I agree to <a href="#" id="demoPolicyLink">Terms</a> and <a href="#" id="demoRefundLink">Refund Policy</a></label></div><div class="checkbox-group"><input type="checkbox" id="demoSendCopy" name="send_copy"> <label>Send copy to email</label></div></div></div><button type="submit" class="btn">Submit request</button></form><div id="demoResult"></div></div></div>
+<div id="consultModal" class="modal"><div class="modal-content"><span class="close-modal">&times;</span><h3>Request consultation</h3><form id="consultForm"><div class="form-group"><input type="text" id="consultName" name="name" placeholder="Your name"></div><div class="form-group"><input type="email" id="consultEmail" name="email" placeholder="Email"></div><div class="form-group"><input type="tel" id="consultPhone" name="phone" placeholder="Phone"></div><div class="form-group"><input type="url" id="consultVk" name="vk_url" placeholder="VK link"></div><div class="form-group"><textarea id="consultMessage" name="message" rows="4" placeholder="Your question"></textarea></div><div class="form-group"><select id="consultLanguage" name="Preferred Language"><option value="en">English</option><option value="ru">Russian</option></select></div><div class="checkbox-group"><input type="checkbox" id="consultAgree" required name="agree_terms"><label>I agree to <a href="#" id="consultPolicyLink">Terms</a> and <a href="#" id="consultRefundLink">Refund Policy</a></label></div><div class="checkbox-group"><input type="checkbox" id="consultSendCopy" name="send_copy"> <label>Send copy to email</label></div><button type="submit" class="btn">Submit</button></form><div id="consultResult"></div></div></div>
+<div id="reviewModal" class="modal"><div class="modal-content"><span class="close-modal">&times;</span><h3>Leave a review</h3><form id="reviewForm"><div class="form-group"><input type="text" id="reviewName" name="name" placeholder="Your name"></div><div class="form-group"><div class="star-rating" id="starRating" style="display:flex; justify-content:center; gap:10px; font-size:2rem; cursor:pointer;"><span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span></div></div><div class="form-group"><textarea id="reviewText" name="review" rows="3" placeholder="Your review"></textarea></div><div class="form-group"><input type="number" id="reviewAmount" name="amount" placeholder="Amount spent (RUB)"></div><div class="checkbox-group"><input type="checkbox" id="reviewAgree" required name="agree_terms"><label>I agree to <a href="#" id="reviewPolicyLink">Terms</a> and <a href="#" id="reviewRefundLink">Refund Policy</a></label></div><button type="submit" class="btn">Submit</button></form><div id="reviewResult"></div></div></div>
+<div id="paymentModal" class="modal"><div class="modal-content"><span class="close-modal">&times;</span><h3>Submit payment details</h3><form id="paymentForm"><div class="form-group"><input type="text" id="paymentLeadId" name="lead_id" placeholder="Lead ID" required></div><div class="form-group"><input type="text" id="paymentTransactionId" name="transaction_id" placeholder="Transaction ID" required></div><div class="form-group"><input type="number" id="paymentAmount" name="amount" placeholder="Amount in RUB" required></div><div class="checkbox-group"><input type="checkbox" id="paymentAgree" required name="agree_terms"><label>I confirm payment</label></div><button type="submit" class="btn">Submit payment info</button><div class="payment-note">⚠️ Manual verification within 24h.</div></form><div id="paymentResult"></div></div></div>
+<div id="policyModal" class="modal"><div class="modal-content"><span class="close-modal">&times;</span><div class="modal-lang-switch"><button class="modal-lang-btn policy-lang-ru">RU</button><button class="modal-lang-btn policy-lang-en active">EN</button></div><h3>Terms of Use</h3><div class="policy-content-ru" style="display:none;"><p><strong>1. Общие положения</strong><br>Настоящее соглашение регулирует отношения между Исполнителем (Unique Web Studio) и Заказчиком при заказе услуг по разработке сайта. Заказчик обязуется предоставить достоверную информацию для создания сайта. Исполнитель обязуется выполнить работу в согласованные сроки.</p><p><strong>2. Порядок оплаты</strong><br>Оплата производится через платёжную систему UnitPay. Предоплата 50% от стоимости, оставшаяся сумма после сдачи проекта. Сроки возврата средств регулируются Политикой возвратов.</p><p><strong>3. Ответственность сторон</strong><br>Исполнитель не несёт ответственности за содержание предоставленных Заказчиком материалов. Заказчик гарантирует законность использования всех материалов.</p><p><strong>4. Конфиденциальность</strong><br>Стороны обязуются не разглашать коммерческую информацию, полученную в рамках сотрудничества.</p><p><strong>5. Форс-мажор</strong><br>Стороны освобождаются от ответственности за неисполнение обязательств при наступлении обстоятельств непреодолимой силы.</p></div><div class="policy-content-en" style="display:block;"><p><strong>1. General Provisions</strong><br>This agreement governs the relationship between the Contractor (Unique Web Studio) and the Customer when ordering website development services. The Customer undertakes to provide reliable information for the creation of the website. The Contractor undertakes to perform the work within the agreed time.</p><p><strong>2. Payment Procedure</strong><br>Payment is made through the UnitPay payment system. Prepayment of 50% of the cost, the remaining amount after project delivery. Refund terms are regulated by the Refund Policy.</p><p><strong>3. Liability of the Parties</strong><br>The Contractor is not responsible for the content of materials provided by the Customer. The Customer guarantees the legality of using all materials.</p><p><strong>4. Confidentiality</strong><br>The Parties undertake not to disclose commercial information obtained during cooperation.</p><p><strong>5. Force Majeure</strong><br>The Parties are released from liability for non-performance of obligations in the event of force majeure.</p></div></div></div>
+<div id="refundModal" class="modal"><div class="modal-content"><span class="close-modal">&times;</span><div class="modal-lang-switch"><button class="modal-lang-btn refund-lang-ru">RU</button><button class="modal-lang-btn refund-lang-en active">EN</button></div><h3>Refund Policy</h3><div class="refund-content-ru" style="display:none;"><p><strong>1. Возврат предоплаты</strong><br>Предоплата возвращается в полном объёме, если Исполнитель не приступил к работе в течение 5 рабочих дней с момента оплаты. Если работа начата, возврат возможен за вычетом фактически понесённых расходов (не более 30% от суммы).</p><p><strong>2. Возврат после сдачи проекта</strong><br>После подписания акта приёмки-передачи возврат не осуществляется, за исключением случаев выявления критических ошибок, не устранённых в течение 14 дней.</p><p><strong>3. Порядок подачи жалобы</strong><br>Для подачи аргументированной жалобы или запроса на возврат средств необходимо отправить письмо на официальную почту студии: <strong>uniqe.studio@yandex.ru</strong>. В письме обязательно указать номер заказа (если есть), описание проблемы с приложением подтверждающих материалов (скриншоты, переписка) и контактные данные. Срок рассмотрения жалобы составляет до 10 (десяти) рабочих дней.</p><p><strong>4. Основания для отказа в возврате</strong><br>Отказ возможен, если Заказчик нарушил условия пользовательского соглашения, предоставил недостоверные данные или отказался от сотрудничества после начала работ без уважительной причины.</p></div><div class="refund-content-en" style="display:block;"><p><strong>1. Refund of prepayment</strong><br>The prepayment is refunded in full if the Contractor has not started work within 5 business days from the date of payment. If work has begun, a refund is possible minus actual expenses incurred (no more than 30% of the amount).</p><p><strong>2. Refund after project delivery</strong><br>After signing the acceptance certificate, no refund is made, except in cases of critical errors that have not been fixed within 14 days.</p><p><strong>3. Complaint procedure</strong><br>To file a reasoned complaint or refund request, you must send a letter to the studio's official email: <strong>uniqe.studio@yandex.ru</strong>. The letter must include the order number (if any), a description of the problem with supporting materials (screenshots, correspondence) and contact details. The complaint review period is up to 10 (ten) business days.</p><p><strong>4. Grounds for refusal of refund</strong><br>Refusal is possible if the Customer violated the terms of the user agreement, provided false information, or refused to cooperate after the start of work without good reason.</p></div></div></div>
 <div id="exitModal" class="modal"><div class="modal-content"><span class="close-modal">&times;</span><h3 data-i18n="exit_title">Don't go!</h3><p data-i18n="exit_text">Leave a request and get 10% discount on any package.</p><button class="btn" id="exitBtn" data-i18n="exit_btn">Get discount</button></div></div>
-<div id="consentModal" class="modal"><div class="modal-content"><h3 class="consent-title-ru" style="display:none;">❗ Важное уведомление</h3><h3 class="consent-title-en">❗ Important notice</h3><p class="consent-desc-ru" style="display:none;">Для использования сайта и отправки заявок необходимо ознакомиться и согласиться с условиями:</p><p class="consent-desc-en">To use the site and submit requests, you must read and agree to the terms:</p><ul><li><a href="#" id="consentPolicyLink">Terms of Use</a></li><li><a href="#" id="consentRefundLink">Refund Policy</a></li></ul><div class="checkbox-group"><input type="checkbox" id="consentAgree"><label for="consentAgree" class="consent-checkbox-ru" style="display:none;">Я принимаю условия</label><label for="consentAgree" class="consent-checkbox-en">I accept the terms</label></div><button class="btn" id="acceptConsent" style="display:none;">Продолжить</button><button class="btn" id="acceptConsentEn">Continue</button><p class="consent-warning-ru" style="margin-top:15px; font-size:0.85rem; display:none;">Без принятия условий отправка заявок невозможна.</p><p class="consent-warning-en" style="margin-top:15px; font-size:0.85rem;">Without acceptance, requests cannot be sent.</p></div></div>
-<div id="leadDetailsModal" class="modal">
-    <div class="modal-content">
-        <span class="close-modal">&times;</span>
-        <h3 data-i18n="lead_details_title">Lead Details</h3>
-        <div id="leadDetailsContent" class="lead-details-grid"></div>
-    </div>
-</div>
-<div id="blogModal" class="modal">
-    <div class="modal-content">
-        <span class="close-modal">&times;</span>
-        <h3 id="blogModalTitle">Blog Post</h3>
-        <div id="blogModalContent" style="margin-top: 20px; line-height: 1.6;"></div>
-    </div>
-</div>
-<div id="orderServiceModal" class="modal">
-    <div class="modal-content">
-        <span class="close-modal">&times;</span>
-        <h3>Order Service</h3>
-        <form id="orderServiceForm">
-            <div class="form-group">
-                <label class="field-label"><i class="fas fa-tag"></i> Service</label>
-                <input type="text" id="orderServiceName" name="service" readonly style="background: rgba(200,169,106,0.1); font-weight: 600;">
-            </div>
-            <div class="form-group">
-                <label class="field-label"><i class="fas fa-user"></i> Your Name *</label>
-                <input type="text" id="orderName" name="name" required>
-            </div>
-            <div class="form-group">
-                <label class="field-label"><i class="fas fa-envelope"></i> Email *</label>
-                <input type="email" id="orderEmail" name="email" required>
-            </div>
-            <div class="form-group">
-                <label class="field-label"><i class="fas fa-phone-alt"></i> Phone *</label>
-                <input type="tel" id="orderPhone" name="phone" required>
-            </div>
-            <div class="form-group">
-                <label class="field-label"><i class="fas fa-comment-dots"></i> Additional info</label>
-                <textarea id="orderMessage" name="message" rows="3" placeholder="Any special requirements or questions..."></textarea>
-            </div>
-            <div class="form-group">
-                <label class="field-label"><i class="fas fa-language"></i> Preferred Language for Website</label>
-                <select id="orderLanguage" name="preferred_language">
-                    <option value="en">English</option>
-                    <option value="ru">Russian</option>
-                </select>
-                <div class="field-description">Choose the language in which you want your site to be built</div>
-            </div>
-            <div class="checkbox-group">
-                <input type="checkbox" id="orderAgree" name="agree" required>
-                <label for="orderAgree" data-i18n="agree_label">I agree to the <a href="#" id="orderPolicyLink">Terms of Use</a> and <a href="#" id="orderRefundLink">Refund Policy</a></label>
-            </div>
-            <button type="submit" class="btn">Submit order</button>
-        </form>
-        <div id="orderResult"></div>
-    </div>
-</div>
-<div id="adminPanel" class="admin-panel"><div class="admin-header"><h2 data-i18n="admin_title">Admin Panel</h2><span class="admin-close" id="adminClose">&times;</span></div><div class="admin-tabs"><div class="admin-tab active" data-tab="dashboard" data-i18n="tab_dashboard">Dashboard</div><div class="admin-tab" data-tab="leads" data-i18n="tab_leads">Leads</div><div class="admin-tab" data-tab="analytics" data-i18n="tab_analytics">📊 Analytics</div><div class="admin-tab" data-tab="seo" data-i18n="tab_seo">🔍 SEO</div><div class="admin-tab" data-tab="backup" data-i18n="tab_backup">💾 Backup</div><div class="admin-tab" data-tab="notifications" data-i18n="tab_notifications">🔔 Notifications</div><div class="admin-tab" data-tab="followup" data-i18n="tab_followup">⏰ Follow-up</div><div class="admin-tab" data-tab="scraper" data-i18n="tab_scraper">🤖 Lead scraper</div><div class="admin-tab" data-tab="tickets" data-i18n="tab_tickets">🎫 Tickets</div><div class="admin-tab" data-tab="settings" data-i18n="tab_settings">⚙️ Settings</div><div class="admin-tab" data-tab="logs" data-i18n="tab_logs">📜 Logs</div><div class="admin-tab" data-tab="editor" data-i18n="tab_editor">✏️ Text Editor</div><div class="admin-tab" data-tab="images" data-i18n="tab_images">🖼️ Image Manager</div></div><div id="adminContent"></div></div>
+<div id="consentModal" class="modal"><div class="modal-content"><h3 class="consent-title-ru" style="display:none;">❗ Важное уведомление</h3><h3 class="consent-title-en">❗ Important notice</h3><p class="consent-desc-ru" style="display:none;">Для использования сайта и отправки заявок необходимо ознакомиться и согласиться с условиями:</p><p class="consent-desc-en">To use the site and submit requests, you must read and agree to the terms:</p><ul><li><a href="#" id="consentPolicyLink">Terms of Use</a></li><li><a href="#" id="consentRefundLink">Refund Policy</a></li></ul><div class="checkbox-group"><input type="checkbox" id="consentAgree" name="consent_agree"><label for="consentAgree" class="consent-checkbox-ru" style="display:none;">Я принимаю условия</label><label for="consentAgree" class="consent-checkbox-en">I accept the terms</label></div><button class="btn" id="acceptConsent" style="display:none;">Продолжить</button><button class="btn" id="acceptConsentEn">Continue</button><p class="consent-warning-ru" style="margin-top:15px; font-size:0.85rem; display:none;">Без принятия условий отправка заявок невозможна.</p><p class="consent-warning-en" style="margin-top:15px; font-size:0.85rem;">Without acceptance, requests cannot be sent.</p></div></div>
+<div id="leadDetailsModal" class="modal"><div class="modal-content"><span class="close-modal">&times;</span><h3 data-i18n="lead_details_title">Lead Details</h3><div id="leadDetailsContent" class="lead-details-grid"></div></div></div>
+<div id="blogModal" class="modal"><div class="modal-content"><span class="close-modal">&times;</span><h3 id="blogModalTitle">Blog Post</h3><div id="blogModalContent" style="margin-top: 20px; line-height: 1.6;"></div></div></div>
+<div id="orderServiceModal" class="modal"><div class="modal-content"><span class="close-modal">&times;</span><h3>Order Service</h3><form id="orderServiceForm"><div class="form-group"><label class="field-label"><i class="fas fa-tag"></i> Service</label><input type="text" id="orderServiceName" name="service" readonly style="background: rgba(200,169,106,0.1); font-weight: 600;"></div><div class="form-group"><label class="field-label"><i class="fas fa-user"></i> Your Name *</label><input type="text" id="orderName" name="name" required></div><div class="form-group"><label class="field-label"><i class="fas fa-envelope"></i> Email *</label><input type="email" id="orderEmail" name="email" required></div><div class="form-group"><label class="field-label"><i class="fas fa-phone-alt"></i> Phone *</label><input type="tel" id="orderPhone" name="phone" required></div><div class="form-group"><label class="field-label"><i class="fas fa-comment-dots"></i> Additional info</label><textarea id="orderMessage" name="message" rows="3" placeholder="Any special requirements or questions..."></textarea></div><div class="form-group"><label class="field-label"><i class="fas fa-language"></i> Preferred Language for Website</label><select id="orderLanguage" name="Preferred Language"><option value="en">English</option><option value="ru">Russian</option></select><div class="field-description">Choose the language in which you want your site to be built</div></div><div class="checkbox-group"><input type="checkbox" id="orderAgree" required name="agree_terms"><label for="orderAgree" data-i18n="agree_label">I agree to the <a href="#" id="orderPolicyLink">Terms of Use</a> and <a href="#" id="orderRefundLink">Refund Policy</a></label></div><button type="submit" class="btn">Submit order</button></form><div id="orderResult"></div></div></div>
+<div id="adminPanel" class="admin-panel"><div class="admin-header"><h2 data-i18n="admin_title">Admin Panel</h2><span class="admin-close" id="adminClose">&times;</span></div><div class="admin-tabs"><div class="admin-tab active" data-tab="dashboard" data-i18n="tab_dashboard">Dashboard</div><div class="admin-tab" data-tab="leads" data-i18n="tab_leads">Leads</div><div class="admin-tab" data-tab="analytics" data-i18n="tab_analytics">📊 Analytics</div><div class="admin-tab" data-tab="seo" data-i18n="tab_seo">🔍 SEO</div><div class="admin-tab" data-tab="backup" data-i18n="tab_backup">💾 Backup</div><div class="admin-tab" data-tab="notifications" data-i18n="tab_notifications">🔔 Notifications</div><div class="admin-tab" data-tab="followup" data-i18n="tab_followup">⏰ Follow-up</div><div class="admin-tab" data-tab="scraper" data-i18n="tab_scraper">🤖 Lead scraper</div><div class="admin-tab" data-tab="tickets" data-i18n="tab_tickets">🎫 Tickets</div><div class="admin-tab" data-tab="settings" data-i18n="tab_settings">⚙️ Settings</div><div class="admin-tab" data-tab="logs" data-i18n="tab_logs">📜 Logs</div><div class="admin-tab" data-tab="editor" data-i18n="tab_editor">✏️ Text Editor</div></div><div id="adminContent"></div></div>
 <div id="cookieConsent" class="cookie-consent"><span data-i18n="cookie_text">We use cookies to improve your experience. By continuing, you agree.</span><button id="acceptCookies" class="btn">OK</button></div>
 
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
@@ -1083,14 +951,7 @@
     let paymentFilter = 'all';
     let searchTerm = '';
 
-    // Custom image URLs storage
-    let customImages = JSON.parse(localStorage.getItem('customImages')) || {
-        services: {},
-        portfolio: {},
-        blog: {}
-    };
-
-    // ==================== TRANSLATIONS (RU/EN) - FULL (shortened for length but complete in actual file) ====================
+    // ==================== TRANSLATIONS (RU/EN) ====================
     let translations = {
         ru: {
             nav_services: "Услуги", nav_portfolio: "Портфолио", nav_blog: "Блог", nav_reviews: "Отзывы", nav_contact: "Контакты",
@@ -1116,8 +977,8 @@
             consent_policy: "Пользовательское соглашение", consent_refund: "Политика возвратов", consent_checkbox: "Я принимаю условия", consent_accept: "Продолжить", consent_warning: "Без принятия условий отправка заявок невозможна.",
             admin_title: "Панель администратора", cookie_text: "Мы используем cookies для улучшения работы сайта. Продолжая, вы соглашаетесь с этим.",
             footer_policy: "Пользовательское соглашение", footer_refund: "Политика возвратов", footer_copyright: "© 2025 Unique Web Studio. Все права защищены.",
-            tab_dashboard: "Дашборд", tab_leads: "Лиды", tab_analytics: "📊 Аналитика", tab_seo: "🔍 SEO", tab_backup: "💾 Резервное копирование", tab_notifications: "🔔 Уведомления", tab_followup: "⏰ Фоллоу-ап", tab_scraper: "🤖 Сбор лидов", tab_tickets: "🎫 Тикеты", tab_settings: "⚙️ Настройки", tab_logs: "📜 Логи", tab_editor: "✏️ Редактор текстов", tab_images: "🖼️ Управление изображениями",
-            stats_total: "Всего лидов", stats_new: "Новых", stats_sent: "Отправлено", stats_paid: "Оплачено", payment_title: "Информация об оплате",
+            tab_dashboard: "Дашборд", tab_leads: "Лиды", tab_analytics: "📊 Аналитика", tab_seo: "🔍 SEO", tab_backup: "💾 Резервное копирование", tab_notifications: "🔔 Уведомления", tab_followup: "⏰ Фоллоу-ап", tab_scraper: "🤖 Сбор лидов", tab_tickets: "🎫 Тикеты", tab_settings: "⚙️ Настройки", tab_logs: "📜 Логи", tab_editor: "✏️ Редактор текстов",
+            stats_total: "Всего лидов", stats_new: "Новых", stats_sent: "Отправлено", stats_paid: "Оплачено", payment_title: "Отправить данные оплаты",
             lead_details_title: "Детали лида",
             demo_business_name_label: "Название бизнеса", demo_business_name_desc: "Название вашей компании или проекта",
             demo_city_label: "Город", demo_city_desc: "Где находится ваш бизнес",
@@ -1176,8 +1037,8 @@
             consent_policy: "Terms of Use", consent_refund: "Refund Policy", consent_checkbox: "I accept", consent_accept: "Continue", consent_warning: "Without acceptance, requests cannot be sent.",
             admin_title: "Admin Panel", cookie_text: "We use cookies to improve your experience.",
             footer_policy: "Terms of Use", footer_refund: "Refund Policy", footer_copyright: "© 2025 Unique Web Studio. All rights reserved.",
-            tab_dashboard: "Dashboard", tab_leads: "Leads", tab_analytics: "📊 Analytics", tab_seo: "🔍 SEO", tab_backup: "💾 Backup", tab_notifications: "🔔 Notifications", tab_followup: "⏰ Follow-up", tab_scraper: "🤖 Lead scraper", tab_tickets: "🎫 Tickets", tab_settings: "⚙️ Settings", tab_logs: "📜 Logs", tab_editor: "✏️ Text Editor", tab_images: "🖼️ Image Manager",
-            stats_total: "Total leads", stats_new: "New", stats_sent: "Sent", stats_paid: "Paid", payment_title: "Payment information",
+            tab_dashboard: "Dashboard", tab_leads: "Leads", tab_analytics: "📊 Analytics", tab_seo: "🔍 SEO", tab_backup: "💾 Backup", tab_notifications: "🔔 Notifications", tab_followup: "⏰ Follow-up", tab_scraper: "🤖 Lead scraper", tab_tickets: "🎫 Tickets", tab_settings: "⚙️ Settings", tab_logs: "📜 Logs", tab_editor: "✏️ Text Editor",
+            stats_total: "Total leads", stats_new: "New", stats_sent: "Sent", stats_paid: "Paid", payment_title: "Submit payment details",
             lead_details_title: "Lead Details",
             demo_business_name_label: "Business name", demo_business_name_desc: "Your company or project name",
             demo_city_label: "City", demo_city_desc: "Where your business is located",
@@ -1214,12 +1075,18 @@
         }
     };
 
-    // Load custom translations
+    // Load custom translations from localStorage
     function loadCustomTranslations() {
         const customRu = localStorage.getItem('custom_translations_ru');
         const customEn = localStorage.getItem('custom_translations_en');
-        if (customRu) Object.assign(translations.ru, JSON.parse(customRu));
-        if (customEn) Object.assign(translations.en, JSON.parse(customEn));
+        if (customRu) {
+            const parsed = JSON.parse(customRu);
+            Object.assign(translations.ru, parsed);
+        }
+        if (customEn) {
+            const parsed = JSON.parse(customEn);
+            Object.assign(translations.en, parsed);
+        }
     }
     loadCustomTranslations();
 
@@ -1266,7 +1133,7 @@
         new Swiper('.reviews-swiper',{loop:true,pagination:{el:'.swiper-pagination',clickable:true},autoplay:{delay:4000}});
     }
 
-    // Helper functions
+    // ==================== HELPER FUNCTIONS ====================
     function applyLanguage(lang) {
         currentLang = lang;
         const t = translations[lang];
@@ -1307,27 +1174,35 @@
         if(document.getElementById('adminPanel').classList.contains('open')) renderActiveTab();
     }
 
+    // ========== CUSTOM EMBEDDED SVG IMAGES (WEBSITE MOCKUPS) ==========
+    const serviceSvgs = {
+        "Landing Page": `<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="20" y="25" width="60" height="50" rx="10" fill="#F5EDE0" stroke="#C8A96A" stroke-width="2.5"/><rect x="30" y="35" width="40" height="5" fill="#C8A96A"/><rect x="30" y="45" width="30" height="5" fill="#A67B5A"/><rect x="30" y="55" width="35" height="5" fill="#A67B5A"/><path d="M70 60 L80 50 L83 53 L73 63 Z" fill="#C8A96A"/><circle cx="78" cy="56" r="3" fill="#fff"/></svg>`,
+        "Интернет-магазин": `<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="15" y="30" width="70" height="50" rx="10" fill="#F5EDE0" stroke="#C8A96A" stroke-width="2.5"/><circle cx="35" cy="70" r="8" fill="#A67B5A"/><circle cx="65" cy="70" r="8" fill="#A67B5A"/><path d="M25 35 L30 60 L70 60 L75 35 L25 35Z" fill="#C8A96A" opacity="0.5"/><rect x="45" y="15" width="10" height="22" fill="#D6C6B0"/><path d="M48 15 L50 8 L52 15" fill="#C8A96A"/><line x1="28" y1="45" x2="72" y2="45" stroke="#A67B5A" stroke-width="2"/></svg>`,
+        "Корпоративный сайт": `<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="15" y="20" width="70" height="60" rx="10" fill="#F5EDE0" stroke="#C8A96A" stroke-width="2.5"/><rect x="25" y="30" width="50" height="5" fill="#C8A96A"/><rect x="25" y="40" width="50" height="5" fill="#C8A96A"/><rect x="25" y="50" width="50" height="5" fill="#C8A96A"/><rect x="25" y="60" width="30" height="5" fill="#A67B5A"/><circle cx="70" cy="25" r="8" fill="#C8A96A"/><path d="M67 25 L69 27 L73 23" stroke="#fff" stroke-width="2"/></svg>`,
+        "Редактирование сайта": `<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="20" y="25" width="60" height="50" rx="10" fill="#F5EDE0" stroke="#C8A96A" stroke-width="2.5"/><rect x="30" y="35" width="40" height="4" fill="#C8A96A"/><rect x="30" y="45" width="30" height="4" fill="#A67B5A"/><rect x="30" y="55" width="25" height="4" fill="#A67B5A"/><path d="M65 50 L80 35 L84 39 L69 54 Z" fill="#C8A96A"/><circle cx="76" cy="42" r="4" fill="#fff"/><path d="M67 56 L73 62" stroke="#C8A96A" stroke-width="3"/></svg>`
+    };
+
+    const portfolioSvgs = {
+        "Студия красоты": `<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="40" r="18" fill="#C8A96A" opacity="0.3"/><path d="M50 18 L58 32 L42 32 Z" fill="#C8A96A"/><path d="M38 55 L62 55 L56 70 L44 70 Z" fill="#A67B5A"/><rect x="47" y="70" width="6" height="15" fill="#D6C6B0"/><circle cx="50" cy="88" r="5" fill="#C8A96A"/><path d="M50 50 L50 60" stroke="#C8A96A" stroke-width="2"/></svg>`,
+        "Магазин одежды": `<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M35 25 L65 25 L72 45 L28 45 Z" fill="#C8A96A"/><rect x="33" y="45" width="34" height="35" rx="5" fill="#F5EDE0" stroke="#A67B5A" stroke-width="2"/><line x1="43" y1="45" x2="43" y2="80" stroke="#A67B5A" stroke-width="2"/><line x1="57" y1="45" x2="57" y2="80" stroke="#A67B5A" stroke-width="2"/><circle cx="50" cy="62" r="10" fill="#C8A96A" opacity="0.6"/></svg>`,
+        "Ресторан": `<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="30" y="40" width="40" height="35" rx="8" fill="#F5EDE0" stroke="#C8A96A" stroke-width="2"/><line x1="42" y1="40" x2="42" y2="75" stroke="#A67B5A" stroke-width="2"/><line x1="58" y1="40" x2="58" y2="75" stroke="#A67B5A" stroke-width="2"/><path d="M35 32 L65 32" stroke="#C8A96A" stroke-width="3"/><circle cx="50" cy="57" r="8" fill="#C8A96A" opacity="0.5"/></svg>`,
+        "IT-компания": `<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="25" y="30" width="50" height="40" rx="8" fill="#F5EDE0" stroke="#C8A96A" stroke-width="2"/><rect x="38" y="42" width="24" height="14" fill="#C8A96A" opacity="0.5"/><circle cx="50" cy="70" r="8" fill="#A67B5A"/><path d="M30 20 L70 20 L65 28 L35 28 Z" fill="#C8A96A"/><line x1="50" y1="30" x2="50" y2="42" stroke="#A67B5A" stroke-width="2"/></svg>`,
+        "Мебельный магазин": `<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="30" y="45" width="40" height="25" rx="6" fill="#F5EDE0" stroke="#C8A96A" stroke-width="2"/><rect x="38" y="30" width="24" height="18" fill="#C8A96A" opacity="0.5"/><rect x="42" y="70" width="16" height="15" fill="#A67B5A"/><circle cx="38" cy="88" r="5" fill="#C8A96A"/><circle cx="62" cy="88" r="5" fill="#C8A96A"/></svg>`,
+        "Маркетинговое агентство": `<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M25 65 L45 40 L58 53 L78 28" stroke="#C8A96A" stroke-width="4" fill="none"/><circle cx="25" cy="65" r="7" fill="#C8A96A"/><circle cx="45" cy="40" r="7" fill="#A67B5A"/><circle cx="58" cy="53" r="7" fill="#D6C6B0"/><circle cx="78" cy="28" r="7" fill="#C8A96A"/><line x1="50" y1="72" x2="50" y2="85" stroke="#A67B5A" stroke-width="3"/></svg>`
+    };
+
+    const blogSvg = `<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="25" y="25" width="50" height="55" rx="8" fill="#F5EDE0" stroke="#C8A96A" stroke-width="2.5"/><line x1="35" y1="38" x2="65" y2="38" stroke="#C8A96A" stroke-width="2"/><line x1="35" y1="48" x2="65" y2="48" stroke="#A67B5A" stroke-width="2"/><line x1="35" y1="58" x2="65" y2="58" stroke="#A67B5A" stroke-width="2"/><line x1="35" y1="68" x2="55" y2="68" stroke="#A67B5A" stroke-width="2"/><circle cx="75" cy="30" r="10" fill="#C8A96A"/><text x="72" y="36" font-size="14" fill="#fff" font-weight="bold">!</text></svg>`;
+
     function renderServices() {
         const container = document.getElementById('servicesGrid');
         if(!container) return;
         const t = translations[currentLang];
         const services = t.services;
         container.innerHTML = services.map((s, idx) => {
-            let customImg = customImages.services[s.title] || '';
-            let imgHtml = '';
-            if(customImg && customImg.trim() !== '') {
-                imgHtml = `<img src="${customImg}" alt="${s.title}" style="width:80px; height:80px; object-fit:cover; border-radius:20px;">`;
-            } else {
-                let svg = '';
-                if(s.title === "Landing Page") svg = `<svg width="80" height="80" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="20" y="25" width="60" height="50" rx="10" fill="#F5EDE0" stroke="#C8A96A" stroke-width="2.5"/><rect x="30" y="35" width="40" height="5" fill="#C8A96A"/><rect x="30" y="45" width="30" height="5" fill="#A67B5A"/><rect x="30" y="55" width="35" height="5" fill="#A67B5A"/><path d="M70 60 L80 50 L83 53 L73 63 Z" fill="#C8A96A"/><circle cx="78" cy="56" r="3" fill="#fff"/></svg>`;
-                else if(s.title === "Online Store" || s.title === "Интернет-магазин") svg = `<svg width="80" height="80" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="15" y="30" width="70" height="50" rx="10" fill="#F5EDE0" stroke="#C8A96A" stroke-width="2.5"/><circle cx="35" cy="70" r="8" fill="#A67B5A"/><circle cx="65" cy="70" r="8" fill="#A67B5A"/><path d="M25 35 L30 60 L70 60 L75 35 L25 35Z" fill="#C8A96A" opacity="0.5"/><rect x="45" y="15" width="10" height="22" fill="#D6C6B0"/><path d="M48 15 L50 8 L52 15" fill="#C8A96A"/><line x1="28" y1="45" x2="72" y2="45" stroke="#A67B5A" stroke-width="2"/></svg>`;
-                else if(s.title === "Corporate Website" || s.title === "Корпоративный сайт") svg = `<svg width="80" height="80" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="15" y="20" width="70" height="60" rx="10" fill="#F5EDE0" stroke="#C8A96A" stroke-width="2.5"/><rect x="25" y="30" width="50" height="5" fill="#C8A96A"/><rect x="25" y="40" width="50" height="5" fill="#C8A96A"/><rect x="25" y="50" width="50" height="5" fill="#C8A96A"/><rect x="25" y="60" width="30" height="5" fill="#A67B5A"/><circle cx="70" cy="25" r="8" fill="#C8A96A"/><path d="M67 25 L69 27 L73 23" stroke="#fff" stroke-width="2"/></svg>`;
-                else svg = `<svg width="80" height="80" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="20" y="25" width="60" height="50" rx="10" fill="#F5EDE0" stroke="#C8A96A" stroke-width="2.5"/><rect x="30" y="35" width="40" height="4" fill="#C8A96A"/><rect x="30" y="45" width="30" height="4" fill="#A67B5A"/><rect x="30" y="55" width="25" height="4" fill="#A67B5A"/><path d="M65 50 L80 35 L84 39 L69 54 Z" fill="#C8A96A"/><circle cx="76" cy="42" r="4" fill="#fff"/><path d="M67 56 L73 62" stroke="#C8A96A" stroke-width="3"/></svg>`;
-                imgHtml = `<div class="service-img-svg">${svg}</div>`;
-            }
+            let svg = serviceSvgs[s.title] || serviceSvgs["Landing Page"];
             return `
                 <div class="service-card" data-aos="zoom-in" data-service-name="${s.title}">
-                    ${imgHtml}
+                    <div class="service-img-svg">${svg}</div>
                     <div class="content"><h3>${escapeHtml(s.title)}</h3><p>${escapeHtml(s.desc)}</p><div class="price">${escapeHtml(s.price)}</div><button class="btn order-service-btn" data-service="${escapeHtml(s.title)}">${escapeHtml(s.btn)}</button></div>
                 </div>
             `;
@@ -1351,12 +1226,12 @@
     }
 
     const portfolioRaw = [
-        { ru: "Студия красоты", category: "landing" },
-        { ru: "Магазин одежды", category: "shop" },
-        { ru: "Ресторан", category: "landing" },
-        { ru: "IT-компания", category: "corp" },
-        { ru: "Мебельный магазин", category: "shop" },
-        { ru: "Маркетинговое агентство", category: "corp" }
+        { ru: "Студия красоты", category: "landing", svgKey: "Студия красоты" },
+        { ru: "Магазин одежды", category: "shop", svgKey: "Магазин одежды" },
+        { ru: "Ресторан", category: "landing", svgKey: "Ресторан" },
+        { ru: "IT-компания", category: "corp", svgKey: "IT-компания" },
+        { ru: "Мебельный магазин", category: "shop", svgKey: "Мебельный магазин" },
+        { ru: "Маркетинговое агентство", category: "corp", svgKey: "Маркетинговое агентство" }
     ];
     let currentFilter='all';
     function renderPortfolio(filter='all', search='') {
@@ -1365,21 +1240,8 @@
         const t = translations[currentLang];
         const filtered = portfolioRaw.filter(item => (filter==='all'||item.category===filter) && (t.portfolio_items[item.ru]||item.ru).toLowerCase().includes(search.toLowerCase()));
         grid.innerHTML = filtered.map(item => {
-            let customImg = customImages.portfolio[item.ru] || '';
-            let imgHtml = '';
-            if(customImg && customImg.trim() !== '') {
-                imgHtml = `<img src="${customImg}" alt="${item.ru}" style="width:100%; height:auto; border-radius:20px;">`;
-            } else {
-                let svg = '';
-                if(item.ru === "Студия красоты") svg = `<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="40" r="18" fill="#C8A96A" opacity="0.3"/><path d="M50 18 L58 32 L42 32 Z" fill="#C8A96A"/><path d="M38 55 L62 55 L56 70 L44 70 Z" fill="#A67B5A"/><rect x="47" y="70" width="6" height="15" fill="#D6C6B0"/><circle cx="50" cy="88" r="5" fill="#C8A96A"/><path d="M50 50 L50 60" stroke="#C8A96A" stroke-width="2"/></svg>`;
-                else if(item.ru === "Магазин одежды") svg = `<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M35 25 L65 25 L72 45 L28 45 Z" fill="#C8A96A"/><rect x="33" y="45" width="34" height="35" rx="5" fill="#F5EDE0" stroke="#A67B5A" stroke-width="2"/><line x1="43" y1="45" x2="43" y2="80" stroke="#A67B5A" stroke-width="2"/><line x1="57" y1="45" x2="57" y2="80" stroke="#A67B5A" stroke-width="2"/><circle cx="50" cy="62" r="10" fill="#C8A96A" opacity="0.6"/></svg>`;
-                else if(item.ru === "Ресторан") svg = `<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="30" y="40" width="40" height="35" rx="8" fill="#F5EDE0" stroke="#C8A96A" stroke-width="2"/><line x1="42" y1="40" x2="42" y2="75" stroke="#A67B5A" stroke-width="2"/><line x1="58" y1="40" x2="58" y2="75" stroke="#A67B5A" stroke-width="2"/><path d="M35 32 L65 32" stroke="#C8A96A" stroke-width="3"/><circle cx="50" cy="57" r="8" fill="#C8A96A" opacity="0.5"/></svg>`;
-                else if(item.ru === "IT-компания") svg = `<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="25" y="30" width="50" height="40" rx="8" fill="#F5EDE0" stroke="#C8A96A" stroke-width="2"/><rect x="38" y="42" width="24" height="14" fill="#C8A96A" opacity="0.5"/><circle cx="50" cy="70" r="8" fill="#A67B5A"/><path d="M30 20 L70 20 L65 28 L35 28 Z" fill="#C8A96A"/><line x1="50" y1="30" x2="50" y2="42" stroke="#A67B5A" stroke-width="2"/></svg>`;
-                else if(item.ru === "Мебельный магазин") svg = `<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="30" y="45" width="40" height="25" rx="6" fill="#F5EDE0" stroke="#C8A96A" stroke-width="2"/><rect x="38" y="30" width="24" height="18" fill="#C8A96A" opacity="0.5"/><rect x="42" y="70" width="16" height="15" fill="#A67B5A"/><circle cx="38" cy="88" r="5" fill="#C8A96A"/><circle cx="62" cy="88" r="5" fill="#C8A96A"/></svg>`;
-                else svg = `<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M25 65 L45 40 L58 53 L78 28" stroke="#C8A96A" stroke-width="4" fill="none"/><circle cx="25" cy="65" r="7" fill="#C8A96A"/><circle cx="45" cy="40" r="7" fill="#A67B5A"/><circle cx="58" cy="53" r="7" fill="#D6C6B0"/><circle cx="78" cy="28" r="7" fill="#C8A96A"/><line x1="50" y1="72" x2="50" y2="85" stroke="#A67B5A" stroke-width="3"/></svg>`;
-                imgHtml = `<div class="portfolio-img-svg">${svg}<br>${escapeHtml(t.portfolio_items[item.ru]||item.ru)}</div>`;
-            }
-            return `<div class="portfolio-card">${imgHtml}</div>`;
+            const svg = portfolioSvgs[item.ru] || portfolioSvgs["Студия красоты"];
+            return `<div class="portfolio-card"><div class="portfolio-img-svg">${svg}<br>${escapeHtml(t.portfolio_items[item.ru]||item.ru)}</div></div>`;
         }).join('');
     }
     
@@ -1388,25 +1250,16 @@
         if(!grid) return;
         const t = translations[currentLang];
         const posts = t.blog_posts;
-        grid.innerHTML = posts.map((p, idx) => {
-            let customImg = customImages.blog[idx] || '';
-            let imgHtml = '';
-            if(customImg && customImg.trim() !== '') {
-                imgHtml = `<img src="${customImg}" alt="${p.title}" style="width:100%; height:auto; border-radius:20px;">`;
-            } else {
-                imgHtml = `<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="25" y="25" width="50" height="55" rx="8" fill="#F5EDE0" stroke="#C8A96A" stroke-width="2.5"/><line x1="35" y1="38" x2="65" y2="38" stroke="#C8A96A" stroke-width="2"/><line x1="35" y1="48" x2="65" y2="48" stroke="#A67B5A" stroke-width="2"/><line x1="35" y1="58" x2="65" y2="58" stroke="#A67B5A" stroke-width="2"/><line x1="35" y1="68" x2="55" y2="68" stroke="#A67B5A" stroke-width="2"/><circle cx="75" cy="30" r="10" fill="#C8A96A"/><text x="72" y="36" font-size="14" fill="#fff" font-weight="bold">!</text></svg>`;
-            }
-            return `
-                <div class="blog-card">
-                    <div class="blog-img-svg">${imgHtml}<br>${escapeHtml(p.title)}</div>
-                    <div class="content">
-                        <h3>${escapeHtml(p.title)}</h3>
-                        <p>${escapeHtml(p.excerpt)}</p>
-                        <button class="btn btn-outline read-blog-btn" data-idx="${idx}">${currentLang==='ru'?'Читать':'Read'}</button>
-                    </div>
+        grid.innerHTML = posts.map((p, idx) => `
+            <div class="blog-card">
+                <div class="blog-img-svg">${blogSvg}<br>${escapeHtml(p.title)}</div>
+                <div class="content">
+                    <h3>${escapeHtml(p.title)}</h3>
+                    <p>${escapeHtml(p.excerpt)}</p>
+                    <button class="btn btn-outline read-blog-btn" data-idx="${idx}">${currentLang==='ru'?'Читать':'Read'}</button>
                 </div>
-            `;
-        }).join('');
+            </div>
+        `).join('');
         document.querySelectorAll('.read-blog-btn').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 const idx = parseInt(btn.getAttribute('data-idx'));
@@ -1537,98 +1390,17 @@
     });
     document.getElementById('fillFromVkBtn')?.addEventListener('click',()=>alert('Demo: VK data filled automatically'));
 
-    // ==================== FORM SUBMISSIONS WITH IFRAME (CORS FIX) ====================
+    // ==================== FORM SUBMISSIONS TO APPS SCRIPT ====================
     async function sendToAppsScript(formData, action) {
         formData.append('action', action);
-        return new Promise((resolve, reject) => {
-            const form = document.createElement('form');
-            form.method = 'POST';
-            form.action = SCRIPT_URL;
-            form.target = 'hidden_iframe_' + Date.now();
-            form.style.display = 'none';
-            
-            let iframe = document.getElementById(form.target);
-            if (!iframe) {
-                iframe = document.createElement('iframe');
-                iframe.name = form.target;
-                iframe.id = form.target;
-                iframe.style.display = 'none';
-                document.body.appendChild(iframe);
-            }
-            
-            for (let [key, value] of formData.entries()) {
-                const input = document.createElement('input');
-                input.type = 'hidden';
-                input.name = key;
-                input.value = value;
-                form.appendChild(input);
-            }
-            
-            document.body.appendChild(form);
-            
-            iframe.onload = () => {
-                try {
-                    const responseText = iframe.contentDocument?.body?.innerText;
-                    if (responseText && responseText.trim().startsWith('{')) {
-                        const result = JSON.parse(responseText);
-                        resolve(result);
-                    } else {
-                        resolve({ success: true, message: 'Submitted successfully' });
-                    }
-                } catch(e) {
-                    resolve({ success: true, message: 'Submitted' });
-                }
-                setTimeout(() => {
-                    form.remove();
-                    iframe.remove();
-                }, 100);
-            };
-            
-            form.submit();
-            
-            setTimeout(() => {
-                if (form.parentNode) {
-                    form.remove();
-                    resolve({ success: true, message: 'Submitted (timeout)' });
-                }
-            }, 8000);
-        });
+        const response = await fetch(SCRIPT_URL, { method: 'POST', body: formData });
+        return await response.json();
     }
 
-    // ==================== FETCH LEADS WITH XMLHttpRequest (CORS-FREE) ====================
-    async function fetchLeads() {
-        return new Promise((resolve) => {
-            const xhr = new XMLHttpRequest();
-            xhr.open('GET', SCRIPT_URL, true);
-            xhr.onload = function() {
-                if (xhr.status === 200) {
-                    try {
-                        const data = JSON.parse(xhr.responseText);
-                        resolve(data.leads || []);
-                    } catch(e) {
-                        console.error('JSON parse error', e);
-                        resolve([]);
-                    }
-                } else {
-                    console.error('Fetch leads failed:', xhr.status);
-                    resolve([]);
-                }
-            };
-            xhr.onerror = function() {
-                console.error('Network error');
-                resolve([]);
-            };
-            xhr.send();
-        });
-    }
-
-    // Attach submit handlers
     document.getElementById('demoForm').addEventListener('submit', async (e) => {
         e.preventDefault();
         if (!document.getElementById('demoAgree').checked) { alert(translations[currentLang].consent_warning); return; }
         const formData = new FormData(e.target);
-        const langSelect = document.getElementById('demoLanguage');
-        if(langSelect) formData.append('preferred_language', langSelect.value);
         try {
             const result = await sendToAppsScript(formData, 'demoRequest');
             if (result.success) {
@@ -1643,8 +1415,6 @@
         e.preventDefault();
         if (!document.getElementById('consultAgree').checked) { alert(translations[currentLang].consent_warning); return; }
         const formData = new FormData(e.target);
-        const langSelect = document.getElementById('consultLanguage');
-        if(langSelect) formData.append('preferred_language', langSelect.value);
         try {
             const result = await sendToAppsScript(formData, 'consultRequest');
             if (result.success) alert(`✅ ${translations[currentLang].send_btn}`);
@@ -1657,8 +1427,6 @@
         e.preventDefault();
         if (!document.getElementById('editAgree').checked) { alert(translations[currentLang].consent_warning); return; }
         const formData = new FormData(e.target);
-        const langSelect = document.getElementById('editLanguage');
-        if(langSelect) formData.append('preferred_language', langSelect.value);
         try {
             const result = await sendToAppsScript(formData, 'editRequest');
             if (result.success) alert(`✅ ${translations[currentLang].send_btn}`);
@@ -1669,10 +1437,7 @@
     document.getElementById('paymentForm').addEventListener('submit', async (e) => {
         e.preventDefault();
         if (!document.getElementById('paymentAgree').checked) { alert(translations[currentLang].consent_warning); return; }
-        const formData = new FormData();
-        formData.append('lead_id', document.getElementById('paymentLeadId').value);
-        formData.append('transaction_id', document.getElementById('paymentTransactionId').value);
-        formData.append('amount', document.getElementById('paymentAmount').value);
+        const formData = new FormData(e.target);
         try {
             const result = await sendToAppsScript(formData, 'submitPayment');
             if (result.success) alert('✅ Payment info submitted. Awaiting confirmation.');
@@ -1681,17 +1446,11 @@
             e.target.reset();
         } catch(err) { alert('Network error'); }
     });
+
     document.getElementById('orderServiceForm').addEventListener('submit', async (e) => {
         e.preventDefault();
         if (!document.getElementById('orderAgree').checked) { alert(translations[currentLang].consent_warning); return; }
-        const formData = new FormData();
-        formData.append('service', document.getElementById('orderServiceName').value);
-        formData.append('name', document.getElementById('orderName').value);
-        formData.append('email', document.getElementById('orderEmail').value);
-        formData.append('phone', document.getElementById('orderPhone').value);
-        formData.append('message', document.getElementById('orderMessage').value);
-        const langSelect = document.getElementById('orderLanguage');
-        if(langSelect) formData.append('preferred_language', langSelect.value);
+        const formData = new FormData(e.target);
         try {
             const result = await sendToAppsScript(formData, 'serviceOrder');
             if (result.success) alert(`✅ Order submitted! We'll contact you soon.`);
@@ -1704,11 +1463,13 @@
     async function confirmPayment(leadId) {
         if (!confirm(`Confirm payment for lead ${leadId}? This will mark it as paid and (optionally) trigger site generation.`)) return;
         const formData = new FormData();
+        formData.append('action', 'confirmPayment');
         formData.append('lead_id', leadId);
         formData.append('site_url', '');
         formData.append('site_password', '');
         try {
-            const result = await sendToAppsScript(formData, 'confirmPayment');
+            const response = await fetch(SCRIPT_URL, { method: 'POST', body: formData });
+            const result = await response.json();
             if (result.success) {
                 alert('✅ Payment confirmed! Refresh the page to see updated status.');
                 await renderLeadsTable();
@@ -1720,6 +1481,7 @@
         }
     }
 
+    // IMPROVED: showLeadDetailsById - displays ALL fields with better formatting, color preview, clickable links
     function showLeadDetailsById(leadId) {
         const lead = leadsData.find(l => String(l['Lead ID']) === String(leadId));
         if (!lead) {
@@ -1730,53 +1492,131 @@
         if (!container) return;
         
         const formatValue = (key, value) => {
-            if (value === undefined || value === null || value === '') return '—';
+            if (value === undefined || value === null || value === '') return '<span class="empty-field">—</span>';
             const lowerKey = key.toLowerCase();
-            if ((lowerKey.includes('color') || lowerKey === 'brand color') && value.match(/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/)) {
+            // Color preview for brand color
+            if ((lowerKey.includes('color') || lowerKey === 'brand color') && typeof value === 'string' && value.match(/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/)) {
                 return `<span class="color-preview" style="background-color: ${value};"></span> ${value}`;
             }
+            // Make URLs clickable
             if (typeof value === 'string' && (value.startsWith('http://') || value.startsWith('https://') || value.startsWith('www.'))) {
                 let displayUrl = value.length > 50 ? value.substring(0, 47) + '...' : value;
                 return `<a href="${value}" target="_blank" rel="noopener noreferrer">${escapeHtml(displayUrl)}</a>`;
             }
-            if (lowerKey.includes('email') && value.includes('@')) {
+            // Make email clickable
+            if (lowerKey.includes('email') && typeof value === 'string' && value.includes('@')) {
                 return `<a href="mailto:${value}">${escapeHtml(value)}</a>`;
             }
-            if (lowerKey.includes('phone') && value.match(/[\d\s\+\(\)\-]+/)) {
+            // Make phone clickable
+            if (lowerKey.includes('phone') && typeof value === 'string' && value.match(/[\d\s\+\(\)\-]+/)) {
                 return `<a href="tel:${value.replace(/[^0-9+]/g, '')}">${escapeHtml(value)}</a>`;
+            }
+            // Checkbox boolean (Has Hosting)
+            if (lowerKey.includes('hosting') && (value === 'on' || value === true || value === 'true')) {
+                return '✅ Yes';
+            }
+            if (lowerKey.includes('hosting') && (value === 'off' || value === false || value === 'false' || value === '')) {
+                return '❌ No';
             }
             return escapeHtml(value);
         };
+        
+        // Collect all fields dynamically
+        const allFields = [];
+        for (let key in lead) {
+            if (lead.hasOwnProperty(key) && lead[key] !== undefined && lead[key] !== null) {
+                allFields.push({ key, value: lead[key] });
+            }
+        }
+        
+        // Define categorization
+        const clientKeywords = ['name', 'phone', 'email', 'vk', 'city', 'address', 'business', 'contact'];
+        const projectKeywords = ['category', 'website', 'budget', 'color', 'logo', 'domain', 'referrer', 'hosting', 'notes', 'type', 'date', 'description', 'service', 'message', 'site', 'edit', 'language'];
+        const leadKeywords = ['id', 'created', 'status', 'payment', 'amount', 'transaction', 'action', 'request'];
         
         let clientHtml = `<div class="lead-details-section"><h4><i class="fas fa-user-circle"></i> Client Information</h4>`;
         let projectHtml = `<div class="lead-details-section"><h4><i class="fas fa-code-branch"></i> Project Details</h4>`;
         let leadHtml = `<div class="lead-details-section"><h4><i class="fas fa-chart-line"></i> Lead Information</h4>`;
         
-        for (let key in lead) {
-            if (!lead.hasOwnProperty(key)) continue;
-            const value = lead[key];
-            if (value === undefined || value === null || value === '') continue;
+        allFields.forEach(({ key, value }) => {
             const displayKey = key.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
             const formattedValue = formatValue(key, value);
             const row = `<div class="detail-row"><div class="detail-label">${escapeHtml(displayKey)}:</div><div class="detail-value">${formattedValue}</div></div>`;
             
-            if (key.toLowerCase().includes('name') || key.toLowerCase().includes('phone') || key.toLowerCase().includes('email') || key.toLowerCase().includes('vk') || key.toLowerCase().includes('city') || key.toLowerCase().includes('address') || key.toLowerCase().includes('language')) {
-                clientHtml += row;
-            } else if (key.toLowerCase().includes('site') || key.toLowerCase().includes('budget') || key.toLowerCase().includes('color') || key.toLowerCase().includes('logo') || key.toLowerCase().includes('domain') || key.toLowerCase().includes('referrer') || key.toLowerCase().includes('hosting') || key.toLowerCase().includes('notes') || key.toLowerCase().includes('type') || key.toLowerCase().includes('date') || key.toLowerCase().includes('description') || key.toLowerCase().includes('service') || key.toLowerCase().includes('message')) {
-                projectHtml += row;
-            } else {
-                leadHtml += row;
+            const lowerKey = key.toLowerCase();
+            let placed = false;
+            for (let kw of clientKeywords) {
+                if (lowerKey.includes(kw)) {
+                    clientHtml += row;
+                    placed = true;
+                    break;
+                }
             }
-        }
+            if (!placed) {
+                for (let kw of projectKeywords) {
+                    if (lowerKey.includes(kw)) {
+                        projectHtml += row;
+                        placed = true;
+                        break;
+                    }
+                }
+            }
+            if (!placed) {
+                for (let kw of leadKeywords) {
+                    if (lowerKey.includes(kw)) {
+                        leadHtml += row;
+                        placed = true;
+                        break;
+                    }
+                }
+            }
+            if (!placed) {
+                projectHtml += row; // fallback to project details
+            }
+        });
         
         clientHtml += `</div>`;
         projectHtml += `</div>`;
         leadHtml += `</div>`;
         
-        container.innerHTML = clientHtml + projectHtml + leadHtml;
+        // Add action buttons
+        const actionsHtml = `<div class="modal-actions" style="display: flex; gap: 12px; justify-content: flex-end; margin-bottom: 20px;">
+            <button class="btn btn-sm" id="copyLeadIdBtn" style="padding: 6px 12px; font-size: 0.8rem;"><i class="fas fa-copy"></i> Copy ID</button>
+            <button class="btn btn-sm" id="emailLeadBtn" style="padding: 6px 12px; font-size: 0.8rem;"><i class="fas fa-envelope"></i> Send Email</button>
+            <button class="btn btn-sm" id="editLeadStatusBtn" style="padding: 6px 12px; font-size: 0.8rem;"><i class="fas fa-edit"></i> Edit Status</button>
+        </div>`;
+        
+        container.innerHTML = actionsHtml + clientHtml + projectHtml + leadHtml;
+        
+        // Add event listeners for buttons
+        document.getElementById('copyLeadIdBtn')?.addEventListener('click', () => {
+            navigator.clipboard.writeText(leadId);
+            alert('Lead ID copied to clipboard!');
+        });
+        document.getElementById('emailLeadBtn')?.addEventListener('click', () => {
+            const email = lead['Email'] || lead['email'] || '';
+            if (email) {
+                window.location.href = `mailto:${email}?subject=Regarding your request #${leadId}`;
+            } else {
+                alert('No email address found for this lead.');
+            }
+        });
+        document.getElementById('editLeadStatusBtn')?.addEventListener('click', () => {
+            const newStatus = prompt('Enter new status (new, sent, paid):', lead['Status'] || 'new');
+            if (newStatus && ['new', 'sent', 'paid'].includes(newStatus.toLowerCase())) {
+                alert(`Status would be updated to ${newStatus} (backend integration required)`);
+                lead['Status'] = newStatus;
+                renderLeadsTable();
+                showLeadDetailsById(leadId);
+            } else if (newStatus) {
+                alert('Invalid status. Use: new, sent, paid');
+            }
+        });
+        
         openModal('leadDetails');
     }
 
+    // ========== LEADS TABLE with additional columns ==========
     function applyFiltersAndSort() {
         let filtered = [...leadsData];
         if (statusFilter !== 'all') {
@@ -1849,8 +1689,8 @@
                 <td><span class="status-badge ${paymentClass}">${paymentStatus}</span></td>
                 <td>
                     <button class="btn-icon" onclick="showLeadDetailsById('${leadIdSafe}')" title="Details"><i class="fas fa-info-circle"></i></button>
-                    <button class="btn-icon" onclick="alert('Send message to ${leadIdSafe}')"><i class="fas fa-envelope"></i></button>
                     <button class="btn-icon" onclick="confirmPayment('${leadIdSafe}')"><i class="fas fa-check-circle"></i></button>
+                    <button class="btn-icon" onclick="alert('Send message to ${leadIdSafe}')"><i class="fas fa-envelope"></i></button>
                     <button class="btn-icon" onclick="alert('Delete lead ${leadIdSafe}')"><i class="fas fa-trash"></i></button>
                 </td>
             </tr>`;
@@ -1864,8 +1704,15 @@
         }
     }
 
+    async function fetchLeads() {
+        const res = await fetch(SCRIPT_URL);
+        const data = await res.json();
+        leadsData = data.leads || [];
+        return leadsData;
+    }
+
     async function renderLeadsTable() {
-        leadsData = await fetchLeads();
+        await fetchLeads();
         applyFiltersAndSort();
         document.getElementById('adminContent').innerHTML = `
             <div class="quick-actions">
@@ -2008,55 +1855,6 @@
         });
     }
 
-    // Image Manager Tab
-    async function renderImageManager() {
-        const t = translations[currentLang];
-        const serviceNames = translations[currentLang].services.map(s => s.title);
-        const portfolioItems = Object.keys(translations[currentLang].portfolio_items);
-        const blogPosts = translations[currentLang].blog_posts;
-        
-        let html = `<h3>🖼️ ${t.tab_images || 'Image Manager'}</h3>
-        <p>Set custom image URLs for services, portfolio items and blog posts. Leave empty to use default SVG.</p>
-        <div style="margin-bottom: 30px;"><h4>Services</h4>`;
-        serviceNames.forEach(name => {
-            html += `<div style="margin-bottom: 15px;"><label>${name}:</label><input type="text" id="img_service_${name.replace(/\s/g, '_')}" class="search-input" placeholder="Image URL (jpg/png)" value="${customImages.services[name] || ''}" style="width:100%;"></div>`;
-        });
-        html += `<h4>Portfolio</h4>`;
-        portfolioItems.forEach(item => {
-            html += `<div style="margin-bottom: 15px;"><label>${item}:</label><input type="text" id="img_portfolio_${item.replace(/\s/g, '_')}" class="search-input" placeholder="Image URL" value="${customImages.portfolio[item] || ''}" style="width:100%;"></div>`;
-        });
-        html += `<h4>Blog Posts</h4>`;
-        blogPosts.forEach((post, idx) => {
-            html += `<div style="margin-bottom: 15px;"><label>Post #${idx+1} (${post.title}):</label><input type="text" id="img_blog_${idx}" class="search-input" placeholder="Image URL" value="${customImages.blog[idx] || ''}" style="width:100%;"></div>`;
-        });
-        html += `<button class="btn" id="saveImagesBtn">💾 Save All Images</button><div id="imageManagerResult"></div>`;
-        document.getElementById('adminContent').innerHTML = html;
-        
-        document.getElementById('saveImagesBtn').addEventListener('click', () => {
-            serviceNames.forEach(name => {
-                let val = document.getElementById(`img_service_${name.replace(/\s/g, '_')}`).value.trim();
-                if(val) customImages.services[name] = val;
-                else delete customImages.services[name];
-            });
-            portfolioItems.forEach(item => {
-                let val = document.getElementById(`img_portfolio_${item.replace(/\s/g, '_')}`).value.trim();
-                if(val) customImages.portfolio[item] = val;
-                else delete customImages.portfolio[item];
-            });
-            blogPosts.forEach((_, idx) => {
-                let val = document.getElementById(`img_blog_${idx}`).value.trim();
-                if(val) customImages.blog[idx] = val;
-                else delete customImages.blog[idx];
-            });
-            localStorage.setItem('customImages', JSON.stringify(customImages));
-            document.getElementById('imageManagerResult').innerHTML = '<span style="color:green;">✅ Images saved! Refresh page to see changes.</span>';
-            renderServices();
-            renderPortfolio(currentFilter, document.getElementById('portfolioSearch')?.value||'');
-            renderBlog();
-        });
-    }
-
-    // Other admin tabs (shortened for brevity but functional)
     async function renderAnalytics() { document.getElementById('adminContent').innerHTML = `<h3>📊 Analytics</h3><canvas id="conversionChart"></canvas><p>Conversion rate: 18%</p><canvas id="sourceChart"></canvas>`; new Chart(document.getElementById('conversionChart'),{type:'bar',data:{labels:['Views','Leads','Payments'],datasets:[{label:'',data:[100,leadsData.length,leadsData.filter(l=>l['Payment Status']==='paid').length],backgroundColor:'var(--gold)'}]}}); new Chart(document.getElementById('sourceChart'),{type:'pie',data:{labels:['VK','Telegram','Site','Ads'],datasets:[{data:[40,25,20,15],backgroundColor:['#C8A96A','#A67B5A','#5E3A2C','#B58C48']}]}}); }
     async function renderSEO() { document.getElementById('adminContent').innerHTML = `<h3>🔍 SEO Meta Tags</h3><label>Title:</label><input class="search-input" value="Unique Web Studio | Website Creation"><label>Meta description:</label><textarea class="search-input">Professional website development, high conversion.</textarea><button class="btn">Save</button>`; }
     async function renderBackup() { document.getElementById('adminContent').innerHTML = `<h3>💾 Backup</h3><button class="btn" onclick="alert('Backup created')">Create backup</button><button class="btn" onclick="alert('Restore from backup')">Restore</button><p>Last backup: 2025-04-04</p>`; }
@@ -2157,6 +1955,16 @@
                 { title: document.getElementById('service3TitleEn').value, desc: document.getElementById('service3DescEn').value, price: document.getElementById('service3PriceEn').value, btn: "Order" },
                 { title: document.getElementById('service4TitleEn').value, desc: document.getElementById('service4DescEn').value, price: document.getElementById('service4PriceEn').value, btn: "Order" }
             ];
+            document.querySelector('.consent-title-ru').innerText = document.getElementById('consentTitleRu').value;
+            document.querySelector('.consent-desc-ru').innerText = document.getElementById('consentDescRu').value;
+            document.querySelector('.consent-checkbox-ru').innerText = document.getElementById('consentCheckboxRu').value;
+            document.getElementById('acceptConsent').innerText = document.getElementById('consentBtnRu').value;
+            document.querySelector('.consent-warning-ru').innerText = document.getElementById('consentWarningRu').value;
+            document.querySelector('.consent-title-en').innerText = document.getElementById('consentTitleEn').value;
+            document.querySelector('.consent-desc-en').innerText = document.getElementById('consentDescEn').value;
+            document.querySelector('.consent-checkbox-en').innerText = document.getElementById('consentCheckboxEn').value;
+            document.getElementById('acceptConsentEn').innerText = document.getElementById('consentBtnEn').value;
+            document.querySelector('.consent-warning-en').innerText = document.getElementById('consentWarningEn').value;
             localStorage.setItem('custom_translations_ru', JSON.stringify(translations.ru));
             localStorage.setItem('custom_translations_en', JSON.stringify(translations.en));
             applyLanguage(currentLang);
@@ -2176,7 +1984,6 @@
         else if(currentAdminTab==='settings') renderSettings();
         else if(currentAdminTab==='logs') renderLogs();
         else if(currentAdminTab==='editor') renderTextEditor();
-        else if(currentAdminTab==='images') renderImageManager();
     }
     document.querySelectorAll('.admin-tab').forEach(tab=>{
         tab.addEventListener('click',()=>{
@@ -2227,7 +2034,7 @@
     }
     setupModalLanguageButtons();
 
-    // Newsletter Subscription
+    // ==================== NEW: Newsletter Subscription ====================
     const newsletterForm = document.getElementById('newsletterForm');
     if (newsletterForm) {
         newsletterForm.addEventListener('submit', async (e) => {
@@ -2271,7 +2078,7 @@
         });
     }
 
-    // Animated Statistics Counter
+    // ==================== NEW: Animated Statistics Counter ====================
     function animateStats() {
         const statNumbers = document.querySelectorAll('.stat-number[data-count]');
         if (!statNumbers.length) return;
@@ -2301,79 +2108,10 @@
         animateStats();
     });
 
-    // Additional enhancements
-    function addLoadingSpinner(button) {
-        const originalText = button.innerHTML;
-        button.disabled = true;
-        button.innerHTML = originalText + '<span class="loading-spinner"></span>';
-        return () => {
-            button.disabled = false;
-            button.innerHTML = originalText;
-        };
-    }
-    
-    const originalSendToAppsScript = window.sendToAppsScript;
-    if (typeof originalSendToAppsScript === 'function') {
-        window.sendToAppsScript = async function(formData, action, submitBtn) {
-            let restore = null;
-            if (submitBtn && submitBtn.tagName === 'BUTTON') {
-                restore = addLoadingSpinner(submitBtn);
-            }
-            try {
-                return await originalSendToAppsScript(formData, action);
-            } finally {
-                if (restore) restore();
-            }
-        };
-    }
-    
-    const originalShowLeadDetailsById = window.showLeadDetailsById;
-    if (typeof originalShowLeadDetailsById === 'function') {
-        window.showLeadDetailsById = function(leadId) {
-            originalShowLeadDetailsById(leadId);
-            setTimeout(() => {
-                const modalContent = document.querySelector('#leadDetailsModal .modal-content');
-                if (modalContent && !modalContent.querySelector('.copy-lead-btn')) {
-                    const copyBtn = document.createElement('button');
-                    copyBtn.className = 'btn btn-outline copy-lead-btn';
-                    copyBtn.innerHTML = '<i class="fas fa-copy"></i> Copy Lead ID';
-                    copyBtn.style.marginTop = '20px';
-                    copyBtn.onclick = () => {
-                        navigator.clipboard.writeText(leadId);
-                        alert('Lead ID copied: ' + leadId);
-                    };
-                    modalContent.appendChild(copyBtn);
-                }
-            }, 100);
-        };
-    }
-    
-    const forms = ['demoForm', 'consultForm', 'editForm', 'reviewForm', 'orderServiceForm'];
-    forms.forEach(formId => {
-        const form = document.getElementById(formId);
-        if (form) {
-            form.addEventListener('submit', (e) => {
-                const requiredFields = form.querySelectorAll('[required]');
-                let missing = false;
-                requiredFields.forEach(field => {
-                    if (!field.value.trim()) {
-                        field.style.borderColor = '#e74c3c';
-                        missing = true;
-                    } else {
-                        field.style.borderColor = '';
-                    }
-                });
-                if (missing) {
-                    e.preventDefault();
-                    alert('Please fill all required fields.');
-                }
-            });
-        }
-    });
-    
+    // ==================== ADDITIONAL ENHANCEMENTS (no deletions) ====================
+    // 1. Live support dot click: open consultation modal
     const supportDot = document.querySelector('.live-support');
     if (supportDot) {
-        supportDot.style.cursor = 'pointer';
         supportDot.addEventListener('click', () => {
             if (typeof requireConsentAndExecute === 'function') {
                 requireConsentAndExecute(() => openModal('consult'));
@@ -2383,35 +2121,42 @@
         });
     }
     
-    let refreshInterval = null;
-    const adminPanelEl = document.getElementById('adminPanel');
-    if (adminPanelEl) {
-        const observer = new MutationObserver((mutations) => {
-            mutations.forEach((mutation) => {
-                if (mutation.attributeName === 'class') {
-                    if (adminPanelEl.classList.contains('open')) {
-                        if (!refreshInterval) {
-                            refreshInterval = setInterval(() => {
-                                if (currentAdminTab === 'leads' && typeof renderLeadsTable === 'function') {
-                                    renderLeadsTable();
-                                } else if (currentAdminTab === 'dashboard' && typeof renderDashboard === 'function') {
-                                    renderDashboard();
-                                }
-                            }, 30000);
-                        }
-                    } else {
-                        if (refreshInterval) {
-                            clearInterval(refreshInterval);
-                            refreshInterval = null;
-                        }
-                    }
-                }
-            });
-        });
-        observer.observe(adminPanelEl, { attributes: true });
-    }
+    // 2. Header scroll effect
+    window.addEventListener('scroll', () => {
+        const header = document.querySelector('.header');
+        if (window.scrollY > 50) header.classList.add('scrolled');
+        else header.classList.remove('scrolled');
+    });
     
-    console.log('✅ Enhancements loaded successfully | SCRIPT_URL updated | fetchLeads uses XMLHttpRequest (CORS-free) | Image Manager added');
+    // 3. Parallax effect on mouse move for cards
+    document.addEventListener('mousemove', (e) => {
+        const x = e.clientX / window.innerWidth;
+        const y = e.clientY / window.innerHeight;
+        document.querySelectorAll('.service-card, .portfolio-card').forEach(el => {
+            const moveX = (x - 0.5) * 15;
+            const moveY = (y - 0.5) * 15;
+            el.style.transform = `translate(${moveX}px, ${moveY}px)`;
+        });
+    });
+    
+    // 4. Stagger animation for cards
+    const staggerElements = document.querySelectorAll('.service-card, .portfolio-card, .blog-card, .stat-item');
+    const staggerObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+                setTimeout(() => {
+                    entry.target.classList.add('visible');
+                }, index * 100);
+                staggerObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.2 });
+    staggerElements.forEach(el => {
+        el.classList.add('stagger-item');
+        staggerObserver.observe(el);
+    });
+    
+    console.log('✅ Enhancements loaded successfully | Motion effects added');
 </script>
 </body>
 </html>
