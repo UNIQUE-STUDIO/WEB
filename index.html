@@ -1480,12 +1480,14 @@ async function fetchLeads() {
         iframe.id = iframeId;
         iframe.style.display = 'none';
         document.body.appendChild(iframe);
+        
         const form = document.createElement('form');
         form.method = 'GET';
         form.action = SCRIPT_URL;
         form.target = iframeId;
         form.style.display = 'none';
         document.body.appendChild(form);
+        
         iframe.onload = () => {
             try {
                 let responseText = '';
@@ -1503,7 +1505,9 @@ async function fetchLeads() {
             }
             setTimeout(() => { form.remove(); iframe.remove(); }, 100);
         };
+        
         form.submit();
+        
         setTimeout(() => {
             if (form.parentNode) { form.remove(); iframe.remove(); resolve([]); }
         }, 8000);
