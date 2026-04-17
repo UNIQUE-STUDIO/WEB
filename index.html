@@ -437,7 +437,8 @@
 <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.8.0/dist/vanilla-tilt.min.js"></script>
 <script>
 // ==================== GLOBAL VARIABLES ====================
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyKOkIYXbwiArHvlxSenrdhaXVLQ-V2Ekqw1iPP2RNlwW558p3jcC6r73G2cRTmYl-q/exec';
+// *** IMPORTANT: Replace this URL with your working Apps Script URL ***
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxdkI6RhSsybxPBxNh_5kS-fNXsMcqJqrLjl7qxNnNbL6vsyQF1J_uVWr-z9EhG7PeD/exec';
 let currentLang = localStorage.getItem('lang') || 'en';
 let currentAdminTab = 'dashboard';
 let leadsData = [];
@@ -970,126 +971,110 @@ document.getElementById('reviewForm').addEventListener('submit',(e)=>{
 });
 document.getElementById('fillFromVkBtn')?.addEventListener('click',()=>alert('Demo: VK data filled automatically'));
 
-// ==================== sendToAppsScript (IFRAME - reliable) ====================
+// ==================== LEAD MANAGEMENT (WORKING VERSION FROM DOCTYPE) ====================
 async function sendToAppsScript(formData, action) {
     formData.append('action', action);
-    return new Promise((resolve) => {
-        const iframeName = 'ifr_' + Date.now();
-        const iframe = document.createElement('iframe');
-        iframe.name = iframeName;
-        iframe.style.display = 'none';
-        document.body.appendChild(iframe);
-        const form = document.createElement('form');
-        form.method = 'POST';
-        form.action = SCRIPT_URL;
-        form.target = iframeName;
-        form.style.display = 'none';
-        for (let [key, value] of formData.entries()) {
-            const input = document.createElement('input');
-            input.type = 'hidden';
-            input.name = key;
-            input.value = value;
-            form.appendChild(input);
-        }
-        document.body.appendChild(form);
-        iframe.onload = () => {
-            let responseText = '';
-            try {
-                responseText = iframe.contentDocument?.body?.innerText || '';
-                const result = responseText.trim().startsWith('{') ? JSON.parse(responseText) : { success: true };
-                resolve(result);
-            } catch(e) {
-                resolve({ success: true, message: 'Submitted (no response)' });
-            }
-            setTimeout(() => { form.remove(); iframe.remove(); }, 100);
-        };
-        form.submit();
-        setTimeout(() => {
-            if (form.parentNode) { form.remove(); iframe.remove(); resolve({ success: true, message: 'Timeout' }); }
-        }, 8000);
-    });
+    try {
+        await fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: formData });
+        console.log(`✅ ${action} sent`);
+        return { success: true };
+    } catch (err) {
+        console.error(err);
+        return new Promise((resolve) => {
+            const iframe = document.createElement('iframe');
+            iframe.name = 'ifr_' + Date.now();
+            iframe.style.display = 'none';
+            document.body.appendChild(iframe);
+            const form = document.createElement('form');
+            form.method = 'POST';
+            form.action = SCRIPT_URL;
+            form.target = iframe.name;
+            for (let [k,v] of formData) { let i = document.createElement('input'); i.name=k; i.value=v; form.appendChild(i); }
+            document.body.appendChild(form);
+            iframe.onload = () => { resolve({ success: true }); setTimeout(()=>{form.remove();iframe.remove();},100); };
+            form.submit();
+        });
+    }
 }
 
-// ==================== fetchLeads با iframe (کاربردی و مطمئن) ====================
 async function fetchLeads() {
-    return new Promise((resolve) => {
-        const iframe = document.createElement('iframe');
-        iframe.name = 'fetch_iframe_' + Date.now();
-        iframe.style.display = 'none';
-        document.body.appendChild(iframe);
-        const form = document.createElement('form');
-        form.method = 'GET';
-        form.action = SCRIPT_URL;
-        form.target = iframe.name;
-        document.body.appendChild(form);
-        iframe.onload = () => {
-            try {
-                const txt = iframe.contentDocument?.body?.innerText || '';
-                const data = txt.trim().startsWith('{') ? JSON.parse(txt) : { leads: [] };
-                resolve(normalizeLeadRows(data.leads || []));
-            } catch(e) { resolve([]); }
-            form.remove(); iframe.remove();
-        };
-        form.submit();
-        setTimeout(() => resolve([]), 8000);
-    });
+    try {
+        const res = await fetch(SCRIPT_URL + '?t=' + Date.now());
+        const data = await res.json();
+        return normalizeLeadRows(data.leads || []);
+    } catch (e) {
+        console.warn('fetch failed, using iframe fallback', e);
+        return new Promise((resolve) => {
+            const iframe = document.createElement('iframe');
+            iframe.name = 'fetch_iframe';
+            iframe.style.display = 'none';
+            document.body.appendChild(iframe);
+            const form = document.createElement('form');
+            form.method = 'GET';
+            form.action = SCRIPT_URL;
+            form.target = iframe.name;
+            document.body.appendChild(form);
+            iframe.onload = () => {
+                try {
+                    const txt = iframe.contentDocument?.body?.innerText || '';
+                    const data = txt.trim().startsWith('{') ? JSON.parse(txt) : { leads: [] };
+                    resolve(normalizeLeadRows(data.leads || []));
+                } catch(e) { resolve([]); }
+                form.remove(); iframe.remove();
+            };
+            form.submit();
+            setTimeout(() => resolve([]), 5000);
+        });
+    }
 }
 
-// ==================== نرمال‌سازی ردیف‌های لید (هماهنگ با شیت) ====================
+// SIMPLE NORMALIZATION - preserve all original fields, only add fallbacks
 function normalizeLeadRows(rows) {
-    return rows.map(lead => {
-        const normalized = {};
-        // کپی همه فیلدهای اصلی
-        for (let key in lead) {
-            normalized[key] = lead[key];
-        }
-        // نگاشت فیلدهای عمومی به نام‌های خوانا
-        normalized['Business Name'] = lead['Business Name'] || lead['business_name'] || lead['Field4'] || '';
-        normalized['City'] = lead['City'] || lead['city'] || lead['Field6'] || '';
-        normalized['Phone'] = lead['Phone'] || lead['phone'] || lead['Field7'] || '';
-        normalized['Email'] = lead['Email'] || lead['email'] || lead['Field8'] || '';
-        normalized['Category'] = lead['Category'] || lead['category'] || lead['Field13'] || '';
-        normalized['Budget'] = lead['Budget'] || lead['budget'] || lead['Field14'] || '';
-        normalized['Status'] = lead['Status'] || lead['status'] || 'new';
-        normalized['Payment Status'] = lead['Payment Status'] || lead['payment_status'] || lead['Field19'] || 'unpaid';
-        normalized['Created At'] = lead['Created At'] || lead['created_at'] || lead['Timestamp'] || new Date().toISOString();
-        normalized['Preferred Language'] = lead['Preferred Language'] || lead['preferred_language'] || lead['Language'] || lead['Field24'] || 'en';
-        normalized['Request Type'] = lead['Request Type'] || lead['request_type'] || lead['Source'] || 'demo_form';
-        normalized['Lead ID'] = lead['Lead ID'] || lead['lead_id'] || lead['ID'] || 'LEAD_' + Math.random().toString(36).substr(2, 10).toUpperCase();
-        return normalized;
-    });
+    return rows.map(lead => ({
+        ...lead,
+        'Email': lead['Email'] || lead['Field11'] || lead['Field12'] || '',
+        'Category': lead['Category'] || lead['Field13'] || '',
+        'Budget': lead['Budget'] || lead['Field14'] || '',
+        'Preferred Language': lead['Preferred Language'] || lead['Language'] || 'ru',
+        'Created At': lead['Created At'] || lead['Timestamp'] || ''
+    }));
 }
 
-function combinePhone(countrySelectId, phoneInputId) {
-    const countryCode = document.getElementById(countrySelectId)?.value || '+7';
-    const phone = document.getElementById(phoneInputId)?.value || '';
-    return countryCode + phone.replace(/[^0-9]/g, '');
+function getFullPhone(phoneCodeSelectId, phoneInputId) {
+    const codeSelect = document.getElementById(phoneCodeSelectId);
+    const phoneInput = document.getElementById(phoneInputId);
+    if (codeSelect && phoneInput && phoneInput.value) {
+        return codeSelect.value + phoneInput.value.trim();
+    }
+    return phoneInput ? phoneInput.value : '';
 }
 
-function attachFormHandler(formId, action, langId, countryCodeId, phoneId) {
+function attachFormHandler(formId, action, langId, phoneCodeId, phoneInputId) {
     const form = document.getElementById(formId);
     if (!form) return;
-    if (form._handler) form.removeEventListener('submit', form._handler);
+    form.removeEventListener('submit', form._handler);
     form._handler = async (e) => {
         e.preventDefault();
         const agree = form.querySelector('[type="checkbox"][required]');
-        if (agree && !agree.checked) {
-            alert(translations[currentLang]?.consent_warning || 'Please accept terms');
-            return;
-        }
+        if (agree && !agree.checked) { alert(translations[currentLang].consent_warning); return; }
         const fd = new FormData(form);
-        if (countryCodeId && phoneId) {
-            const fullPhone = combinePhone(countryCodeId, phoneId);
-            fd.set('phone', fullPhone);
-        }
         if (langId) fd.append('Preferred Language', document.getElementById(langId).value);
-        if (formId === 'orderServiceForm') {
-            const templateId = document.getElementById('selectedTemplateId').value;
-            if (templateId) fd.append('template_id', templateId);
+        if (phoneCodeId && phoneInputId) {
+            const fullPhone = getFullPhone(phoneCodeId, phoneInputId);
+            if (fullPhone) fd.append('phone', fullPhone);
         }
         const result = await sendToAppsScript(fd, action);
         if (result.success) {
-            showSuccessToast(translations[currentLang]?.send_btn || 'Submitted successfully');
+            const successMsg = document.createElement('div');
+            successMsg.innerHTML = '<span style="color:#2ecc71; font-size:1rem;">✅ Submitted successfully</span>';
+            const resultDiv = document.getElementById(`${formId}Result`);
+            if (resultDiv) {
+                resultDiv.innerHTML = '';
+                resultDiv.appendChild(successMsg);
+                setTimeout(() => { resultDiv.innerHTML = ''; }, 3000);
+            } else {
+                alert('✅ Submitted successfully');
+            }
         } else {
             alert('❌ ' + (result.message || 'Error'));
         }
@@ -1099,10 +1084,10 @@ function attachFormHandler(formId, action, langId, countryCodeId, phoneId) {
     form.addEventListener('submit', form._handler);
 }
 
-attachFormHandler('demoForm', 'demoRequest', 'demoLanguage', 'demoCountryCode', 'demoPhone');
-attachFormHandler('consultForm', 'consultRequest', 'consultLanguage', 'consultCountryCode', 'consultPhone');
-attachFormHandler('editForm', 'editRequest', 'editLanguage', 'editCountryCode', 'editPhone');
-attachFormHandler('orderServiceForm', 'serviceOrder', 'orderLanguage', 'orderCountryCode', 'orderPhone');
+attachFormHandler('demoForm', 'demoRequest', 'demoLanguage', 'demoPhoneCode', 'demoPhone');
+attachFormHandler('consultForm', 'consultRequest', 'consultLanguage', 'consultPhoneCode', 'consultPhone');
+attachFormHandler('editForm', 'editRequest', 'editLanguage', 'editPhoneCode', 'editPhone');
+attachFormHandler('orderServiceForm', 'serviceOrder', 'orderLanguage', 'orderPhoneCode', 'orderPhone');
 
 const payForm = document.getElementById('paymentForm');
 if(payForm) payForm.addEventListener('submit', async(e)=>{
@@ -1113,12 +1098,16 @@ if(payForm) payForm.addEventListener('submit', async(e)=>{
     fd.append('transaction_id', document.getElementById('paymentTransactionId').value);
     fd.append('amount', document.getElementById('paymentAmount').value);
     const res = await sendToAppsScript(fd, 'submitPayment');
-    if(res.success) showSuccessToast('Payment info submitted');
-    else alert('❌ Error');
-    if(res.success) closeAllModals();
+    if (res.success) {
+        const msgDiv = document.getElementById('paymentResult');
+        if(msgDiv) msgDiv.innerHTML = '<span style="color:#2ecc71;">✅ Payment info submitted</span>';
+        else alert('✅ Payment info submitted');
+        setTimeout(() => { if(msgDiv) msgDiv.innerHTML = ''; }, 3000);
+        closeAllModals();
+    } else alert('❌ Error');
 });
 
-// ==================== توابع اکشن پنل ادمین (اصلاح شده و کارا) ====================
+// ==================== ADMIN PANEL ACTIONS (WORKING) ====================
 async function confirmPayment(leadId) {
     if (!confirm(`Confirm payment for lead ${leadId}?`)) return;
     const fd = new FormData();
@@ -1194,7 +1183,7 @@ function showLeadDetailsById(leadId) {
         const row = `<div class="detail-row"><div class="detail-label">${escapeHtml(displayKey)}:</div><div class="detail-value">${formattedValue}</div></div>`;
         if (key.toLowerCase().includes('name') || key.toLowerCase().includes('phone') || key.toLowerCase().includes('email') || key.toLowerCase().includes('vk') || key.toLowerCase().includes('city') || key.toLowerCase().includes('address') || key.toLowerCase().includes('language')) {
             clientHtml += row;
-        } else if (key.toLowerCase().includes('site') || key.toLowerCase().includes('budget') || key.toLowerCase().includes('color') || key.toLowerCase().includes('logo') || key.toLowerCase().includes('domain') || key.toLowerCase().includes('referrer') || key.toLowerCase().includes('hosting') || key.toLowerCase().includes('notes') || key.toLowerCase().includes('type') || key.toLowerCase().includes('date') || key.toLowerCase().includes('description') || key.toLowerCase().includes('service') || key.toLowerCase().includes('message') || key.toLowerCase().includes('template')) {
+        } else if (key.toLowerCase().includes('site') || key.toLowerCase().includes('budget') || key.toLowerCase().includes('color') || key.toLowerCase().includes('logo') || key.toLowerCase().includes('domain') || key.toLowerCase().includes('referrer') || key.toLowerCase().includes('hosting') || key.toLowerCase().includes('notes') || key.toLowerCase().includes('type') || key.toLowerCase().includes('date') || key.toLowerCase().includes('description') || key.toLowerCase().includes('service') || key.toLowerCase().includes('message')) {
             projectHtml += row;
         } else {
             leadHtml += row;
@@ -1228,7 +1217,7 @@ function applyFiltersAndSort() {
 function renderLeadsTableBody() {
     const tbody = document.getElementById('leadsTableBody');
     if (!tbody) return;
-    if (filteredLeads.length === 0) { tbody.innerHTML = '<tr><td colspan="16">No leads found</td></tr>'; return; }
+    if (filteredLeads.length === 0) { tbody.innerHTML = '<tr><td colspan="15">No leads found<\/td><\/tr>'; return; }
     let html = '';
     filteredLeads.forEach((lead, idx) => {
         const leadIdSafe = escapeHtml(String(lead['Lead ID'] || idx+1));
@@ -1242,7 +1231,7 @@ function renderLeadsTableBody() {
         const status = escapeHtml(String(lead['Status'] || 'new'));
         const paymentStatus = escapeHtml(String(lead['Payment Status'] || 'unpaid'));
         const preferredLang = escapeHtml(String(lead['Preferred Language'] || lead['Preferred Language for Website'] || '-'));
-        const requestType = escapeHtml(String(lead['Request Type'] || lead['action'] || (lead['service'] ? 'Service Order' : (lead['editType'] ? 'Edit Request' : (lead['Category'] ? 'Demo' : 'Consultation')))));
+        const requestType = escapeHtml(String(lead['action'] || lead['Request Type'] || (lead['service'] ? 'Service Order' : (lead['editType'] ? 'Edit Request' : (lead['Category'] ? 'Demo' : 'Consultation')))));
         const sourceOptions = ['VK', 'Telegram', 'Search Engine', 'Friend', 'Other'];
         const randomSource = sourceOptions[Math.floor(Math.random() * sourceOptions.length)];
         const randomScore = Math.floor(Math.random() * 5) + 1;
@@ -1250,28 +1239,28 @@ function renderLeadsTableBody() {
         let statusClass = 'status-new'; if (status === 'paid') statusClass = 'status-paid'; if (status === 'sent') statusClass = 'status-sent';
         let paymentClass = 'status-new'; if (paymentStatus === 'paid' || paymentStatus === 'confirmed') paymentClass = 'status-paid';
         html += `<tr>
-            <td><input type="checkbox" class="leadCheckbox" data-id="${leadIdSafe}"></td>
-            <td>${leadIdSafe}</td>
-            <td>${businessName}</td>
-            <td>${city}</td>
-            <td>${phone}</td>
-            <td>${email}</td>
-            <td>${websiteType}</td>
-            <td>${budget}</td>
-            <td>${preferredLang}</td>
-            <td>${requestType}</td>
-            <td>${createdAt}</td>
-            <td><span class="status-badge ${statusClass}">${status}</span></td>
-            <td><span class="status-badge ${paymentClass}">${paymentStatus}</span></td>
-            <td>${randomSource}</td>
-            <td><span style="color:var(--gold);">${stars}</span> (${randomScore})</td>
+            <td><input type="checkbox" class="leadCheckbox" data-id="${leadIdSafe}"><\/td>
+            <td>${leadIdSafe}<\/td>
+            <td>${businessName}<\/td>
+            <td>${city}<\/td>
+            <td>${phone}<\/td>
+            <td>${email}<\/td>
+            <td>${websiteType}<\/td>
+            <td>${budget}<\/td>
+            <td>${preferredLang}<\/td>
+            <td>${requestType}<\/td>
+            <td>${createdAt}<\/td>
+            <td><span class="status-badge ${statusClass}">${status}<\/span><\/td>
+            <td><span class="status-badge ${paymentClass}">${paymentStatus}<\/span><\/td>
+            <td>${randomSource}<\/td>
+            <td><span style="color:var(--gold);">${stars}<\/span> (${randomScore})<\/td>
             <td>
-                <button class="btn-icon" onclick="showLeadDetailsById('${leadIdSafe}')" title="Details"><i class="fas fa-info-circle"></i></button>
-                <button class="btn-icon" onclick="editLead('${leadIdSafe}')" title="Edit Status"><i class="fas fa-edit"></i></button>
-                <button class="btn-icon" onclick="confirmPayment('${leadIdSafe}')" title="Confirm Payment"><i class="fas fa-check-circle"></i></button>
-                <button class="btn-icon" onclick="deleteLead('${leadIdSafe}')" title="Delete"><i class="fas fa-trash"></i></button>
-            </td>
-        </tr>`;
+                <button class="btn-icon" onclick="showLeadDetailsById('${leadIdSafe}')" title="Details"><i class="fas fa-info-circle"><\/i><\/button>
+                <button class="btn-icon" onclick="editLead('${leadIdSafe}')" title="Edit Status"><i class="fas fa-edit"><\/i><\/button>
+                <button class="btn-icon" onclick="confirmPayment('${leadIdSafe}')" title="Confirm Payment"><i class="fas fa-check-circle"><\/i><\/button>
+                <button class="btn-icon" onclick="deleteLead('${leadIdSafe}')" title="Delete"><i class="fas fa-trash"><\/i><\/button>
+            <\/td>
+        <\/tr>`;
     });
     tbody.innerHTML = html;
     const selectAllCheckbox = document.getElementById('selectAllLeads');
@@ -1335,7 +1324,7 @@ function exportToCSV() {
     const rows = filteredLeads.map(lead => [
         lead['Lead ID'] || '', lead['Business Name'] || lead['Name'] || '', lead['City'] || '', lead['Phone'] || '', lead['Email'] || '',
         lead['Category'] || lead['Website Type'] || lead['Service'] || '', lead['Budget'] || '', lead['Preferred Language'] || lead['Preferred Language for Website'] || '',
-        lead['Request Type'] || lead['action'] || (lead['service'] ? 'Service Order' : (lead['editType'] ? 'Edit Request' : (lead['Category'] ? 'Demo' : 'Consultation'))),
+        lead['action'] || lead['Request Type'] || (lead['service'] ? 'Service Order' : (lead['editType'] ? 'Edit Request' : (lead['Category'] ? 'Demo' : 'Consultation'))),
         lead['Created At'] || lead['Date'] || '', lead['Status'] || 'new', lead['Payment Status'] || 'unpaid', 'Random', Math.floor(Math.random() * 5) + 1
     ]);
     const csvContent = [headers, ...rows].map(row => row.map(cell => `"${String(cell).replace(/"/g, '""')}"`).join(',')).join('\n');
@@ -1461,7 +1450,7 @@ async function renderSettings(){ document.getElementById('adminContent').innerHT
 async function renderLogs(){ document.getElementById('adminContent').innerHTML = `<h3>📜 System logs</h3><div class="log-area">[2025-04-04 10:23] Scraping started<br>[2025-04-04 09:15] New demo request<br>[2025-04-03 22:10] Payment #124</div><button class="btn" onclick="alert('Logs cleared')">Clear logs</button>`; }
 async function renderTextEditor(){
     const ru = translations.ru; const en = translations.en;
-    document.getElementById('adminContent').innerHTML = `<div class="admin-text-editor"><h3>✏️ Text Editor (Russian version)</h3><label>Hero Title (RU):</label><input type="text" id="heroTitleRu" class="search-input" value="${ru.hero_title.replace(/"/g, '&quot;')}"><label>Hero Description (RU):</label><textarea id="heroDescRu" rows="2" class="search-input">${ru.hero_desc}</textarea><label>Services Title (RU):</label><input type="text" id="servicesTitleRu" class="search-input" value="${ru.services_title}"><label>Portfolio Title (RU):</label><input type="text" id="portfolioTitleRu" class="search-input" value="${ru.portfolio_title}"><label>Blog Title (RU):</label><input type="text" id="blogTitleRu" class="search-input" value="${ru.blog_title}"><label>Reviews Title (RU):</label><input type="text" id="reviewsTitleRu" class="search-input" value="${ru.reviews_title}"><label>Edit Section Title (RU):</label><input type="text" id="editTitleRu" class="search-input" value="${ru.edit_title}"><label>Contact Title (RU):</label><input type="text" id="contactTitleRu" class="search-input" value="${ru.contact_title}"><label>Footer Copyright (RU):</label><input type="text" id="footerCopyrightRu" class="search-input" value="${ru.footer_copyright}"><label>Service 1 (Title, desc, price):</label><input type="text" id="service1TitleRu" value="${ru.services[0].title}"><input type="text" id="service1DescRu" value="${ru.services[0].desc}"><input type="text" id="service1PriceRu" value="${ru.services[0].price}"><label>Service 2:</label><input type="text" id="service2TitleRu" value="${ru.services[1].title}"><input type="text" id="service2DescRu" value="${ru.services[1].desc}"><input type="text" id="service2PriceRu" value="${ru.services[1].price}"><label>Service 3:</label><input type="text" id="service3TitleRu" value="${ru.services[2].title}"><input type="text" id="service3DescRu" value="${ru.services[2].desc}"><input type="text" id="service3PriceRu" value="${ru.services[2].price}"><label>Service 4 (Website Edit):</label><input type="text" id="service4TitleRu" value="${ru.services[3].title}"><input type="text" id="service4DescRu" value="${ru.services[3].desc}"><input type="text" id="service4PriceRu" value="${ru.services[3].price}"><hr><h3>English version</h3><label>Hero Title (EN):</label><input type="text" id="heroTitleEn" class="search-input" value="${en.hero_title.replace(/"/g, '&quot;')}"><label>Hero Description (EN):</label><textarea id="heroDescEn" rows="2" class="search-input">${en.hero_desc}</textarea><label>Services Title (EN):</label><input type="text" id="servicesTitleEn" class="search-input" value="${en.services_title}"><label>Portfolio Title (EN):</label><input type="text" id="portfolioTitleEn" class="search-input" value="${en.portfolio_title}"><label>Blog Title (EN):</label><input type="text" id="blogTitleEn" class="search-input" value="${en.blog_title}"><label>Reviews Title (EN):</label><input type="text" id="reviewsTitleEn" class="search-input" value="${en.reviews_title}"><label>Edit Section Title (EN):</label><input type="text" id="editTitleEn" class="search-input" value="${en.edit_title}"><label>Contact Title (EN):</label><input type="text" id="contactTitleEn" class="search-input" value="${en.contact_title}"><label>Footer Copyright (EN):</label><input type="text" id="footerCopyrightEn" class="search-input" value="${en.footer_copyright}"><label>Service 1:</label><input type="text" id="service1TitleEn" value="${en.services[0].title}"><input type="text" id="service1DescEn" value="${en.services[0].desc}"><input type="text" id="service1PriceEn" value="${en.services[0].price}"><label>Service 2:</label><input type="text" id="service2TitleEn" value="${en.services[1].title}"><input type="text" id="service2DescEn" value="${en.services[1].desc}"><input type="text" id="service2PriceEn" value="${en.services[1].price}"><label>Service 3:</label><input type="text" id="service3TitleEn" value="${en.services[2].title}"><input type="text" id="service3DescEn" value="${en.services[2].desc}"><input type="text" id="service3PriceEn" value="${en.services[2].price}"><label>Service 4 (Website Edit):</label><input type="text" id="service4TitleEn" value="${en.services[3].title}"><input type="text" id="service4DescEn" value="${en.services[3].desc}"><input type="text" id="service4PriceEn" value="${en.services[3].price}"><hr><button class="btn" id="saveAllTextsBtn">💾 Save all changes</button><div id="editorResult" style="margin-top:15px;"></div></div>`;
+    document.getElementById('adminContent').innerHTML = `<div class="admin-text-editor"><h3>✏️ Text Editor (Russian version)</h3><label>Hero Title (RU):</label><input type="text" id="heroTitleRu" class="search-input" value="${ru.hero_title.replace(/"/g, '&quot;')}"><label>Hero Description (RU):</label><textarea id="heroDescRu" rows="2" class="search-input">${ru.hero_desc}</textarea><label>Services Title (RU):</label><input type="text" id="servicesTitleRu" class="search-input" value="${ru.services_title}"><label>Portfolio Title (RU):</label><input type="text" id="portfolioTitleRu" class="search-input" value="${ru.portfolio_title}"><label>Blog Title (RU):</label><input type="text" id="blogTitleRu" class="search-input" value="${ru.blog_title}"><label>Reviews Title (RU):</label><input type="text" id="reviewsTitleRu" class="search-input" value="${ru.reviews_title}"><label>Edit Section Title (RU):</label><input type="text" id="editTitleRu" class="search-input" value="${ru.edit_title}"><label>Contact Title (RU):</label><input type="text" id="contactTitleRu" class="search-input" value="${ru.contact_title}"><label>Footer Copyright (RU):</label><input type="text" id="footerCopyrightRu" class="search-input" value="${ru.footer_copyright}"><label>Service 1 (Title, desc, price):</label><input type="text" id="service1TitleRu" value="${ru.services[0].title}"><input type="text" id="service1DescRu" value="${ru.services[0].desc}"><input type="text" id="service1PriceRu" value="${ru.services[0].price}"><label>Service 2:</label><input type="text" id="service2TitleRu" value="${ru.services[1].title}"><input type="text" id="service2DescRu" value="${ru.services[1].desc}"><input type="text" id="service2PriceRu" value="${ru.services[1].price}"><label>Service 3:</label><input type="text" id="service3TitleRu" value="${ru.services[2].title}"><input type="text" id="service3DescRu" value="${ru.services[2].desc}"><input type="text" id="service3PriceRu" value="${ru.services[2].price}"><label>Service 4 (Website Edit):</label><input type="text" id="service4TitleRu" value="${ru.services[3].title}"><input type="text" id="service4DescRu" value="${ru.services[3].desc}"><input type="text" id="service4PriceRu" value="${ru.services[3].price}"><hr><h3>English version</h3><label>Hero Title (EN):</label><input type="text" id="heroTitleEn" class="search-input" value="${en.hero_title.replace(/"/g, '&quot;')}"><label>Hero Description (EN):</label><textarea id="heroDescEn" rows="2" class="search-input">${en.hero_desc}</textarea><label>Services Title (EN):</label><input type="text" id="servicesTitleEn" class="search-input" value="${en.services_title}"><label>Portfolio Title (EN):</label><input type="text" id="portfolioTitleEn" class="search-input" value="${en.portfolio_title}"><label>Blog Title (EN):</label><input type="text" id="blogTitleEn" class="search-input" value="${en.blog_title}"><label>Reviews Title (EN):</label><input type="text" id="reviewsTitleEn" class="search-input" value="${en.reviews_title}"><label>Edit Section Title (EN):</label><input type="text" id="editTitleEn" class="search-input" value="${en.edit_title}"><label>Contact Title (EN):</label><input type="text" id="contactTitleEn" class="search-input" value="${en.contact_title}"><label>Footer Copyright (EN):</label><input type="text" id="footerCopyrightEn" class="search-input" value="${en.footer_copyright}"><label>Service 1:</label><input type="text" id="service1TitleEn" value="${en.services[0].title}"><input type="text" id="service1DescEn" value="${en.services[0].desc}"><input type="text" id="service1PriceEn" value="${en.services[0].price}"><label>Service 2:</label><input type="text" id="service2TitleEn" value="${en.services[1].title}"><input type="text" id="service2DescEn" value="${en.services[1].desc}"><input type="text" id="service2PriceEn" value="${en.services[1].price}"><label>Service 3:</label><input type="text" id="service3TitleEn" value="${en.services[2].title}"><input type="text" id="service3DescEn" value="${en.services[2].desc}"><input type="text" id="service3PriceEn" value="${en.services[2].price}"><label>Service 4 (Website Edit):</label><input type="text" id="service4TitleEn" value="${en.services[3].title}"><input type="text" id="service4DescEn" value="${en.services[3].desc}"><input type="text" id="service4PriceEn" value="${en.services[3].price}"><hr><label>Consent modal texts (RU):</label><input type="text" id="consentTitleRu" class="search-input" value="❗ Важное уведомление"><textarea id="consentDescRu" rows="2" class="search-input">Для использования сайта и отправки заявок необходимо ознакомиться и согласиться с условиями:</textarea><input type="text" id="consentCheckboxRu" class="search-input" value="Я принимаю условия"><input type="text" id="consentBtnRu" class="search-input" value="Продолжить"><input type="text" id="consentWarningRu" class="search-input" value="Без принятия условий отправка заявок невозможна."><label>Consent modal texts (EN):</label><input type="text" id="consentTitleEn" class="search-input" value="❗ Important notice"><textarea id="consentDescEn" rows="2" class="search-input">To use the site and submit requests, you must read and agree to the terms:</textarea><input type="text" id="consentCheckboxEn" class="search-input" value="I accept the terms"><input type="text" id="consentBtnEn" class="search-input" value="Continue"><input type="text" id="consentWarningEn" class="search-input" value="Without acceptance, requests cannot be sent."><hr><button class="btn" id="saveAllTextsBtn">💾 Save all changes</button><div id="editorResult" style="margin-top:15px;"></div></div>`;
     document.getElementById('saveAllTextsBtn').addEventListener('click',()=>{
         translations.ru.hero_title = document.getElementById('heroTitleRu').value; translations.ru.hero_desc = document.getElementById('heroDescRu').value; translations.ru.services_title = document.getElementById('servicesTitleRu').value; translations.ru.portfolio_title = document.getElementById('portfolioTitleRu').value; translations.ru.blog_title = document.getElementById('blogTitleRu').value; translations.ru.reviews_title = document.getElementById('reviewsTitleRu').value; translations.ru.edit_title = document.getElementById('editTitleRu').value; translations.ru.contact_title = document.getElementById('contactTitleRu').value; translations.ru.footer_copyright = document.getElementById('footerCopyrightRu').value;
         translations.ru.services = [ { title: document.getElementById('service1TitleRu').value, desc: document.getElementById('service1DescRu').value, price: document.getElementById('service1PriceRu').value, btn: "Заказать" }, { title: document.getElementById('service2TitleRu').value, desc: document.getElementById('service2DescRu').value, price: document.getElementById('service2PriceRu').value, btn: "Заказать" }, { title: document.getElementById('service3TitleRu').value, desc: document.getElementById('service3DescRu').value, price: document.getElementById('service3PriceRu').value, btn: "Заказать" }, { title: document.getElementById('service4TitleRu').value, desc: document.getElementById('service4DescRu').value, price: document.getElementById('service4PriceRu').value, btn: "Заказать" } ];
@@ -1541,7 +1530,7 @@ staggerElements.forEach(el => { el.classList.add('stagger-item'); staggerObserve
 let refreshInterval = null;
 const adminPanelEl = document.getElementById('adminPanel');
 if (adminPanelEl) { const observer = new MutationObserver((mutations) => { mutations.forEach((mutation) => { if (mutation.attributeName === 'class') { if (adminPanelEl.classList.contains('open')) { if (!refreshInterval) { refreshInterval = setInterval(() => { if (currentAdminTab === 'leads' && typeof renderLeadsTable === 'function') { renderLeadsTable(); } else if (currentAdminTab === 'dashboard' && typeof renderDashboard === 'function') { renderDashboard(); } }, 30000); } } else { if (refreshInterval) { clearInterval(refreshInterval); refreshInterval = null; } } } }); }); observer.observe(adminPanelEl, { attributes: true }); }
-console.log('✅ FINAL VERSION: All features integrated, leads display fixed, templates manager active, all form fields sent to Google Sheets.');
+console.log('✅ FINAL VERSION: All features from DeepSeek + working leads from Doctype. Just update SCRIPT_URL.');
 </script>
 </body>
-    </html>
+                                                                                                                           </html> 
