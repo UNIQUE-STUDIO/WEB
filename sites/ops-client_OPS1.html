@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ops Client - Premium Landing</title>
+  <style>
+    :root { --brand: #C8A96A; --bg: #0f1218; --card: #171b24; --text: #f5f7fb; --muted: #b8c0d4; }
+    * { box-sizing: border-box; font-family: Arial, sans-serif; }
+    body { margin: 0; background: radial-gradient(circle at top, #1f2633, var(--bg)); color: var(--text); }
+    .wrap { max-width: 1080px; margin: 0 auto; padding: 26px; }
+    .hero { padding: 48px 0 24px; display: grid; grid-template-columns: 1.2fr 1fr; gap: 24px; align-items: center; }
+    .card { background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 18px; padding: 22px; }
+    .badge { display: inline-block; background: var(--brand); color: #111; border-radius: 999px; padding: 8px 14px; font-weight: 700; }
+    h1 { font-size: 42px; margin: 14px 0; }
+    p { color: var(--muted); line-height: 1.6; }
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 24px; }
+    .cta { margin-top: 18px; display: inline-block; background: var(--brand); color: #111; text-decoration: none; padding: 12px 18px; border-radius: 12px; font-weight: 700; }
+    .list a { color: var(--text); text-decoration: none; display: block; margin: 8px 0; }
+    .muted { color: var(--muted); font-size: 14px; }
+    @media (max-width: 850px) { .hero, .grid { grid-template-columns: 1fr; } h1 { font-size: 32px; } }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="hero">
+      <div>
+        <span class="badge">Moscow</span>
+        <h1>Ops Client</h1>
+        <p></p>
+        <a class="cta" href="tel:+7000">Call: +7000</a>
+      </div>
+      <div class="card">
+        <h3>Contacts</h3>
+        <p class="muted">Test</p>
+        <div class="list">
+          <a href="" target="_blank">VK</a>
+          <a href="" target="_blank">Telegram</a>
+          <a href="" target="_blank">WhatsApp</a>
+          <a href="" target="_blank">Instagram</a>
+        </div>
+      </div>
+    </section>
+    <section class="grid">
+      <div class="card"><h3>Fast Delivery</h3><p>Launch in days, not months.</p></div>
+      <div class="card"><h3>Modern Design</h3><p>Clean UI that converts visitors.</p></div>
+      <div class="card"><h3>Easy Contact</h3><p>All your social links in one place.</p></div>
+    </section>
+    <p class="muted" style="margin-top:30px;">2026 - Ops Client</p>
+  </div>
+</body>
+</html>
