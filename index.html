@@ -827,21 +827,7 @@
             z-index: 1;
         }
         
-        .hero-shot { 
-            width: 100%; 
-            border-radius: 28px; 
-            border: 2px solid rgba(255,255,255,0.3); 
-            box-shadow: 0 25px 50px rgba(0,0,0,0.5), 0 0 40px rgba(200, 169, 106, 0.3);
-            transform: perspective(1000px) rotateY(-5deg) rotateX(2deg);
-            transition: transform 0.8s cubic-bezier(0.2, 0.9, 0.4, 1.1), 
-                        box-shadow 0.8s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-            animation: float 8s ease-in-out infinite, rotate-3d 20s linear infinite;
-        }
-        
-        .hero-shot:hover {
-            transform: perspective(1000px) rotateY(0deg) rotateX(0deg) scale(1.02);
-            box-shadow: 0 35px 70px rgba(0,0,0,0.6), 0 0 60px rgba(200, 169, 106, 0.5);
-        }
+        /* hero-shot CSS removed - image was removed from hero section */
         
         .hero-badge {
             background: rgba(200,169,106,0.2); 
@@ -1241,7 +1227,7 @@
 <div class="cursor-dot-outline"></div>
 <div class="live-support" title="Support online 24/7"></div>
 <header class="header"><div class="container"><div class="logo"><div class="logo-monogram">UW</div><div class="logo-text">UNIQUE<br><span>WEB STUDIO</span></div></div><div class="mobile-menu"><i class="fas fa-bars"></i></div><div class="nav"><a href="#services" data-i18n="nav_services">Services</a><a href="#portfolio" data-i18n="nav_portfolio">Portfolio</a><a href="#templates" data-i18n="nav_templates">Templates</a><a href="#blog" data-i18n="nav_blog">Blog</a><a href="#reviews" data-i18n="nav_reviews">Reviews</a><a href="#contact" data-i18n="nav_contact">Contacts</a><button class="lang-switch" id="langSwitch">RU</button><button class="admin-toggle" id="adminToggleBtn"><i class="fas fa-chart-line"></i></button><button id="darkModeToggle"><i class="fas fa-moon"></i></button></div></div></header>
-<section class="hero"><div class="container"><div><h1 class="hero-title"><span class="hero-title-text" data-i18n="hero_title">We create websites that work for you</span></h1><p data-i18n="hero_desc">Modern design, high conversion, full support. Order your website today.</p><div class="hero-badges"><span class="hero-badge">Premium Templates</span><span class="hero-badge">Auto Content Fill</span><span class="hero-badge">Fast Launch</span></div><div class="btn-group"><button class="btn" id="getDemoBtn"><i class="fas fa-paper-plane"></i> <span data-i18n="hero_demo_btn">Get demo</span></button><button class="btn btn-outline" id="consultBtn"><i class="fas fa-comment-dots"></i> <span data-i18n="hero_consult_btn">Request consultation</span></button></div></div><div><img class="hero-shot" src="https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?auto=format&fit=crop&w=1400&q=85" alt="Luxury gold website design"></div></div></section>
+<section class="hero"><div class="container"><div><h1 class="hero-title"><span class="hero-title-text" data-i18n="hero_title">We create websites that work for you</span></h1><p data-i18n="hero_desc">Modern design, high conversion, full support. Order your website today.</p><div class="hero-badges"><span class="hero-badge">Premium Templates</span><span class="hero-badge">Auto Content Fill</span><span class="hero-badge">Fast Launch</span></div><div class="btn-group"><button class="btn" id="getDemoBtn"><i class="fas fa-paper-plane"></i> <span data-i18n="hero_demo_btn">Get demo</span></button><button class="btn btn-outline" id="consultBtn"><i class="fas fa-comment-dots"></i> <span data-i18n="hero_consult_btn">Request consultation</span></button></div></div></section>
 
 <section id="stats" class="container" data-aos="fade-up">
     <div class="stats-grid">
@@ -1303,7 +1289,7 @@
     </div>
     <form id="orderServiceForm"><div class="form-group"><label class="field-label"><i class="fas fa-tag"></i> <span data-i18n="service_label">Service</span></label><input type="text" id="orderServiceName" name="service" readonly style="background: rgba(200,169,106,0.1); font-weight: 600;"></div><div class="form-group"><label class="field-label"><i class="fas fa-user"></i> <span data-i18n="your_name">Your Name</span> *</label><input type="text" id="orderName" name="name" required></div><div class="form-group"><label class="field-label"><i class="fas fa-envelope"></i> <span data-i18n="email_label">Email</span> *</label><input type="email" id="orderEmail" name="email" required></div><div class="form-group"><label class="field-label"><i class="fas fa-phone-alt"></i> <span data-i18n="phone_label">Phone</span> *</label><div class="phone-wrapper"><select id="orderCountryCode" class="country-code"></select><input type="tel" id="orderPhone" name="phone" required></div></div><div class="form-group"><label class="field-label"><i class="fas fa-comment-dots"></i> <span data-i18n="additional_info">Additional info</span></label><textarea id="orderMessage" name="message" rows="3" placeholder="Any special requirements or questions..."></textarea></div><div class="form-group"><label class="field-label"><i class="fas fa-language"></i> <span data-i18n="preferred_lang_label">Preferred Language for Website</span></label><select id="orderLanguage" name="Preferred Language"><option value="en">English</option><option value="ru">Russian</option></select><div class="field-description" data-i18n="preferred_lang_desc">Choose the language in which you want your site to be built</div></div><div class="checkbox-group"><input type="checkbox" id="orderAgree" required name="agree_terms"><label for="orderAgree" data-i18n="agree_label">I agree to the <a href="#" id="orderPolicyLink">Terms of Use</a> and <a href="#" id="orderRefundLink">Refund Policy</a></label></div><button type="submit" class="btn"><span data-i18n="submit_order_btn">Submit order</span></button></form><div id="orderResult"></div></div></div>
 
-<div id="adminPanel" class="admin-panel"><div class="admin-header"><h2 data-i18n="admin_title">Admin Panel</h2><span class="admin-close" id="adminClose">&times;</span></div><div class="admin-tabs"><div class="admin-tab active" data-tab="dashboard" data-i18n="tab_dashboard">Dashboard</div><div class="admin-tab" data-tab="leads" data-i18n="tab_leads">Leads</div><div class="admin-tab" data-tab="templates_manager" data-i18n="tab_templates">Templates Manager</div><div class="admin-tab" data-tab="settings" data-i18n="tab_settings">Settings</div></div><div id="adminContent"></div></div>
+<div id="adminPanel" class="admin-panel"><div class="admin-header"><h2 data-i18n="admin_title">Admin Panel</h2><span class="admin-close" id="adminClose">&times;</span></div><div class="admin-tabs"><div class="admin-tab active" data-tab="dashboard" data-i18n="tab_dashboard">Dashboard</div><div class="admin-tab" data-tab="leads" data-i18n="tab_leads">Leads</div><div class="admin-tab" data-tab="analytics" data-i18n="tab_analytics">📊 Analytics</div><div class="admin-tab" data-tab="seo" data-i18n="tab_seo">🔍 SEO</div><div class="admin-tab" data-tab="backup" data-i18n="tab_backup">💾 Backup</div><div class="admin-tab" data-tab="notifications" data-i18n="tab_notifications">🔔 Notifications</div><div class="admin-tab" data-tab="followup" data-i18n="tab_followup">⏰ Follow-up</div><div class="admin-tab" data-tab="scraper" data-i18n="tab_scraper">🤖 Lead scraper</div><div class="admin-tab" data-tab="tickets" data-i18n="tab_tickets">🎫 Tickets</div><div class="admin-tab" data-tab="settings" data-i18n="tab_settings">⚙️ Settings</div><div class="admin-tab" data-tab="logs" data-i18n="tab_logs">📜 Logs</div><div class="admin-tab" data-tab="editor" data-i18n="tab_editor">✏️ Text Editor</div><div class="admin-tab" data-tab="images" data-i18n="tab_images">🖼️ Image Manager</div><div class="admin-tab" data-tab="templates_manager" data-i18n="tab_templates">🎨 Templates Manager</div></div><div id="adminContent"></div></div>
 <div id="cookieConsent" class="cookie-consent"><span data-i18n="cookie_text">We use cookies to improve your experience. By continuing, you agree.</span><button id="acceptCookies" class="btn">OK</button></div>
 
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
@@ -1325,7 +1311,7 @@ let searchTerm = '';
 let customImages = JSON.parse(localStorage.getItem('customImages')) || { services: {}, portfolio: {}, blog: {}, templates: {} };
 const defaultImagePack = {
     services: {
-        "Landing Page": "https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?auto=format&fit=crop&w=1000&q=85",
+        "Landing Page": "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?auto=format&fit=crop&w=1000&q=85",
         "Online Store": "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1000&q=85",
         "Corporate Website": "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1000&q=85",
         "Website Editing": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1000&q=85"
@@ -1413,36 +1399,36 @@ async function initScriptEndpoint() {
 // Template data: each service has 3 templates
 let templatesData = JSON.parse(localStorage.getItem('templatesData')) || {
     landing: [
-        { id: 'landing_1', category: 'landing', name: { en: 'Modern Landing Pro', ru: 'Современный лендинг Pro' }, price: { en: 'from 6,000 ₽', ru: 'от 6 000 ₽' }, image: 'https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?auto=format&fit=crop&w=900&q=80', preview_url: 'https://unique-studio.github.io/WEB/templates/landing_1.html' },
-        { id: 'ext__landing__styleinn', category: 'landing', name: { en: 'Interior Premium', ru: 'Премиум интерьер' }, price: { en: 'from 7,000 ₽', ru: 'от 7 000 ₽' }, image: 'https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?auto=format&fit=crop&w=900&q=80', preview_url: 'https://unique-studio.github.io/WEB/templates/landing_styleinn.html' },
-        { id: 'ext__landing__beauty-salon', category: 'landing', name: { en: 'Beauty Landing', ru: 'Бьюти лендинг' }, price: { en: 'from 8,000 ₽', ru: 'от 8 000 ₽' }, image: 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=900&q=80', preview_url: 'https://unique-studio.github.io/WEB/templates/landing_beauty.html' },
-        { id: 'ext__landing__medical', category: 'landing', name: { en: 'Medical Clinic', ru: 'Медицинская клиника' }, price: { en: 'from 8,000 ₽', ru: 'от 8 000 ₽' }, image: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=900&q=80', preview_url: 'https://unique-studio.github.io/WEB/templates/landing_medical.html' },
-        { id: 'ext__landing__restaurant', category: 'landing', name: { en: 'Restaurant', ru: 'Ресторан' }, price: { en: 'from 7,000 ₽', ru: 'от 7 000 ₽' }, image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=900&q=80', preview_url: 'https://unique-studio.github.io/WEB/templates/landing_restaurant.html' },
-        { id: 'ext__landing__fitness', category: 'landing', name: { en: 'Fitness Center', ru: 'Фитнес-центр' }, price: { en: 'from 7,000 ₽', ru: 'от 7 000 ₽' }, image: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=900&q=80', preview_url: 'https://unique-studio.github.io/WEB/templates/landing_fitness.html' },
-        { id: 'ext__landing__realestate', category: 'landing', name: { en: 'Real Estate', ru: 'Недвижимость' }, price: { en: 'from 8,000 ₽', ru: 'от 8 000 ₽' }, image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=900&q=80', preview_url: 'https://unique-studio.github.io/WEB/templates/landing_realestate.html' },
-        { id: 'ext__landing__auto', category: 'landing', name: { en: 'Auto Service', ru: 'Автосервис' }, price: { en: 'from 7,000 ₽', ru: 'от 7 000 ₽' }, image: 'https://images.unsplash.com/photo-1487754180451-c456f719a1fc?auto=format&fit=crop&w=900&q=80', preview_url: 'https://unique-studio.github.io/WEB/templates/landing_auto.html' },
-        { id: 'ext__landing__education', category: 'landing', name: { en: 'Education', ru: 'Образование' }, price: { en: 'from 7,000 ₽', ru: 'от 7 000 ₽' }, image: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=900&q=80', preview_url: 'https://unique-studio.github.io/WEB/templates/landing_education.html' },
-        { id: 'ext__landing__travel', category: 'landing', name: { en: 'Travel Agency', ru: 'Турагентство' }, price: { en: 'from 7,000 ₽', ru: 'от 7 000 ₽' }, image: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=900&q=80', preview_url: 'https://unique-studio.github.io/WEB/templates/landing_travel.html' }
+        { id: 'landing_1', category: 'landing', name: { en: 'Modern Landing Pro', ru: 'Современный лендинг Pro' }, price: { en: 'from 6,000 ₽', ru: 'от 6 000 ₽' }, image: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=900&q=80' },
+        { id: 'ext__landing__styleinn', category: 'landing', name: { en: 'Interior Premium', ru: 'Премиум интерьер' }, price: { en: 'from 7,000 ₽', ru: 'от 7 000 ₽' }, image: 'https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=900&q=80' },
+        { id: 'ext__landing__beauty-salon', category: 'landing', name: { en: 'Beauty Landing', ru: 'Бьюти лендинг' }, price: { en: 'from 8,000 ₽', ru: 'от 8 000 ₽' }, image: 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=900&q=80' },
+        { id: 'ext__landing__medical', category: 'landing', name: { en: 'Medical Clinic', ru: 'Медицинская клиника' }, price: { en: 'from 8,000 ₽', ru: 'от 8 000 ₽' }, image: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=900&q=80' },
+        { id: 'ext__landing__restaurant', category: 'landing', name: { en: 'Restaurant', ru: 'Ресторан' }, price: { en: 'from 7,000 ₽', ru: 'от 7 000 ₽' }, image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=900&q=80' },
+        { id: 'ext__landing__fitness', category: 'landing', name: { en: 'Fitness Center', ru: 'Фитнес-центр' }, price: { en: 'from 7,000 ₽', ru: 'от 7 000 ₽' }, image: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=900&q=80' },
+        { id: 'ext__landing__realestate', category: 'landing', name: { en: 'Real Estate', ru: 'Недвижимость' }, price: { en: 'from 8,000 ₽', ru: 'от 8 000 ₽' }, image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=900&q=80' },
+        { id: 'ext__landing__auto', category: 'landing', name: { en: 'Auto Service', ru: 'Автосервис' }, price: { en: 'from 7,000 ₽', ru: 'от 7 000 ₽' }, image: 'https://images.unsplash.com/photo-1487754180451-c456f719a1fc?auto=format&fit=crop&w=900&q=80' },
+        { id: 'ext__landing__education', category: 'landing', name: { en: 'Education', ru: 'Образование' }, price: { en: 'from 7,000 ₽', ru: 'от 7 000 ₽' }, image: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=900&q=80' },
+        { id: 'ext__landing__travel', category: 'landing', name: { en: 'Travel Agency', ru: 'Турагентство' }, price: { en: 'from 7,000 ₽', ru: 'от 7 000 ₽' }, image: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=900&q=80' }
     ],
     ecommerce: [
-        { id: 'shop_1', category: 'ecommerce', name: { en: 'Modern Shop Pro', ru: 'Современный магазин Pro' }, price: { en: 'from 12,000 ₽', ru: 'от 12 000 ₽' }, image: 'https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?auto=format&fit=crop&w=900&q=80', preview_url: 'https://unique-studio.github.io/WEB/templates/shop_1.html' },
-        { id: 'ext__ecommerce__fashion', category: 'ecommerce', name: { en: 'Fashion Store', ru: 'Магазин одежды' }, price: { en: 'from 14,000 ₽', ru: 'от 14 000 ₽' }, image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=900&q=80', preview_url: 'https://unique-studio.github.io/WEB/templates/shop_fashion.html' },
-        { id: 'ext__ecommerce__electronics', category: 'ecommerce', name: { en: 'Electronics', ru: 'Электроника' }, price: { en: 'from 14,000 ₽', ru: 'от 14 000 ₽' }, image: 'https://images.unsplash.com/photo-1498049794561-7780e7231661?auto=format&fit=crop&w=900&q=80', preview_url: 'https://unique-studio.github.io/WEB/templates/shop_electronics.html' },
-        { id: 'ext__ecommerce__furniture', category: 'ecommerce', name: { en: 'Furniture', ru: 'Мебель' }, price: { en: 'from 14,000 ₽', ru: 'от 14 000 ₽' }, image: 'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?auto=format&fit=crop&w=900&q=80', preview_url: 'https://unique-studio.github.io/WEB/templates/shop_furniture.html' },
-        { id: 'ext__ecommerce__jewelry', category: 'ecommerce', name: { en: 'Jewelry Store', ru: 'Ювелирный' }, price: { en: 'from 15,000 ₽', ru: 'от 15 000 ₽' }, image: 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=900&q=80', preview_url: 'https://unique-studio.github.io/WEB/templates/shop_jewelry.html' },
-        { id: 'ext__ecommerce__pharmacy', category: 'ecommerce', name: { en: 'Pharmacy', ru: 'Аптека' }, price: { en: 'from 13,000 ₽', ru: 'от 13 000 ₽' }, image: 'https://images.unsplash.com/photo-1576602976047-174e57a47881?auto=format&fit=crop&w=900&q=80', preview_url: 'https://unique-studio.github.io/WEB/templates/shop_pharmacy.html' },
-        { id: 'ext__ecommerce__restaurant', category: 'ecommerce', name: { en: 'Restaurant & Delivery', ru: 'Ресторан и доставка' }, price: { en: 'from 14,000 ₽', ru: 'от 14 000 ₽' }, image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=900&q=80', preview_url: 'https://unique-studio.github.io/WEB/templates/shop_restaurant.html' },
-        { id: 'ext__ecommerce__auto', category: 'ecommerce', name: { en: 'Auto Dealership', ru: 'Автосалон' }, price: { en: 'from 16,000 ₽', ru: 'от 16 000 ₽' }, image: 'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=900&q=80', preview_url: 'https://unique-studio.github.io/WEB/templates/shop_auto.html' }
+        { id: 'shop_1', category: 'ecommerce', name: { en: 'Modern Shop Pro', ru: 'Современный магазин Pro' }, price: { en: 'from 12,000 ₽', ru: 'от 12 000 ₽' }, image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=900&q=80' },
+        { id: 'ext__ecommerce__fashion', category: 'ecommerce', name: { en: 'Fashion Store', ru: 'Магазин одежды' }, price: { en: 'from 14,000 ₽', ru: 'от 14 000 ₽' }, image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=900&q=80' },
+        { id: 'ext__ecommerce__electronics', category: 'ecommerce', name: { en: 'Electronics', ru: 'Электроника' }, price: { en: 'from 14,000 ₽', ru: 'от 14 000 ₽' }, image: 'https://images.unsplash.com/photo-1498049794561-7780e7231661?auto=format&fit=crop&w=900&q=80' },
+        { id: 'ext__ecommerce__furniture', category: 'ecommerce', name: { en: 'Furniture', ru: 'Мебель' }, price: { en: 'from 14,000 ₽', ru: 'от 14 000 ₽' }, image: 'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?auto=format&fit=crop&w=900&q=80' },
+        { id: 'ext__ecommerce__jewelry', category: 'ecommerce', name: { en: 'Jewelry Store', ru: 'Ювелирный' }, price: { en: 'from 15,000 ₽', ru: 'от 15 000 ₽' }, image: 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=900&q=80' },
+        { id: 'ext__ecommerce__pharmacy', category: 'ecommerce', name: { en: 'Pharmacy', ru: 'Аптека' }, price: { en: 'from 13,000 ₽', ru: 'от 13 000 ₽' }, image: 'https://images.unsplash.com/photo-1576602976047-174e57a47881?auto=format&fit=crop&w=900&q=80' },
+        { id: 'ext__ecommerce__restaurant', category: 'ecommerce', name: { en: 'Restaurant & Delivery', ru: 'Ресторан и доставка' }, price: { en: 'from 14,000 ₽', ru: 'от 14 000 ₽' }, image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=900&q=80' },
+        { id: 'ext__ecommerce__auto', category: 'ecommerce', name: { en: 'Auto Dealership', ru: 'Автосалон' }, price: { en: 'from 16,000 ₽', ru: 'от 16 000 ₽' }, image: 'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=900&q=80' }
     ],
     corporate: [
-        { id: 'corp_1', category: 'corporate', name: { en: 'Modern Corporate Pro', ru: 'Современный корпоративный Pro' }, price: { en: 'from 9,000 ₽', ru: 'от 9 000 ₽' }, image: 'https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?auto=format&fit=crop&w=900&q=80', preview_url: 'https://unique-studio.github.io/WEB/templates/corp_1.html' },
-        { id: 'ext__corporate__business', category: 'corporate', name: { en: 'Business Corporate', ru: 'Бизнес' }, price: { en: 'from 10,000 ₽', ru: 'от 10 000 ₽' }, image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=900&q=80', preview_url: 'https://unique-studio.github.io/WEB/templates/corp_business.html' },
-        { id: 'ext__corporate__tech', category: 'corporate', name: { en: 'Tech Company', ru: 'IT-компания' }, price: { en: 'from 10,000 ₽', ru: 'от 10 000 ₽' }, image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=900&q=80', preview_url: 'https://unique-studio.github.io/WEB/templates/corp_tech.html' },
-        { id: 'ext__corporate__consulting', category: 'corporate', name: { en: 'Consulting', ru: 'Консалтинг' }, price: { en: 'from 10,000 ₽', ru: 'от 10 000 ₽' }, image: 'https://images.unsplash.com/photo-1453814235491-831af45432aa?auto=format&fit=crop&w=900&q=80', preview_url: 'https://unique-studio.github.io/WEB/templates/corp_consulting.html' },
-        { id: 'ext__corporate__law', category: 'corporate', name: { en: 'Law Firm', ru: 'Юридическая фирма' }, price: { en: 'from 10,000 ₽', ru: 'от 10 000 ₽' }, image: 'https://images.unsplash.com/photo-1589829085413-56de8ae18c73?auto=format&fit=crop&w=900&q=80', preview_url: 'https://unique-studio.github.io/WEB/templates/corp_law.html' },
-        { id: 'ext__corporate__finance', category: 'corporate', name: { en: 'Finance', ru: 'Финансы' }, price: { en: 'from 11,000 ₽', ru: 'от 11 000 ₽' }, image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=80', preview_url: 'https://unique-studio.github.io/WEB/templates/corp_finance.html' },
-        { id: 'ext__corporate__creative', category: 'corporate', name: { en: 'Creative Agency', ru: 'Креативное агентство' }, price: { en: 'from 10,000 ₽', ru: 'от 10 000 ₽' }, image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=900&q=80', preview_url: 'https://unique-studio.github.io/WEB/templates/corp_creative.html' },
-        { id: 'ext__corporate__portfolio', category: 'corporate', name: { en: 'Corporate Portfolio', ru: 'Портфолио' }, price: { en: 'from 11,000 ₽', ru: 'от 11 000 ₽' }, image: 'https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=900&q=80', preview_url: 'https://unique-studio.github.io/WEB/templates/corp_portfolio.html' }
+        { id: 'corp_1', category: 'corporate', name: { en: 'Modern Corporate Pro', ru: 'Современный корпоративный Pro' }, price: { en: 'from 9,000 ₽', ru: 'от 9 000 ₽' }, image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=900&q=80' },
+        { id: 'ext__corporate__business', category: 'corporate', name: { en: 'Business Corporate', ru: 'Бизнес' }, price: { en: 'from 10,000 ₽', ru: 'от 10 000 ₽' }, image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=900&q=80' },
+        { id: 'ext__corporate__tech', category: 'corporate', name: { en: 'Tech Company', ru: 'IT-компания' }, price: { en: 'from 10,000 ₽', ru: 'от 10 000 ₽' }, image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=900&q=80' },
+        { id: 'ext__corporate__consulting', category: 'corporate', name: { en: 'Consulting', ru: 'Консалтинг' }, price: { en: 'from 10,000 ₽', ru: 'от 10 000 ₽' }, image: 'https://images.unsplash.com/photo-1453814235491-831af45432aa?auto=format&fit=crop&w=900&q=80' },
+        { id: 'ext__corporate__law', category: 'corporate', name: { en: 'Law Firm', ru: 'Юридическая фирма' }, price: { en: 'from 10,000 ₽', ru: 'от 10 000 ₽' }, image: 'https://images.unsplash.com/photo-1589829085413-56de8ae18c73?auto=format&fit=crop&w=900&q=80' },
+        { id: 'ext__corporate__finance', category: 'corporate', name: { en: 'Finance', ru: 'Финансы' }, price: { en: 'from 11,000 ₽', ru: 'от 11 000 ₽' }, image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=80' },
+        { id: 'ext__corporate__creative', category: 'corporate', name: { en: 'Creative Agency', ru: 'Креативное агентство' }, price: { en: 'from 10,000 ₽', ru: 'от 10 000 ₽' }, image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=900&q=80' },
+        { id: 'ext__corporate__portfolio', category: 'corporate', name: { en: 'Corporate Portfolio', ru: 'Портфолио' }, price: { en: 'from 11,000 ₽', ru: 'от 11 000 ₽' }, image: 'https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=900&q=80' }
     ]
 };
 
@@ -1602,25 +1588,6 @@ function renderTemplatesPage() {
         const price = tmpl.price[currentLang] || tmpl.price.en;
         const imgUrl = customImages.templates[tmpl.id] || tmpl.image || '';
         const previewUrl = tmpl.preview_url || '';
-        
-        // بررسی اینکه آیا لینک preview_url وجود دارد و معتبر است
-        let previewButtonHtml = '';
-        if (previewUrl && previewUrl.trim() !== '') {
-            // همیشه دکمه preview را نمایش بده، حتی اگر لینک ممکن است کار نکند
-            previewButtonHtml = `
-                <a class="template-preview-btn" href="${previewUrl}" target="_blank" rel="noopener" onclick="showPreviewWarning('${name}'); return true;">
-                    <i class="fas fa-external-link-alt"></i> Preview
-                </a>
-            `;
-        } else {
-            // اگر preview_url وجود ندارد
-            previewButtonHtml = `
-                <span class="template-preview-btn disabled" style="opacity: 0.5; cursor: not-allowed;">
-                    <i class="fas fa-eye-slash"></i> Preview not available
-                </span>
-            `;
-        }
-        
         const imgHtml = imgUrl ? `<img src="${imgUrl}" alt="${name}" style="width:100%; border-radius:20px;">` : `<div class="template-img" style="height:150px; display:flex; align-items:center; justify-content:center; background:var(--beige); border-radius:20px;">🖼️ ${name}</div>`;
         return `
             <div class="template-card" data-template-id="${tmpl.id}">
@@ -1629,58 +1596,11 @@ function renderTemplatesPage() {
                 <div class="template-price">${escapeHtml(price)}</div>
                 <div class="template-actions">
                     <button class="btn order-template-btn" data-template-id="${tmpl.id}" data-template-name="${name}" data-template-category="${tmpl.category || ''}">Order this template</button>
-                    ${previewButtonHtml}
+                    ${previewUrl ? `<a class="template-preview-btn" href="${previewUrl}" target="_blank" rel="noopener">Preview</a>` : ''}
                 </div>
             </div>
         `;
     }).join('');
-    
-    // اضافه کردن تابع نمایش هشدار preview
-    if (typeof window.showPreviewWarning === 'undefined') {
-        window.showPreviewWarning = function(templateName) {
-            // نمایش هشدار قبل از باز کردن لینک
-            const warning = document.createElement('div');
-            warning.style.cssText = `
-                position: fixed;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                background: var(--bg-card);
-                color: var(--text-primary);
-                padding: 30px;
-                border-radius: 20px;
-                z-index: 10000;
-                backdrop-filter: blur(20px);
-                box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-                border: 2px solid var(--gold);
-                max-width: 400px;
-                text-align: center;
-            `;
-            warning.innerHTML = `
-                <i class="fas fa-exclamation-triangle" style="font-size: 2.5rem; color: var(--gold); margin-bottom: 15px;"></i>
-                <h3 style="margin-bottom: 10px;">Template Preview</h3>
-                <p style="margin-bottom: 20px;">The preview for "${templateName}" will open in a new tab. If the page doesn't load, it may be temporarily unavailable.</p>
-                <div style="display: flex; gap: 10px; justify-content: center;">
-                    <button class="btn" onclick="this.parentElement.parentElement.remove();" style="padding: 10px 20px;">OK</button>
-                </div>
-            `;
-            document.body.appendChild(warning);
-            
-            // حذف خودکار بعد از 5 ثانیه
-            setTimeout(() => {
-                if (warning.parentNode) {
-                    warning.parentNode.removeChild(warning);
-                }
-            }, 5000);
-        };
-    }
-                        warning.parentNode.removeChild(warning);
-                    }
-                }, 5000);
-            }
-        };
-    }
-    
     document.querySelectorAll('.order-template-btn').forEach(btn => {
         btn.addEventListener('click', (e) => {
             const templateId = btn.getAttribute('data-template-id');
@@ -1983,13 +1903,9 @@ document.body.addEventListener('click', (e) => {
     }
 });
 
-document.getElementById('langSwitch').addEventListener('click',()=>{ 
-    const newLang = currentLang === 'ru' ? 'en' : 'ru'; 
-    applyLanguage(newLang); 
-    document.getElementById('langSwitch').innerText = newLang === 'ru' ? 'EN' : 'RU'; 
-});
+document.getElementById('langSwitch').addEventListener('click',()=>{ const newLang=currentLang==='ru'?'en':'ru'; applyLanguage(newLang); document.getElementById('langSwitch').innerText=newLang==='ru'?'EN':'RU'; });
 applyLanguage(currentLang);
-document.getElementById('langSwitch').innerText = currentLang === 'ru' ? 'EN' : 'RU';
+document.getElementById('langSwitch').innerText=currentLang==='ru'?'EN':'RU';
 const darkToggle=document.getElementById('darkModeToggle');
 if(localStorage.getItem('darkMode')==='enabled') document.body.classList.add('dark');
 darkToggle.addEventListener('click',()=>{ document.body.classList.toggle('dark'); localStorage.setItem('darkMode',document.body.classList.contains('dark')?'enabled':'disabled'); darkToggle.innerHTML=document.body.classList.contains('dark')?'<i class="fas fa-sun"></i>':'<i class="fas fa-moon"></i>'; });
@@ -2093,81 +2009,21 @@ async function sendToAppsScript(formData, action) {
 async function fetchLeads() {
     try {
         const res = await fetch(SCRIPT_URL + '?t=' + Date.now());
-        if (!res.ok) {
-            throw new Error(`Google Apps Script not deployed or URL incorrect (${res.status})`);
-        }
         const data = await res.json();
-        // فقط لیدهای فرم‌های سایت را برگردان (نه لیدهای ربات)
-        const siteLeads = (data.leads || []).filter(lead => {
-            // فرض می‌کنیم لیدهای سایت source خاصی دارند یا از فرم‌های خاصی آمده‌اند
-            // می‌توانیم بر اساس فیلدهای خاص فیلتر کنیم
-            return lead.source !== 'bot' && lead.source !== 'telegram_bot';
-        });
-        return normalizeLeadRows(siteLeads);
+        return normalizeLeadRows(data.leads || []);
     } catch (e) {
-        console.warn('Failed to fetch leads from Google Apps Script', e);
-        // نمایش پیام خطا
-        if (document.getElementById('adminContent')) {
-            document.getElementById('adminContent').innerHTML = `
-                <div class="error-message" style="background: rgba(200, 169, 106, 0.1); border: 1px solid var(--gold); border-radius: 20px; padding: 20px; margin: 20px 0;">
-                    <h3 style="color: var(--gold-dark);"><i class="fas fa-info-circle"></i> Admin Panel Info</h3>
-                    <p>To view leads from website forms, please ensure:</p>
-                    <ol style="text-align: left; margin-left: 20px;">
-                        <li>Google Apps Script is deployed</li>
-                        <li>Correct URL is set in <code>script-config.json</code></li>
-                        <li>Forms are submitting data to the script</li>
-                    </ol>
-                    <p>Currently showing sample data for demonstration.</p>
-                </div>
-            `;
-        }
-        
-        // استفاده از داده‌های نمونه برای نمایش
-        return getSampleLeadsData();
-    }
-}
-
-// داده‌های نمونه برای زمانی که Google Apps Script deploy نشده
-function getSampleLeadsData() {
-    return [
-        { 
-            id: 'sample-1', 
-            Name: 'John Doe', 
-            Email: 'john@example.com', 
-            Phone: '+1234567890', 
-            Service: 'Landing Page', 
-            Status: 'new', 
-            'Payment Status': 'pending',
-            Date: new Date().toISOString().split('T')[0],
-            Budget: '6,000 ₽',
-            Notes: 'Sample lead for demonstration'
-        },
-        { 
-            id: 'sample-2', 
-            Name: 'Jane Smith', 
-            Email: 'jane@example.com', 
-            Phone: '+1234567891', 
-            Service: 'E-commerce', 
-            Status: 'sent', 
-            'Payment Status': 'paid',
-            Date: new Date(Date.now() - 86400000).toISOString().split('T')[0],
-            Budget: '14,000 ₽',
-            Notes: 'Paid customer'
-        },
-        { 
-            id: 'sample-3', 
-            Name: 'Alex Johnson', 
-            Email: 'alex@example.com', 
-            Phone: '+1234567892', 
-            Service: 'Corporate Website', 
-            Status: 'pending_payment', 
-            'Payment Status': 'pending',
-            Date: new Date(Date.now() - 172800000).toISOString().split('T')[0],
-            Budget: '10,000 ₽',
-            Notes: 'Waiting for payment'
-        }
-    ];
-}
+        console.warn('fetch failed, using iframe fallback', e);
+        return new Promise((resolve) => {
+            const iframe = document.createElement('iframe');
+            iframe.name = 'fetch_iframe_' + Date.now();
+            iframe.style.display = 'none';
+            document.body.appendChild(iframe);
+            const form = document.createElement('form');
+            form.method = 'GET';
+            form.action = SCRIPT_URL;
+            form.target = iframe.name;
+            document.body.appendChild(form);
+            iframe.onload = () => {
                 try {
                     const txt = iframe.contentDocument?.body?.innerText || '';
                     const data = txt.trim().startsWith('{') ? JSON.parse(txt) : { leads: [] };
@@ -2182,29 +2038,17 @@ function getSampleLeadsData() {
 }
 
 function normalizeLeadRows(rows) {
-    // Filter only leads from site forms: demo, consult, edit, serviceOrder
-    const siteFormActions = ['demoRequest', 'consultRequest', 'editRequest', 'serviceOrder'];
-    
-    return rows
-        .filter(lead => {
-            // Check if lead has action field or can be identified as from site form
-            const action = lead['action'] || lead['Action'] || lead['Form Type'] || '';
-            return siteFormActions.includes(action) || 
-                   (lead['Email'] && lead['Email'].includes('@')) || // Assume valid email means site form
-                   (lead['Phone'] && lead['Phone'].length > 5); // Assume valid phone means site form
-        })
-        .map(lead => ({
-            ...lead,
-            'Email': lead['Email'] || lead['I'] || lead['Field11'] || lead['Field12'] || '',
-            'Category': lead['Category'] || lead['F'] || lead['Field13'] || '',
-            'Budget': lead['Budget'] || lead['Field14'] || '',
-            'Preferred Language': lead['Preferred Language'] || lead['Language'] || 'en',
-            'Created At': lead['Created At'] || lead['Timestamp'] || '',
-            'Lead ID': lead['Lead ID'] || 'LEAD_' + Math.random().toString(36).substr(2, 10).toUpperCase(),
-            'Status': lead['Status'] || 'new',
-            'Payment Status': lead['Payment Status'] || 'unpaid',
-            'Request Type': lead['action'] || lead['Action'] || (lead['service'] ? 'Service Order' : (lead['editType'] ? 'Edit Request' : (lead['Category'] ? 'Demo' : 'Consultation')))
-        }));
+    return rows.map(lead => ({
+        ...lead,
+        'Email': lead['Email'] || lead['I'] || lead['Field11'] || lead['Field12'] || '',
+        'Category': lead['Category'] || lead['F'] || lead['Field13'] || '',
+        'Budget': lead['Budget'] || lead['Field14'] || '',
+        'Preferred Language': lead['Preferred Language'] || lead['Language'] || 'en',
+        'Created At': lead['Created At'] || lead['Timestamp'] || '',
+        'Lead ID': lead['Lead ID'] || 'LEAD_' + Math.random().toString(36).substr(2, 10).toUpperCase(),
+        'Status': lead['Status'] || 'new',
+        'Payment Status': lead['Payment Status'] || 'unpaid'
+    }));
 }
 
 function getFullPhone(phoneCodeSelectId, phoneInputId) {
@@ -2506,118 +2350,17 @@ function exportToCSV() {
 }
 
 async function renderDashboard() {
-    try {
-        const leads = await fetchLeads();
-        const total = leads.length;
-        const newLeads = leads.filter(l => l.Status === 'new' || l.Status === 'pending_payment').length;
-        const sent = leads.filter(l => l.Status === 'sent').length;
-        const paid = leads.filter(l => l['Payment Status'] === 'paid' || l['Payment Status'] === 'confirmed').length;
-        
-        // بررسی اینکه آیا داده‌های نمونه استفاده می‌شوند
-        const isUsingSampleData = leads.some(lead => lead.id && lead.id.startsWith('sample-'));
-        
-        let warningHtml = '';
-        if (isUsingSampleData) {
-            warningHtml = `
-                <div class="warning-message" style="background: rgba(241, 196, 15, 0.1); border: 1px solid #f1c40f; border-radius: 20px; padding: 15px; margin: 20px 0;">
-                    <p style="color: #f39c12;"><i class="fas fa-info-circle"></i> Using sample data. Deploy Google Apps Script for real data.</p>
-                </div>
-            `;
-        }
-        
-        document.getElementById('adminContent').innerHTML = `
-            ${warningHtml}
-            <div class="quick-actions">
-                <button class="btn" onclick="alert('Export CSV')"><i class="fas fa-download"></i> Export CSV</button>
-                <button class="btn" onclick="alert('Mass message')"><i class="fas fa-bullhorn"></i> Mass message</button>
-                <button class="btn" onclick="alert('Backup created')"><i class="fas fa-database"></i> Backup</button>
-            </div>
-            <div class="stats-cards">
-                <div class="stat-card">
-                    <div class="stat-number">${total}</div>
-                    <div>${translations[currentLang].stats_total}</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">${newLeads}</div>
-                    <div>${translations[currentLang].stats_new}</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">${sent}</div>
-                    <div>${translations[currentLang].stats_sent}</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">${paid}</div>
-                    <div>${translations[currentLang].stats_paid}</div>
-                </div>
-            </div>
-            <canvas id="leadsChart" width="400" height="200"></canvas>
-        `;
-        
-        // ایجاد نمودار
-        if (total > 0) {
-            new Chart(document.getElementById('leadsChart'), {
-                type: 'line',
-                data: {
-                    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-                    datasets: [{
-                        label: 'Leads',
-                        data: [
-                            Math.floor(total * 0.2),
-                            Math.floor(total * 0.3),
-                            Math.floor(total * 0.1),
-                            Math.floor(total * 0.4),
-                            Math.floor(total * 0.2),
-                            Math.floor(total * 0.5),
-                            Math.floor(total * 0.3)
-                        ],
-                        borderColor: 'var(--gold)',
-                        backgroundColor: 'rgba(200, 169, 106, 0.1)',
-                        borderWidth: 2,
-                        fill: true,
-                        tension: 0.4
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    plugins: {
-                        legend: {
-                            labels: {
-                                color: 'var(--text-primary)'
-                            }
-                        }
-                    },
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            grid: {
-                                color: 'rgba(255, 255, 255, 0.1)'
-                            },
-                            ticks: {
-                                color: 'var(--text-light)'
-                            }
-                        },
-                        x: {
-                            grid: {
-                                color: 'rgba(255, 255, 255, 0.1)'
-                            },
-                            ticks: {
-                                color: 'var(--text-light)'
-                            }
-                        }
-                    }
-                }
-            });
-        }
-    } catch (error) {
-        console.error('Error rendering dashboard:', error);
-        document.getElementById('adminContent').innerHTML = `
-            <div class="error-message" style="background: rgba(231, 76, 60, 0.1); border: 1px solid #e74c3c; border-radius: 20px; padding: 20px; margin: 20px 0;">
-                <h3 style="color: #e74c3c;"><i class="fas fa-exclamation-triangle"></i> Error Loading Dashboard</h3>
-                <p>${error.message}</p>
-                <p>Please check Google Apps Script deployment and try again.</p>
-            </div>
-        `;
-    }
+    const leads = await fetchLeads();
+    const total = leads.length;
+    const newLeads = leads.filter(l => l.Status === 'new' || l.Status === 'pending_payment').length;
+    const sent = leads.filter(l => l.Status === 'sent').length;
+    const paid = leads.filter(l => l['Payment Status'] === 'paid' || l['Payment Status'] === 'confirmed').length;
+    document.getElementById('adminContent').innerHTML = `
+        <div class="quick-actions"><button class="btn" onclick="alert('Export CSV')"><i class="fas fa-download"></i> Export CSV</button><button class="btn" onclick="alert('Mass message')"><i class="fas fa-bullhorn"></i> Mass message</button><button class="btn" onclick="alert('Backup created')"><i class="fas fa-database"></i> Backup</button></div>
+        <div class="stats-cards"><div class="stat-card"><div class="stat-number">${total}</div><div>${translations[currentLang].stats_total}</div></div><div class="stat-card"><div class="stat-number">${newLeads}</div><div>${translations[currentLang].stats_new}</div></div><div class="stat-card"><div class="stat-number">${sent}</div><div>${translations[currentLang].stats_sent}</div></div><div class="stat-card"><div class="stat-number">${paid}</div><div>${translations[currentLang].stats_paid}</div></div></div>
+        <canvas id="leadsChart" width="400" height="200"></canvas>
+    `;
+    new Chart(document.getElementById('leadsChart'),{type:'line',data:{labels:['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],datasets:[{label:'Leads',data:[Math.floor(total*0.2),Math.floor(total*0.3),Math.floor(total*0.1),Math.floor(total*0.4),Math.floor(total*0.2),Math.floor(total*0.5),Math.floor(total*0.3)],borderColor:'var(--gold)',fill:false}]}});
 }
 
 function escapeHtml(str) { return String(str).replace(/[&<>]/g, function(m) { if (m === '&') return '&amp;'; if (m === '<') return '&lt;'; if (m === '>') return '&gt;'; return m; }); }
@@ -2690,41 +2433,65 @@ async function renderTemplatesManager() {
     });
 }
 
-async function renderSettings(){ 
-    document.getElementById('adminContent').innerHTML = `<h3>⚙️ Settings</h3>
-    <div style="margin-bottom: 20px;">
-        <label>Admin email:</label>
-        <input class="search-input" value="admin@uniquewebstudio.ru" style="width: 100%; margin-bottom: 10px;">
-        
-        <label>VK group link:</label>
-        <input class="search-input" value="https://vk.com/unique__business" style="width: 100%; margin-bottom: 10px;">
-        
-        <label>Google Apps Script URL:</label>
-        <input class="search-input" id="scriptUrlInput" value="${SCRIPT_URL}" style="width: 100%; margin-bottom: 10px;">
-        
-        <button class="btn" onclick="saveSettings()">Save Settings</button>
-        <div id="settingsResult" style="margin-top: 15px;"></div>
-    </div>`;
+async function renderImageManager() {
+    const t = translations[currentLang];
+    const serviceNames = translations[currentLang].services.map(s => s.title);
+    const portfolioItems = Object.keys(translations[currentLang].portfolio_items);
+    const blogPosts = translations[currentLang].blog_posts;
+    let html = `<h3>🖼️ ${t.tab_images || 'Image Manager'}</h3><p>Set custom image URLs for services, portfolio items and blog posts. Leave empty to use default SVG.</p><div style="margin-bottom: 30px;"><h4>Services</h4>`;
+    serviceNames.forEach(name => { html += `<div style="margin-bottom: 15px;"><label>${name}:</label><input type="text" id="img_service_${name.replace(/\s/g, '_')}" class="search-input" placeholder="Image URL (jpg/png)" value="${customImages.services[name] || ''}" style="width:100%;"></div>`; });
+    html += `<h4>Portfolio</h4>`;
+    portfolioItems.forEach(item => { html += `<div style="margin-bottom: 15px;"><label>${item}:</label><input type="text" id="img_portfolio_${item.replace(/\s/g, '_')}" class="search-input" placeholder="Image URL" value="${customImages.portfolio[item] || ''}" style="width:100%;"></div>`; });
+    html += `<h4>Blog Posts</h4>`;
+    blogPosts.forEach((post, idx) => { html += `<div style="margin-bottom: 15px;"><label>Post #${idx+1} (${post.title}):</label><input type="text" id="img_blog_${idx}" class="search-input" placeholder="Image URL" value="${customImages.blog[idx] || ''}" style="width:100%;"></div>`; });
+    html += `<button class="btn" id="saveImagesBtn">💾 Save All Images</button><div id="imageManagerResult"></div>`;
+    document.getElementById('adminContent').innerHTML = html;
+    document.getElementById('saveImagesBtn').addEventListener('click', () => {
+        serviceNames.forEach(name => { let val = document.getElementById(`img_service_${name.replace(/\s/g, '_')}`).value.trim(); if(val) customImages.services[name] = val; else delete customImages.services[name]; });
+        portfolioItems.forEach(item => { let val = document.getElementById(`img_portfolio_${item.replace(/\s/g, '_')}`).value.trim(); if(val) customImages.portfolio[item] = val; else delete customImages.portfolio[item]; });
+        blogPosts.forEach((_, idx) => { let val = document.getElementById(`img_blog_${idx}`).value.trim(); if(val) customImages.blog[idx] = val; else delete customImages.blog[idx]; });
+        localStorage.setItem('customImages', JSON.stringify(customImages));
+        document.getElementById('imageManagerResult').innerHTML = '<span style="color:green;">✅ Images saved! Refresh page to see changes.</span>';
+        renderServices(); renderPortfolio(currentFilter, document.getElementById('portfolioSearch')?.value||''); renderBlog(); renderTemplatesPage();
+    });
 }
 
-function saveSettings() {
-    const scriptUrl = document.getElementById('scriptUrlInput').value;
-    if (scriptUrl && scriptUrl.includes('script.google.com')) {
-        localStorage.setItem('apps_script_url_override', scriptUrl);
-        SCRIPT_URL = scriptUrl;
-        document.getElementById('settingsResult').innerHTML = '<span style="color:green;">✅ Settings saved!</span>';
-    } else {
-        document.getElementById('settingsResult').innerHTML = '<span style="color:red;">❌ Please enter a valid Google Apps Script URL</span>';
-    }
+async function renderAnalytics() { document.getElementById('adminContent').innerHTML = `<h3>📊 Analytics</h3><canvas id="conversionChart"></canvas><p>Conversion rate: 18%</p><canvas id="sourceChart"></canvas>`; new Chart(document.getElementById('conversionChart'),{type:'bar',data:{labels:['Views','Leads','Payments'],datasets:[{label:'',data:[100,leadsData.length,leadsData.filter(l=>l['Payment Status']==='paid').length],backgroundColor:'var(--gold)'}]}}); new Chart(document.getElementById('sourceChart'),{type:'pie',data:{labels:['VK','Telegram','Site','Ads'],datasets:[{data:[40,25,20,15],backgroundColor:['#C8A96A','#A67B5A','#5E3A2C','#B58C48']}]}}); }
+async function renderSEO() { document.getElementById('adminContent').innerHTML = `<h3>🔍 SEO Meta Tags</h3><label>Title:</label><input class="search-input" value="Unique Web Studio | Website Creation"><label>Meta description:</label><textarea class="search-input">Professional website development, high conversion.</textarea><button class="btn">Save</button>`; }
+async function renderBackup() { document.getElementById('adminContent').innerHTML = `<h3>💾 Backup</h3><button class="btn" onclick="alert('Backup created')">Create backup</button><button class="btn" onclick="alert('Restore from backup')">Restore</button><p>Last backup: 2025-04-04</p>`; }
+async function renderNotifications() { document.getElementById('adminContent').innerHTML = `<h3>🔔 Notification settings</h3><label><input type="checkbox"> Email on new lead</label><label><input type="checkbox"> Telegram bot</label><label><input type="checkbox"> Push notifications</label><button class="btn">Save</button>`; }
+async function renderFollowUp(){ document.getElementById('adminContent').innerHTML = `<h3>⏰ Automatic reminders</h3><label>Intervals (days):</label><input class="search-input" value="2,7,14"><label>Message text:</label><textarea class="search-input">Hello! You haven't paid for the website yet? 15% discount valid until the end of the week.</textarea><button class="btn">Save</button>`; }
+async function renderScraper(){ document.getElementById('adminContent').innerHTML = `<h3>🤖 Yandex Maps scraper</h3><button class="btn" onclick="alert('Scraping started (backend required)')">Start parsing</button><button class="btn" onclick="alert('Stopped')">Stop</button><p>Last run: 2025-04-04 10:23</p>`; }
+async function renderTickets(){ document.getElementById('adminContent').innerHTML = `<h3>🎫 Support tickets</h3><div class="admin-item"><strong>Question from Ivan</strong><br>Cannot pay for order #123.<button class="btn-icon"><i class="fas fa-reply"></i></button></div>`; }
+async function renderSettings(){ document.getElementById('adminContent').innerHTML = `<h3>⚙️ General settings</h3><label>Admin email:</label><input class="search-input" value="admin@uniquewebstudio.ru"><label>VK group link:</label><input class="search-input" value="https://vk.com/unique__business"><button class="btn">Save</button>`; }
+async function renderLogs(){ document.getElementById('adminContent').innerHTML = `<h3>📜 System logs</h3><div class="log-area">[2025-04-04 10:23] Scraping started<br>[2025-04-04 09:15] New demo request<br>[2025-04-03 22:10] Payment #124</div><button class="btn" onclick="alert('Logs cleared')">Clear logs</button>`; }
+async function renderTextEditor(){
+    const ru = translations.ru; const en = translations.en;
+    document.getElementById('adminContent').innerHTML = `<div class="admin-text-editor"><h3>✏️ Text Editor (Russian version)</h3><label>Hero Title (RU):</label><input type="text" id="heroTitleRu" class="search-input" value="${ru.hero_title.replace(/"/g, '&quot;')}"><label>Hero Description (RU):</label><textarea id="heroDescRu" rows="2" class="search-input">${ru.hero_desc}</textarea><label>Services Title (RU):</label><input type="text" id="servicesTitleRu" class="search-input" value="${ru.services_title}"><label>Portfolio Title (RU):</label><input type="text" id="portfolioTitleRu" class="search-input" value="${ru.portfolio_title}"><label>Blog Title (RU):</label><input type="text" id="blogTitleRu" class="search-input" value="${ru.blog_title}"><label>Reviews Title (RU):</label><input type="text" id="reviewsTitleRu" class="search-input" value="${ru.reviews_title}"><label>Edit Section Title (RU):</label><input type="text" id="editTitleRu" class="search-input" value="${ru.edit_title}"><label>Contact Title (RU):</label><input type="text" id="contactTitleRu" class="search-input" value="${ru.contact_title}"><label>Footer Copyright (RU):</label><input type="text" id="footerCopyrightRu" class="search-input" value="${ru.footer_copyright}"><label>Service 1 (Title, desc, price):</label><input type="text" id="service1TitleRu" value="${ru.services[0].title}"><input type="text" id="service1DescRu" value="${ru.services[0].desc}"><input type="text" id="service1PriceRu" value="${ru.services[0].price}"><label>Service 2:</label><input type="text" id="service2TitleRu" value="${ru.services[1].title}"><input type="text" id="service2DescRu" value="${ru.services[1].desc}"><input type="text" id="service2PriceRu" value="${ru.services[1].price}"><label>Service 3:</label><input type="text" id="service3TitleRu" value="${ru.services[2].title}"><input type="text" id="service3DescRu" value="${ru.services[2].desc}"><input type="text" id="service3PriceRu" value="${ru.services[2].price}"><label>Service 4 (Website Edit):</label><input type="text" id="service4TitleRu" value="${ru.services[3].title}"><input type="text" id="service4DescRu" value="${ru.services[3].desc}"><input type="text" id="service4PriceRu" value="${ru.services[3].price}"><hr><h3>English version</h3><label>Hero Title (EN):</label><input type="text" id="heroTitleEn" class="search-input" value="${en.hero_title.replace(/"/g, '&quot;')}"><label>Hero Description (EN):</label><textarea id="heroDescEn" rows="2" class="search-input">${en.hero_desc}</textarea><label>Services Title (EN):</label><input type="text" id="servicesTitleEn" class="search-input" value="${en.services_title}"><label>Portfolio Title (EN):</label><input type="text" id="portfolioTitleEn" class="search-input" value="${en.portfolio_title}"><label>Blog Title (EN):</label><input type="text" id="blogTitleEn" class="search-input" value="${en.blog_title}"><label>Reviews Title (EN):</label><input type="text" id="reviewsTitleEn" class="search-input" value="${en.reviews_title}"><label>Edit Section Title (EN):</label><input type="text" id="editTitleEn" class="search-input" value="${en.edit_title}"><label>Contact Title (EN):</label><input type="text" id="contactTitleEn" class="search-input" value="${en.contact_title}"><label>Footer Copyright (EN):</label><input type="text" id="footerCopyrightEn" class="search-input" value="${en.footer_copyright}"><label>Service 1:</label><input type="text" id="service1TitleEn" value="${en.services[0].title}"><input type="text" id="service1DescEn" value="${en.services[0].desc}"><input type="text" id="service1PriceEn" value="${en.services[0].price}"><label>Service 2:</label><input type="text" id="service2TitleEn" value="${en.services[1].title}"><input type="text" id="service2DescEn" value="${en.services[1].desc}"><input type="text" id="service2PriceEn" value="${en.services[1].price}"><label>Service 3:</label><input type="text" id="service3TitleEn" value="${en.services[2].title}"><input type="text" id="service3DescEn" value="${en.services[2].desc}"><input type="text" id="service3PriceEn" value="${en.services[2].price}"><label>Service 4 (Website Edit):</label><input type="text" id="service4TitleEn" value="${en.services[3].title}"><input type="text" id="service4DescEn" value="${en.services[3].desc}"><input type="text" id="service4PriceEn" value="${en.services[3].price}"><hr><button class="btn" id="saveAllTextsBtn">💾 Save all changes</button><div id="editorResult" style="margin-top:15px;"></div></div>`;
+    document.getElementById('saveAllTextsBtn').addEventListener('click',()=>{
+        translations.ru.hero_title = document.getElementById('heroTitleRu').value; translations.ru.hero_desc = document.getElementById('heroDescRu').value; translations.ru.services_title = document.getElementById('servicesTitleRu').value; translations.ru.portfolio_title = document.getElementById('portfolioTitleRu').value; translations.ru.blog_title = document.getElementById('blogTitleRu').value; translations.ru.reviews_title = document.getElementById('reviewsTitleRu').value; translations.ru.edit_title = document.getElementById('editTitleRu').value; translations.ru.contact_title = document.getElementById('contactTitleRu').value; translations.ru.footer_copyright = document.getElementById('footerCopyrightRu').value;
+        translations.ru.services = [ { title: document.getElementById('service1TitleRu').value, desc: document.getElementById('service1DescRu').value, price: document.getElementById('service1PriceRu').value, btn: "Заказать" }, { title: document.getElementById('service2TitleRu').value, desc: document.getElementById('service2DescRu').value, price: document.getElementById('service2PriceRu').value, btn: "Заказать" }, { title: document.getElementById('service3TitleRu').value, desc: document.getElementById('service3DescRu').value, price: document.getElementById('service3PriceRu').value, btn: "Заказать" }, { title: document.getElementById('service4TitleRu').value, desc: document.getElementById('service4DescRu').value, price: document.getElementById('service4PriceRu').value, btn: "Заказать" } ];
+        translations.en.hero_title = document.getElementById('heroTitleEn').value; translations.en.hero_desc = document.getElementById('heroDescEn').value; translations.en.services_title = document.getElementById('servicesTitleEn').value; translations.en.portfolio_title = document.getElementById('portfolioTitleEn').value; translations.en.blog_title = document.getElementById('blogTitleEn').value; translations.en.reviews_title = document.getElementById('reviewsTitleEn').value; translations.en.edit_title = document.getElementById('editTitleEn').value; translations.en.contact_title = document.getElementById('contactTitleEn').value; translations.en.footer_copyright = document.getElementById('footerCopyrightEn').value;
+        translations.en.services = [ { title: document.getElementById('service1TitleEn').value, desc: document.getElementById('service1DescEn').value, price: document.getElementById('service1PriceEn').value, btn: "Order" }, { title: document.getElementById('service2TitleEn').value, desc: document.getElementById('service2DescEn').value, price: document.getElementById('service2PriceEn').value, btn: "Order" }, { title: document.getElementById('service3TitleEn').value, desc: document.getElementById('service3DescEn').value, price: document.getElementById('service3PriceEn').value, btn: "Order" }, { title: document.getElementById('service4TitleEn').value, desc: document.getElementById('service4DescEn').value, price: document.getElementById('service4PriceEn').value, btn: "Order" } ];
+        localStorage.setItem('custom_translations_ru', JSON.stringify(translations.ru)); localStorage.setItem('custom_translations_en', JSON.stringify(translations.en)); applyLanguage(currentLang); document.getElementById('editorResult').innerHTML = '<span style="color:green;">✅ All texts updated!</span>';
+    });
 }
-
-
 
 function renderActiveTab(){
     if(currentAdminTab==='dashboard') renderDashboard();
     else if(currentAdminTab==='leads') renderLeadsTable();
-    else if(currentAdminTab==='templates_manager') renderTemplatesManager();
+    else if(currentAdminTab==='analytics') renderAnalytics();
+    else if(currentAdminTab==='seo') renderSEO();
+    else if(currentAdminTab==='backup') renderBackup();
+    else if(currentAdminTab==='notifications') renderNotifications();
+    else if(currentAdminTab==='followup') renderFollowUp();
+    else if(currentAdminTab==='scraper') renderScraper();
+    else if(currentAdminTab==='tickets') renderTickets();
     else if(currentAdminTab==='settings') renderSettings();
+    else if(currentAdminTab==='logs') renderLogs();
+    else if(currentAdminTab==='editor') renderTextEditor();
+    else if(currentAdminTab==='images') renderImageManager();
+    else if(currentAdminTab==='templates_manager') renderTemplatesManager();
 }
 document.querySelectorAll('.admin-tab').forEach(tab=>{ tab.addEventListener('click',()=>{ document.querySelectorAll('.admin-tab').forEach(t=>t.classList.remove('active')); tab.classList.add('active'); currentAdminTab = tab.getAttribute('data-tab'); renderActiveTab(); }); });
 document.getElementById('adminToggleBtn').addEventListener('click',()=>{ const pwd = prompt('Password:'); if(pwd === "1212"){ document.getElementById('adminPanel').classList.add('open'); renderActiveTab(); } else alert('Wrong password'); });
@@ -2807,3 +2574,378 @@ console.log('✅ FINAL VERSION: All features integrated, leads display fixed, te
 </script>
 </body>
     </html>
+
+
+// ==================== ADVANCED ANIMATION CONTROLS ====================
+(function initAdvancedAnimations() {
+    console.log('🎨 Initializing advanced animations...');
+    
+    // Initialize card animation delays
+    document.querySelectorAll('.service-card, .portfolio-card, .template-card').forEach((card, index) => {
+        card.style.setProperty('--card-index', index);
+    });
+    
+    // Initialize badge animation delays
+    document.querySelectorAll('.hero-badge').forEach((badge, index) => {
+        badge.style.setProperty('--badge-index', index);
+    });
+    
+    // Initialize floating button animation delays
+    document.querySelectorAll('.floating-btn').forEach((btn, index) => {
+        btn.style.setProperty('--float-index', index);
+    });
+    
+    // Ripple effect for buttons
+    document.querySelectorAll('.btn').forEach(button => {
+        button.addEventListener('click', function(e) {
+            const ripple = document.createElement('span');
+            const rect = this.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            const x = e.clientX - rect.left - size / 2;
+            const y = e.clientY - rect.top - size / 2;
+            
+            ripple.style.cssText = `
+                position: absolute;
+                border-radius: 50%;
+                background: rgba(255, 255, 255, 0.7);
+                transform: scale(0);
+                animation: ripple 0.6s linear;
+                width: ${size}px;
+                height: ${size}px;
+                top: ${y}px;
+                left: ${x}px;
+                pointer-events: none;
+            `;
+            
+            this.appendChild(ripple);
+            setTimeout(() => ripple.remove(), 600);
+        });
+    });
+    
+    // Parallax effect for hero section
+    window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        const hero = document.querySelector('.hero');
+        if (hero) {
+            const rate = scrolled * -0.5;
+            hero.style.transform = `translateY(${rate}px)`;
+        }
+    });
+    
+    // Intersection Observer for staggered animations
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                
+                // Add sequential delay for children
+                if (entry.target.classList.contains('services-grid') || 
+                    entry.target.classList.contains('portfolio-grid') ||
+                    entry.target.classList.contains('templates-grid')) {
+                    const children = entry.target.children;
+                    Array.from(children).forEach((child, index) => {
+                        child.style.transitionDelay = `${index * 0.1}s`;
+                        child.classList.add('stagger-item', 'visible');
+                    });
+                }
+            }
+        });
+    }, observerOptions);
+    
+    // Observe all sections and cards
+    document.querySelectorAll('section, .stagger-item').forEach(el => {
+        observer.observe(el);
+    });
+    
+    // Mouse move parallax for cards
+    document.addEventListener('mousemove', (e) => {
+        const cards = document.querySelectorAll('.service-card, .portfolio-card, .template-card');
+        cards.forEach(card => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            
+            const rotateY = (x - centerX) / 25;
+            const rotateX = (centerY - y) / 25;
+            
+            card.style.transform = `
+                perspective(1000px) 
+                rotateX(${rotateX}deg) 
+                rotateY(${rotateY}deg) 
+                translateY(var(--float-y, 0px))
+            `;
+        });
+    });
+    
+    // Animated counter for stats
+    function animateCounter(element, target) {
+        let current = 0;
+        const increment = target / 100;
+        const timer = setInterval(() => {
+            current += increment;
+            if (current >= target) {
+                current = target;
+                clearInterval(timer);
+            }
+            element.textContent = Math.floor(current);
+        }, 20);
+    }
+    
+    // Initialize stat counters when in view
+    const statObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const numberElement = entry.target.querySelector('.stat-number');
+                if (numberElement && numberElement.dataset.count) {
+                    const target = parseInt(numberElement.dataset.count);
+                    animateCounter(numberElement, target);
+                }
+                statObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.5 });
+    
+    document.querySelectorAll('.stat-item').forEach(stat => {
+        statObserver.observe(stat);
+    });
+    
+    // Hover sound effects (optional)
+    document.querySelectorAll('.btn, .floating-btn, .service-card').forEach(el => {
+        el.addEventListener('mouseenter', () => {
+            el.style.animationPlayState = 'running';
+        });
+        
+        el.addEventListener('mouseleave', () => {
+            el.style.animationPlayState = 'paused';
+        });
+    });
+    
+    console.log('✅ Advanced animations initialized');
+})();
+
+// ==================== PERFORMANCE OPTIMIZATION ====================
+// Debounce scroll events
+let scrollTimeout;
+window.addEventListener('scroll', () => {
+    clearTimeout(scrollTimeout);
+    scrollTimeout = setTimeout(() => {
+        // Performance cleanup
+        document.querySelectorAll('.btn-ripple').forEach(ripple => {
+            if (ripple.parentNode) ripple.parentNode.removeChild(ripple);
+        });
+    }, 100);
+});
+
+console.log('🚀 FINAL VERSION: Advanced animations integrated, motion design activated, all visual effects optimized for performance.');
+
+// ==================== ULTRA ADVANCED MOTION CONTROLS ====================
+(function initUltraAdvancedAnimations() {
+    console.log('🎭 Initializing ultra advanced motion effects...');
+    
+    // Add holographic scanline
+    const scanline = document.createElement('div');
+    scanline.className = 'hologram-scanline';
+    document.body.appendChild(scanline);
+    
+    // Add premium card class to service cards
+    document.querySelectorAll('.service-card, .template-card').forEach(card => {
+        card.classList.add('premium-card');
+    });
+    
+    // Add liquid effect to hero badges
+    document.querySelectorAll('.hero-badge').forEach(badge => {
+        badge.classList.add('liquid-element');
+    });
+    
+    // Add glitch effect to important headings
+    document.querySelectorAll('h2').forEach(heading => {
+        heading.classList.add('glitch-text');
+    });
+    
+    // Add reveal animation to hero title
+    const heroTitle = document.querySelector('.hero .hero-title');
+    if (heroTitle) {
+        heroTitle.classList.add('reveal-text');
+    }
+    
+    // Add blur-in effect to cards with delay
+    document.querySelectorAll('.service-card, .portfolio-card, .template-card').forEach((card, index) => {
+        card.classList.add('blur-in');
+        card.style.animationDelay = `${index * 0.1}s`;
+    });
+    
+    // Particle explosion on button click
+    document.querySelectorAll('.btn').forEach(button => {
+        button.addEventListener('click', function(e) {
+            createParticleExplosion(this, e);
+        });
+    });
+    
+    // Create particle explosion effect
+    function createParticleExplosion(element, event) {
+        const rect = element.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        
+        for (let i = 0; i < 20; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.setProperty('--particle-x', (Math.random() * 2 - 1).toFixed(2));
+            particle.style.setProperty('--particle-y', (Math.random() * 2 - 1).toFixed(2));
+            particle.style.left = `${centerX}px`;
+            particle.style.top = `${centerY}px`;
+            particle.style.animationDelay = `${i * 0.05}s`;
+            
+            // Random color from theme
+            const colors = ['var(--gold)', 'var(--gold-dark)', 'var(--brown)', 'var(--brown-light)'];
+            particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+            
+            document.body.appendChild(particle);
+            
+            // Remove particle after animation
+            setTimeout(() => {
+                if (particle.parentNode) {
+                    particle.parentNode.removeChild(particle);
+                }
+            }, 1000);
+        }
+    }
+    
+    // Interactive mouse trail effect
+    const trailContainer = document.createElement('div');
+    trailContainer.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 9998;
+    `;
+    document.body.appendChild(trailContainer);
+    
+    let trailPoints = [];
+    const maxTrailPoints = 20;
+    
+    document.addEventListener('mousemove', (e) => {
+        const trailPoint = document.createElement('div');
+        trailPoint.style.cssText = `
+            position: fixed;
+            width: 6px;
+            height: 6px;
+            background: var(--gold);
+            border-radius: 50%;
+            left: ${e.clientX - 3}px;
+            top: ${e.clientY - 3}px;
+            pointer-events: none;
+            opacity: 0.7;
+            z-index: 9998;
+        `;
+        
+        trailContainer.appendChild(trailPoint);
+        trailPoints.push(trailPoint);
+        
+        // Fade out and remove old points
+        if (trailPoints.length > maxTrailPoints) {
+            const oldPoint = trailPoints.shift();
+            if (oldPoint.parentNode) {
+                oldPoint.style.transition = 'opacity 0.5s ease';
+                oldPoint.style.opacity = '0';
+                setTimeout(() => {
+                    if (oldPoint.parentNode) {
+                        oldPoint.parentNode.removeChild(oldPoint);
+                    }
+                }, 500);
+            }
+        }
+        
+        // Auto-remove after delay
+        setTimeout(() => {
+            if (trailPoint.parentNode) {
+                trailPoint.style.transition = 'opacity 0.5s ease';
+                trailPoint.style.opacity = '0';
+                setTimeout(() => {
+                    if (trailPoint.parentNode) {
+                        trailPoint.parentNode.removeChild(trailPoint);
+                    }
+                    trailPoints = trailPoints.filter(p => p !== trailPoint);
+                }, 500);
+            }
+        }, 1000);
+    });
+    
+    // Dynamic background gradient based on mouse position
+    document.addEventListener('mousemove', (e) => {
+        const x = e.clientX / window.innerWidth;
+        const y = e.clientY / window.innerHeight;
+        
+        document.body.style.setProperty('--mouse-x', x);
+        document.body.style.setProperty('--mouse-y', y);
+        
+        // Update gradient position
+        const gradientX = x * 100;
+        const gradientY = y * 100;
+        
+        document.body.style.background = `
+            radial-gradient(circle at ${gradientX}% ${gradientY}%, 
+                rgba(200, 169, 106, 0.15) 0%, 
+                transparent 50%),
+            radial-gradient(circle at ${100 - gradientX}% ${100 - gradientY}%, 
+                rgba(166, 123, 90, 0.1) 0%, 
+                transparent 60%),
+            var(--bg-body)
+        `;
+    });
+    
+    // Audio feedback for interactions (optional)
+    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    
+    function playInteractionSound(frequency = 440, duration = 0.1) {
+        try {
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            
+            oscillator.frequency.value = frequency;
+            oscillator.type = 'sine';
+            
+            gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + duration);
+            
+            oscillator.start(audioContext.currentTime);
+            oscillator.stop(audioContext.currentTime + duration);
+        } catch (e) {
+            // Audio not supported or user blocked
+        }
+    }
+    
+    // Add sound to button clicks
+    document.querySelectorAll('.btn').forEach(button => {
+        button.addEventListener('click', () => {
+            playInteractionSound(523.25, 0.1); // C5 note
+        });
+        
+        button.addEventListener('mouseenter', () => {
+            playInteractionSound(392, 0.05); // G4 note
+        });
+    });
+    
+    // Add sound to card hovers
+    document.querySelectorAll('.service-card, .portfolio-card, .template-card').forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            playInteractionSound(329.63, 0.05); // E4 note
+        });
+    });
+    
+    console.log('🎭 Ultra advanced motion effects initialized');
+})();
