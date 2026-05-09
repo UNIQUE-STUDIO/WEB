@@ -1360,7 +1360,7 @@ async function initScriptEndpoint() {
             candidates.push(origin + '/' + repo + '/script-config.json');
         }
     }
-    candidates.push('script-config.json');
+    candidates.push('https://unique-studio.github.io/WEB/script-config.json');
 
     for (const cfgUrl of candidates) {
         try {
@@ -2005,20 +2005,12 @@ async function sendToAppsScript(formData, action) {
     });
 }
 
-// ==================== fetchLeads (optimized version) ====================
+// ==================== fetchLeads (working version) ====================
 async function fetchLeads() {
     try {
         const res = await fetch(SCRIPT_URL + '?t=' + Date.now());
         const data = await res.json();
-        
-        // فقط لیدهای سایت را نمایش بده (نه لیدهای ربات از Apify)
-        // لیدهای ربات دارای Request Type 'scraped' هستند
-        const siteLeads = (data.leads || []).filter(lead => {
-            const requestType = lead['Request Type'] || '';
-            return requestType !== 'scraped'; // حذف لیدهای ربات
-        });
-        
-        return normalizeLeadRows(siteLeads);
+        return normalizeLeadRows(data.leads || []);
     } catch (e) {
         console.warn('fetch failed, using iframe fallback', e);
         return new Promise((resolve) => {
@@ -2035,12 +2027,7 @@ async function fetchLeads() {
                 try {
                     const txt = iframe.contentDocument?.body?.innerText || '';
                     const data = txt.trim().startsWith('{') ? JSON.parse(txt) : { leads: [] };
-                    // فقط لیدهای سایت را نمایش بده
-                    const siteLeads = (data.leads || []).filter(lead => {
-                        const requestType = lead['Request Type'] || '';
-                        return requestType !== 'scraped';
-                    });
-                    resolve(normalizeLeadRows(siteLeads));
+                    resolve(normalizeLeadRows(data.leads || []));
                 } catch(e) { resolve([]); }
                 form.remove(); iframe.remove();
             };
@@ -2051,49 +2038,17 @@ async function fetchLeads() {
 }
 
 function normalizeLeadRows(rows) {
-    return rows.map(lead => {
-        const normalized = {
-            ...lead,
-            'Email': lead['Email'] || lead['I'] || lead['Field11'] || lead['Field12'] || '',
-            'Category': lead['Category'] || lead['F'] || lead['Field13'] || '',
-            'Budget': lead['Budget'] || lead['Field14'] || lead['M'] || '',
-            'Preferred Language': lead['Preferred Language'] || lead['Language'] || lead['Preferred Language'] || 'en',
-            'Created At': lead['Created At'] || lead['Timestamp'] || '',
-            'Lead ID': lead['Lead ID'] || 'LEAD_' + Math.random().toString(36).substr(2, 10).toUpperCase(),
-            'Status': lead['Status'] || 'new',
-            'Payment Status': lead['Payment Status'] || 'unpaid',
-            'VK URL': lead['VK URL'] || lead['vk_url'] || lead['vkontakte'] || '',
-            'Telegram URL': lead['Telegram URL'] || lead['telegram'] || lead['t.me'] || '',
-            'WhatsApp URL': lead['WhatsApp URL'] || lead['whatsapp'] || lead['wa.me'] || '',
-            'Instagram URL': lead['Instagram URL'] || lead['instagram'] || '',
-            'Website': lead['Website'] || lead['website'] || lead['domain'] || lead['L'] || '',
-            'Business Name': lead['Business Name'] || lead['Name'] || lead['title'] || lead['name'] || lead['placeName'] || lead['businessName'] || '',
-            'City': lead['City'] || lead['city'] || lead['address'] || '',
-            'Address': lead['Address'] || lead['address'] || lead['formattedAddress'] || '',
-            'Phone': lead['Phone'] || lead['phone'] || lead['phoneNumber'] || lead['primaryPhone'] || lead['contactPhone'] || lead['phones'] || lead['phoneNumbers'] || '',
-            'Description': lead['Description'] || lead['description'] || lead['notes'] || lead['message'] || '',
-            'Rating': lead['Rating'] || lead['rating'] || '',
-            'Reviews Count': lead['Reviews Count'] || lead['reviewsCount'] || lead['reviewCount'] || '',
-            'Working Hours': lead['Working Hours'] || lead['workingHours'] || lead['hours'] || '',
-            'Category': lead['Category'] || lead['category'] || lead['service'] || lead['F'] || '',
-            'Price Level': lead['Price Level'] || lead['priceLevel'] || '',
-            'Is Claimed': lead['Is Claimed'] || lead['isClaimed'] || '',
-            'Social Links JSON': lead['Social Links JSON'] || lead['socialLinks'] || '',
-            'Apify Raw JSON': lead['Apify Raw JSON'] || lead['raw'] || ''
-        };
-        
-        // اگر VK URL خالی است، سعی کن از فیلدهای مختلف استخراج کن
-        if (!normalized['VK URL']) {
-            for (const key in lead) {
-                if (key.toLowerCase().includes('vk') || key.toLowerCase().includes('vkontakte')) {
-                    normalized['VK URL'] = lead[key];
-                    break;
-                }
-            }
-        }
-        
-        return normalized;
-    });
+    return rows.map(lead => ({
+        ...lead,
+        'Email': lead['Email'] || lead['I'] || lead['Field11'] || lead['Field12'] || '',
+        'Category': lead['Category'] || lead['F'] || lead['Field13'] || '',
+        'Budget': lead['Budget'] || lead['Field14'] || '',
+        'Preferred Language': lead['Preferred Language'] || lead['Language'] || 'en',
+        'Created At': lead['Created At'] || lead['Timestamp'] || '',
+        'Lead ID': lead['Lead ID'] || 'LEAD_' + Math.random().toString(36).substr(2, 10).toUpperCase(),
+        'Status': lead['Status'] || 'new',
+        'Payment Status': lead['Payment Status'] || 'unpaid'
+    }));
 }
 
 function getFullPhone(phoneCodeSelectId, phoneInputId) {
