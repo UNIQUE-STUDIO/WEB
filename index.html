@@ -1960,9 +1960,6 @@ document.getElementById('fillFromVkBtn')?.addEventListener('click',()=>alert('De
 // ==================== sendToAppsScript (IFRAME - reliable) ====================
 async function sendToAppsScript(formData, action) {
     formData.append('action', action);
-    // #region agent log
-    fetch('http://127.0.0.1:7499/ingest/9985f8db-3653-476d-94af-7f23226d40d9',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'14b712'},body:JSON.stringify({sessionId:'14b712',location:'web_index.html:sendToAppsScript:entry',message:'form submit',data:{action:action,fieldCount:Array.from(formData.keys()).length,hypothesisId:'A-B'},timestamp:Date.now(),hypothesisId:'A'})}).catch(()=>{});
-    // #endregion
     return new Promise((resolve) => {
         const iframeName = 'ifr_' + Date.now();
         const iframe = document.createElement('iframe');
@@ -1987,10 +1984,6 @@ async function sendToAppsScript(formData, action) {
             let responseText = '';
             try {
                 responseText = iframe.contentDocument?.body?.innerText || '';
-                // #region agent log
-                const preview = (responseText || '').trim().substring(0, 200);
-                fetch('http://127.0.0.1:7499/ingest/9985f8db-3653-476d-94af-7f23226d40d9',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'14b712'},body:JSON.stringify({sessionId:'14b712',location:'web_index.html:sendToAppsScript:iframe',message:'iframe response',data:{action:action,startsJson:preview.startsWith('{'),preview:preview,hypothesisId:'A'},timestamp:Date.now(),hypothesisId:'A'})}).catch(()=>{});
-                // #endregion
                 const result = responseText.trim().startsWith('{') ? JSON.parse(responseText) : { success: true };
                 resolve(result);
             } catch(e) {
@@ -2477,25 +2470,107 @@ async function renderTextEditor(){
     });
 }
 
-function renderActiveTab(){
-    if(currentAdminTab==='dashboard') renderDashboard();
-    else if(currentAdminTab==='leads') renderLeadsTable();
-    else if(currentAdminTab==='analytics') renderAnalytics();
-    else if(currentAdminTab==='seo') renderSEO();
-    else if(currentAdminTab==='backup') renderBackup();
-    else if(currentAdminTab==='notifications') renderNotifications();
-    else if(currentAdminTab==='followup') renderFollowUp();
-    else if(currentAdminTab==='scraper') renderScraper();
-    else if(currentAdminTab==='tickets') renderTickets();
-    else if(currentAdminTab==='settings') renderSettings();
-    else if(currentAdminTab==='logs') renderLogs();
-    else if(currentAdminTab==='editor') renderTextEditor();
-    else if(currentAdminTab==='images') renderImageManager();
-    else if(currentAdminTab==='templates_manager') renderTemplatesManager();
+// =====================================================
+// ====== FIXED ADMIN PANEL – guaranteed open ==========
+// =====================================================
+function renderActiveTab() {
+    const content = document.getElementById('adminContent');
+    if (!content) {
+        console.error('❌ adminContent not found');
+        return;
+    }
+
+    try {
+        switch (currentAdminTab) {
+            case 'dashboard':
+                renderDashboard();
+                break;
+            case 'leads':
+                renderLeadsTable();
+                break;
+            case 'analytics':
+                renderAnalytics();
+                break;
+            case 'seo':
+                renderSEO();
+                break;
+            case 'backup':
+                renderBackup();
+                break;
+            case 'notifications':
+                renderNotifications();
+                break;
+            case 'followup':
+                renderFollowUp();
+                break;
+            case 'scraper':
+                renderScraper();
+                break;
+            case 'tickets':
+                renderTickets();
+                break;
+            case 'settings':
+                renderSettings();
+                break;
+            case 'logs':
+                renderLogs();
+                break;
+            case 'editor':
+                renderTextEditor();
+                break;
+            case 'images':
+                renderImageManager();
+                break;
+            case 'templates_manager':
+                renderTemplatesManager();
+                break;
+            default:
+                content.innerHTML = '<p>✅ Tab ready.</p>';
+        }
+    } catch (e) {
+        console.error('❌ Error in renderActiveTab:', e);
+        content.innerHTML = `<p style="color:red;">⚠️ Error loading tab "${currentAdminTab}": ${e.message}</p>`;
+    }
 }
+
+// -------- Override admin toggle button with safe version --------
+document.getElementById('adminToggleBtn').addEventListener('click', function() {
+    const pwd = prompt('Password:');
+    if (pwd !== "1212") {
+        alert('Wrong password');
+        return;
+    }
+
+    const panel = document.getElementById('adminPanel');
+    const content = document.getElementById('adminContent');
+
+    // Add open class to show panel
+    panel.classList.add('open');
+
+    // If content is empty, show a temporary message
+    if (!content.innerHTML.trim()) {
+        content.innerHTML = '<p>⏳ Loading admin panel...</p>';
+    }
+
+    // Try to render the active tab, catch any error
+    try {
+        renderActiveTab();
+    } catch (e) {
+        console.error('❌ Critical error in renderActiveTab:', e);
+        content.innerHTML = `<p style="color:red;">❌ Failed to load panel: ${e.message}</p>`;
+    }
+});
+
+// -------- Also ensure adminClose works --------
+document.getElementById('adminClose').addEventListener('click', function() {
+    document.getElementById('adminPanel').classList.remove('open');
+});
+
+// =====================================================
+// ====== END OF ADMIN PANEL FIX =======================
+// =====================================================
+
 document.querySelectorAll('.admin-tab').forEach(tab=>{ tab.addEventListener('click',()=>{ document.querySelectorAll('.admin-tab').forEach(t=>t.classList.remove('active')); tab.classList.add('active'); currentAdminTab = tab.getAttribute('data-tab'); renderActiveTab(); }); });
-document.getElementById('adminToggleBtn').addEventListener('click',()=>{ const pwd = prompt('Password:'); if(pwd === "1212"){ document.getElementById('adminPanel').classList.add('open'); renderActiveTab(); } else alert('Wrong password'); });
-document.getElementById('adminClose').addEventListener('click',()=>document.getElementById('adminPanel').classList.remove('open'));
 
 for(let i=0;i<60;i++){ let p=document.createElement('div'); p.classList.add('particle'); let size=Math.random()*12+4; p.style.width=p.style.height=size+'px'; p.style.left=Math.random()*100+'%'; p.style.animationDuration=Math.random()*20+12+'s'; p.style.animationDelay=Math.random()*10+'s'; document.getElementById('particles').appendChild(p); }
 function setupModalLanguageButtons() {
@@ -2574,378 +2649,3 @@ console.log('✅ FINAL VERSION: All features integrated, leads display fixed, te
 </script>
 </body>
     </html>
-
-
-// ==================== ADVANCED ANIMATION CONTROLS ====================
-(function initAdvancedAnimations() {
-    console.log('🎨 Initializing advanced animations...');
-    
-    // Initialize card animation delays
-    document.querySelectorAll('.service-card, .portfolio-card, .template-card').forEach((card, index) => {
-        card.style.setProperty('--card-index', index);
-    });
-    
-    // Initialize badge animation delays
-    document.querySelectorAll('.hero-badge').forEach((badge, index) => {
-        badge.style.setProperty('--badge-index', index);
-    });
-    
-    // Initialize floating button animation delays
-    document.querySelectorAll('.floating-btn').forEach((btn, index) => {
-        btn.style.setProperty('--float-index', index);
-    });
-    
-    // Ripple effect for buttons
-    document.querySelectorAll('.btn').forEach(button => {
-        button.addEventListener('click', function(e) {
-            const ripple = document.createElement('span');
-            const rect = this.getBoundingClientRect();
-            const size = Math.max(rect.width, rect.height);
-            const x = e.clientX - rect.left - size / 2;
-            const y = e.clientY - rect.top - size / 2;
-            
-            ripple.style.cssText = `
-                position: absolute;
-                border-radius: 50%;
-                background: rgba(255, 255, 255, 0.7);
-                transform: scale(0);
-                animation: ripple 0.6s linear;
-                width: ${size}px;
-                height: ${size}px;
-                top: ${y}px;
-                left: ${x}px;
-                pointer-events: none;
-            `;
-            
-            this.appendChild(ripple);
-            setTimeout(() => ripple.remove(), 600);
-        });
-    });
-    
-    // Parallax effect for hero section
-    window.addEventListener('scroll', () => {
-        const scrolled = window.pageYOffset;
-        const hero = document.querySelector('.hero');
-        if (hero) {
-            const rate = scrolled * -0.5;
-            hero.style.transform = `translateY(${rate}px)`;
-        }
-    });
-    
-    // Intersection Observer for staggered animations
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-    
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                
-                // Add sequential delay for children
-                if (entry.target.classList.contains('services-grid') || 
-                    entry.target.classList.contains('portfolio-grid') ||
-                    entry.target.classList.contains('templates-grid')) {
-                    const children = entry.target.children;
-                    Array.from(children).forEach((child, index) => {
-                        child.style.transitionDelay = `${index * 0.1}s`;
-                        child.classList.add('stagger-item', 'visible');
-                    });
-                }
-            }
-        });
-    }, observerOptions);
-    
-    // Observe all sections and cards
-    document.querySelectorAll('section, .stagger-item').forEach(el => {
-        observer.observe(el);
-    });
-    
-    // Mouse move parallax for cards
-    document.addEventListener('mousemove', (e) => {
-        const cards = document.querySelectorAll('.service-card, .portfolio-card, .template-card');
-        cards.forEach(card => {
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            
-            const centerX = rect.width / 2;
-            const centerY = rect.height / 2;
-            
-            const rotateY = (x - centerX) / 25;
-            const rotateX = (centerY - y) / 25;
-            
-            card.style.transform = `
-                perspective(1000px) 
-                rotateX(${rotateX}deg) 
-                rotateY(${rotateY}deg) 
-                translateY(var(--float-y, 0px))
-            `;
-        });
-    });
-    
-    // Animated counter for stats
-    function animateCounter(element, target) {
-        let current = 0;
-        const increment = target / 100;
-        const timer = setInterval(() => {
-            current += increment;
-            if (current >= target) {
-                current = target;
-                clearInterval(timer);
-            }
-            element.textContent = Math.floor(current);
-        }, 20);
-    }
-    
-    // Initialize stat counters when in view
-    const statObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const numberElement = entry.target.querySelector('.stat-number');
-                if (numberElement && numberElement.dataset.count) {
-                    const target = parseInt(numberElement.dataset.count);
-                    animateCounter(numberElement, target);
-                }
-                statObserver.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.5 });
-    
-    document.querySelectorAll('.stat-item').forEach(stat => {
-        statObserver.observe(stat);
-    });
-    
-    // Hover sound effects (optional)
-    document.querySelectorAll('.btn, .floating-btn, .service-card').forEach(el => {
-        el.addEventListener('mouseenter', () => {
-            el.style.animationPlayState = 'running';
-        });
-        
-        el.addEventListener('mouseleave', () => {
-            el.style.animationPlayState = 'paused';
-        });
-    });
-    
-    console.log('✅ Advanced animations initialized');
-})();
-
-// ==================== PERFORMANCE OPTIMIZATION ====================
-// Debounce scroll events
-let scrollTimeout;
-window.addEventListener('scroll', () => {
-    clearTimeout(scrollTimeout);
-    scrollTimeout = setTimeout(() => {
-        // Performance cleanup
-        document.querySelectorAll('.btn-ripple').forEach(ripple => {
-            if (ripple.parentNode) ripple.parentNode.removeChild(ripple);
-        });
-    }, 100);
-});
-
-console.log('🚀 FINAL VERSION: Advanced animations integrated, motion design activated, all visual effects optimized for performance.');
-
-// ==================== ULTRA ADVANCED MOTION CONTROLS ====================
-(function initUltraAdvancedAnimations() {
-    console.log('🎭 Initializing ultra advanced motion effects...');
-    
-    // Add holographic scanline
-    const scanline = document.createElement('div');
-    scanline.className = 'hologram-scanline';
-    document.body.appendChild(scanline);
-    
-    // Add premium card class to service cards
-    document.querySelectorAll('.service-card, .template-card').forEach(card => {
-        card.classList.add('premium-card');
-    });
-    
-    // Add liquid effect to hero badges
-    document.querySelectorAll('.hero-badge').forEach(badge => {
-        badge.classList.add('liquid-element');
-    });
-    
-    // Add glitch effect to important headings
-    document.querySelectorAll('h2').forEach(heading => {
-        heading.classList.add('glitch-text');
-    });
-    
-    // Add reveal animation to hero title
-    const heroTitle = document.querySelector('.hero .hero-title');
-    if (heroTitle) {
-        heroTitle.classList.add('reveal-text');
-    }
-    
-    // Add blur-in effect to cards with delay
-    document.querySelectorAll('.service-card, .portfolio-card, .template-card').forEach((card, index) => {
-        card.classList.add('blur-in');
-        card.style.animationDelay = `${index * 0.1}s`;
-    });
-    
-    // Particle explosion on button click
-    document.querySelectorAll('.btn').forEach(button => {
-        button.addEventListener('click', function(e) {
-            createParticleExplosion(this, e);
-        });
-    });
-    
-    // Create particle explosion effect
-    function createParticleExplosion(element, event) {
-        const rect = element.getBoundingClientRect();
-        const centerX = rect.left + rect.width / 2;
-        const centerY = rect.top + rect.height / 2;
-        
-        for (let i = 0; i < 20; i++) {
-            const particle = document.createElement('div');
-            particle.className = 'particle';
-            particle.style.setProperty('--particle-x', (Math.random() * 2 - 1).toFixed(2));
-            particle.style.setProperty('--particle-y', (Math.random() * 2 - 1).toFixed(2));
-            particle.style.left = `${centerX}px`;
-            particle.style.top = `${centerY}px`;
-            particle.style.animationDelay = `${i * 0.05}s`;
-            
-            // Random color from theme
-            const colors = ['var(--gold)', 'var(--gold-dark)', 'var(--brown)', 'var(--brown-light)'];
-            particle.style.background = colors[Math.floor(Math.random() * colors.length)];
-            
-            document.body.appendChild(particle);
-            
-            // Remove particle after animation
-            setTimeout(() => {
-                if (particle.parentNode) {
-                    particle.parentNode.removeChild(particle);
-                }
-            }, 1000);
-        }
-    }
-    
-    // Interactive mouse trail effect
-    const trailContainer = document.createElement('div');
-    trailContainer.style.cssText = `
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-        z-index: 9998;
-    `;
-    document.body.appendChild(trailContainer);
-    
-    let trailPoints = [];
-    const maxTrailPoints = 20;
-    
-    document.addEventListener('mousemove', (e) => {
-        const trailPoint = document.createElement('div');
-        trailPoint.style.cssText = `
-            position: fixed;
-            width: 6px;
-            height: 6px;
-            background: var(--gold);
-            border-radius: 50%;
-            left: ${e.clientX - 3}px;
-            top: ${e.clientY - 3}px;
-            pointer-events: none;
-            opacity: 0.7;
-            z-index: 9998;
-        `;
-        
-        trailContainer.appendChild(trailPoint);
-        trailPoints.push(trailPoint);
-        
-        // Fade out and remove old points
-        if (trailPoints.length > maxTrailPoints) {
-            const oldPoint = trailPoints.shift();
-            if (oldPoint.parentNode) {
-                oldPoint.style.transition = 'opacity 0.5s ease';
-                oldPoint.style.opacity = '0';
-                setTimeout(() => {
-                    if (oldPoint.parentNode) {
-                        oldPoint.parentNode.removeChild(oldPoint);
-                    }
-                }, 500);
-            }
-        }
-        
-        // Auto-remove after delay
-        setTimeout(() => {
-            if (trailPoint.parentNode) {
-                trailPoint.style.transition = 'opacity 0.5s ease';
-                trailPoint.style.opacity = '0';
-                setTimeout(() => {
-                    if (trailPoint.parentNode) {
-                        trailPoint.parentNode.removeChild(trailPoint);
-                    }
-                    trailPoints = trailPoints.filter(p => p !== trailPoint);
-                }, 500);
-            }
-        }, 1000);
-    });
-    
-    // Dynamic background gradient based on mouse position
-    document.addEventListener('mousemove', (e) => {
-        const x = e.clientX / window.innerWidth;
-        const y = e.clientY / window.innerHeight;
-        
-        document.body.style.setProperty('--mouse-x', x);
-        document.body.style.setProperty('--mouse-y', y);
-        
-        // Update gradient position
-        const gradientX = x * 100;
-        const gradientY = y * 100;
-        
-        document.body.style.background = `
-            radial-gradient(circle at ${gradientX}% ${gradientY}%, 
-                rgba(200, 169, 106, 0.15) 0%, 
-                transparent 50%),
-            radial-gradient(circle at ${100 - gradientX}% ${100 - gradientY}%, 
-                rgba(166, 123, 90, 0.1) 0%, 
-                transparent 60%),
-            var(--bg-body)
-        `;
-    });
-    
-    // Audio feedback for interactions (optional)
-    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-    
-    function playInteractionSound(frequency = 440, duration = 0.1) {
-        try {
-            const oscillator = audioContext.createOscillator();
-            const gainNode = audioContext.createGain();
-            
-            oscillator.connect(gainNode);
-            gainNode.connect(audioContext.destination);
-            
-            oscillator.frequency.value = frequency;
-            oscillator.type = 'sine';
-            
-            gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
-            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + duration);
-            
-            oscillator.start(audioContext.currentTime);
-            oscillator.stop(audioContext.currentTime + duration);
-        } catch (e) {
-            // Audio not supported or user blocked
-        }
-    }
-    
-    // Add sound to button clicks
-    document.querySelectorAll('.btn').forEach(button => {
-        button.addEventListener('click', () => {
-            playInteractionSound(523.25, 0.1); // C5 note
-        });
-        
-        button.addEventListener('mouseenter', () => {
-            playInteractionSound(392, 0.05); // G4 note
-        });
-    });
-    
-    // Add sound to card hovers
-    document.querySelectorAll('.service-card, .portfolio-card, .template-card').forEach(card => {
-        card.addEventListener('mouseenter', () => {
-            playInteractionSound(329.63, 0.05); // E4 note
-        });
-    });
-    
-    console.log('🎭 Ultra advanced motion effects initialized');
-})();
