@@ -827,6 +827,8 @@
             z-index: 1;
         }
         
+        /* hero-shot CSS removed - image was removed from hero section */
+        
         .hero-badge {
             background: rgba(200,169,106,0.2); 
             color: #fff; 
@@ -1242,16 +1244,32 @@
 <section id="templates"><div class="container text-center" data-aos="fade-up"><h2 data-i18n="templates_title">Choose Your Template</h2><p data-i18n="templates_desc">Select a design that fits your brand – each template is fully customizable.</p><div class="templates-grid" id="templatesGrid"></div></div></section>
 
 <section id="portfolio"><div class="container" data-aos="fade-up"><h2 data-i18n="portfolio_title">Our Projects</h2><div class="portfolio-controls"><div class="filter-buttons"><button class="filter-btn active" data-filter="all" data-i18n="filter_all">All</button><button class="filter-btn" data-filter="landing" data-i18n="filter_landing">Landings</button><button class="filter-btn" data-filter="shop" data-i18n="filter_shop">Shops</button><button class="filter-btn" data-filter="corp" data-i18n="filter_corp">Corporate</button></div><input type="text" id="portfolioSearch" class="search-input" data-i18n-placeholder="search_placeholder" placeholder="Search..."></div><div class="portfolio-grid" id="portfolioGrid"></div></div></section>
-<section id="reviews" style="display:none;"><div class="container" data-aos="fade-up"><h2 data-i18n="reviews_title">Client Reviews</h2><div class="swiper reviews-swiper"><div class="swiper-wrapper" id="reviewsSwiperWrapper"></div><div class="swiper-pagination"></div></div></div></section>
+<section id="blog"><div class="container" data-aos="fade-up"><h2 data-i18n="blog_title">Blog</h2><div class="blog-grid" id="blogGrid"></div></div></section>
+<section id="reviews"><div class="container" data-aos="fade-up"><h2 data-i18n="reviews_title">Client Reviews</h2><div class="swiper reviews-swiper"><div class="swiper-wrapper" id="reviewsSwiperWrapper"></div><div class="swiper-pagination"></div></div><div style="text-align: center; margin-top: 30px;"><button class="btn btn-outline" id="addReviewBtn" data-i18n="add_review_btn">Leave a review</button></div></div></section>
+<section id="edit-request"><div class="container" data-aos="fade-up"><h2 data-i18n="edit_title">Order website edit</h2><form id="editForm" style="max-width: 600px; margin: 0 auto;">
+    <div class="form-group"><input type="text" id="editName" name="name" data-i18n-placeholder="edit_name" placeholder="Your name"></div>
+    <div class="form-group"><input type="email" id="editEmail" name="email" data-i18n-placeholder="edit_email" placeholder="Email"></div>
+    <div class="form-group"><div class="phone-wrapper"><select id="editCountryCode" class="country-code"></select><input type="tel" id="editPhone" name="phone" data-i18n-placeholder="edit_phone" placeholder="Phone"></div></div>
+    <div class="form-group"><input type="url" id="editVk" name="vk_url" data-i18n-placeholder="edit_vk" placeholder="VK link"></div>
+    <div class="form-group"><input type="url" id="editSite" name="existing_site" data-i18n-placeholder="edit_site" placeholder="Website URL"></div>
+    <div class="form-group"><select id="editType" name="edit_type"><option value="">--</option><option value="design" data-i18n="edit_type_design">Design</option><option value="function" data-i18n="edit_type_function">Functionality</option><option value="content" data-i18n="edit_type_content">Content</option><option value="other" data-i18n="edit_type_other">Other</option></select></div>
+    <div class="form-group"><input type="date" id="editDesiredDate" name="desired_date" placeholder="Desired date"></div>
+    <div class="form-group"><textarea id="editDescription" name="description" rows="4" data-i18n-placeholder="edit_desc" placeholder="Describe what needs improvement"></textarea></div>
+    <div class="form-group"><label class="field-label"><i class="fas fa-language"></i> <span data-i18n="preferred_lang_label">Preferred Language for Website</span></label><select id="editLanguage" name="Preferred Language"><option value="en">English</option><option value="ru">Russian</option></select><div class="field-description" data-i18n="preferred_lang_desc">Choose the language</div></div>
+    <div class="checkbox-group"><input type="checkbox" id="editAgree" required><label for="editAgree" data-i18n="agree_label">I agree to the <a href="#" id="editPolicyLink">Terms of Use</a> and <a href="#" id="editRefundLink">Refund Policy</a></label></div>
+    <button type="submit" class="btn" data-i18n="send_btn">Submit request</button><div id="editResult"></div>
+</form></div></section>
 <section id="contact"><div class="container" data-aos="fade-up"><h2 data-i18n="contact_title">Contacts</h2><div style="display: flex; flex-wrap: wrap; gap: 40px;"><div class="contact-info"><p><i class="fas fa-envelope"></i> <a href="mailto:uniqe.studio@yandex.ru">uniqe.studio@yandex.ru</a></p><p><i class="fas fa-phone-alt"></i> <a href="tel:+79651776233">+7 (965) 177-62-33</a></p><div class="contact-social"><a href="https://t.me/UNIQE_WEB_STUDIO" target="_blank"><i class="fab fa-telegram fa-2x"></i></a><a href="https://wa.me/79651776233" target="_blank"><i class="fab fa-whatsapp fa-2x"></i></a><a href="https://vk.com/unique__business" target="_blank"><i class="fab fa-vk fa-2x"></i></a><a href="max://chat?phone=+79651776233" target="_blank" title="Max Messenger"><img src="https://play-lh.googleusercontent.com/iXp_mU8RC7rYuWgQeE5y-VuO-UPMIB4glAClkiyrJUnfKraqdFZtzX-7tUwgwEh2AGE" alt="Max" class="max-contact-logo"></a></div></div></div></div></section>
 
-<div class="container"><div class="newsletter-section trust-bar" style="margin-top:20px;"><h3>⭐ <span data-i18n="why_choose_us">Why Clients Choose Us</span></h3><div class="stats-grid"><div class="stat-item"><div class="stat-number">24/7</div><div class="stat-label" data-i18n="support_label">Support</div></div><div class="stat-item"><div class="stat-number">SEO</div><div class="stat-label" data-i18n="seo_label">Optimized</div></div><div class="stat-item"><div class="stat-number" data-i18n="fast_label">Fast</div><div class="stat-label">Delivery</div></div><div class="stat-item"><div class="stat-number" data-i18n="pro_label">Pro</div><div class="stat-label">Design</div></div></div></div></div>
+<div class="container"><div class="newsletter-section" data-aos="fade-up"><h3>📧 <span data-i18n="newsletter_title">Subscribe to Newsletter</span></h3><p data-i18n="newsletter_desc">Get latest news, special offers and website tips directly in your inbox.</p><form id="newsletterForm" class="newsletter-form"><input type="email" id="newsletterEmail" placeholder="Your email address" required><button type="submit" class="btn"><span data-i18n="subscribe_btn">Subscribe</span></button></form><div id="newsletterMsg" style="margin-top: 15px; font-size: 0.9rem;"></div></div></div>
+
+<div class="container"><div class="newsletter-section trust-bar" style="margin-top:20px;"><h3>🚀 <span data-i18n="why_choose_us">Why Clients Choose Us</span></h3><div class="stats-grid"><div class="stat-item"><div class="stat-number">24/7</div><div class="stat-label" data-i18n="support_label">Support</div></div><div class="stat-item"><div class="stat-number">SEO</div><div class="stat-label" data-i18n="seo_label">Optimized</div></div><div class="stat-item"><div class="stat-number" data-i18n="fast_label">Fast</div><div class="stat-label">Delivery</div></div><div class="stat-item"><div class="stat-number" data-i18n="pro_label">Pro</div><div class="stat-label">Design</div></div></div></div></div>
 <footer><div class="container"><p data-i18n="footer_copyright">&copy; 2025 Unique Web Studio. All rights reserved.</p><p><a href="#" id="policyLink" data-i18n="footer_policy">Terms of Use</a> | <a href="#" id="refundLink" data-i18n="footer_refund">Refund Policy</a></p><div class="share-buttons"><a href="https://t.me/share/url?url=https://uniquewebstudio.com&text=Check%20out%20Unique%20Web%20Studio" target="_blank" class="share-btn"><i class="fab fa-telegram"></i></a><a href="https://wa.me/?text=https://uniquewebstudio.com" target="_blank" class="share-btn"><i class="fab fa-whatsapp"></i></a><a href="https://vk.com/share.php?url=https://uniquewebstudio.com" target="_blank" class="share-btn"><i class="fab fa-vk"></i></a><a href="https://www.facebook.com/sharer/sharer.php?u=https://uniquewebstudio.com" target="_blank" class="share-btn"><i class="fab fa-facebook-f"></i></a><a href="https://twitter.com/intent/tweet?url=https://uniquewebstudio.com&text=Unique%20Web%20Studio" target="_blank" class="share-btn"><i class="fab fa-twitter"></i></a></div></div></footer>
 <div class="floating-buttons"><a href="https://wa.me/79651776233" class="floating-btn" target="_blank"><i class="fab fa-whatsapp"></i></a><a href="https://t.me/UNIQE_WEB_STUDIO" class="floating-btn telegram" target="_blank"><i class="fab fa-telegram"></i></a><a href="https://vk.com/unique__business" class="floating-btn vk" target="_blank"><i class="fab fa-vk"></i></a><a href="max://chat?phone=+79651776233" class="floating-btn max" target="_blank" title="Max Messenger"><img src="https://play-lh.googleusercontent.com/iXp_mU8RC7rYuWgQeE5y-VuO-UPMIB4glAClkiyrJUnfKraqdFZtzX-7tUwgwEh2AGE" alt="Max Messenger"></a></div>
 <div class="scroll-top" id="scrollTop"><i class="fas fa-arrow-up"></i></div>
 
 <!-- MODALS (all preserved) -->
-<div id="demoModal" class="modal"><div class="modal-content"><span class="close-modal">&times;</span><h3 data-i18n="demo_modal_title">Get demo site</h3><form id="demoForm" enctype="multipart/form-data"><div class="demo-form-grid"><div class="form-group"><label class="field-label"><i class="fas fa-building"></i> <span data-i18n="demo_business_name_label">Business name</span></label><input type="text" id="demoBusinessName" name="business_name"></div><div class="form-group"><label class="field-label"><i class="fas fa-city"></i> <span data-i18n="demo_city_label">City</span></label><input type="text" id="demoCity" name="city"></div><div class="form-group"><label class="field-label"><i class="fas fa-code-branch"></i> <span data-i18n="demo_category_label">Website type</span></label><select id="demoCategory" name="category"><option value="landing" data-i18n="demo_category_landing">Landing Page</option><option value="ecommerce" data-i18n="demo_category_ecommerce">Online Store</option><option value="corporate" data-i18n="demo_category_corporate">Corporate</option></select></div><div class="form-group"><label class="field-label"><i class="fas fa-palette"></i> <span data-i18n="demo_template_label">Template</span></label><div style="display:flex;gap:8px;align-items:center;"><select id="demoTemplate" name="template_id" style="flex:1;"><option value="" disabled selected>${currentLang === 'ru' ? 'Выберите шаблон' : 'Select template'}</option></select><button type="button" id="selectTemplateBtn" class="btn-outline" style="padding:10px 16px;"><i class="fas fa-th"></i> ${currentLang === 'ru' ? 'Выбрать' : 'Select'}</button></div><div id="templateSelectionDisplay" style="margin-top:8px;font-size:0.9rem;"></div></div><div class="form-group"><label class="field-label"><i class="fas fa-phone-alt"></i> <span data-i18n="demo_phone_label">Phone</span></label><div class="phone-wrapper"><select id="demoCountryCode" class="country-code"></select><input type="tel" id="demoPhone" name="phone"></div></div><div class="form-group"><label class="field-label"><i class="fab fa-vk"></i> <span data-i18n="demo_vk_label">VK profile</span></label><input type="url" id="demoVk" name="vk_url"><button type="button" id="fillFromVkBtn" class="btn-outline" style="margin-top:8px;"><span data-i18n="fill_from_vk">Fill from VK</span></button></div><div class="form-group"><label class="field-label"><i class="fas fa-envelope"></i> <span data-i18n="demo_email_label">Email</span></label><input type="email" id="demoEmail" name="email"></div><div class="form-group"><label class="field-label"><i class="fas fa-map-marker-alt"></i> <span data-i18n="demo_address_label">Address</span></label><input type="text" id="demoAddress" name="address"></div><div class="form-group"><label class="field-label"><i class="fas fa-palette"></i> <span data-i18n="demo_brand_color_label">Brand color</span></label><input type="color" id="demoBrandColor" name="brand_color" value="#C8A96A"></div><div class="form-group"><label class="field-label"><i class="fas fa-image"></i> <span data-i18n="demo_logo_label">Logo</span></label><input type="file" id="demoLogo" name="logo" accept="image/*"></div><div class="form-group"><label class="field-label"><i class="fas fa-globe"></i> <span data-i18n="demo_domain_label">Desired domain</span></label><input type="url" id="demoDomain" name="domain"></div><div class="form-group"><label class="field-label"><i class="fas fa-chart-line"></i> <span data-i18n="demo_referrer_label">How did you find us?</span></label><select id="demoReferrer" name="referrer"><option value="" data-i18n="demo_referrer_select">-- Select --</option><option value="vk" data-i18n="demo_referrer_vk">VK</option><option value="telegram" data-i18n="demo_referrer_telegram">Telegram</option><option value="search" data-i18n="demo_referrer_search">Search engine</option><option value="friend" data-i18n="demo_referrer_friend">Friend</option><option value="other" data-i18n="demo_referrer_other">Other</option></select></div><div class="form-group"><label class="field-label"><i class="fas fa-ruble-sign"></i> <span data-i18n="demo_budget_label">Budget</span></label><input type="text" id="demoBudget" name="budget"></div><div class="form-group"><label class="field-label"><i class="fas fa-link"></i> <span data-i18n="demo_existing_site_label">Current website</span></label><input type="url" id="demoExistingSite" name="existing_site"></div><div class="form-group"><label class="field-label"><i class="fas fa-language"></i> <span data-i18n="preferred_lang_label">Preferred Language</span></label><select id="demoLanguage" name="Preferred Language"><option value="en">English</option><option value="ru">Russian</option></select></div><div class="form-group demo-full-width"><label class="field-label"><i class="fas fa-server"></i> <span data-i18n="demo_hosting_label">Hosting status</span></label><div class="checkbox-group"><input type="checkbox" id="demoHasHosting" name="has_hosting"> <label data-i18n="demo_has_hosting">I already have hosting</label></div></div><div class="form-group demo-full-width"><label class="field-label"><i class="fas fa-comment-dots"></i> <span data-i18n="demo_notes_label">Notes</span></label><textarea id="demoNotes" name="notes" rows="3"></textarea></div><div class="form-group demo-full-width"><div class="checkbox-group"><input type="checkbox" id="demoAgree" name="agree_terms"> <label data-i18n="agree_label_short">I agree to <a href="#" id="demoPolicyLink">Terms</a> and <a href="#" id="demoRefundLink">Refund Policy</a></label></div><div class="checkbox-group"><input type="checkbox" id="demoSendCopy" name="send_copy"> <label data-i18n="send_copy">Send copy to email</label></div></div></div><button type="submit" class="btn"><span data-i18n="submit_request">Submit request</span></button></form><div id="demoResult"></div></div></div>
+<div id="demoModal" class="modal"><div class="modal-content"><span class="close-modal">&times;</span><h3 data-i18n="demo_modal_title">Get demo site</h3><form id="demoForm" enctype="multipart/form-data"><div class="demo-form-grid"><div class="form-group"><label class="field-label"><i class="fas fa-building"></i> <span data-i18n="demo_business_name_label">Business name</span></label><input type="text" id="demoBusinessName" name="business_name"></div><div class="form-group"><label class="field-label"><i class="fas fa-city"></i> <span data-i18n="demo_city_label">City</span></label><input type="text" id="demoCity" name="city"></div><div class="form-group"><label class="field-label"><i class="fas fa-code-branch"></i> <span data-i18n="demo_category_label">Website type</span></label><select id="demoCategory" name="category"><option value="landing" data-i18n="demo_category_landing">Landing Page</option><option value="ecommerce" data-i18n="demo_category_ecommerce">Online Store</option><option value="corporate" data-i18n="demo_category_corporate">Corporate</option></select></div><div class="form-group"><label class="field-label"><i class="fas fa-phone-alt"></i> <span data-i18n="demo_phone_label">Phone</span></label><div class="phone-wrapper"><select id="demoCountryCode" class="country-code"></select><input type="tel" id="demoPhone" name="phone"></div></div><div class="form-group"><label class="field-label"><i class="fab fa-vk"></i> <span data-i18n="demo_vk_label">VK profile</span></label><input type="url" id="demoVk" name="vk_url"><button type="button" id="fillFromVkBtn" class="btn-outline" style="margin-top:8px;"><span data-i18n="fill_from_vk">Fill from VK</span></button></div><div class="form-group"><label class="field-label"><i class="fas fa-envelope"></i> <span data-i18n="demo_email_label">Email</span></label><input type="email" id="demoEmail" name="email"></div><div class="form-group"><label class="field-label"><i class="fas fa-map-marker-alt"></i> <span data-i18n="demo_address_label">Address</span></label><input type="text" id="demoAddress" name="address"></div><div class="form-group"><label class="field-label"><i class="fas fa-palette"></i> <span data-i18n="demo_brand_color_label">Brand color</span></label><input type="color" id="demoBrandColor" name="brand_color" value="#C8A96A"></div><div class="form-group"><label class="field-label"><i class="fas fa-image"></i> <span data-i18n="demo_logo_label">Logo</span></label><input type="file" id="demoLogo" name="logo" accept="image/*"></div><div class="form-group"><label class="field-label"><i class="fas fa-globe"></i> <span data-i18n="demo_domain_label">Desired domain</span></label><input type="url" id="demoDomain" name="domain"></div><div class="form-group"><label class="field-label"><i class="fas fa-chart-line"></i> <span data-i18n="demo_referrer_label">How did you find us?</span></label><select id="demoReferrer" name="referrer"><option value="" data-i18n="demo_referrer_select">-- Select --</option><option value="vk" data-i18n="demo_referrer_vk">VK</option><option value="telegram" data-i18n="demo_referrer_telegram">Telegram</option><option value="search" data-i18n="demo_referrer_search">Search engine</option><option value="friend" data-i18n="demo_referrer_friend">Friend</option><option value="other" data-i18n="demo_referrer_other">Other</option></select></div><div class="form-group"><label class="field-label"><i class="fas fa-ruble-sign"></i> <span data-i18n="demo_budget_label">Budget</span></label><input type="text" id="demoBudget" name="budget"></div><div class="form-group"><label class="field-label"><i class="fas fa-link"></i> <span data-i18n="demo_existing_site_label">Current website</span></label><input type="url" id="demoExistingSite" name="existing_site"></div><div class="form-group"><label class="field-label"><i class="fas fa-language"></i> <span data-i18n="preferred_lang_label">Preferred Language</span></label><select id="demoLanguage" name="Preferred Language"><option value="en">English</option><option value="ru">Russian</option></select></div><div class="form-group demo-full-width"><label class="field-label"><i class="fas fa-server"></i> <span data-i18n="demo_hosting_label">Hosting status</span></label><div class="checkbox-group"><input type="checkbox" id="demoHasHosting" name="has_hosting"> <label data-i18n="demo_has_hosting">I already have hosting</label></div></div><div class="form-group demo-full-width"><label class="field-label"><i class="fas fa-comment-dots"></i> <span data-i18n="demo_notes_label">Notes</span></label><textarea id="demoNotes" name="notes" rows="3"></textarea></div><div class="form-group demo-full-width"><div class="checkbox-group"><input type="checkbox" id="demoAgree" name="agree_terms"> <label data-i18n="agree_label_short">I agree to <a href="#" id="demoPolicyLink">Terms</a> and <a href="#" id="demoRefundLink">Refund Policy</a></label></div><div class="checkbox-group"><input type="checkbox" id="demoSendCopy" name="send_copy"> <label data-i18n="send_copy">Send copy to email</label></div></div></div><button type="submit" class="btn"><span data-i18n="submit_request">Submit request</span></button></form><div id="demoResult"></div></div></div>
 <div id="consultModal" class="modal"><div class="modal-content"><span class="close-modal">&times;</span><h3 data-i18n="consult_modal_title">Request consultation</h3><form id="consultForm"><div class="form-group"><input type="text" id="consultName" name="name" data-i18n-placeholder="consult_name" placeholder="Your name"></div><div class="form-group"><input type="email" id="consultEmail" name="email" data-i18n-placeholder="consult_email" placeholder="Email"></div><div class="form-group"><div class="phone-wrapper"><select id="consultCountryCode" class="country-code"></select><input type="tel" id="consultPhone" name="phone" placeholder="Phone"></div></div><div class="form-group"><input type="url" id="consultVk" name="vk_url" placeholder="VK link"></div><div class="form-group"><textarea id="consultMessage" name="message" rows="4" placeholder="Your question"></textarea></div><div class="form-group"><select id="consultLanguage" name="Preferred Language"><option value="en">English</option><option value="ru">Russian</option></select></div><div class="checkbox-group"><input type="checkbox" id="consultAgree" required name="agree_terms"><label data-i18n="agree_label">I agree to <a href="#" id="consultPolicyLink">Terms</a> and <a href="#" id="consultRefundLink">Refund Policy</a></label></div><div class="checkbox-group"><input type="checkbox" id="consultSendCopy" name="send_copy"> <label data-i18n="send_copy">Send copy to email</label></div><button type="submit" class="btn"><span data-i18n="submit_btn">Submit</span></button></form><div id="consultResult"></div></div></div>
 <div id="reviewModal" class="modal"><div class="modal-content"><span class="close-modal">&times;</span><h3 data-i18n="review_modal_title">Leave a review</h3><form id="reviewForm"><div class="form-group"><input type="text" id="reviewName" name="name" placeholder="Your name"></div><div class="form-group"><div class="star-rating" id="starRating" style="display:flex; justify-content:center; gap:10px; font-size:2rem; cursor:pointer;"><span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span></div></div><div class="form-group"><textarea id="reviewText" name="review" rows="3" placeholder="Your review"></textarea></div><div class="form-group"><input type="number" id="reviewAmount" name="amount" placeholder="Amount spent (RUB)"></div><div class="checkbox-group"><input type="checkbox" id="reviewAgree" required name="agree_terms"><label data-i18n="agree_label">I agree to <a href="#" id="reviewPolicyLink">Terms</a> and <a href="#" id="reviewRefundLink">Refund Policy</a></label></div><button type="submit" class="btn"><span data-i18n="submit_btn">Submit</span></button></form><div id="reviewResult"></div></div></div>
 <div id="paymentModal" class="modal"><div class="modal-content"><span class="close-modal">&times;</span><h3 data-i18n="payment_title">Submit payment details</h3><form id="paymentForm"><div class="form-group"><input type="text" id="paymentLeadId" name="lead_id" placeholder="Lead ID" required></div><div class="form-group"><input type="text" id="paymentTransactionId" name="transaction_id" placeholder="Transaction ID" required></div><div class="form-group"><input type="number" id="paymentAmount" name="amount" placeholder="Amount in RUB" required></div><div class="checkbox-group"><input type="checkbox" id="paymentAgree" required name="agree_terms"><label data-i18n="confirm_payment">I confirm payment</label></div><button type="submit" class="btn"><span data-i18n="submit_payment_btn">Submit payment info</span></button><div class="payment-note" data-i18n="payment_note">⚠️ Manual verification within 24h.</div></form><div id="paymentResult"></div></div></div>
@@ -1259,7 +1277,6 @@
 <div id="refundModal" class="modal"><div class="modal-content"><span class="close-modal">&times;</span><div class="modal-lang-switch"><button class="modal-lang-btn refund-lang-ru">RU</button><button class="modal-lang-btn refund-lang-en active">EN</button></div><h3 data-i18n="refund_title">Refund Policy</h3><div class="refund-content-ru" style="display:none;"><p><strong>1. Возврат средств</strong><br>Поскольку предоплата не взимается, возврат средств возможен только в случае, если Исполнитель не приступил к работе в течение 10 рабочих дней с момента подтверждения заказа. В этом случае заказчик может отказаться от услуг без каких-либо штрафов.</p><p><strong>2. Возврат после сдачи проекта</strong><br>После подписания акта приёмки-передачи возврат не осуществляется, за исключением случаев выявления критических ошибок, не устранённых в течение 14 дней.</p><p><strong>3. Порядок подачи жалобы</strong><br>Для подачи аргументированной жалобы или запроса на возврат средств необходимо отправить письмо на официальную почту студии: <strong>uniqe.studio@yandex.ru</strong>. В письме обязательно указать номер заказа (если есть), описание проблемы с приложением подтверждающих материалов (скриншоты, переписка) и контактные данные. Срок рассмотрения жалобы составляет до 10 (десяти) рабочих дней.</p><p><strong>4. Основания для отказа в возврате</strong><br>Отказ возможен, если Заказчик нарушил условия пользовательского соглашения, предоставил недостоверные данные или отказался от сотрудничества после начала работ без уважительной причины.</p></div><div class="refund-content-en" style="display:block;"><p><strong>1. Refund of funds</strong><br>Since no prepayment is required, a refund is only possible if the Contractor fails to start work within 10 business days after order confirmation. In that case the customer may cancel the order without any penalties.</p><p><strong>2. Refund after project delivery</strong><br>After signing the acceptance certificate, no refund is made, except in cases of critical errors that have not been fixed within 14 days.</p><p><strong>3. Complaint procedure</strong><br>To file a reasoned complaint or refund request, you must send a letter to the studio's official email: <strong>uniqe.studio@yandex.ru</strong>. The letter must include the order number (if any), a description of the problem with supporting materials (screenshots, correspondence) and contact details. The complaint review period is up to 10 (ten) business days.</p><p><strong>4. Grounds for refusal of refund</strong><br>Refusal is possible if the Customer violated the terms of the user agreement, provided false information, or refused to cooperate after the start of work without good reason.</p></div></div></div>
 <div id="exitModal" class="modal"><div class="modal-content"><span class="close-modal">&times;</span><h3 data-i18n="exit_title">Don't go!</h3><p data-i18n="exit_text">Leave a request and get 10% discount on any package.</p><button class="btn" id="exitBtn" data-i18n="exit_btn">Get discount</button></div></div>
 <div id="consentModal" class="modal"><div class="modal-content"><h3 class="consent-title-ru" style="display:none;">❗ Важное уведомление</h3><h3 class="consent-title-en">❗ Important notice</h3><p class="consent-desc-ru" style="display:none;">Для использования сайта и отправки заявок необходимо ознакомиться и согласиться с условиями:</p><p class="consent-desc-en">To use the site and submit requests, you must read and agree to the terms:</p><ul><li><a href="#" id="consentPolicyLink" data-i18n="consent_policy">Terms of Use</a></li><li><a href="#" id="consentRefundLink" data-i18n="consent_refund">Refund Policy</a></li></ul><div class="checkbox-group"><input type="checkbox" id="consentAgree" name="consent_agree"><label for="consentAgree" class="consent-checkbox-ru" style="display:none;">Я принимаю условия</label><label for="consentAgree" class="consent-checkbox-en">I accept the terms</label></div><button class="btn" id="acceptConsent" style="display:none;">Продолжить</button><button class="btn" id="acceptConsentEn">Continue</button><p class="consent-warning-ru" style="margin-top:15px; font-size:0.85rem; display:none;">Без принятия условий отправка заявок невозможна.</p><p class="consent-warning-en" style="margin-top:15px; font-size:0.85rem;">Without acceptance, requests cannot be sent.</p></div></div>
-<div id="templateModal" class="modal"><div class="modal-content" style="max-width:900px;max-height:80vh;overflow-y:auto;"><span class="close-modal" onclick="closeAllModals()">&times;</span><h3 style="margin-bottom:20px;">${currentLang === 'ru' ? 'Выберите шаблон сайта' : 'Select website template'}</h3><div id="templateSelectorContainer"></div></div></div>
 <div id="leadDetailsModal" class="modal"><div class="modal-content"><span class="close-modal">&times;</span><h3 data-i18n="lead_details_title">Lead Details</h3><div id="leadDetailsContent" class="lead-details-grid"></div></div></div>
 <div id="blogModal" class="modal"><div class="modal-content"><span class="close-modal">&times;</span><h3 id="blogModalTitle">Blog Post</h3><div id="blogModalContent" style="margin-top: 20px; line-height: 1.6;"></div></div></div>
 
@@ -1280,8 +1297,7 @@
 <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.8.0/dist/vanilla-tilt.min.js"></script>
 <script>
 // ==================== GLOBAL VARIABLES ====================
-// 🔁 Replace with your actual Google Apps Script Web App URL (the /exec link)
-const DEFAULT_SCRIPT_URL = 'https://script.google.com/macros/s/YOUR_NEW_APPS_SCRIPT_URL_HERE/exec';
+const DEFAULT_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyKOkIYXbwiArHvlxSenrdhaXVLQ-V2Ekqw1iPP2RNlwW558p3jcC6r73G2cRTmYl-q/exec';
 let SCRIPT_URL = localStorage.getItem('apps_script_url_override') || DEFAULT_SCRIPT_URL;
 let currentLang = localStorage.getItem('lang') || 'en';
 let currentAdminTab = 'dashboard';
@@ -1320,6 +1336,8 @@ const defaultImagePack = {
 };
 
 // ==================== Google Apps Script endpoint bootstrap ====================
+// Runtime evidence showed the published /exec URL can be an OLD deployment (GET JSON only has {leads:...}).
+// New backend returns { success, spreadsheetId, leadsSheet, logsSheet, leads } from doGet.
 async function probeAppsScriptGet(url) {
     const res = await fetch(url + (url.includes('?') ? '&' : '?') + 't=' + Date.now(), { method: 'GET' });
     const txt = await res.text();
@@ -1342,7 +1360,7 @@ async function initScriptEndpoint() {
             candidates.push(origin + '/' + repo + '/script-config.json');
         }
     }
-    candidates.push('script-config.json');
+    candidates.push('https://unique-studio.github.io/WEB/script-config.json');
 
     for (const cfgUrl of candidates) {
         try {
@@ -1942,7 +1960,9 @@ document.getElementById('fillFromVkBtn')?.addEventListener('click',()=>alert('De
 // ==================== sendToAppsScript (IFRAME - reliable) ====================
 async function sendToAppsScript(formData, action) {
     formData.append('action', action);
-    
+    // #region agent log
+    fetch('http://127.0.0.1:7499/ingest/9985f8db-3653-476d-94af-7f23226d40d9',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'14b712'},body:JSON.stringify({sessionId:'14b712',location:'web_index.html:sendToAppsScript:entry',message:'form submit',data:{action:action,fieldCount:Array.from(formData.keys()).length,hypothesisId:'A-B'},timestamp:Date.now(),hypothesisId:'A'})}).catch(()=>{});
+    // #endregion
     return new Promise((resolve) => {
         const iframeName = 'ifr_' + Date.now();
         const iframe = document.createElement('iframe');
@@ -1967,6 +1987,10 @@ async function sendToAppsScript(formData, action) {
             let responseText = '';
             try {
                 responseText = iframe.contentDocument?.body?.innerText || '';
+                // #region agent log
+                const preview = (responseText || '').trim().substring(0, 200);
+                fetch('http://127.0.0.1:7499/ingest/9985f8db-3653-476d-94af-7f23226d40d9',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'14b712'},body:JSON.stringify({sessionId:'14b712',location:'web_index.html:sendToAppsScript:iframe',message:'iframe response',data:{action:action,startsJson:preview.startsWith('{'),preview:preview,hypothesisId:'A'},timestamp:Date.now(),hypothesisId:'A'})}).catch(()=>{});
+                // #endregion
                 const result = responseText.trim().startsWith('{') ? JSON.parse(responseText) : { success: true };
                 resolve(result);
             } catch(e) {
@@ -1981,20 +2005,12 @@ async function sendToAppsScript(formData, action) {
     });
 }
 
-// ==================== fetchLeads (optimized version) ====================
+// ==================== fetchLeads (working version) ====================
 async function fetchLeads() {
     try {
         const res = await fetch(SCRIPT_URL + '?t=' + Date.now());
         const data = await res.json();
-        
-        // فقط لیدهای سایت را نمایش بده (نه لیدهای ربات از Apify)
-        // لیدهای ربات دارای Request Type 'scraped' هستند
-        const siteLeads = (data.leads || []).filter(lead => {
-            const requestType = lead['Request Type'] || '';
-            return requestType !== 'scraped'; // حذف لیدهای ربات
-        });
-        
-        return normalizeLeadRows(siteLeads);
+        return normalizeLeadRows(data.leads || []);
     } catch (e) {
         console.warn('fetch failed, using iframe fallback', e);
         return new Promise((resolve) => {
@@ -2011,12 +2027,7 @@ async function fetchLeads() {
                 try {
                     const txt = iframe.contentDocument?.body?.innerText || '';
                     const data = txt.trim().startsWith('{') ? JSON.parse(txt) : { leads: [] };
-                    // فقط لیدهای سایت را نمایش بده
-                    const siteLeads = (data.leads || []).filter(lead => {
-                        const requestType = lead['Request Type'] || '';
-                        return requestType !== 'scraped';
-                    });
-                    resolve(normalizeLeadRows(siteLeads));
+                    resolve(normalizeLeadRows(data.leads || []));
                 } catch(e) { resolve([]); }
                 form.remove(); iframe.remove();
             };
@@ -2027,48 +2038,17 @@ async function fetchLeads() {
 }
 
 function normalizeLeadRows(rows) {
-    return rows.map(lead => {
-        const normalized = {
-            ...lead,
-            'Email': lead['Email'] || lead['I'] || lead['Field11'] || lead['Field12'] || '',
-            'Category': lead['Category'] || lead['F'] || lead['Field13'] || '',
-            'Budget': lead['Budget'] || lead['Field14'] || lead['M'] || '',
-            'Preferred Language': lead['Preferred Language'] || lead['Language'] || lead['Preferred Language'] || 'en',
-            'Created At': lead['Created At'] || lead['Timestamp'] || '',
-            'Lead ID': lead['Lead ID'] || 'LEAD_' + Math.random().toString(36).substr(2, 10).toUpperCase(),
-            'Status': lead['Status'] || 'new',
-            'Payment Status': lead['Payment Status'] || 'unpaid',
-            'VK URL': lead['VK URL'] || lead['vk_url'] || lead['vkontakte'] || '',
-            'Telegram URL': lead['Telegram URL'] || lead['telegram'] || lead['t.me'] || '',
-            'WhatsApp URL': lead['WhatsApp URL'] || lead['whatsapp'] || lead['wa.me'] || '',
-            'Instagram URL': lead['Instagram URL'] || lead['instagram'] || '',
-            'Website': lead['Website'] || lead['website'] || lead['domain'] || lead['L'] || '',
-            'Business Name': lead['Business Name'] || lead['Name'] || lead['title'] || lead['name'] || lead['placeName'] || lead['businessName'] || '',
-            'City': lead['City'] || lead['city'] || lead['address'] || '',
-            'Address': lead['Address'] || lead['address'] || lead['formattedAddress'] || '',
-            'Phone': lead['Phone'] || lead['phone'] || lead['phoneNumber'] || lead['primaryPhone'] || lead['contactPhone'] || lead['phones'] || lead['phoneNumbers'] || '',
-            'Description': lead['Description'] || lead['description'] || lead['notes'] || lead['message'] || '',
-            'Rating': lead['Rating'] || lead['rating'] || '',
-            'Reviews Count': lead['Reviews Count'] || lead['reviewsCount'] || lead['reviewCount'] || '',
-            'Working Hours': lead['Working Hours'] || lead['workingHours'] || lead['hours'] || '',
-            'Price Level': lead['Price Level'] || lead['priceLevel'] || '',
-            'Is Claimed': lead['Is Claimed'] || lead['isClaimed'] || '',
-            'Social Links JSON': lead['Social Links JSON'] || lead['socialLinks'] || '',
-            'Apify Raw JSON': lead['Apify Raw JSON'] || lead['raw'] || ''
-        };
-        
-        // اگر VK URL خالی است، سعی کن از فیلدهای مختلف استخراج کن
-        if (!normalized['VK URL']) {
-            for (const key in lead) {
-                if (key.toLowerCase().includes('vk') || key.toLowerCase().includes('vkontakte')) {
-                    normalized['VK URL'] = lead[key];
-                    break;
-                }
-            }
-        }
-        
-        return normalized;
-    });
+    return rows.map(lead => ({
+        ...lead,
+        'Email': lead['Email'] || lead['I'] || lead['Field11'] || lead['Field12'] || '',
+        'Category': lead['Category'] || lead['F'] || lead['Field13'] || '',
+        'Budget': lead['Budget'] || lead['Field14'] || '',
+        'Preferred Language': lead['Preferred Language'] || lead['Language'] || 'en',
+        'Created At': lead['Created At'] || lead['Timestamp'] || '',
+        'Lead ID': lead['Lead ID'] || 'LEAD_' + Math.random().toString(36).substr(2, 10).toUpperCase(),
+        'Status': lead['Status'] || 'new',
+        'Payment Status': lead['Payment Status'] || 'unpaid'
+    }));
 }
 
 function getFullPhone(phoneCodeSelectId, phoneInputId) {
@@ -2101,11 +2081,10 @@ function attachFormHandler(formId, action, langId, phoneCodeId, phoneInputId) {
             if (fullPhone) fd.set('phone', fullPhone);
         }
         if (formId === 'demoForm') {
-            const templateId = document.getElementById('demoTemplate')?.value;
-            if (!templateId) {
-                alert(currentLang === 'ru' ? 'Пожалуйста, выберите шаблон сайта' : 'Please select a website template');
-                return;
-            }
+            const category = (document.getElementById('demoCategory')?.value || 'landing').toLowerCase();
+            let templateId = 'landing_1';
+            if (category.includes('ecommerce') || category.includes('shop')) templateId = 'shop_1';
+            else if (category.includes('corp')) templateId = 'corp_1';
             fd.append('template_id', templateId);
             fd.append('Template Used', templateId);
             const logoInput = document.getElementById('demoLogo');
@@ -2153,15 +2132,6 @@ function attachFormHandler(formId, action, langId, phoneCodeId, phoneInputId) {
 (async function bootFormHandlers() {
     await initScriptEndpoint();
     attachFormHandler('demoForm', 'demoRequest', 'demoLanguage', 'demoCountryCode', 'demoPhone');
-    
-    // Template selection handler
-    const selectTemplateBtn = document.getElementById('selectTemplateBtn');
-    if (selectTemplateBtn) {
-        selectTemplateBtn.onclick = async () => {
-            await showTemplateSelector();
-        };
-    }
-    
     attachFormHandler('consultForm', 'consultRequest', 'consultLanguage', 'consultCountryCode', 'consultPhone');
     attachFormHandler('editForm', 'editRequest', 'editLanguage', 'editCountryCode', 'editPhone');
     attachFormHandler('orderServiceForm', 'serviceOrder', 'orderLanguage', 'orderCountryCode', 'orderPhone');
@@ -2380,39 +2350,17 @@ function exportToCSV() {
 }
 
 async function renderDashboard() {
-    try {
-        const leads = await fetchLeads();
-        const total = leads.length;
-        const newLeads = leads.filter(l => l.Status === 'new' || l.Status === 'pending_payment').length;
-        const sent = leads.filter(l => l.Status === 'sent').length;
-        const paid = leads.filter(l => l['Payment Status'] === 'paid' || l['Payment Status'] === 'confirmed').length;
-
-        document.getElementById('adminContent').innerHTML = `
-            <div class="quick-actions"><button class="btn" onclick="alert('Export CSV')"><i class="fas fa-download"></i> Export CSV</button><button class="btn" onclick="alert('Mass message')"><i class="fas fa-bullhorn"></i> Mass message</button><button class="btn" onclick="alert('Backup created')"><i class="fas fa-database"></i> Backup</button></div>
-            <div class="stats-cards"><div class="stat-card"><div class="stat-number">${total}</div><div>${translations[currentLang].stats_total}</div></div><div class="stat-card"><div class="stat-number">${newLeads}</div><div>${translations[currentLang].stats_new}</div></div><div class="stat-card"><div class="stat-number">${sent}</div><div>${translations[currentLang].stats_sent}</div></div><div class="stat-card"><div class="stat-number">${paid}</div><div>${translations[currentLang].stats_paid}</div></div></div>
-            <canvas id="leadsChart" width="400" height="200"></canvas>
-        `;
-        const canvas = document.getElementById('leadsChart');
-        if (canvas && typeof Chart !== 'undefined') {
-            new Chart(canvas, {
-                type: 'line',
-                data: {
-                    labels: ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],
-                    datasets: [{
-                        label: 'Leads',
-                        data: [Math.floor(total*0.2), Math.floor(total*0.3), Math.floor(total*0.1), Math.floor(total*0.4), Math.floor(total*0.2), Math.floor(total*0.5), Math.floor(total*0.3)],
-                        borderColor: 'var(--gold)',
-                        fill: false
-                    }]
-                }
-            });
-        } else {
-            console.warn('Chart.js not loaded or canvas missing');
-        }
-    } catch(e) {
-        console.error('Dashboard error:', e);
-        document.getElementById('adminContent').innerHTML = `<p style="color:red;">❌ Error loading dashboard: ${e.message}</p>`;
-    }
+    const leads = await fetchLeads();
+    const total = leads.length;
+    const newLeads = leads.filter(l => l.Status === 'new' || l.Status === 'pending_payment').length;
+    const sent = leads.filter(l => l.Status === 'sent').length;
+    const paid = leads.filter(l => l['Payment Status'] === 'paid' || l['Payment Status'] === 'confirmed').length;
+    document.getElementById('adminContent').innerHTML = `
+        <div class="quick-actions"><button class="btn" onclick="alert('Export CSV')"><i class="fas fa-download"></i> Export CSV</button><button class="btn" onclick="alert('Mass message')"><i class="fas fa-bullhorn"></i> Mass message</button><button class="btn" onclick="alert('Backup created')"><i class="fas fa-database"></i> Backup</button></div>
+        <div class="stats-cards"><div class="stat-card"><div class="stat-number">${total}</div><div>${translations[currentLang].stats_total}</div></div><div class="stat-card"><div class="stat-number">${newLeads}</div><div>${translations[currentLang].stats_new}</div></div><div class="stat-card"><div class="stat-number">${sent}</div><div>${translations[currentLang].stats_sent}</div></div><div class="stat-card"><div class="stat-number">${paid}</div><div>${translations[currentLang].stats_paid}</div></div></div>
+        <canvas id="leadsChart" width="400" height="200"></canvas>
+    `;
+    new Chart(document.getElementById('leadsChart'),{type:'line',data:{labels:['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],datasets:[{label:'Leads',data:[Math.floor(total*0.2),Math.floor(total*0.3),Math.floor(total*0.1),Math.floor(total*0.4),Math.floor(total*0.2),Math.floor(total*0.5),Math.floor(total*0.3)],borderColor:'var(--gold)',fill:false}]}});
 }
 
 function escapeHtml(str) { return String(str).replace(/[&<>]/g, function(m) { if (m === '&') return '&amp;'; if (m === '<') return '&lt;'; if (m === '>') return '&gt;'; return m; }); }
@@ -2529,107 +2477,25 @@ async function renderTextEditor(){
     });
 }
 
-// =====================================================
-// ====== FIXED ADMIN PANEL – guaranteed open ==========
-// =====================================================
-function renderActiveTab() {
-    const content = document.getElementById('adminContent');
-    if (!content) {
-        console.error('❌ adminContent not found');
-        return;
-    }
-
-    try {
-        switch (currentAdminTab) {
-            case 'dashboard':
-                renderDashboard();
-                break;
-            case 'leads':
-                renderLeadsTable();
-                break;
-            case 'analytics':
-                renderAnalytics();
-                break;
-            case 'seo':
-                renderSEO();
-                break;
-            case 'backup':
-                renderBackup();
-                break;
-            case 'notifications':
-                renderNotifications();
-                break;
-            case 'followup':
-                renderFollowUp();
-                break;
-            case 'scraper':
-                renderScraper();
-                break;
-            case 'tickets':
-                renderTickets();
-                break;
-            case 'settings':
-                renderSettings();
-                break;
-            case 'logs':
-                renderLogs();
-                break;
-            case 'editor':
-                renderTextEditor();
-                break;
-            case 'images':
-                renderImageManager();
-                break;
-            case 'templates_manager':
-                renderTemplatesManager();
-                break;
-            default:
-                content.innerHTML = '<p>✅ Tab ready.</p>';
-        }
-    } catch (e) {
-        console.error('❌ Error in renderActiveTab:', e);
-        content.innerHTML = `<p style="color:red;">⚠️ Error loading tab "${currentAdminTab}": ${e.message}</p>`;
-    }
+function renderActiveTab(){
+    if(currentAdminTab==='dashboard') renderDashboard();
+    else if(currentAdminTab==='leads') renderLeadsTable();
+    else if(currentAdminTab==='analytics') renderAnalytics();
+    else if(currentAdminTab==='seo') renderSEO();
+    else if(currentAdminTab==='backup') renderBackup();
+    else if(currentAdminTab==='notifications') renderNotifications();
+    else if(currentAdminTab==='followup') renderFollowUp();
+    else if(currentAdminTab==='scraper') renderScraper();
+    else if(currentAdminTab==='tickets') renderTickets();
+    else if(currentAdminTab==='settings') renderSettings();
+    else if(currentAdminTab==='logs') renderLogs();
+    else if(currentAdminTab==='editor') renderTextEditor();
+    else if(currentAdminTab==='images') renderImageManager();
+    else if(currentAdminTab==='templates_manager') renderTemplatesManager();
 }
-
-// -------- Override admin toggle button with safe version --------
-document.getElementById('adminToggleBtn').addEventListener('click', function() {
-    const pwd = prompt('Password:');
-    if (pwd !== "1212") {
-        alert('Wrong password');
-        return;
-    }
-
-    const panel = document.getElementById('adminPanel');
-    const content = document.getElementById('adminContent');
-
-    // Add open class to show panel
-    panel.classList.add('open');
-
-    // If content is empty, show a temporary message
-    if (!content.innerHTML.trim()) {
-        content.innerHTML = '<p>⏳ Loading admin panel...</p>';
-    }
-
-    // Try to render the active tab, catch any error
-    try {
-        renderActiveTab();
-    } catch (e) {
-        console.error('❌ Critical error in renderActiveTab:', e);
-        content.innerHTML = `<p style="color:red;">❌ Failed to load panel: ${e.message}</p>`;
-    }
-});
-
-// -------- Also ensure adminClose works --------
-document.getElementById('adminClose').addEventListener('click', function() {
-    document.getElementById('adminPanel').classList.remove('open');
-});
-
-// =====================================================
-// ====== END OF ADMIN PANEL FIX =======================
-// =====================================================
-
 document.querySelectorAll('.admin-tab').forEach(tab=>{ tab.addEventListener('click',()=>{ document.querySelectorAll('.admin-tab').forEach(t=>t.classList.remove('active')); tab.classList.add('active'); currentAdminTab = tab.getAttribute('data-tab'); renderActiveTab(); }); });
+document.getElementById('adminToggleBtn').addEventListener('click',()=>{ const pwd = prompt('Password:'); if(pwd === "1212"){ document.getElementById('adminPanel').classList.add('open'); renderActiveTab(); } else alert('Wrong password'); });
+document.getElementById('adminClose').addEventListener('click',()=>document.getElementById('adminPanel').classList.remove('open'));
 
 for(let i=0;i<60;i++){ let p=document.createElement('div'); p.classList.add('particle'); let size=Math.random()*12+4; p.style.width=p.style.height=size+'px'; p.style.left=Math.random()*100+'%'; p.style.animationDuration=Math.random()*20+12+'s'; p.style.animationDelay=Math.random()*10+'s'; document.getElementById('particles').appendChild(p); }
 function setupModalLanguageButtons() {
@@ -2704,13 +2570,32 @@ if (adminPanelEl) { const observer = new MutationObserver((mutations) => { mutat
         if (typeof renderTemplatesPage === 'function') renderTemplatesPage();
     }).catch(function() { /* optional catalog */ });
 })();
+console.log('✅ FINAL VERSION: All features integrated, leads display fixed, templates manager active, all form fields sent to Google Sheets.');
+</script>
+</body>
+    </html>
+
 
 // ==================== ADVANCED ANIMATION CONTROLS ====================
 (function initAdvancedAnimations() {
     console.log('🎨 Initializing advanced animations...');
-    document.querySelectorAll('.service-card, .portfolio-card, .template-card').forEach((card, index) => { card.style.setProperty('--card-index', index); });
-    document.querySelectorAll('.hero-badge').forEach((badge, index) => { badge.style.setProperty('--badge-index', index); });
-    document.querySelectorAll('.floating-btn').forEach((btn, index) => { btn.style.setProperty('--float-index', index); });
+    
+    // Initialize card animation delays
+    document.querySelectorAll('.service-card, .portfolio-card, .template-card').forEach((card, index) => {
+        card.style.setProperty('--card-index', index);
+    });
+    
+    // Initialize badge animation delays
+    document.querySelectorAll('.hero-badge').forEach((badge, index) => {
+        badge.style.setProperty('--badge-index', index);
+    });
+    
+    // Initialize floating button animation delays
+    document.querySelectorAll('.floating-btn').forEach((btn, index) => {
+        btn.style.setProperty('--float-index', index);
+    });
+    
+    // Ripple effect for buttons
     document.querySelectorAll('.btn').forEach(button => {
         button.addEventListener('click', function(e) {
             const ripple = document.createElement('span');
@@ -2718,116 +2603,349 @@ if (adminPanelEl) { const observer = new MutationObserver((mutations) => { mutat
             const size = Math.max(rect.width, rect.height);
             const x = e.clientX - rect.left - size / 2;
             const y = e.clientY - rect.top - size / 2;
-            ripple.style.cssText = `position:absolute; border-radius:50%; background:rgba(255,255,255,0.7); transform:scale(0); animation:ripple 0.6s linear; width:${size}px; height:${size}px; top:${y}px; left:${x}px; pointer-events:none;`;
+            
+            ripple.style.cssText = `
+                position: absolute;
+                border-radius: 50%;
+                background: rgba(255, 255, 255, 0.7);
+                transform: scale(0);
+                animation: ripple 0.6s linear;
+                width: ${size}px;
+                height: ${size}px;
+                top: ${y}px;
+                left: ${x}px;
+                pointer-events: none;
+            `;
+            
             this.appendChild(ripple);
             setTimeout(() => ripple.remove(), 600);
         });
     });
-    window.addEventListener('scroll', () => { const hero = document.querySelector('.hero'); if (hero) hero.style.transform = `translateY(${window.pageYOffset * -0.5}px)`; });
-    const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+    
+    // Parallax effect for hero section
+    window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        const hero = document.querySelector('.hero');
+        if (hero) {
+            const rate = scrolled * -0.5;
+            hero.style.transform = `translateY(${rate}px)`;
+        }
+    });
+    
+    // Intersection Observer for staggered animations
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+    
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
-                if (entry.target.classList.contains('services-grid') || entry.target.classList.contains('portfolio-grid') || entry.target.classList.contains('templates-grid')) {
-                    Array.from(entry.target.children).forEach((child, index) => { child.style.transitionDelay = `${index * 0.1}s`; child.classList.add('stagger-item', 'visible'); });
+                
+                // Add sequential delay for children
+                if (entry.target.classList.contains('services-grid') || 
+                    entry.target.classList.contains('portfolio-grid') ||
+                    entry.target.classList.contains('templates-grid')) {
+                    const children = entry.target.children;
+                    Array.from(children).forEach((child, index) => {
+                        child.style.transitionDelay = `${index * 0.1}s`;
+                        child.classList.add('stagger-item', 'visible');
+                    });
                 }
             }
         });
     }, observerOptions);
-    document.querySelectorAll('section, .stagger-item').forEach(el => observer.observe(el));
+    
+    // Observe all sections and cards
+    document.querySelectorAll('section, .stagger-item').forEach(el => {
+        observer.observe(el);
+    });
+    
+    // Mouse move parallax for cards
     document.addEventListener('mousemove', (e) => {
-        document.querySelectorAll('.service-card, .portfolio-card, .template-card').forEach(card => {
+        const cards = document.querySelectorAll('.service-card, .portfolio-card, .template-card');
+        cards.forEach(card => {
             const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left, y = e.clientY - rect.top;
-            const rotateY = (x - rect.width/2) / 25, rotateX = (rect.height/2 - y) / 25;
-            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(var(--float-y, 0px))`;
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            
+            const rotateY = (x - centerX) / 25;
+            const rotateX = (centerY - y) / 25;
+            
+            card.style.transform = `
+                perspective(1000px) 
+                rotateX(${rotateX}deg) 
+                rotateY(${rotateY}deg) 
+                translateY(var(--float-y, 0px))
+            `;
         });
     });
+    
+    // Animated counter for stats
+    function animateCounter(element, target) {
+        let current = 0;
+        const increment = target / 100;
+        const timer = setInterval(() => {
+            current += increment;
+            if (current >= target) {
+                current = target;
+                clearInterval(timer);
+            }
+            element.textContent = Math.floor(current);
+        }, 20);
+    }
+    
+    // Initialize stat counters when in view
     const statObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 const numberElement = entry.target.querySelector('.stat-number');
                 if (numberElement && numberElement.dataset.count) {
                     const target = parseInt(numberElement.dataset.count);
-                    let current = 0;
-                    const increment = target / 100;
-                    const timer = setInterval(() => {
-                        current += increment;
-                        if (current >= target) { current = target; clearInterval(timer); }
-                        numberElement.textContent = Math.floor(current);
-                    }, 20);
+                    animateCounter(numberElement, target);
                 }
                 statObserver.unobserve(entry.target);
             }
         });
     }, { threshold: 0.5 });
-    document.querySelectorAll('.stat-item').forEach(stat => statObserver.observe(stat));
-    document.querySelectorAll('.btn, .floating-btn, .service-card').forEach(el => {
-        el.addEventListener('mouseenter', () => el.style.animationPlayState = 'running');
-        el.addEventListener('mouseleave', () => el.style.animationPlayState = 'paused');
+    
+    document.querySelectorAll('.stat-item').forEach(stat => {
+        statObserver.observe(stat);
     });
+    
+    // Hover sound effects (optional)
+    document.querySelectorAll('.btn, .floating-btn, .service-card').forEach(el => {
+        el.addEventListener('mouseenter', () => {
+            el.style.animationPlayState = 'running';
+        });
+        
+        el.addEventListener('mouseleave', () => {
+            el.style.animationPlayState = 'paused';
+        });
+    });
+    
     console.log('✅ Advanced animations initialized');
 })();
 
 // ==================== PERFORMANCE OPTIMIZATION ====================
+// Debounce scroll events
 let scrollTimeout;
 window.addEventListener('scroll', () => {
     clearTimeout(scrollTimeout);
     scrollTimeout = setTimeout(() => {
-        document.querySelectorAll('.btn-ripple').forEach(ripple => { if (ripple.parentNode) ripple.parentNode.removeChild(ripple); });
+        // Performance cleanup
+        document.querySelectorAll('.btn-ripple').forEach(ripple => {
+            if (ripple.parentNode) ripple.parentNode.removeChild(ripple);
+        });
     }, 100);
 });
+
 console.log('🚀 FINAL VERSION: Advanced animations integrated, motion design activated, all visual effects optimized for performance.');
 
 // ==================== ULTRA ADVANCED MOTION CONTROLS ====================
 (function initUltraAdvancedAnimations() {
     console.log('🎭 Initializing ultra advanced motion effects...');
-    const scanline = document.createElement('div'); scanline.className = 'hologram-scanline'; document.body.appendChild(scanline);
-    document.querySelectorAll('.service-card, .template-card').forEach(card => card.classList.add('premium-card'));
-    document.querySelectorAll('.hero-badge').forEach(badge => badge.classList.add('liquid-element'));
-    document.querySelectorAll('h2').forEach(heading => heading.classList.add('glitch-text'));
-    const heroTitle = document.querySelector('.hero .hero-title'); if (heroTitle) heroTitle.classList.add('reveal-text');
-    document.querySelectorAll('.service-card, .portfolio-card, .template-card').forEach((card, index) => { card.classList.add('blur-in'); card.style.animationDelay = `${index * 0.1}s`; });
-    function createParticleExplosion(element) {
+    
+    // Add holographic scanline
+    const scanline = document.createElement('div');
+    scanline.className = 'hologram-scanline';
+    document.body.appendChild(scanline);
+    
+    // Add premium card class to service cards
+    document.querySelectorAll('.service-card, .template-card').forEach(card => {
+        card.classList.add('premium-card');
+    });
+    
+    // Add liquid effect to hero badges
+    document.querySelectorAll('.hero-badge').forEach(badge => {
+        badge.classList.add('liquid-element');
+    });
+    
+    // Add glitch effect to important headings
+    document.querySelectorAll('h2').forEach(heading => {
+        heading.classList.add('glitch-text');
+    });
+    
+    // Add reveal animation to hero title
+    const heroTitle = document.querySelector('.hero .hero-title');
+    if (heroTitle) {
+        heroTitle.classList.add('reveal-text');
+    }
+    
+    // Add blur-in effect to cards with delay
+    document.querySelectorAll('.service-card, .portfolio-card, .template-card').forEach((card, index) => {
+        card.classList.add('blur-in');
+        card.style.animationDelay = `${index * 0.1}s`;
+    });
+    
+    // Particle explosion on button click
+    document.querySelectorAll('.btn').forEach(button => {
+        button.addEventListener('click', function(e) {
+            createParticleExplosion(this, e);
+        });
+    });
+    
+    // Create particle explosion effect
+    function createParticleExplosion(element, event) {
         const rect = element.getBoundingClientRect();
-        const centerX = rect.left + rect.width / 2, centerY = rect.top + rect.height / 2;
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        
         for (let i = 0; i < 20; i++) {
             const particle = document.createElement('div');
             particle.className = 'particle';
             particle.style.setProperty('--particle-x', (Math.random() * 2 - 1).toFixed(2));
             particle.style.setProperty('--particle-y', (Math.random() * 2 - 1).toFixed(2));
-            particle.style.left = `${centerX}px`; particle.style.top = `${centerY}px`; particle.style.animationDelay = `${i * 0.05}s`;
+            particle.style.left = `${centerX}px`;
+            particle.style.top = `${centerY}px`;
+            particle.style.animationDelay = `${i * 0.05}s`;
+            
+            // Random color from theme
             const colors = ['var(--gold)', 'var(--gold-dark)', 'var(--brown)', 'var(--brown-light)'];
             particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+            
             document.body.appendChild(particle);
-            setTimeout(() => { if (particle.parentNode) particle.parentNode.removeChild(particle); }, 1000);
+            
+            // Remove particle after animation
+            setTimeout(() => {
+                if (particle.parentNode) {
+                    particle.parentNode.removeChild(particle);
+                }
+            }, 1000);
         }
     }
-    document.querySelectorAll('.btn').forEach(button => { button.addEventListener('click', function(e) { createParticleExplosion(this); }); });
-    const trailContainer = document.createElement('div'); trailContainer.style.cssText = `position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:9998;`; document.body.appendChild(trailContainer);
-    let trailPoints = []; const maxTrailPoints = 20;
+    
+    // Interactive mouse trail effect
+    const trailContainer = document.createElement('div');
+    trailContainer.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 9998;
+    `;
+    document.body.appendChild(trailContainer);
+    
+    let trailPoints = [];
+    const maxTrailPoints = 20;
+    
     document.addEventListener('mousemove', (e) => {
-        const trailPoint = document.createElement('div'); trailPoint.style.cssText = `position:fixed; width:6px; height:6px; background:var(--gold); border-radius:50%; left:${e.clientX - 3}px; top:${e.clientY - 3}px; pointer-events:none; opacity:0.7; z-index:9998;`; trailContainer.appendChild(trailPoint); trailPoints.push(trailPoint);
-        if (trailPoints.length > maxTrailPoints) { const oldPoint = trailPoints.shift(); if (oldPoint.parentNode) { oldPoint.style.transition = 'opacity 0.5s ease'; oldPoint.style.opacity = '0'; setTimeout(() => { if (oldPoint.parentNode) oldPoint.parentNode.removeChild(oldPoint); }, 500); } }
-        setTimeout(() => { if (trailPoint.parentNode) { trailPoint.style.transition = 'opacity 0.5s ease'; trailPoint.style.opacity = '0'; setTimeout(() => { if (trailPoint.parentNode) trailPoint.parentNode.removeChild(trailPoint); trailPoints = trailPoints.filter(p => p !== trailPoint); }, 500); } }, 1000);
+        const trailPoint = document.createElement('div');
+        trailPoint.style.cssText = `
+            position: fixed;
+            width: 6px;
+            height: 6px;
+            background: var(--gold);
+            border-radius: 50%;
+            left: ${e.clientX - 3}px;
+            top: ${e.clientY - 3}px;
+            pointer-events: none;
+            opacity: 0.7;
+            z-index: 9998;
+        `;
+        
+        trailContainer.appendChild(trailPoint);
+        trailPoints.push(trailPoint);
+        
+        // Fade out and remove old points
+        if (trailPoints.length > maxTrailPoints) {
+            const oldPoint = trailPoints.shift();
+            if (oldPoint.parentNode) {
+                oldPoint.style.transition = 'opacity 0.5s ease';
+                oldPoint.style.opacity = '0';
+                setTimeout(() => {
+                    if (oldPoint.parentNode) {
+                        oldPoint.parentNode.removeChild(oldPoint);
+                    }
+                }, 500);
+            }
+        }
+        
+        // Auto-remove after delay
+        setTimeout(() => {
+            if (trailPoint.parentNode) {
+                trailPoint.style.transition = 'opacity 0.5s ease';
+                trailPoint.style.opacity = '0';
+                setTimeout(() => {
+                    if (trailPoint.parentNode) {
+                        trailPoint.parentNode.removeChild(trailPoint);
+                    }
+                    trailPoints = trailPoints.filter(p => p !== trailPoint);
+                }, 500);
+            }
+        }, 1000);
     });
+    
+    // Dynamic background gradient based on mouse position
     document.addEventListener('mousemove', (e) => {
-        const x = e.clientX / window.innerWidth, y = e.clientY / window.innerHeight;
-        document.body.style.setProperty('--mouse-x', x); document.body.style.setProperty('--mouse-y', y);
-        document.body.style.background = `radial-gradient(circle at ${x*100}% ${y*100}%, rgba(200,169,106,0.15) 0%, transparent 50%), radial-gradient(circle at ${100 - x*100}% ${100 - y*100}%, rgba(166,123,90,0.1) 0%, transparent 60%), var(--bg-body)`;
+        const x = e.clientX / window.innerWidth;
+        const y = e.clientY / window.innerHeight;
+        
+        document.body.style.setProperty('--mouse-x', x);
+        document.body.style.setProperty('--mouse-y', y);
+        
+        // Update gradient position
+        const gradientX = x * 100;
+        const gradientY = y * 100;
+        
+        document.body.style.background = `
+            radial-gradient(circle at ${gradientX}% ${gradientY}%, 
+                rgba(200, 169, 106, 0.15) 0%, 
+                transparent 50%),
+            radial-gradient(circle at ${100 - gradientX}% ${100 - gradientY}%, 
+                rgba(166, 123, 90, 0.1) 0%, 
+                transparent 60%),
+            var(--bg-body)
+        `;
     });
+    
+    // Audio feedback for interactions (optional)
+    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    
+    function playInteractionSound(frequency = 440, duration = 0.1) {
+        try {
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            
+            oscillator.frequency.value = frequency;
+            oscillator.type = 'sine';
+            
+            gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + duration);
+            
+            oscillator.start(audioContext.currentTime);
+            oscillator.stop(audioContext.currentTime + duration);
+        } catch (e) {
+            // Audio not supported or user blocked
+        }
+    }
+    
+    // Add sound to button clicks
+    document.querySelectorAll('.btn').forEach(button => {
+        button.addEventListener('click', () => {
+            playInteractionSound(523.25, 0.1); // C5 note
+        });
+        
+        button.addEventListener('mouseenter', () => {
+            playInteractionSound(392, 0.05); // G4 note
+        });
+    });
+    
+    // Add sound to card hovers
+    document.querySelectorAll('.service-card, .portfolio-card, .template-card').forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            playInteractionSound(329.63, 0.05); // E4 note
+        });
+    });
+    
     console.log('🎭 Ultra advanced motion effects initialized');
 })();
-
-// ==================== TEMPLATE SELECTION SYSTEM ====================
-let templatesDataCache = null;
-let selectedTemplateId = null;
-async function loadTemplates() { if (templatesDataCache) return templatesDataCache; try { const res = await fetch(SCRIPT_URL + '?action=getTemplates&t=' + Date.now()); const data = await res.json(); if (data.success && data.templates) { templatesDataCache = data.templates; return templatesDataCache; } } catch(e) { console.warn('Failed to load templates:', e); } return [ { id: 'landing-modern', name: { en: 'Modern Landing', ru: 'Современный лендинг' }, type: 'landing', preview: 'https://templateswebsite.dawidolko.pl/unique-free-responsive-html5-template/' }, { id: 'landing-classic', name: { en: 'Classic Landing', ru: 'Классический лендинг' }, type: 'landing', preview: 'https://templateswebsite.dawidolko.pl/basic-free-html5-template-for-multi-purpose/' }, { id: 'ecommerce-clean', name: { en: 'Clean E-commerce', ru: 'Чистый интернет-магазин' }, type: 'ecommerce', preview: 'https://templateswebsite.dawidolko.pl/3-col-portfolio/' }, { id: 'corporate-pro', name: { en: 'Corporate Pro', ru: 'Корпоративный Pro' }, type: 'corporate', preview: 'https://templateswebsite.dawidolko.pl/businessline-corporate-portfolio-bootstrap-responsive-web-template/' } ]; }
-function renderTemplateSelector() { const container = document.getElementById('templateSelectorContainer'); if (!container) return; const templates = templatesDataCache || []; if (templates.length === 0) { container.innerHTML = '<p>Loading templates...</p>'; loadTemplates().then(() => renderTemplateSelector()); return; } let html = '<div class="template-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:15px;">'; templates.forEach((t) => { const name = currentLang === 'ru' ? t.name.ru : t.name.en; const desc = currentLang === 'ru' ? t.description?.ru : t.description?.en; const preview = t.preview || 'https://placehold.co/300x200?text=Template'; html += `<div class="template-card" style="border:2px solid var(--border-light);border-radius:16px;overflow:hidden;transition:all 0.3s;cursor:pointer;background:var(--bg-card);"><div style="position:relative;"><img src="${preview}" style="width:100%;height:150px;object-fit:cover;" alt="${name}"><div style="position:absolute;bottom:8px;right:8px;background:var(--gold);color:#2c2118;padding:4px 12px;border-radius:20px;font-weight:700;font-size:0.85rem;">${t.type === 'landing' ? '🏠' : t.type === 'ecommerce' ? '🛒' : '🏢'}</div></div><div style="padding:12px;"><h4 style="margin:0 0 8px 0;font-size:1.1rem;color:var(--text-primary);">${name}</h4><p style="margin:0;font-size:0.85rem;color:var(--text-light);">${desc || ''}</p></div><div style="padding:12px;border-top:1px solid var(--border-light);"><button class="btn" style="width:100%;padding:10px;" onclick="selectTemplate('${t.id}', '${name.replace(/'/g, "\\'")}')">${currentLang === 'ru' ? 'Выбрать' : 'Select'}</button></div></div>`; }); html += '</div>'; container.innerHTML = html; }
-function selectTemplate(templateId, templateName) { selectedTemplateId = templateId; const name = templateName; const templateSelect = document.getElementById('demoTemplate'); if (templateSelect) { templateSelect.value = templateId; templateSelect.innerHTML = `<option value="${templateId}" selected>${name}</option>`; } const selectedTemplateInput = document.getElementById('selectedTemplateId'); if (selectedTemplateInput) selectedTemplateInput.value = templateId; const selectionDisplay = document.getElementById('templateSelectionDisplay'); if (selectionDisplay) selectionDisplay.innerHTML = `<i class="fas fa-check-circle" style="color:var(--gold);"></i> ${currentLang === 'ru' ? 'Выбран шаблон:' : 'Selected template:'} <strong>${name}</strong>`; closeAllModals(); const demoForm = document.getElementById('demoForm'); if (demoForm) demoForm.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
-async function showTemplateSelector() { const templates = await loadTemplates(); if (templates.length === 0) { alert(currentLang === 'ru' ? 'Не удалось загрузить шаблоны' : 'Failed to load templates'); return; } templatesDataCache = templates; const modalContent = document.querySelector('#templateModal .modal-content'); if (modalContent) { modalContent.innerHTML = `<span class="close-modal" onclick="closeAllModals()">&times;</span><h3 style="margin-bottom:20px;">${currentLang === 'ru' ? 'Выберите шаблон сайта' : 'Select website template'}</h3><div id="templateSelectorContainer"></div>`; renderTemplateSelector(); openModal('template'); } }
-console.log('✅ All systems operational. No extra text will be displayed.');
-</script>
-</body>
-</html>
