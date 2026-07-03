@@ -2380,17 +2380,39 @@ function exportToCSV() {
 }
 
 async function renderDashboard() {
-    const leads = await fetchLeads();
-    const total = leads.length;
-    const newLeads = leads.filter(l => l.Status === 'new' || l.Status === 'pending_payment').length;
-    const sent = leads.filter(l => l.Status === 'sent').length;
-    const paid = leads.filter(l => l['Payment Status'] === 'paid' || l['Payment Status'] === 'confirmed').length;
-    document.getElementById('adminContent').innerHTML = `
-        <div class="quick-actions"><button class="btn" onclick="alert('Export CSV')"><i class="fas fa-download"></i> Export CSV</button><button class="btn" onclick="alert('Mass message')"><i class="fas fa-bullhorn"></i> Mass message</button><button class="btn" onclick="alert('Backup created')"><i class="fas fa-database"></i> Backup</button></div>
-        <div class="stats-cards"><div class="stat-card"><div class="stat-number">${total}</div><div>${translations[currentLang].stats_total}</div></div><div class="stat-card"><div class="stat-number">${newLeads}</div><div>${translations[currentLang].stats_new}</div></div><div class="stat-card"><div class="stat-number">${sent}</div><div>${translations[currentLang].stats_sent}</div></div><div class="stat-card"><div class="stat-number">${paid}</div><div>${translations[currentLang].stats_paid}</div></div></div>
-        <canvas id="leadsChart" width="400" height="200"></canvas>
-    `;
-    new Chart(document.getElementById('leadsChart'),{type:'line',data:{labels:['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],datasets:[{label:'Leads',data:[Math.floor(total*0.2),Math.floor(total*0.3),Math.floor(total*0.1),Math.floor(total*0.4),Math.floor(total*0.2),Math.floor(total*0.5),Math.floor(total*0.3)],borderColor:'var(--gold)',fill:false}]}});
+    try {
+        const leads = await fetchLeads();
+        const total = leads.length;
+        const newLeads = leads.filter(l => l.Status === 'new' || l.Status === 'pending_payment').length;
+        const sent = leads.filter(l => l.Status === 'sent').length;
+        const paid = leads.filter(l => l['Payment Status'] === 'paid' || l['Payment Status'] === 'confirmed').length;
+
+        document.getElementById('adminContent').innerHTML = `
+            <div class="quick-actions"><button class="btn" onclick="alert('Export CSV')"><i class="fas fa-download"></i> Export CSV</button><button class="btn" onclick="alert('Mass message')"><i class="fas fa-bullhorn"></i> Mass message</button><button class="btn" onclick="alert('Backup created')"><i class="fas fa-database"></i> Backup</button></div>
+            <div class="stats-cards"><div class="stat-card"><div class="stat-number">${total}</div><div>${translations[currentLang].stats_total}</div></div><div class="stat-card"><div class="stat-number">${newLeads}</div><div>${translations[currentLang].stats_new}</div></div><div class="stat-card"><div class="stat-number">${sent}</div><div>${translations[currentLang].stats_sent}</div></div><div class="stat-card"><div class="stat-number">${paid}</div><div>${translations[currentLang].stats_paid}</div></div></div>
+            <canvas id="leadsChart" width="400" height="200"></canvas>
+        `;
+        const canvas = document.getElementById('leadsChart');
+        if (canvas && typeof Chart !== 'undefined') {
+            new Chart(canvas, {
+                type: 'line',
+                data: {
+                    labels: ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],
+                    datasets: [{
+                        label: 'Leads',
+                        data: [Math.floor(total*0.2), Math.floor(total*0.3), Math.floor(total*0.1), Math.floor(total*0.4), Math.floor(total*0.2), Math.floor(total*0.5), Math.floor(total*0.3)],
+                        borderColor: 'var(--gold)',
+                        fill: false
+                    }]
+                }
+            });
+        } else {
+            console.warn('Chart.js not loaded or canvas missing');
+        }
+    } catch(e) {
+        console.error('Dashboard error:', e);
+        document.getElementById('adminContent').innerHTML = `<p style="color:red;">❌ Error loading dashboard: ${e.message}</p>`;
+    }
 }
 
 function escapeHtml(str) { return String(str).replace(/[&<>]/g, function(m) { if (m === '&') return '&amp;'; if (m === '<') return '&lt;'; if (m === '>') return '&gt;'; return m; }); }
@@ -2507,25 +2529,107 @@ async function renderTextEditor(){
     });
 }
 
-function renderActiveTab(){
-    if(currentAdminTab==='dashboard') renderDashboard();
-    else if(currentAdminTab==='leads') renderLeadsTable();
-    else if(currentAdminTab==='analytics') renderAnalytics();
-    else if(currentAdminTab==='seo') renderSEO();
-    else if(currentAdminTab==='backup') renderBackup();
-    else if(currentAdminTab==='notifications') renderNotifications();
-    else if(currentAdminTab==='followup') renderFollowUp();
-    else if(currentAdminTab==='scraper') renderScraper();
-    else if(currentAdminTab==='tickets') renderTickets();
-    else if(currentAdminTab==='settings') renderSettings();
-    else if(currentAdminTab==='logs') renderLogs();
-    else if(currentAdminTab==='editor') renderTextEditor();
-    else if(currentAdminTab==='images') renderImageManager();
-    else if(currentAdminTab==='templates_manager') renderTemplatesManager();
+// =====================================================
+// ====== FIXED ADMIN PANEL – guaranteed open ==========
+// =====================================================
+function renderActiveTab() {
+    const content = document.getElementById('adminContent');
+    if (!content) {
+        console.error('❌ adminContent not found');
+        return;
+    }
+
+    try {
+        switch (currentAdminTab) {
+            case 'dashboard':
+                renderDashboard();
+                break;
+            case 'leads':
+                renderLeadsTable();
+                break;
+            case 'analytics':
+                renderAnalytics();
+                break;
+            case 'seo':
+                renderSEO();
+                break;
+            case 'backup':
+                renderBackup();
+                break;
+            case 'notifications':
+                renderNotifications();
+                break;
+            case 'followup':
+                renderFollowUp();
+                break;
+            case 'scraper':
+                renderScraper();
+                break;
+            case 'tickets':
+                renderTickets();
+                break;
+            case 'settings':
+                renderSettings();
+                break;
+            case 'logs':
+                renderLogs();
+                break;
+            case 'editor':
+                renderTextEditor();
+                break;
+            case 'images':
+                renderImageManager();
+                break;
+            case 'templates_manager':
+                renderTemplatesManager();
+                break;
+            default:
+                content.innerHTML = '<p>✅ Tab ready.</p>';
+        }
+    } catch (e) {
+        console.error('❌ Error in renderActiveTab:', e);
+        content.innerHTML = `<p style="color:red;">⚠️ Error loading tab "${currentAdminTab}": ${e.message}</p>`;
+    }
 }
+
+// -------- Override admin toggle button with safe version --------
+document.getElementById('adminToggleBtn').addEventListener('click', function() {
+    const pwd = prompt('Password:');
+    if (pwd !== "1212") {
+        alert('Wrong password');
+        return;
+    }
+
+    const panel = document.getElementById('adminPanel');
+    const content = document.getElementById('adminContent');
+
+    // Add open class to show panel
+    panel.classList.add('open');
+
+    // If content is empty, show a temporary message
+    if (!content.innerHTML.trim()) {
+        content.innerHTML = '<p>⏳ Loading admin panel...</p>';
+    }
+
+    // Try to render the active tab, catch any error
+    try {
+        renderActiveTab();
+    } catch (e) {
+        console.error('❌ Critical error in renderActiveTab:', e);
+        content.innerHTML = `<p style="color:red;">❌ Failed to load panel: ${e.message}</p>`;
+    }
+});
+
+// -------- Also ensure adminClose works --------
+document.getElementById('adminClose').addEventListener('click', function() {
+    document.getElementById('adminPanel').classList.remove('open');
+});
+
+// =====================================================
+// ====== END OF ADMIN PANEL FIX =======================
+// =====================================================
+
 document.querySelectorAll('.admin-tab').forEach(tab=>{ tab.addEventListener('click',()=>{ document.querySelectorAll('.admin-tab').forEach(t=>t.classList.remove('active')); tab.classList.add('active'); currentAdminTab = tab.getAttribute('data-tab'); renderActiveTab(); }); });
-document.getElementById('adminToggleBtn').addEventListener('click',()=>{ const pwd = prompt('Password:'); if(pwd === "1212"){ document.getElementById('adminPanel').classList.add('open'); renderActiveTab(); } else alert('Wrong password'); });
-document.getElementById('adminClose').addEventListener('click',()=>document.getElementById('adminPanel').classList.remove('open'));
 
 for(let i=0;i<60;i++){ let p=document.createElement('div'); p.classList.add('particle'); let size=Math.random()*12+4; p.style.width=p.style.height=size+'px'; p.style.left=Math.random()*100+'%'; p.style.animationDuration=Math.random()*20+12+'s'; p.style.animationDelay=Math.random()*10+'s'; document.getElementById('particles').appendChild(p); }
 function setupModalLanguageButtons() {
@@ -2726,4 +2830,4 @@ async function showTemplateSelector() { const templates = await loadTemplates();
 console.log('✅ All systems operational. No extra text will be displayed.');
 </script>
 </body>
-    </html>
+</html>
