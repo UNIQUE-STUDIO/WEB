@@ -1445,7 +1445,7 @@ let translations = {
         demo_existing_site: "Ваш текущий сайт", demo_notes: "Дополнительные пожелания", demo_has_hosting: "У меня уже есть хостинг и домен",
         consult_name: "Ваше имя", consult_email: "Email", consult_phone: "Телефон", consult_vk: "Ссылка VK", consult_message: "Ваш вопрос",
         review_name: "Ваше имя", review_text: "Ваш отзыв",
-        agree_label: "Я ознакомлен и согласен с <a href='#' id='agreePolicyLink'>Пользовательским соглашением</a> и <a href='#' id='agreeRefundLink'>Политикой возвратов</a>",
+        agree_label: "Я ознакомлен и согласен с <a href='#' class='i18n-policy-link'>Пользовательским соглашением</a> и <a href='#' class='i18n-refund-link'>Политикой возвратов</a>",
         send_btn: "Отправить", send_copy: "Отправить копию заявки на email", fill_from_vk: "Заполнить из VK",
         demo_modal_title: "Получить демо сайт", consult_modal_title: "Заявка на консультацию", review_modal_title: "Оставить отзыв",
         policy_title: "Пользовательское соглашение", refund_title: "Политика возвратов", exit_title: "Не уходите!", exit_text: "Оставьте заявку и получите скидку 10% на любой пакет.", exit_btn: "Получить скидку",
@@ -1496,7 +1496,7 @@ let translations = {
         demo_existing_site: "Your current site", demo_notes: "Additional wishes", demo_has_hosting: "I have hosting and domain",
         consult_name: "Your name", consult_email: "Email", consult_phone: "Phone", consult_vk: "VK link", consult_message: "Your question",
         review_name: "Your name", review_text: "Your review",
-        agree_label: "I agree to the <a href='#' id='agreePolicyLink'>Terms of Use</a> and <a href='#' id='agreeRefundLink'>Refund Policy</a>",
+        agree_label: "I agree to the <a href='#' class='i18n-policy-link'>Terms of Use</a> and <a href='#' class='i18n-refund-link'>Refund Policy</a>",
         send_btn: "Submit", send_copy: "Send copy to email", fill_from_vk: "Fill from VK",
         demo_modal_title: "Get demo site", consult_modal_title: "Consultation request", review_modal_title: "Leave a review",
         policy_title: "Terms of Use", refund_title: "Refund Policy", exit_title: "Don't go!", exit_text: "Leave a request and get 10% discount.", exit_btn: "Get discount",
@@ -1550,172 +1550,15 @@ function populateCountryCodes() {
             select.appendChild(opt);
         });
     });
-}
-document.addEventListener('DOMContentLoaded', populateCountryCodes);
-
-function loadCustomTranslations() {
-    const customRu = localStorage.getItem('custom_translations_ru');
-    const customEn = localStorage.getItem('custom_translations_en');
-    if (customRu) Object.assign(translations.ru, JSON.parse(customRu));
-    if (customEn) Object.assign(translations.en, JSON.parse(customEn));
-}
-loadCustomTranslations();
-
-function showSuccessToast(msg) {
-    let toast = document.createElement('div');
-    toast.className = 'success-toast';
-    toast.innerHTML = `<i class="fas fa-check-circle"></i> ${msg}`;
-    document.body.appendChild(toast);
-    setTimeout(() => toast.remove(), 3000);
-}
-
-// ==================== TEMPLATES RENDER (with pagination) ====================
-let templatesPage = 1;
-let templatesPerPage = 12;
-let templatesFilterCategory = 'all';
-let templatesFilterSearch = '';
-
-function renderTemplatesPage() {
-    const container = document.getElementById('templatesGrid');
-    if (!container) return;
-    const t = translations[currentLang];
-    const allTemplates = [];
-    for (let cat in templatesData) {
-        if (templatesFilterCategory !== 'all' && cat !== templatesFilterCategory) continue;
-        for (let tmpl of templatesData[cat]) {
-            if (templatesFilterSearch) {
-                const name = (tmpl.name[currentLang] || tmpl.name.en || '').toLowerCase();
-                const slug = (tmpl.slug || '').toLowerCase();
-                if (!name.includes(templatesFilterSearch) && !slug.includes(templatesFilterSearch)) continue;
-            }
-            allTemplates.push({...tmpl, _category: cat});
-        }
-    }
-    const totalPages = Math.ceil(allTemplates.length / templatesPerPage) || 1;
-    const start = (templatesPage - 1) * templatesPerPage;
-    const pageItems = allTemplates.slice(start, start + templatesPerPage);
-
-    // Filter buttons
-    const catCounts = { all: 0, landing: 0, ecommerce: 0, corporate: 0 };
-    for (let cat in templatesData) {
-        catCounts[cat] = templatesData[cat].length;
-        catCounts.all += templatesData[cat].length;
-    }
-    const filterHtml = `
-        <div class="template-filters" style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:20px; align-items:center;">
-            <button class="filter-btn ${templatesFilterCategory==='all'?'active':''}" data-filter="all">${t.filter_all || 'All'} (${catCounts.all})</button>
-            <button class="filter-btn ${templatesFilterCategory==='landing'?'active':''}" data-filter="landing">${t.filter_landing || 'Landing'} (${catCounts.landing})</button>
-            <button class="filter-btn ${templatesFilterCategory==='ecommerce'?'active':''}" data-filter="ecommerce">${t.filter_shop || 'E-commerce'} (${catCounts.ecommerce})</button>
-            <button class="filter-btn ${templatesFilterCategory==='corporate'?'active':''}" data-filter="corporate">${t.filter_corp || 'Corporate'} (${catCounts.corporate})</button>
-            <input type="text" id="templatesSearch" class="search-input" placeholder="${t.search_placeholder || 'Search...'}" value="${escapeHtml(templatesFilterSearch)}" style="width:200px; margin-left:auto;">
-        </div>`;
-
-    container.innerHTML = filterHtml + pageItems.map(tmpl => {
-        const name = tmpl.name[currentLang] || tmpl.name.en;
-        const price = tmpl.price ? (tmpl.price[currentLang] || tmpl.price.en) : (tmpl._category === 'ecommerce' ? 'from 12,000 ₽' : (tmpl._category === 'corporate' ? 'from 9,000 ₽' : 'from 6,000 ₽'));
-        const imgUrl = customImages.templates[tmpl.id] || tmpl.image || '';
-        const previewUrl = tmpl.preview_url || '';
-        const imgHtml = imgUrl ? `<img src="${imgUrl}" alt="${name}" style="width:100%; border-radius:20px; aspect-ratio:16/10; object-fit:cover;" loading="lazy">` : `<div class="template-img" style="height:150px; display:flex; align-items:center; justify-content:center; background:var(--beige); border-radius:20px;">${name}</div>`;
-        return `
-            <div class="template-card" data-template-id="${tmpl.id}">
-                ${imgHtml}
-                <h3>${escapeHtml(name)}</h3>
-                <div class="template-price">${escapeHtml(price)}</div>
-                <div class="template-actions">
-                    <button class="btn order-template-btn" data-template-id="${tmpl.id}" data-template-name="${name}" data-template-category="${tmpl._category || ''}">Order this template</button>
-                    ${previewUrl ? `<a class="template-preview-btn" href="${previewUrl}" target="_blank" rel="noopener">Preview</a>` : ''}
-                </div>
-            </div>
-        `;
-    }).join('') + (totalPages > 1 ? `<div class="pagination" style="display:flex; gap:10px; justify-content:center; margin-top:20px; grid-column:1/-1;">
-        <button class="btn" ${templatesPage<=1?'disabled':''} onclick="templatesPage=1;renderTemplatesPage();">First</button>
-        <button class="btn" ${templatesPage<=1?'disabled':''} onclick="templatesPage--;renderTemplatesPage();">Prev</button>
-        <span style="display:flex;align-items:center;color:var(--text-dark);">Page ${templatesPage} / ${totalPages}</span>
-        <button class="btn" ${templatesPage>=totalPages?'disabled':''} onclick="templatesPage++;renderTemplatesPage();">Next</button>
-        <button class="btn" ${templatesPage>=totalPages?'disabled':''} onclick="templatesPage=totalPages;renderTemplatesPage();">Last</button>
-    </div>` : '');
-
-    // Bind filter clicks
-    document.querySelectorAll('#templatesGrid .filter-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            templatesFilterCategory = btn.getAttribute('data-filter');
-            templatesPage = 1;
-            renderTemplatesPage();
-        });
-    });
-    const searchInput = document.getElementById('templatesSearch');
-    if (searchInput) {
-        searchInput.addEventListener('input', (e) => {
-            templatesFilterSearch = e.target.value.toLowerCase();
-            templatesPage = 1;
-            renderTemplatesPage();
-        });
-    }
-
-    // Bind order buttons
-    document.querySelectorAll('.order-template-btn').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            const templateId = btn.getAttribute('data-template-id');
-            const cat = (btn.getAttribute('data-template-category') || '').toLowerCase();
-            let service = '';
-            if (cat === 'landing' || templateId.startsWith('landing') || templateId.startsWith('ext__landing')) service = 'Landing Page';
-            else if (cat === 'ecommerce' || templateId.startsWith('shop') || templateId.startsWith('ext__ecommerce')) service = 'Online Store';
-            else if (cat === 'corporate' || templateId.startsWith('corp') || templateId.startsWith('ext__corporate')) service = 'Corporate Website';
-            openOrderServiceModal(service, templateId);
-        });
-    });
-}
-
-function openOrderServiceModal(serviceName, preselectedTemplateId = null) {
-    document.getElementById('orderServiceName').value = serviceName;
-    document.getElementById('orderName').value = '';
-    document.getElementById('orderEmail').value = '';
-    document.getElementById('orderPhone').value = '';
-    document.getElementById('orderMessage').value = '';
-    document.getElementById('orderAgree').checked = false;
-    document.getElementById('selectedTemplateId').value = '';
-    let category = '';
-    if (serviceName === 'Landing Page') category = 'landing';
-    else if (serviceName === 'Online Store') category = 'ecommerce';
-    else if (serviceName === 'Corporate Website') category = 'corporate';
-    else category = 'landing';
-    const templates = templatesData[category] || [];
-    const container = document.getElementById('serviceTemplatesContainer');
-    const t = translations[currentLang];
-    container.innerHTML = templates.map(tmpl => {
-        const name = tmpl.name[currentLang] || tmpl.name.en;
-        const price = tmpl.price[currentLang] || tmpl.price.en;
-        const imgUrl = customImages.templates[tmpl.id] || tmpl.image || '';
-        const imgHtml = imgUrl ? `<img src="${imgUrl}" alt="${name}" style="width:100%; border-radius:12px;">` : `<div style="height:100px; background:var(--beige); display:flex; align-items:center; justify-content:center;">🖼️</div>`;
-        const selectedAttr = (preselectedTemplateId === tmpl.id) ? 'selected' : '';
-        return `
-            <div class="template-card ${selectedAttr}" data-template-id="${tmpl.id}" style="cursor:pointer; padding:12px;">
-                ${imgHtml}
-                <strong>${escapeHtml(name)}</strong>
-                <div>${escapeHtml(price)}</div>
-            </div>
-        `;
-    }).join('');
-    document.querySelectorAll('#serviceTemplatesContainer .template-card').forEach(card => {
-        card.addEventListener('click', () => {
-            document.querySelectorAll('#serviceTemplatesContainer .template-card').forEach(c => c.classList.remove('selected'));
-            card.classList.add('selected');
-            document.getElementById('selectedTemplateId').value = card.getAttribute('data-template-id');
-        });
-    });
-    if (preselectedTemplateId) {
-        const preselectedCard = document.querySelector(`#serviceTemplatesContainer .template-card[data-template-id="${preselectedTemplateId}"]`);
-        if (preselectedCard) preselectedCard.click();
-    }
-    openModal('orderService');
+    try { VanillaTilt.init(document.querySelectorAll(".template-card"),{max:10,speed:500,glare:true,"max-glare":0.4}); } catch(e) {}
 }
 
 // ==================== SERVICE CARDS (with template selection) ====================
 const serviceSvgs = {
     "Landing Page": `<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="20" y="25" width="60" height="50" rx="10" fill="#F5EDE0" stroke="#C8A96A" stroke-width="2.5"/><rect x="30" y="35" width="40" height="5" fill="#C8A96A"/><rect x="30" y="45" width="30" height="5" fill="#A67B5A"/><rect x="30" y="55" width="35" height="5" fill="#A67B5A"/><path d="M70 60 L80 50 L83 53 L73 63 Z" fill="#C8A96A"/><circle cx="78" cy="56" r="3" fill="#fff"/></svg>`,
-    "Online Store": `<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="15" y="30" width="70" height="50" rx="10" fill="#F5EDE0" stroke="#C8A96A" stroke-width="2.5"/><circle cx="35" cy="70" r="8" fill="#A67B5A"/><circle cx="65" cy="70" r="8" fill="#A67B5A"/><path d="M25 35 L30 60 L70 60 L75 35 L25 35Z" fill="#C8A96A" opacity="0.5"/><rect x="45" y="15" width="10" height="22" fill="#D6C6B0"/><path d="M48 15 L50 8 L52 15" fill="#C8A96A"/><line x1="28" y1="45" x2="72" y2="45" stroke="#A67B5A" stroke-width="2"/></svg>`,
-    "Corporate Website": `<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="15" y="20" width="70" height="60" rx="10" fill="#F5EDE0" stroke="#C8A96A" stroke-width="2.5"/><rect x="25" y="30" width="50" height="5" fill="#C8A96A"/><rect x="25" y="40" width="50" height="5" fill="#C8A96A"/><rect x="25" y="50" width="50" height="5" fill="#C8A96A"/><rect x="25" y="60" width="30" height="5" fill="#A67B5A"/><circle cx="70" cy="25" r="8" fill="#C8A96A"/><path d="M67 25 L69 27 L73 23" stroke="#fff" stroke-width="2"/></svg>`,
-    "Website Editing": `<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="20" y="25" width="60" height="50" rx="10" fill="#F5EDE0" stroke="#C8A96A" stroke-width="2.5"/><rect x="30" y="35" width="40" height="4" fill="#C8A96A"/><rect x="30" y="45" width="30" height="4" fill="#A67B5A"/><rect x="30" y="55" width="25" height="4" fill="#A67B5A"/><path d="M65 50 L80 35 L84 39 L69 54 Z" fill="#C8A96A"/><circle cx="76" cy="42" r="4" fill="#fff"/><path d="M67 56 L73 62" stroke="#C8A96A" stroke-width="3"/></svg>`
+    "Интернет-магазин": `<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="15" y="30" width="70" height="50" rx="10" fill="#F5EDE0" stroke="#C8A96A" stroke-width="2.5"/><circle cx="35" cy="70" r="8" fill="#A67B5A"/><circle cx="65" cy="70" r="8" fill="#A67B5A"/><path d="M25 35 L30 60 L70 60 L75 35 L25 35Z" fill="#C8A96A" opacity="0.5"/><rect x="45" y="15" width="10" height="22" fill="#D6C6B0"/><path d="M48 15 L50 8 L52 15" fill="#C8A96A"/><line x1="28" y1="45" x2="72" y2="45" stroke="#A67B5A" stroke-width="2"/></svg>`,
+    "Корпоративный сайт": `<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="15" y="20" width="70" height="60" rx="10" fill="#F5EDE0" stroke="#C8A96A" stroke-width="2.5"/><rect x="25" y="30" width="50" height="5" fill="#C8A96A"/><rect x="25" y="40" width="50" height="5" fill="#C8A96A"/><rect x="25" y="50" width="50" height="5" fill="#C8A96A"/><rect x="25" y="60" width="30" height="5" fill="#A67B5A"/><circle cx="70" cy="25" r="8" fill="#C8A96A"/><path d="M67 25 L69 27 L73 23" stroke="#fff" stroke-width="2"/></svg>`,
+    "Редактирование сайта": `<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="20" y="25" width="60" height="50" rx="10" fill="#F5EDE0" stroke="#C8A96A" stroke-width="2.5"/><rect x="30" y="35" width="40" height="4" fill="#C8A96A"/><rect x="30" y="45" width="30" height="4" fill="#A67B5A"/><rect x="30" y="55" width="25" height="4" fill="#A67B5A"/><path d="M65 50 L80 35 L84 39 L69 54 Z" fill="#C8A96A"/><circle cx="76" cy="42" r="4" fill="#fff"/><path d="M67 56 L73 62" stroke="#C8A96A" stroke-width="3"/></svg>`
 };
 const portfolioSvgs = {
     "Студия красоты": `<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="40" r="18" fill="#C8A96A" opacity="0.3"/><path d="M50 18 L58 32 L42 32 Z" fill="#C8A96A"/><path d="M38 55 L62 55 L56 70 L44 70 Z" fill="#A67B5A"/><rect x="47" y="70" width="6" height="15" fill="#D6C6B0"/><circle cx="50" cy="88" r="5" fill="#C8A96A"/><path d="M50 50 L50 60" stroke="#C8A96A" stroke-width="2"/></svg>`,
@@ -1797,6 +1640,7 @@ function renderPortfolio(filter='all', search='') {
         }
         return `<div class="portfolio-card">${imgHtml}</div>`;
     }).join('');
+    try { VanillaTilt.init(document.querySelectorAll(".portfolio-card"),{max:10,speed:500,glare:true,"max-glare":0.4}); } catch(e) {}
 }
 
 function renderBlog() {
@@ -1907,7 +1751,8 @@ function applyLanguage(lang) {
     renderTemplatesPage();
     document.documentElement.lang = lang;
     localStorage.setItem('lang', lang);
-    if(document.getElementById('adminPanel').classList.contains('open')) renderActiveTab();
+    const adminPanelEl = document.getElementById('adminPanel');
+    if(adminPanelEl && adminPanelEl.classList.contains('open')) renderActiveTab();
 }
 
 let consentGiven = localStorage.getItem('consentAccepted')==='true';
@@ -1933,7 +1778,6 @@ attachPolicyLinks('consult');
 attachPolicyLinks('review');
 attachPolicyLinks('edit');
 attachPolicyLinks('consent');
-attachPolicyLinks('agree');
 attachPolicyLinks('order');
 
 const policyLinkEl = document.getElementById('policyLink');
@@ -1951,6 +1795,12 @@ document.body.addEventListener('click', (e) => {
     else if(id && (id === 'refundLink' || id === 'demoRefundLink' || id === 'consultRefundLink' || id === 'reviewRefundLink' || id === 'editRefundLink' || id === 'consentRefundLink' || id === 'orderRefundLink')) {
         e.preventDefault(); e.stopPropagation(); openModal('refund');
     }
+    else if(target.classList.contains('i18n-policy-link')) {
+        e.preventDefault(); e.stopPropagation(); openModal('policy');
+    }
+    else if(target.classList.contains('i18n-refund-link')) {
+        e.preventDefault(); e.stopPropagation(); openModal('refund');
+    }
     else if(target.getAttribute('href') && (target.getAttribute('href') === '#policyModal' || target.getAttribute('href') === '#policy' || target.getAttribute('href') === '#terms')) {
         e.preventDefault(); openModal('policy');
     }
@@ -1965,11 +1815,13 @@ document.getElementById('langSwitch').innerText=currentLang==='ru'?'EN':'RU';
 const darkToggle=document.getElementById('darkModeToggle');
 if(localStorage.getItem('darkMode')==='enabled') document.body.classList.add('dark');
 darkToggle.addEventListener('click',()=>{ document.body.classList.toggle('dark'); localStorage.setItem('darkMode',document.body.classList.contains('dark')?'enabled':'disabled'); darkToggle.innerHTML=document.body.classList.contains('dark')?'<i class="fas fa-sun"></i>':'<i class="fas fa-moon"></i>'; });
+if(localStorage.getItem('darkMode')==='enabled') document.body.classList.add('dark');
+darkToggle.innerHTML = document.body.classList.contains('dark') ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
 AOS.init({duration:800,once:true});
 try { VanillaTilt.init(document.querySelectorAll(".service-card, .portfolio-card, .template-card"),{max:10,speed:500,glare:true,"max-glare":0.4}); } catch(e) { console.log('VanillaTilt not loaded, skipping'); }
 document.querySelectorAll('.filter-btn').forEach(btn=>{ btn.addEventListener('click',()=>{ document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); currentFilter=btn.getAttribute('data-filter'); renderPortfolio(currentFilter,document.getElementById('portfolioSearch').value); }); });
 document.getElementById('portfolioSearch').addEventListener('input',e=>renderPortfolio(currentFilter,e.target.value));
-renderPortfolio('all',''); renderBlog(); renderReviews(); renderTemplatesPage();
+renderPortfolio('all','');
 let selectedRating=5;
 document.getElementById('starRating')?.addEventListener('click',e=>{ if(e.target.tagName==='SPAN'){ const stars=[...document.querySelectorAll('#starRating span')]; const idx=stars.indexOf(e.target); selectedRating=idx+1; stars.forEach((s,i)=>s.innerText=i<selectedRating?'★':'☆'); } });
 
@@ -1989,7 +1841,10 @@ window.addEventListener('scroll',()=>scrollBtn.classList.toggle('visible',window
 scrollBtn.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
 document.querySelector('.mobile-menu').addEventListener('click',()=>document.querySelector('.nav').classList.toggle('active'));
 document.querySelectorAll('.nav a').forEach(a=>a.addEventListener('click',()=>document.querySelector('.nav').classList.remove('active')));
-document.querySelectorAll('a[href^="#"]').forEach(anchor=>{ anchor.addEventListener('click',function(e){ e.preventDefault(); const target=document.querySelector(this.getAttribute('href')); if(target) target.scrollIntoView({behavior:'smooth'}); }); });
+document.querySelectorAll('a[href^="#"]').forEach(anchor=>{ anchor.addEventListener('click',function(e){ e.preventDefault(); const target=document.querySelector(this.getAttribute('href')); if(target) target.scrollIntoView({behavior:'smooth'        });
+    });
+    try { VanillaTilt.init(document.querySelectorAll(".service-card"),{max:10,speed:500,glare:true,"max-glare":0.4}); } catch(e) {}
+});
 if(!localStorage.getItem('cookiesAccepted')) document.getElementById('cookieConsent').style.display='flex';
 document.getElementById('acceptCookies').addEventListener('click',()=>{ localStorage.setItem('cookiesAccepted','true'); document.getElementById('cookieConsent').style.display='none'; });
 document.getElementById('reviewForm').addEventListener('submit',(e)=>{
@@ -2274,7 +2129,7 @@ function showLeadDetailsById(leadId) {
     const formatValue = (key, value) => {
         if (value === undefined || value === null || value === '') return '—';
         const lowerKey = key.toLowerCase();
-        if ((lowerKey.includes('color') || lowerKey === 'brand color') && value.match(/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/)) {
+        if ((lowerKey.includes('color') || lowerKey === 'brand color') && typeof value === 'string' && value.match(/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/)) {
             return `<span class="color-preview" style="background-color: ${value};"></span> ${value}`;
         }
         if (typeof value === 'string' && (value.startsWith('http://') || value.startsWith('https://') || value.startsWith('www.'))) {
@@ -2284,7 +2139,7 @@ function showLeadDetailsById(leadId) {
         if (lowerKey.includes('email') && value.includes('@')) {
             return `<a href="mailto:${value}">${escapeHtml(value)}</a>`;
         }
-        if (lowerKey.includes('phone') && value.match(/[\d\s\+\(\)\-]+/)) {
+        if (lowerKey.includes('phone') && typeof value === 'string' && value.match(/[\d\s\+\(\)\-]+/)) {
             return `<a href="tel:${value.replace(/[^0-9+]/g, '')}">${escapeHtml(value)}</a>`;
         }
         return escapeHtml(value);
@@ -2465,7 +2320,7 @@ function exportToCSV() {
         lead['Lead ID'] || '', lead['Business Name'] || lead['Name'] || '', lead['City'] || '', lead['Phone'] || '', lead['Email'] || '',
         lead['Category'] || lead['Website Type'] || lead['Service'] || '', lead['Budget'] || '', lead['Preferred Language'] || lead['Preferred Language for Website'] || '',
         lead['action'] || lead['Request Type'] || (lead['service'] ? 'Service Order' : (lead['editType'] ? 'Edit Request' : (lead['Category'] ? 'Demo' : 'Consultation'))),
-        lead['Created At'] || lead['Date'] || '', lead['Status'] || 'new', lead['Payment Status'] || 'unpaid', 'Random', Math.floor(Math.random() * 5) + 1
+        lead['Created At'] || lead['Date'] || '', lead['Status'] || 'new', lead['Payment Status'] || 'unpaid', lead['Source'] || lead['Referrer'] || '', lead['Rating'] || lead['Score'] || 0
     ]);
     const csvContent = [headers, ...rows].map(row => row.map(cell => `"${String(cell).replace(/"/g, '""')}"`).join(',')).join('\n');
     const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
@@ -2488,7 +2343,7 @@ async function renderDashboard() {
     new Chart(document.getElementById('leadsChart'),{type:'line',data:{labels:['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],datasets:[{label:'Leads',data:[Math.floor(total*0.2),Math.floor(total*0.3),Math.floor(total*0.1),Math.floor(total*0.4),Math.floor(total*0.2),Math.floor(total*0.5),Math.floor(total*0.3)],borderColor:'var(--gold)',fill:false}]}});
 }
 
-function escapeHtml(str) { return String(str).replace(/[&<>]/g, function(m) { if (m === '&') return '&amp;'; if (m === '<') return '&lt;'; if (m === '>') return '&gt;'; return m; }); }
+function escapeHtml(str) { return String(str).replace(/[&<>"']/g, function(m) { if (m === '&') return '&amp;'; if (m === '<') return '&lt;'; if (m === '>') return '&gt;'; if (m === '"') return '&quot;'; if (m === "'") return '&#39;'; return m; }); }
 
 // ==================== TEMPLATES MANAGER (ADMIN) ====================
 async function renderTemplatesManager() {
@@ -2581,7 +2436,7 @@ async function renderImageManager() {
     });
 }
 
-async function renderAnalytics() { document.getElementById('adminContent').innerHTML = `<h3>📊 Analytics</h3><canvas id="conversionChart"></canvas><p>Conversion rate: 18%</p><canvas id="sourceChart"></canvas>`; new Chart(document.getElementById('conversionChart'),{type:'bar',data:{labels:['Views','Leads','Payments'],datasets:[{label:'',data:[100,leadsData.length,leadsData.filter(l=>l['Payment Status']==='paid').length],backgroundColor:'var(--gold)'}]}}); new Chart(document.getElementById('sourceChart'),{type:'pie',data:{labels:['VK','Telegram','Site','Ads'],datasets:[{data:[40,25,20,15],backgroundColor:['#C8A96A','#A67B5A','#5E3A2C','#B58C48']}]}}); }
+async function renderAnalytics() { document.getElementById('adminContent').innerHTML = `<h3>📊 Analytics</h3><canvas id="conversionChart"></canvas><p>Conversion rate: 18%</p><canvas id="sourceChart"></canvas>`; new Chart(document.getElementById('conversionChart'),{type:'bar',data:{labels:['Views','Leads','Payments'],datasets:[{label:'',data:[100,(leadsData||[]).length,(leadsData||[]).filter(l=>l['Payment Status']==='paid').length],backgroundColor:'var(--gold)'}]}}); new Chart(document.getElementById('sourceChart'),{type:'pie',data:{labels:['VK','Telegram','Site','Ads'],datasets:[{data:[40,25,20,15],backgroundColor:['#C8A96A','#A67B5A','#5E3A2C','#B58C48']}]}}); }
 async function renderSEO() { document.getElementById('adminContent').innerHTML = `<h3>🔍 SEO Meta Tags</h3><label>Title:</label><input class="search-input" value="Unique Web Studio | Website Creation"><label>Meta description:</label><textarea class="search-input">Professional website development, high conversion.</textarea><button class="btn">Save</button>`; }
 async function renderBackup() { document.getElementById('adminContent').innerHTML = `<h3>💾 Backup</h3><button class="btn" onclick="alert('Backup created')">Create backup</button><button class="btn" onclick="alert('Restore from backup')">Restore</button><p>Last backup: 2025-04-04</p>`; }
 async function renderNotifications() { document.getElementById('adminContent').innerHTML = `<h3>🔔 Notification settings</h3><label><input type="checkbox"> Email on new lead</label><label><input type="checkbox"> Telegram bot</label><label><input type="checkbox"> Push notifications</label><button class="btn">Save</button>`; }
@@ -2739,15 +2594,14 @@ function animateStats() {
 window.addEventListener('load', () => { animateStats(); });
 
 function addLoadingSpinner(button) { const originalText = button.innerHTML; button.disabled = true; button.innerHTML = originalText + '<span class="loading-spinner"></span>'; return () => { button.disabled = false; button.innerHTML = originalText; }; }
-const originalSendToAppsScriptGlobal = window.sendToAppsScript;
-if (typeof originalSendToAppsScriptGlobal === 'function') { window.sendToAppsScript = async function(formData, action, submitBtn) { let restore = null; if (submitBtn && submitBtn.tagName === 'BUTTON') { restore = addLoadingSpinner(submitBtn); } try { return await originalSendToAppsScriptGlobal(formData, action); } finally { if (restore) restore(); } }; }
-const originalShowLeadDetailsByIdGlobal = window.showLeadDetailsById;
-if (typeof originalShowLeadDetailsByIdGlobal === 'function') { window.showLeadDetailsById = function(leadId) { originalShowLeadDetailsByIdGlobal(leadId); setTimeout(() => { const modalContent = document.querySelector('#leadDetailsModal .modal-content'); if (modalContent && !modalContent.querySelector('.copy-lead-btn')) { const copyBtn = document.createElement('button'); copyBtn.className = 'btn btn-outline copy-lead-btn'; copyBtn.innerHTML = '<i class="fas fa-copy"></i> Copy Lead ID'; copyBtn.style.marginTop = '20px'; copyBtn.onclick = () => { navigator.clipboard.writeText(leadId); alert('Lead ID copied: ' + leadId); }; modalContent.appendChild(copyBtn); } }, 100); }; }
-const formsList = ['demoForm', 'consultForm', 'editForm', 'reviewForm', 'orderServiceForm'];
-formsList.forEach(formId => { const form = document.getElementById(formId); if (form) { form.addEventListener('submit', (e) => { const requiredFields = form.querySelectorAll('[required]'); let missing = false; requiredFields.forEach(field => { if (!field.value.trim()) { field.style.borderColor = '#e74c3c'; missing = true; } else { field.style.borderColor = ''; } }); if (missing) { e.preventDefault(); alert('Please fill all required fields.'); } }); } });
+const originalSendToAppsScript = sendToAppsScript;
+if (typeof originalSendToAppsScript === 'function') { window.sendToAppsScript = async function(formData, action, submitBtn) { let restore = null; if (submitBtn && submitBtn.tagName === 'BUTTON') { restore = addLoadingSpinner(submitBtn); } try { return await originalSendToAppsScript(formData, action); } finally { if (restore) restore(); } }; }
+const originalShowLeadDetailsById = showLeadDetailsById;
+if (typeof originalShowLeadDetailsById === 'function') { window.showLeadDetailsById = function(leadId) { originalShowLeadDetailsById(leadId); setTimeout(() => { const modalContent = document.querySelector('#leadDetailsModal .modal-content'); if (modalContent && !modalContent.querySelector('.copy-lead-btn')) { const copyBtn = document.createElement('button'); copyBtn.className = 'btn btn-outline copy-lead-btn'; copyBtn.innerHTML = '<i class="fas fa-copy"></i> Copy Lead ID'; copyBtn.style.marginTop = '20px'; copyBtn.onclick = () => { navigator.clipboard.writeText(leadId); alert('Lead ID copied: ' + leadId); }; modalContent.appendChild(copyBtn); } }, 100); }; }
 const supportDot = document.querySelector('.live-support'); if (supportDot) { supportDot.style.cursor = 'pointer'; supportDot.addEventListener('click', () => { if (typeof requireConsentAndExecute === 'function') { requireConsentAndExecute(() => openModal('consult')); } else { openModal('consult'); } }); }
 window.addEventListener('scroll', () => { const header = document.querySelector('.header'); if (window.scrollY > 50) header.classList.add('scrolled'); else header.classList.remove('scrolled'); });
-document.addEventListener('mousemove', (e) => { const x = e.clientX / window.innerWidth; const y = e.clientY / window.innerHeight; document.querySelectorAll('.service-card, .portfolio-card, .template-card').forEach(el => { const moveX = (x - 0.5) * 15; const moveY = (y - 0.5) * 15; el.style.transform = `translate(${moveX}px, ${moveY}px)`; }); });
+let mouseX = 0, mouseY = 0, mouseTicking = false;
+document.addEventListener('mousemove', (e) => { mouseX = e.clientX; mouseY = e.clientY; if (!mouseTicking) { mouseTicking = true; requestAnimationFrame(() => { const x = mouseX / window.innerWidth; const y = mouseY / window.innerHeight; document.querySelectorAll('.service-card, .portfolio-card, .template-card').forEach(el => { const moveX = (x - 0.5) * 15; const moveY = (y - 0.5) * 15; el.style.transform = `translate(${moveX}px, ${moveY}px)`; }); mouseTicking = false; }); } });
 const staggerElements = document.querySelectorAll('.service-card, .portfolio-card, .blog-card, .stat-item, .template-card');
 const staggerObserver = new IntersectionObserver((entries) => { entries.forEach((entry, index) => { if (entry.isIntersecting) { setTimeout(() => { entry.target.classList.add('visible'); }, index * 100); staggerObserver.unobserve(entry.target); } }); }, { threshold: 0.2 });
 staggerElements.forEach(el => { el.classList.add('stagger-item'); staggerObserver.observe(el); });
