@@ -1378,22 +1378,25 @@ async function initScriptEndpoint() {
 
     let p = await probeAppsScriptGet(SCRIPT_URL);
     if (p.ok && p.json && p.json.spreadsheetId) {
-        console.info('[forms] Apps Script deployment looks NEW (has spreadsheetId).');
+        SCRIPT_REACHABLE = true;
+        console.info('[forms] Apps Script deployment NEW OK.');
         return;
     }
 
-    console.warn('[forms] Apps Script deployment looks OLD or misconfigured (missing spreadsheetId in doGet). Trying default URL...');
     if (SCRIPT_URL !== DEFAULT_SCRIPT_URL) {
         SCRIPT_URL = DEFAULT_SCRIPT_URL;
         try { localStorage.removeItem('apps_script_url_override'); } catch (e) {}
         p = await probeAppsScriptGet(SCRIPT_URL);
         if (p.ok && p.json && p.json.spreadsheetId) {
-            console.info('[forms] Default deployment looks NEW.');
+            SCRIPT_REACHABLE = true;
+            console.info('[forms] Default deployment OK.');
             return;
         }
     }
 
-    console.warn('[forms] Still OLD. Publish `google-apps-script/Code.gs` as a new Web app and set script-config.json { "scriptUrl": "https://script.google.com/macros/s/.../exec" } on your site host.');
+    SCRIPT_REACHABLE = false;
+    console.warn('[forms] Backend offline - using LOCAL MODE. Leads saved in browser. Redeploy Apps Script to restore backend.');
+    setTimeout(() => showWarningBanner('⚠ Backend offline — leads are saved in your browser. Deploy Apps Script to sync.'), 2000);
 }
 
 // Template data: loaded dynamically from templates.json, with localStorage cache
@@ -2010,9 +2013,46 @@ document.getElementById('reviewForm').addEventListener('submit',(e)=>{
 });
 document.getElementById('fillFromVkBtn')?.addEventListener('click',()=>alert('Demo: VK data filled automatically'));
 
-// ==================== sendToAppsScript (IFRAME - reliable) ====================
+// ==================== OFFLINE / LOCAL FALLBACK ====================
+let SCRIPT_REACHABLE = null;
+
+function saveLeadLocally(leadData, action) {
+    const leads = JSON.parse(localStorage.getItem('localLeads') || '[]');
+    leadData['Lead ID'] = 'LOCAL_' + Date.now().toString(36).toUpperCase();
+    leadData['Status'] = 'new';
+    leadData['Payment Status'] = 'unpaid';
+    leadData['Created At'] = new Date().toISOString();
+    leadData['action'] = action;
+    leads.unshift(leadData);
+    localStorage.setItem('localLeads', JSON.stringify(leads));
+    showWarningBanner('Backend unavailable. Lead saved locally.');
+    return { success: true, message: 'Saved locally', local: true };
+}
+
+function showWarningBanner(msg) {
+    let banner = document.getElementById('offlineWarning');
+    if (!banner) {
+        banner = document.createElement('div');
+        banner.id = 'offlineWarning';
+        banner.style.cssText = 'position:fixed;top:0;left:0;right:0;background:#e67e22;color:#fff;text-align:center;padding:8px;z-index:10000;font-size:0.9rem;cursor:pointer;';
+        banner.onclick = () => banner.style.display = 'none';
+        document.body.prepend(banner);
+    }
+    banner.textContent = msg;
+    setTimeout(() => { if (banner) banner.style.display = 'none'; }, 6000);
+}
+
+function getLocalLeads() {
+    return JSON.parse(localStorage.getItem('localLeads') || '[]');
+}
+
+// ==================== sendToAppsScript (IFRAME with offline fallback) ====================
 async function sendToAppsScript(formData, action) {
     formData.append('action', action);
+    if (SCRIPT_REACHABLE === false) {
+        const leadData = {}; formData.forEach((v, k) => { leadData[k] = v; });
+        return saveLeadLocally(leadData, action);
+    }
     return new Promise((resolve) => {
         const iframeName = 'ifr_' + Date.now();
         const iframe = document.createElement('iframe');
@@ -2033,53 +2073,56 @@ async function sendToAppsScript(formData, action) {
             form.appendChild(input);
         }
         document.body.appendChild(form);
+        let resolved = false;
         iframe.onload = () => {
+            if (resolved) return;
+            resolved = true;
             let responseText = '';
             try {
                 responseText = iframe.contentDocument?.body?.innerText || '';
-                const result = responseText.trim().startsWith('{') ? JSON.parse(responseText) : { success: true };
-                resolve(result);
+                const result = responseText.trim().startsWith('{') ? JSON.parse(responseText) : null;
+                if (result && result.success) {
+                    SCRIPT_REACHABLE = true;
+                    resolve(result);
+                } else {
+                    SCRIPT_REACHABLE = false;
+                    const leadData = {}; formData.forEach((v, k) => { leadData[k] = v; });
+                    resolve(saveLeadLocally(leadData, action));
+                }
             } catch(e) {
-                resolve({ success: true, message: 'Submitted (no response)' });
+                SCRIPT_REACHABLE = false;
+                const leadData = {}; formData.forEach((v, k) => { leadData[k] = v; });
+                resolve(saveLeadLocally(leadData, action));
             }
             setTimeout(() => { form.remove(); iframe.remove(); }, 100);
         };
         form.submit();
         setTimeout(() => {
-            if (form.parentNode) { form.remove(); iframe.remove(); resolve({ success: true, message: 'Timeout' }); }
-        }, 8000);
+            if (!resolved && form.parentNode) {
+                resolved = true;
+                form.remove(); iframe.remove();
+                SCRIPT_REACHABLE = false;
+                const leadData = {}; formData.forEach((v, k) => { leadData[k] = v; });
+                resolve(saveLeadLocally(leadData, action));
+            }
+        }, 5000);
     });
 }
 
-// ==================== fetchLeads (working version) ====================
+// ==================== fetchLeads (with offline fallback) ====================
 async function fetchLeads() {
+    if (SCRIPT_REACHABLE === false) {
+        return normalizeLeadRows(getLocalLeads());
+    }
     try {
         const res = await fetch(SCRIPT_URL + '?t=' + Date.now());
         const data = await res.json();
+        SCRIPT_REACHABLE = true;
         return normalizeLeadRows(data.leads || []);
     } catch (e) {
-        console.warn('fetch failed, using iframe fallback', e);
-        return new Promise((resolve) => {
-            const iframe = document.createElement('iframe');
-            iframe.name = 'fetch_iframe_' + Date.now();
-            iframe.style.display = 'none';
-            document.body.appendChild(iframe);
-            const form = document.createElement('form');
-            form.method = 'GET';
-            form.action = SCRIPT_URL;
-            form.target = iframe.name;
-            document.body.appendChild(form);
-            iframe.onload = () => {
-                try {
-                    const txt = iframe.contentDocument?.body?.innerText || '';
-                    const data = txt.trim().startsWith('{') ? JSON.parse(txt) : { leads: [] };
-                    resolve(normalizeLeadRows(data.leads || []));
-                } catch(e) { resolve([]); }
-                form.remove(); iframe.remove();
-            };
-            form.submit();
-            setTimeout(() => resolve([]), 5000);
-        });
+        SCRIPT_REACHABLE = false;
+        console.warn('fetch failed, using local storage', e);
+        return normalizeLeadRows(getLocalLeads());
     }
 }
 
@@ -2165,9 +2208,10 @@ function attachFormHandler(formId, action, langId, phoneCodeId, phoneInputId) {
         }
         const result = await sendToAppsScript(fd, action);
         if (result.success) {
-            showSuccessToast(translations[currentLang]?.send_btn || 'Submitted successfully');
+            const msg = result.local ? 'Saved locally (offline mode)' : (translations[currentLang]?.send_btn || 'Submitted successfully');
+            showSuccessToast(msg);
         } else {
-            alert('❌ ' + (result.message || 'Error'));
+            alert('Error: ' + (result.message || 'Submission failed'));
         }
         if (result.success && form.closest('.modal')) closeAllModals();
         if (result.success && formId !== 'paymentForm') form.reset();
@@ -2200,6 +2244,17 @@ function attachFormHandler(formId, action, langId, phoneCodeId, phoneInputId) {
 // ==================== ADMIN PANEL LEAD FUNCTIONS (FULLY WORKING) ====================
 async function confirmPayment(leadId) {
     if (!confirm(`Confirm payment for lead ${leadId}?`)) return;
+    if (SCRIPT_REACHABLE === false) {
+        const localLeads = getLocalLeads();
+        const idx = localLeads.findIndex(l => l['Lead ID'] === leadId);
+        if (idx >= 0) {
+            localLeads[idx]['Payment Status'] = 'paid';
+            localStorage.setItem('localLeads', JSON.stringify(localLeads));
+        }
+        showSuccessToast('Payment confirmed (local)');
+        await renderLeadsTable();
+        return;
+    }
     const fd = new FormData();
     fd.append('lead_id', leadId);
     const result = await sendToAppsScript(fd, 'confirmPayment');
@@ -2207,7 +2262,7 @@ async function confirmPayment(leadId) {
         showSuccessToast('Payment confirmed');
         await renderLeadsTable();
     } else {
-        alert('❌ ' + (result.message || 'Error'));
+        alert('Error: ' + (result.message || 'Error'));
     }
 }
 
@@ -2354,17 +2409,15 @@ function renderLeadsTableBody() {
 }
 
 async function renderLeadsTable() {
-    leadsPage = 1;  // Reset pagination on refresh
+    leadsPage = 1;
     leadsData = await fetchLeads();
     applyFiltersAndSort();
     const totalLeads = leadsData.length;
-    const prevTotal = Math.max(1, totalLeads - Math.floor(Math.random() * 10));
-    const percentChange = ((totalLeads - prevTotal) / prevTotal * 100).toFixed(1);
-    const changeClass = percentChange >= 0 ? 'positive' : 'negative';
-    document.getElementById('adminContent').innerHTML = `
+    const offlineBanner = SCRIPT_REACHABLE === false ? '<div style="background:#fef3cd;color:#856404;padding:8px 15px;border-radius:12px;margin-bottom:10px;">Offline mode — showing local leads only</div>' : '';
+    document.getElementById('adminContent').innerHTML = offlineBanner + `
         <div class="quick-actions">
             <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;">
-                <div><strong>📊 Total Leads:</strong> ${totalLeads} <span class="${changeClass}" style="color:${percentChange>=0?'green':'red'};">(${percentChange>=0?'+':''}${percentChange}%)</span></div>
+                <div><strong>Total Leads:</strong> ${totalLeads} ${SCRIPT_REACHABLE === false ? '(local)' : ''}</div>
                 <div>
                     <button class="btn" id="refreshLeadsBtn"><i class="fas fa-sync-alt"></i> Refresh</button>
                     <button class="btn" id="exportCsvBtn"><i class="fas fa-file-csv"></i> Export CSV</button>
@@ -2420,12 +2473,14 @@ function exportToCSV() {
 }
 
 async function renderDashboard() {
-    const leads = await fetchLeads();
+    let leads = [];
+    try { leads = await fetchLeads(); } catch(e) { leads = []; }
     const total = leads.length;
     const newLeads = leads.filter(l => l.Status === 'new' || l.Status === 'pending_payment').length;
     const sent = leads.filter(l => l.Status === 'sent').length;
     const paid = leads.filter(l => l['Payment Status'] === 'paid' || l['Payment Status'] === 'confirmed').length;
-    document.getElementById('adminContent').innerHTML = `
+    const offlineNotice = SCRIPT_REACHABLE === false ? '<div style="background:#fef3cd;color:#856404;padding:10px;border-radius:12px;margin-bottom:15px;">⚠ Offline mode — showing local browser data only.</div>' : '';
+    document.getElementById('adminContent').innerHTML = offlineNotice + `
         <div class="quick-actions"><button class="btn" onclick="alert('Export CSV')"><i class="fas fa-download"></i> Export CSV</button><button class="btn" onclick="alert('Mass message')"><i class="fas fa-bullhorn"></i> Mass message</button><button class="btn" onclick="alert('Backup created')"><i class="fas fa-database"></i> Backup</button></div>
         <div class="stats-cards"><div class="stat-card"><div class="stat-number">${total}</div><div>${translations[currentLang].stats_total}</div></div><div class="stat-card"><div class="stat-number">${newLeads}</div><div>${translations[currentLang].stats_new}</div></div><div class="stat-card"><div class="stat-number">${sent}</div><div>${translations[currentLang].stats_sent}</div></div><div class="stat-card"><div class="stat-number">${paid}</div><div>${translations[currentLang].stats_paid}</div></div></div>
         <canvas id="leadsChart" width="400" height="200"></canvas>
