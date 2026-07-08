@@ -1311,27 +1311,27 @@ let searchTerm = '';
 let customImages = JSON.parse(localStorage.getItem('customImages')) || { services: {}, portfolio: {}, blog: {}, templates: {} };
 const defaultImagePack = {
     services: {
-        "Landing Page": "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?auto=format&fit=crop&w=1000&q=85",
-        "Online Store": "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1000&q=85",
-        "Corporate Website": "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1000&q=85",
-        "Website Editing": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1000&q=85"
+        "Landing Page": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1000&q=85",
+        "Online Store": "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1000&q=85",
+        "Corporate Website": "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1000&q=85",
+        "Website Editing": "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1000&q=85"
     },
     portfolio: {
-        "Студия красоты": "https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=900&q=80",
-        "Магазин одежды": "https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=900&q=80",
-        "Ресторан": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=900&q=80",
-        "IT-компания": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=900&q=80",
-        "Мебельный магазин": "https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?auto=format&fit=crop&w=900&q=80",
-        "Маркетинговое агентство": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=900&q=80",
-        "Фитнес-центр": "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=900&q=80",
-        "Стоматология": "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=900&q=80",
-        "Автосервис": "https://images.unsplash.com/photo-1487754180451-c456f719a1fc?auto=format&fit=crop&w=900&q=80",
-        "Недвижимость": "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=900&q=80"
+        "Студия красоты": "https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?auto=format&fit=crop&w=900&q=80",
+        "Магазин одежды": "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=900&q=80",
+        "Ресторан": "https://images.unsplash.com/photo-1600565192359-37cb956b8c4a?auto=format&fit=crop&w=900&q=80",
+        "IT-компания": "https://images.unsplash.com/photo-1600607686527-6fb886090705?auto=format&fit=crop&w=900&q=80",
+        "Мебельный магазин": "https://images.unsplash.com/photo-1600210492493-0946911123ea?auto=format&fit=crop&w=900&q=80",
+        "Маркетинговое агентство": "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=900&q=80",
+        "Фитнес-центр": "https://images.unsplash.com/photo-1600573472592-401b489a3cdc?auto=format&fit=crop&w=900&q=80",
+        "Стоматология": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80",
+        "Автосервис": "https://images.unsplash.com/photo-1600661653561-629509216228?auto=format&fit=crop&w=900&q=80",
+        "Недвижимость": "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=900&q=80"
     },
     blog: {
-        0: "https://images.unsplash.com/photo-1432821596592-e2c18b78144f?auto=format&fit=crop&w=900&q=80",
-        1: "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?auto=format&fit=crop&w=900&q=80",
-        2: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=80"
+        0: "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?auto=format&fit=crop&w=900&q=80",
+        1: "https://images.unsplash.com/photo-1487611459768-b452a9a82c60?auto=format&fit=crop&w=900&q=80",
+        2: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=900&q=80"
     }
 };
 
@@ -1396,41 +1396,33 @@ async function initScriptEndpoint() {
     console.warn('[forms] Still OLD. Publish `google-apps-script/Code.gs` as a new Web app and set script-config.json { "scriptUrl": "https://script.google.com/macros/s/.../exec" } on your site host.');
 }
 
-// Template data: each service has 3 templates
-let templatesData = JSON.parse(localStorage.getItem('templatesData')) || {
-    landing: [
-        { id: 'landing_1', category: 'landing', name: { en: 'Modern Landing Pro', ru: 'Современный лендинг Pro' }, price: { en: 'from 6,000 ₽', ru: 'от 6 000 ₽' }, image: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=900&q=80' },
-        { id: 'ext__landing__styleinn', category: 'landing', name: { en: 'Interior Premium', ru: 'Премиум интерьер' }, price: { en: 'from 7,000 ₽', ru: 'от 7 000 ₽' }, image: 'https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=900&q=80' },
-        { id: 'ext__landing__beauty-salon', category: 'landing', name: { en: 'Beauty Landing', ru: 'Бьюти лендинг' }, price: { en: 'from 8,000 ₽', ru: 'от 8 000 ₽' }, image: 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=900&q=80' },
-        { id: 'ext__landing__medical', category: 'landing', name: { en: 'Medical Clinic', ru: 'Медицинская клиника' }, price: { en: 'from 8,000 ₽', ru: 'от 8 000 ₽' }, image: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=900&q=80' },
-        { id: 'ext__landing__restaurant', category: 'landing', name: { en: 'Restaurant', ru: 'Ресторан' }, price: { en: 'from 7,000 ₽', ru: 'от 7 000 ₽' }, image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=900&q=80' },
-        { id: 'ext__landing__fitness', category: 'landing', name: { en: 'Fitness Center', ru: 'Фитнес-центр' }, price: { en: 'from 7,000 ₽', ru: 'от 7 000 ₽' }, image: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=900&q=80' },
-        { id: 'ext__landing__realestate', category: 'landing', name: { en: 'Real Estate', ru: 'Недвижимость' }, price: { en: 'from 8,000 ₽', ru: 'от 8 000 ₽' }, image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=900&q=80' },
-        { id: 'ext__landing__auto', category: 'landing', name: { en: 'Auto Service', ru: 'Автосервис' }, price: { en: 'from 7,000 ₽', ru: 'от 7 000 ₽' }, image: 'https://images.unsplash.com/photo-1487754180451-c456f719a1fc?auto=format&fit=crop&w=900&q=80' },
-        { id: 'ext__landing__education', category: 'landing', name: { en: 'Education', ru: 'Образование' }, price: { en: 'from 7,000 ₽', ru: 'от 7 000 ₽' }, image: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=900&q=80' },
-        { id: 'ext__landing__travel', category: 'landing', name: { en: 'Travel Agency', ru: 'Турагентство' }, price: { en: 'from 7,000 ₽', ru: 'от 7 000 ₽' }, image: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=900&q=80' }
-    ],
-    ecommerce: [
-        { id: 'shop_1', category: 'ecommerce', name: { en: 'Modern Shop Pro', ru: 'Современный магазин Pro' }, price: { en: 'from 12,000 ₽', ru: 'от 12 000 ₽' }, image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=900&q=80' },
-        { id: 'ext__ecommerce__fashion', category: 'ecommerce', name: { en: 'Fashion Store', ru: 'Магазин одежды' }, price: { en: 'from 14,000 ₽', ru: 'от 14 000 ₽' }, image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=900&q=80' },
-        { id: 'ext__ecommerce__electronics', category: 'ecommerce', name: { en: 'Electronics', ru: 'Электроника' }, price: { en: 'from 14,000 ₽', ru: 'от 14 000 ₽' }, image: 'https://images.unsplash.com/photo-1498049794561-7780e7231661?auto=format&fit=crop&w=900&q=80' },
-        { id: 'ext__ecommerce__furniture', category: 'ecommerce', name: { en: 'Furniture', ru: 'Мебель' }, price: { en: 'from 14,000 ₽', ru: 'от 14 000 ₽' }, image: 'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?auto=format&fit=crop&w=900&q=80' },
-        { id: 'ext__ecommerce__jewelry', category: 'ecommerce', name: { en: 'Jewelry Store', ru: 'Ювелирный' }, price: { en: 'from 15,000 ₽', ru: 'от 15 000 ₽' }, image: 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=900&q=80' },
-        { id: 'ext__ecommerce__pharmacy', category: 'ecommerce', name: { en: 'Pharmacy', ru: 'Аптека' }, price: { en: 'from 13,000 ₽', ru: 'от 13 000 ₽' }, image: 'https://images.unsplash.com/photo-1576602976047-174e57a47881?auto=format&fit=crop&w=900&q=80' },
-        { id: 'ext__ecommerce__restaurant', category: 'ecommerce', name: { en: 'Restaurant & Delivery', ru: 'Ресторан и доставка' }, price: { en: 'from 14,000 ₽', ru: 'от 14 000 ₽' }, image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=900&q=80' },
-        { id: 'ext__ecommerce__auto', category: 'ecommerce', name: { en: 'Auto Dealership', ru: 'Автосалон' }, price: { en: 'from 16,000 ₽', ru: 'от 16 000 ₽' }, image: 'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=900&q=80' }
-    ],
-    corporate: [
-        { id: 'corp_1', category: 'corporate', name: { en: 'Modern Corporate Pro', ru: 'Современный корпоративный Pro' }, price: { en: 'from 9,000 ₽', ru: 'от 9 000 ₽' }, image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=900&q=80' },
-        { id: 'ext__corporate__business', category: 'corporate', name: { en: 'Business Corporate', ru: 'Бизнес' }, price: { en: 'from 10,000 ₽', ru: 'от 10 000 ₽' }, image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=900&q=80' },
-        { id: 'ext__corporate__tech', category: 'corporate', name: { en: 'Tech Company', ru: 'IT-компания' }, price: { en: 'from 10,000 ₽', ru: 'от 10 000 ₽' }, image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=900&q=80' },
-        { id: 'ext__corporate__consulting', category: 'corporate', name: { en: 'Consulting', ru: 'Консалтинг' }, price: { en: 'from 10,000 ₽', ru: 'от 10 000 ₽' }, image: 'https://images.unsplash.com/photo-1453814235491-831af45432aa?auto=format&fit=crop&w=900&q=80' },
-        { id: 'ext__corporate__law', category: 'corporate', name: { en: 'Law Firm', ru: 'Юридическая фирма' }, price: { en: 'from 10,000 ₽', ru: 'от 10 000 ₽' }, image: 'https://images.unsplash.com/photo-1589829085413-56de8ae18c73?auto=format&fit=crop&w=900&q=80' },
-        { id: 'ext__corporate__finance', category: 'corporate', name: { en: 'Finance', ru: 'Финансы' }, price: { en: 'from 11,000 ₽', ru: 'от 11 000 ₽' }, image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=80' },
-        { id: 'ext__corporate__creative', category: 'corporate', name: { en: 'Creative Agency', ru: 'Креативное агентство' }, price: { en: 'from 10,000 ₽', ru: 'от 10 000 ₽' }, image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=900&q=80' },
-        { id: 'ext__corporate__portfolio', category: 'corporate', name: { en: 'Corporate Portfolio', ru: 'Портфолио' }, price: { en: 'from 11,000 ₽', ru: 'от 11 000 ₽' }, image: 'https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=900&q=80' }
-    ]
-};
+// Template data: loaded dynamically from templates.json, with localStorage cache
+let templatesData = JSON.parse(localStorage.getItem('templatesData')) || { landing: [], ecommerce: [], corporate: [] };
+let templatesLoaded = false;
+
+async function loadTemplatesData() {
+    if (templatesLoaded && templatesData.landing.length > 0) return;
+    try {
+        const resp = await fetch('templates.json?t=' + Date.now());
+        if (resp.ok) {
+            const data = await resp.json();
+            if (data.landing && data.landing.length > 0) {
+                templatesData = data;
+                localStorage.setItem('templatesData', JSON.stringify(data));
+                templatesLoaded = true;
+                console.log('Templates loaded: ' + (data.landing.length + data.ecommerce.length + data.corporate.length) + ' total');
+            }
+        }
+    } catch(e) {
+        console.warn('Failed to load templates.json, using cached/saved data', e);
+    }
+}
+
+// On init, trigger template load and rerender
+(async function initTemplates() {
+    await loadTemplatesData();
+    if (typeof renderTemplatesPage === 'function') renderTemplatesPage();
+})();
 
 // ==================== TRANSLATIONS (extended) ====================
 let translations = {
@@ -1463,7 +1455,7 @@ let translations = {
         lead_details_title: "Детали лида",
         demo_business_name_label: "Название бизнеса", demo_city_label: "Город", demo_category_label: "Тип сайта", demo_phone_label: "Номер телефона", demo_vk_label: "VK профиль", demo_email_label: "Email адрес", demo_address_label: "Адрес бизнеса", demo_brand_color_label: "Фирменный цвет", demo_logo_label: "Логотип", demo_domain_label: "Желаемый домен", demo_referrer_label: "Как вы нас нашли?", demo_budget_label: "Примерный бюджет", demo_existing_site_label: "Текущий сайт", demo_hosting_label: "Статус хостинга", demo_notes_label: "Дополнительные пожелания",
         demo_category_landing: "Лендинг (от 6 000 ₽)", demo_category_ecommerce: "Интернет-магазин (от 12 000 ₽)", demo_category_corporate: "Корпоративный сайт (от 9 000 ₽)",
-        portfolio_items: { "Студия красоты": "Студия красоты", "Магазин одежды": "Магазин одежды", "Ресторан": "Ресторан", "IT-компания": "IT-компания", "Мебельный магазин": "Мебельный магазин", "Маркетинговое агентство": "Маркетинговое агентство" },
+        portfolio_items: { "Студия красоты": "Студия красоты", "Магазин одежды": "Магазин одежды", "Ресторан": "Ресторан", "IT-компания": "IT-компания", "Мебельный магазин": "Мебельный магазин", "Маркетинговое агентство": "Маркетинговое агентство", "Фитнес-центр": "Фитнес-центр", "Стоматология": "Стоматология", "Автосервис": "Автосервис", "Недвижимость": "Недвижимость" },
         blog_posts: [
             { title: "Как выбрать Landing Page для бизнеса", excerpt: "Советы по выбору одностраничного сайта.", content: "Одностраничный сайт (Landing Page) — это идеальное решение для бизнеса, которому нужно быстро привлечь клиентов и собрать заявки..." },
             { title: "SEO оптимизация: что нужно знать", excerpt: "Основные принципы продвижения.", content: "SEO (поисковая оптимизация) — это комплекс мер для повышения позиций сайта в результатах поиска..." },
@@ -1514,7 +1506,7 @@ let translations = {
         lead_details_title: "Lead Details",
         demo_business_name_label: "Business name", demo_city_label: "City", demo_category_label: "Website type", demo_phone_label: "Phone number", demo_vk_label: "VK profile", demo_email_label: "Email address", demo_address_label: "Business address", demo_brand_color_label: "Brand color", demo_logo_label: "Logo", demo_domain_label: "Desired domain", demo_referrer_label: "How did you find us?", demo_budget_label: "Budget", demo_existing_site_label: "Current website", demo_hosting_label: "Hosting status", demo_notes_label: "Notes",
         demo_category_landing: "Landing Page (from 6,000 ₽)", demo_category_ecommerce: "Online Store (from 12,000 ₽)", demo_category_corporate: "Corporate Website (from 9,000 ₽)",
-        portfolio_items: { "Студия красоты": "Beauty Studio", "Магазин одежды": "Clothing Store", "Ресторан": "Restaurant", "IT-компания": "IT Company", "Мебельный магазин": "Furniture Store", "Маркетинговое агентство": "Marketing Agency" },
+        portfolio_items: { "Студия красоты": "Beauty Studio", "Магазин одежды": "Clothing Store", "Ресторан": "Restaurant", "IT-компания": "IT Company", "Мебельный магазин": "Furniture Store", "Маркетинговое агентство": "Marketing Agency", "Фитнес-центр": "Fitness Center", "Стоматология": "Dentistry", "Автосервис": "Auto Service", "Недвижимость": "Real Estate" },
         blog_posts: [
             { title: "How to choose a Landing Page for business", excerpt: "Tips for choosing a one-page website.", content: "A landing page is an ideal solution for businesses that need to quickly attract customers and collect leads..." },
             { title: "SEO optimization: what you need to know", excerpt: "Basic principles of promotion.", content: "SEO is a set of practices to improve your website's search engine rankings..." },
@@ -1574,41 +1566,98 @@ function showSuccessToast(msg) {
     setTimeout(() => toast.remove(), 3000);
 }
 
-// ==================== TEMPLATES RENDER ====================
+// ==================== TEMPLATES RENDER (with pagination) ====================
+let templatesPage = 1;
+let templatesPerPage = 12;
+let templatesFilterCategory = 'all';
+let templatesFilterSearch = '';
+
 function renderTemplatesPage() {
     const container = document.getElementById('templatesGrid');
     if (!container) return;
     const t = translations[currentLang];
     const allTemplates = [];
     for (let cat in templatesData) {
-        allTemplates.push(...templatesData[cat]);
+        if (templatesFilterCategory !== 'all' && cat !== templatesFilterCategory) continue;
+        for (let tmpl of templatesData[cat]) {
+            if (templatesFilterSearch) {
+                const name = (tmpl.name[currentLang] || tmpl.name.en || '').toLowerCase();
+                const slug = (tmpl.slug || '').toLowerCase();
+                if (!name.includes(templatesFilterSearch) && !slug.includes(templatesFilterSearch)) continue;
+            }
+            allTemplates.push({...tmpl, _category: cat});
+        }
     }
-    container.innerHTML = allTemplates.map(tmpl => {
+    const totalPages = Math.ceil(allTemplates.length / templatesPerPage) || 1;
+    const start = (templatesPage - 1) * templatesPerPage;
+    const pageItems = allTemplates.slice(start, start + templatesPerPage);
+
+    // Filter buttons
+    const catCounts = { all: 0, landing: 0, ecommerce: 0, corporate: 0 };
+    for (let cat in templatesData) {
+        catCounts[cat] = templatesData[cat].length;
+        catCounts.all += templatesData[cat].length;
+    }
+    const filterHtml = `
+        <div class="template-filters" style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:20px; align-items:center;">
+            <button class="filter-btn ${templatesFilterCategory==='all'?'active':''}" data-filter="all">${t.filter_all || 'All'} (${catCounts.all})</button>
+            <button class="filter-btn ${templatesFilterCategory==='landing'?'active':''}" data-filter="landing">${t.filter_landing || 'Landing'} (${catCounts.landing})</button>
+            <button class="filter-btn ${templatesFilterCategory==='ecommerce'?'active':''}" data-filter="ecommerce">${t.filter_shop || 'E-commerce'} (${catCounts.ecommerce})</button>
+            <button class="filter-btn ${templatesFilterCategory==='corporate'?'active':''}" data-filter="corporate">${t.filter_corp || 'Corporate'} (${catCounts.corporate})</button>
+            <input type="text" id="templatesSearch" class="search-input" placeholder="${t.search_placeholder || 'Search...'}" value="${escapeHtml(templatesFilterSearch)}" style="width:200px; margin-left:auto;">
+        </div>`;
+
+    container.innerHTML = filterHtml + pageItems.map(tmpl => {
         const name = tmpl.name[currentLang] || tmpl.name.en;
-        const price = tmpl.price[currentLang] || tmpl.price.en;
+        const price = tmpl.price ? (tmpl.price[currentLang] || tmpl.price.en) : (tmpl._category === 'ecommerce' ? 'from 12,000 ₽' : (tmpl._category === 'corporate' ? 'from 9,000 ₽' : 'from 6,000 ₽'));
         const imgUrl = customImages.templates[tmpl.id] || tmpl.image || '';
         const previewUrl = tmpl.preview_url || '';
-        const imgHtml = imgUrl ? `<img src="${imgUrl}" alt="${name}" style="width:100%; border-radius:20px;">` : `<div class="template-img" style="height:150px; display:flex; align-items:center; justify-content:center; background:var(--beige); border-radius:20px;">🖼️ ${name}</div>`;
+        const imgHtml = imgUrl ? `<img src="${imgUrl}" alt="${name}" style="width:100%; border-radius:20px; aspect-ratio:16/10; object-fit:cover;" loading="lazy">` : `<div class="template-img" style="height:150px; display:flex; align-items:center; justify-content:center; background:var(--beige); border-radius:20px;">${name}</div>`;
         return `
             <div class="template-card" data-template-id="${tmpl.id}">
                 ${imgHtml}
                 <h3>${escapeHtml(name)}</h3>
                 <div class="template-price">${escapeHtml(price)}</div>
                 <div class="template-actions">
-                    <button class="btn order-template-btn" data-template-id="${tmpl.id}" data-template-name="${name}" data-template-category="${tmpl.category || ''}">Order this template</button>
+                    <button class="btn order-template-btn" data-template-id="${tmpl.id}" data-template-name="${name}" data-template-category="${tmpl._category || ''}">Order this template</button>
                     ${previewUrl ? `<a class="template-preview-btn" href="${previewUrl}" target="_blank" rel="noopener">Preview</a>` : ''}
                 </div>
             </div>
         `;
-    }).join('');
+    }).join('') + (totalPages > 1 ? `<div class="pagination" style="display:flex; gap:10px; justify-content:center; margin-top:20px; grid-column:1/-1;">
+        <button class="btn" ${templatesPage<=1?'disabled':''} onclick="templatesPage=1;renderTemplatesPage();">First</button>
+        <button class="btn" ${templatesPage<=1?'disabled':''} onclick="templatesPage--;renderTemplatesPage();">Prev</button>
+        <span style="display:flex;align-items:center;color:var(--text-dark);">Page ${templatesPage} / ${totalPages}</span>
+        <button class="btn" ${templatesPage>=totalPages?'disabled':''} onclick="templatesPage++;renderTemplatesPage();">Next</button>
+        <button class="btn" ${templatesPage>=totalPages?'disabled':''} onclick="templatesPage=totalPages;renderTemplatesPage();">Last</button>
+    </div>` : '');
+
+    // Bind filter clicks
+    document.querySelectorAll('#templatesGrid .filter-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            templatesFilterCategory = btn.getAttribute('data-filter');
+            templatesPage = 1;
+            renderTemplatesPage();
+        });
+    });
+    const searchInput = document.getElementById('templatesSearch');
+    if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+            templatesFilterSearch = e.target.value.toLowerCase();
+            templatesPage = 1;
+            renderTemplatesPage();
+        });
+    }
+
+    // Bind order buttons
     document.querySelectorAll('.order-template-btn').forEach(btn => {
         btn.addEventListener('click', (e) => {
             const templateId = btn.getAttribute('data-template-id');
-            let service = '';
             const cat = (btn.getAttribute('data-template-category') || '').toLowerCase();
-            if (cat === 'landing' || templateId.startsWith('landing')) service = 'Landing Page';
-            else if (cat === 'ecommerce' || templateId.startsWith('shop')) service = 'Online Store';
-            else if (cat === 'corporate' || templateId.startsWith('corp')) service = 'Corporate Website';
+            let service = '';
+            if (cat === 'landing' || templateId.startsWith('landing') || templateId.startsWith('ext__landing')) service = 'Landing Page';
+            else if (cat === 'ecommerce' || templateId.startsWith('shop') || templateId.startsWith('ext__ecommerce')) service = 'Online Store';
+            else if (cat === 'corporate' || templateId.startsWith('corp') || templateId.startsWith('ext__corporate')) service = 'Corporate Website';
             openOrderServiceModal(service, templateId);
         });
     });
@@ -1692,7 +1741,11 @@ const portfolioRaw = [
     { ru: "Ресторан", category: "landing" },
     { ru: "IT-компания", category: "corp" },
     { ru: "Мебельный магазин", category: "shop" },
-    { ru: "Маркетинговое агентство", category: "corp" }
+    { ru: "Маркетинговое агентство", category: "corp" },
+    { ru: "Фитнес-центр", category: "landing" },
+    { ru: "Стоматология", category: "landing" },
+    { ru: "Автосервис", category: "landing" },
+    { ru: "Недвижимость", category: "corp" }
 ];
 let currentFilter='all';
 
@@ -2224,13 +2277,21 @@ function applyFiltersAndSort() {
     renderLeadsTableBody();
 }
 
+let leadsPage = 1;
+let leadsPerPage = 20;
+
 function renderLeadsTableBody() {
     const tbody = document.getElementById('leadsTableBody');
     if (!tbody) return;
     if (filteredLeads.length === 0) { tbody.innerHTML = '<tr><td colspan="16">No leads found</td></tr>'; return; }
+    const totalPages = Math.ceil(filteredLeads.length / leadsPerPage);
+    if (leadsPage > totalPages) leadsPage = totalPages;
+    if (leadsPage < 1) leadsPage = 1;
+    const start = (leadsPage - 1) * leadsPerPage;
+    const pageItems = filteredLeads.slice(start, start + leadsPerPage);
     let html = '';
-    filteredLeads.forEach((lead, idx) => {
-        const leadIdSafe = escapeHtml(String(lead['Lead ID'] || idx+1));
+    pageItems.forEach((lead, idx) => {
+        const leadIdSafe = escapeHtml(String(lead['Lead ID'] || (start + idx + 1)));
         const businessName = escapeHtml(String(lead['Business Name'] || lead['Name'] || '-'));
         const city = escapeHtml(String(lead['City'] || '-'));
         const phone = escapeHtml(String(lead['Phone'] || '-'));
@@ -2242,11 +2303,10 @@ function renderLeadsTableBody() {
         const paymentStatus = escapeHtml(String(lead['Payment Status'] || 'unpaid'));
         const preferredLang = escapeHtml(String(lead['Preferred Language'] || lead['Preferred Language for Website'] || '-'));
         const requestType = escapeHtml(String(lead['action'] || lead['Request Type'] || (lead['service'] ? 'Service Order' : (lead['editType'] ? 'Edit Request' : (lead['Category'] ? 'Demo' : 'Consultation')))));
-        const sourceOptions = ['VK', 'Telegram', 'Search Engine', 'Friend', 'Other'];
-        const randomSource = sourceOptions[Math.floor(Math.random() * sourceOptions.length)];
-        const randomScore = Math.floor(Math.random() * 5) + 1;
-        let stars = ''; for(let i=1;i<=5;i++) stars += i<=randomScore ? '★' : '☆';
-        let statusClass = 'status-new'; if (status === 'paid') statusClass = 'status-paid'; if (status === 'sent') statusClass = 'status-sent';
+        const source = escapeHtml(String(lead['Source'] || lead['Referrer'] || '-'));
+        const actualScore = lead['Rating'] || lead['Score'] || 0;
+        let stars = ''; for(let i=1;i<=5;i++) stars += i<=actualScore ? '★' : '☆';
+        let statusClass = 'status-new'; if (status === 'paid' || status === 'site_built') statusClass = 'status-paid'; if (status === 'sent' || status === 'messaged') statusClass = 'status-sent';
         let paymentClass = 'status-new'; if (paymentStatus === 'paid' || paymentStatus === 'confirmed') paymentClass = 'status-paid';
         html += `<tr>
             <td><input type="checkbox" class="leadCheckbox" data-id="${leadIdSafe}"></td>
@@ -2262,8 +2322,8 @@ function renderLeadsTableBody() {
             <td>${createdAt}</td>
             <td><span class="status-badge ${statusClass}">${status}</span></td>
             <td><span class="status-badge ${paymentClass}">${paymentStatus}</span></td>
-            <td>${randomSource}</td>
-            <td><span style="color:var(--gold);">${stars}</span> (${randomScore})</td>
+            <td>${source}</td>
+            <td><span style="color:var(--gold);">${stars}</span> (${actualScore})</td>
             <td>
                 <button class="btn-icon" onclick="showLeadDetailsById('${leadIdSafe}')" title="Details"><i class="fas fa-info-circle"></i></button>
                 <button class="btn-icon" onclick="alert('Add note for lead ${leadIdSafe}')" title="Quick Note"><i class="fas fa-pencil-alt"></i></button>
@@ -2272,12 +2332,29 @@ function renderLeadsTableBody() {
             </td>
         </tr>`;
     });
+    // Add pagination row
+    html += `<tr><td colspan="16" style="text-align:center; padding:12px;">
+        <div style="display:flex; gap:10px; justify-content:center; align-items:center;">
+            <button class="btn btn-sm" onclick="leadsPage=1;renderLeadsTableBody();" ${leadsPage<=1?'disabled':''}>First</button>
+            <button class="btn btn-sm" onclick="leadsPage--;renderLeadsTableBody();" ${leadsPage<=1?'disabled':''}>Prev</button>
+            <span>${filteredLeads.length} leads | Page ${leadsPage} / ${totalPages}</span>
+            <button class="btn btn-sm" onclick="leadsPage++;renderLeadsTableBody();" ${leadsPage>=totalPages?'disabled':''}>Next</button>
+            <button class="btn btn-sm" onclick="leadsPage=${totalPages};renderLeadsTableBody();" ${leadsPage>=totalPages?'disabled':''}>Last</button>
+            <select onchange="leadsPerPage=parseInt(this.value);leadsPage=1;renderLeadsTableBody();" class="search-input" style="width:80px;">
+                <option value="10" ${leadsPerPage===10?'selected':''}>10</option>
+                <option value="20" ${leadsPerPage===20?'selected':''}>20</option>
+                <option value="50" ${leadsPerPage===50?'selected':''}>50</option>
+                <option value="100" ${leadsPerPage===100?'selected':''}>100</option>
+            </select>
+        </div>
+    </td></tr>`;
     tbody.innerHTML = html;
     const selectAllCheckbox = document.getElementById('selectAllLeads');
     if (selectAllCheckbox) selectAllCheckbox.onchange = (e) => { document.querySelectorAll('.leadCheckbox').forEach(cb => cb.checked = e.target.checked); };
 }
 
 async function renderLeadsTable() {
+    leadsPage = 1;  // Reset pagination on refresh
     leadsData = await fetchLeads();
     applyFiltersAndSort();
     const totalLeads = leadsData.length;
