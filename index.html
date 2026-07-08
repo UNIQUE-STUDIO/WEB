@@ -1204,6 +1204,12 @@
         .status-new { background: #ffd966; color: #5e3a2c; }
         .status-paid { background: #a3d9a5; color: #2c5e2c; }
         .status-sent { background: #b5c6e0; color: #2c3e5e; }
+
+        /* Source badges */
+        .source-badge { display: inline-block; padding: 2px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: 600; white-space: nowrap; }
+        .source-site { background: #d4edda; color: #155724; }
+        .source-bot { background: #e2d5f1; color: #5a3e85; }
+        .offline-banner { background: #fff3cd; color: #856404; padding: 10px 15px; border-radius: 12px; margin-bottom: 15px; font-weight: 500; }
         .loading-spinner { display: inline-block; width: 20px; height: 20px; border: 2px solid rgba(0,0,0,0.1); border-radius: 50%; border-top-color: var(--gold); animation: spin 0.6s linear infinite; margin-left: 10px; }
         @keyframes spin { to { transform: rotate(360deg); } }
         .btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
@@ -1216,6 +1222,46 @@
         .template-preview-btn { background: transparent; border: 1px solid var(--gold); color: var(--gold-dark); border-radius: 24px; padding: 8px 14px; cursor: pointer; font-weight: 600; }
         .template-preview-btn:hover { background: var(--gold); color: #2c2118; }
         .template-card.selected { outline: 2px solid var(--gold); box-shadow: 0 0 0 4px rgba(200,169,106,0.25); }
+        
+        /* ========== ENHANCED TEMPLATE & SECTION STYLES ========== */
+        .templates-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; }
+        .template-card { padding: 0; overflow: hidden; cursor: pointer; text-align: left; }
+        .template-card img { width: 100%; aspect-ratio: 16/10; object-fit: cover; display: block; transition: transform 0.6s cubic-bezier(0.2,0.9,0.4,1); }
+        .template-card:hover img { transform: scale(1.05); }
+        .template-card .card-body { padding: 20px; }
+        .template-card h3 { font-size: 1.1rem; margin: 0 0 8px; color: var(--text-dark); }
+        
+        .filter-btn { padding: 10px 20px; border: 2px solid var(--brown-light); background: transparent; color: var(--text-dark); border-radius: 30px; cursor: pointer; font-weight: 600; transition: all 0.3s; font-size: 0.9rem; }
+        .filter-btn.active, .filter-btn:hover { background: var(--gold); border-color: var(--gold); color: #fff; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(200,169,106,0.4); }
+        .filter-btn .count { opacity: 0.7; font-size: 0.8rem; margin-left: 4px; }
+        .search-input { padding: 10px 18px; border: 2px solid var(--brown-light); border-radius: 30px; background: var(--bg-card); color: var(--text-dark); font-size: 0.9rem; outline: none; transition: all 0.3s; }
+        .search-input:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(200,169,106,0.2); }
+        
+        .pagination { display: flex; gap: 8px; justify-content: center; margin-top: 30px; flex-wrap: wrap; }
+        .pagination .btn { padding: 8px 16px; font-size: 0.85rem; }
+        
+        .service-card { overflow: hidden; padding: 0; }
+        .service-card img, .service-img-svg { width: 100%; height: 200px; object-fit: cover; display: block; transition: transform 0.6s cubic-bezier(0.2,0.9,0.4,1); }
+        .service-card:hover img { transform: scale(1.05); }
+        .service-img-svg { display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, var(--beige), var(--cream)); height: 200px; }
+        .service-card .content { padding: 24px; }
+        .service-card .price { font-size: 1.4rem; font-weight: 700; color: var(--gold); margin: 10px 0; }
+        
+        .portfolio-card { overflow: hidden; padding: 0; }
+        .portfolio-card img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; transition: transform 0.6s cubic-bezier(0.2,0.9,0.4,1); }
+        .portfolio-card:hover img { transform: scale(1.05); }
+        .portfolio-card .portfolio-label { position: absolute; bottom: 0; left: 0; right: 0; padding: 12px 16px; background: linear-gradient(transparent, rgba(0,0,0,0.7)); color: #fff; font-weight: 600; font-size: 0.95rem; }
+        .portfolio-img-svg { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 220px; background: linear-gradient(135deg, var(--beige), var(--cream)); gap: 12px; color: var(--text-dark); font-weight: 600; }
+        
+        .order-service-btn { margin-top: 12px; width: 100%; }
+        
+        #serviceTemplatesContainer { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; max-height: 350px; overflow-y: auto; padding-right: 8px; }
+        #serviceTemplatesContainer .template-card { padding: 10px; text-align: center; }
+        #serviceTemplatesContainer .template-card img { aspect-ratio: 16/10; }
+        
+        .premium-card { position: relative; overflow: hidden; }
+        .premium-card::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 60%, rgba(200,169,106,0.15)); pointer-events: none; }
+        
         @media (max-width: 900px) {
             .hero .container { grid-template-columns: 1fr; }
         }
@@ -1307,26 +1353,27 @@ let sortColumn = 'Lead ID';
 let sortDirection = 'asc';
 let statusFilter = 'all';
 let paymentFilter = 'all';
+let sourceFilter = 'all';
 let searchTerm = '';
 let customImages = JSON.parse(localStorage.getItem('customImages')) || { services: {}, portfolio: {}, blog: {}, templates: {} };
 const defaultImagePack = {
     services: {
-        "Landing Page": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1000&q=85",
-        "Online Store": "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1000&q=85",
-        "Corporate Website": "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1000&q=85",
-        "Website Editing": "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1000&q=85"
+        "Landing Page": "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?auto=format&fit=crop&w=1000&q=85",
+        "Online Store": "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1000&q=85",
+        "Corporate Website": "https://images.unsplash.com/photo-1497215842964-222b430dc094?auto=format&fit=crop&w=1000&q=85",
+        "Website Editing": "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&w=1000&q=85"
     },
     portfolio: {
-        "Студия красоты": "https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?auto=format&fit=crop&w=900&q=80",
-        "Магазин одежды": "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=900&q=80",
-        "Ресторан": "https://images.unsplash.com/photo-1600565192359-37cb956b8c4a?auto=format&fit=crop&w=900&q=80",
-        "IT-компания": "https://images.unsplash.com/photo-1600607686527-6fb886090705?auto=format&fit=crop&w=900&q=80",
-        "Мебельный магазин": "https://images.unsplash.com/photo-1600210492493-0946911123ea?auto=format&fit=crop&w=900&q=80",
-        "Маркетинговое агентство": "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=900&q=80",
-        "Фитнес-центр": "https://images.unsplash.com/photo-1600573472592-401b489a3cdc?auto=format&fit=crop&w=900&q=80",
-        "Стоматология": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80",
-        "Автосервис": "https://images.unsplash.com/photo-1600661653561-629509216228?auto=format&fit=crop&w=900&q=80",
-        "Недвижимость": "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=900&q=80"
+        "Студия красоты": "https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=900&q=80",
+        "Магазин одежды": "https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=900&q=80",
+        "Ресторан": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=900&q=80",
+        "IT-компания": "https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=900&q=80",
+        "Мебельный магазин": "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=900&q=80",
+        "Маркетинговое агентство": "https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&w=900&q=80",
+        "Фитнес-центр": "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=900&q=80",
+        "Стоматология": "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=900&q=80",
+        "Автосервис": "https://images.unsplash.com/photo-1487754180451-c456f719a1fc?auto=format&fit=crop&w=900&q=80",
+        "Недвижимость": "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=900&q=80"
     },
     blog: {
         0: "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?auto=format&fit=crop&w=900&q=80",
@@ -1436,6 +1483,7 @@ let translations = {
         services_title: "Наши услуги", portfolio_title: "Наши проекты", blog_title: "Блог", reviews_title: "Отзывы клиентов", templates_title: "Выберите шаблон", templates_desc: "Выберите дизайн, который подходит вашему бренду – каждый шаблон полностью настраивается.",
         edit_title: "Заказать доработку сайта", contact_title: "Контакты",
         filter_all: "Все", filter_landing: "Лендинги", filter_shop: "Магазины", filter_corp: "Корпоративные", search_placeholder: "Поиск...",
+        order_btn: "Заказать", preview_btn: "Демо",
         add_review_btn: "Оставить отзыв",
         edit_name: "Ваше имя", edit_email: "Email", edit_phone: "Телефон", edit_vk: "Ссылка VK", edit_site: "Ссылка на сайт",
         edit_type: "Тип доработки", edit_type_design: "Дизайн", edit_type_function: "Функционал", edit_type_content: "Контент", edit_type_other: "Другое",
@@ -1596,15 +1644,17 @@ function renderTemplatesPage() {
         const price = tmpl.price ? (tmpl.price[currentLang] || tmpl.price.en) : (tmpl._category === 'ecommerce' ? 'from 12,000 ₽' : (tmpl._category === 'corporate' ? 'from 9,000 ₽' : 'from 6,000 ₽'));
         const imgUrl = customImages.templates[tmpl.id] || tmpl.image || '';
         const previewUrl = tmpl.preview_url || '';
-        const imgHtml = imgUrl ? `<img src="${imgUrl}" alt="${name}" style="width:100%; border-radius:20px; aspect-ratio:16/10; object-fit:cover;" loading="lazy">` : `<div class="template-img" style="height:150px; display:flex; align-items:center; justify-content:center; background:var(--beige); border-radius:20px;">${name}</div>`;
+        const imgHtml = imgUrl ? `<img src="${imgUrl}" alt="${name}" loading="lazy">` : `<div class="template-img" style="height:150px; display:flex; align-items:center; justify-content:center; background:var(--beige); border-radius:20px;">${name}</div>`;
         return `
-            <div class="template-card" data-template-id="${tmpl.id}">
+            <div class="template-card premium-card" data-template-id="${tmpl.id}">
                 ${imgHtml}
-                <h3>${escapeHtml(name)}</h3>
-                <div class="template-price">${escapeHtml(price)}</div>
-                <div class="template-actions">
-                    <button class="btn order-template-btn" data-template-id="${tmpl.id}" data-template-name="${name}" data-template-category="${tmpl._category || ''}">Order this template</button>
-                    ${previewUrl ? `<a class="template-preview-btn" href="${previewUrl}" target="_blank" rel="noopener">Preview</a>` : ''}
+                <div class="card-body">
+                    <h3>${escapeHtml(name)}</h3>
+                    <div class="template-price">${escapeHtml(price)}</div>
+                    <div class="template-actions">
+                        <button class="btn order-template-btn" data-template-id="${tmpl.id}" data-template-name="${name}" data-template-category="${tmpl._category || ''}">${t.order_btn || 'Order'}</button>
+                        ${previewUrl ? `<a class="template-preview-btn" href="${previewUrl}" target="_blank" rel="noopener">${t.preview_btn || 'Preview'}</a>` : ''}
+                    </div>
                 </div>
             </div>
         `;
@@ -1655,9 +1705,10 @@ function openOrderServiceModal(serviceName, preselectedTemplateId = null) {
     document.getElementById('orderAgree').checked = false;
     document.getElementById('selectedTemplateId').value = '';
     let category = '';
-    if (serviceName === 'Landing Page') category = 'landing';
-    else if (serviceName === 'Online Store') category = 'ecommerce';
-    else if (serviceName === 'Corporate Website') category = 'corporate';
+    if (serviceName === 'Online Store' || serviceName === 'Интернет-магазин') category = 'ecommerce';
+    else if (serviceName === 'Corporate Website' || serviceName === 'Корпоративный сайт') category = 'corporate';
+    else if (serviceName === 'Website Editing' || serviceName === 'Редактирование сайта') category = 'landing';
+    else if (serviceName === 'Landing Page' || serviceName === 'Лендинг') category = 'landing';
     else category = 'landing';
     const templates = templatesData[category] || [];
     const container = document.getElementById('serviceTemplatesContainer');
@@ -1666,13 +1717,15 @@ function openOrderServiceModal(serviceName, preselectedTemplateId = null) {
         const name = tmpl.name[currentLang] || tmpl.name.en;
         const price = tmpl.price[currentLang] || tmpl.price.en;
         const imgUrl = customImages.templates[tmpl.id] || tmpl.image || '';
-        const imgHtml = imgUrl ? `<img src="${imgUrl}" alt="${name}" style="width:100%; border-radius:12px;">` : `<div style="height:100px; background:var(--beige); display:flex; align-items:center; justify-content:center;">🖼️</div>`;
+        const imgHtml = imgUrl ? `<img src="${imgUrl}" alt="${name}" style="width:100%; border-radius:8px 8px 0 0;">` : `<div style="height:80px; background:var(--beige); display:flex; align-items:center; justify-content:center; border-radius:8px;">${name}</div>`;
         const selectedAttr = (preselectedTemplateId === tmpl.id) ? 'selected' : '';
         return `
-            <div class="template-card ${selectedAttr}" data-template-id="${tmpl.id}" style="cursor:pointer; padding:12px;">
+            <div class="template-card ${selectedAttr}" data-template-id="${tmpl.id}" style="cursor:pointer; padding:0; overflow:hidden;">
                 ${imgHtml}
+                <div style="padding:8px;">
                 <strong>${escapeHtml(name)}</strong>
                 <div>${escapeHtml(price)}</div>
+                </div>
             </div>
         `;
     }).join('');
@@ -1741,13 +1794,13 @@ function renderServices() {
         let customImg = customImages.services[s.title] || defaultImagePack.services[s.title] || '';
         let imgHtml = '';
         if(customImg && customImg.trim() !== '') {
-            imgHtml = `<img src="${customImg}" alt="${s.title}" style="width:100%; height:180px; object-fit:cover; border-radius:20px;">`;
+            imgHtml = `<img src="${customImg}" alt="${s.title}" style="width:100%; height:200px; object-fit:cover; border-radius:0;">`;
         } else {
             let svg = serviceSvgs[s.title] || serviceSvgs["Landing Page"];
             imgHtml = `<div class="service-img-svg">${svg}</div>`;
         }
         return `
-            <div class="service-card" data-aos="zoom-in" data-service-name="${s.title}">
+            <div class="service-card premium-card" data-aos="zoom-in" data-service-name="${s.title}">
                 ${imgHtml}
                 <div class="content"><h3>${escapeHtml(s.title)}</h3><p>${escapeHtml(s.desc)}</p><div class="price">${escapeHtml(s.price)}</div><button class="btn order-service-btn" data-service="${escapeHtml(s.title)}">${escapeHtml(s.btn)}</button></div>
             </div>
@@ -1771,12 +1824,12 @@ function renderPortfolio(filter='all', search='') {
         let customImg = customImages.portfolio[item.ru] || defaultImagePack.portfolio[item.ru] || '';
         let imgHtml = '';
         if(customImg && customImg.trim() !== '') {
-            imgHtml = `<img src="${customImg}" alt="${item.ru}" style="width:100%; height:auto; border-radius:20px;">`;
+            imgHtml = `<img src="${customImg}" alt="${item.ru}"><div class="portfolio-label">${escapeHtml(t.portfolio_items[item.ru]||item.ru)}</div>`;
         } else {
             const svg = portfolioSvgs[item.ru] || portfolioSvgs["Студия красоты"];
-            imgHtml = `<div class="portfolio-img-svg">${svg}<br>${escapeHtml(t.portfolio_items[item.ru]||item.ru)}</div>`;
+            imgHtml = `<div class="portfolio-img-svg">${svg}<span>${escapeHtml(t.portfolio_items[item.ru]||item.ru)}</span></div>`;
         }
-        return `<div class="portfolio-card">${imgHtml}</div>`;
+        return `<div class="portfolio-card premium-card">${imgHtml}</div>`;
     }).join('');
     try { VanillaTilt.init(document.querySelectorAll(".portfolio-card"),{max:10,speed:500,glare:true,"max-glare":0.4}); } catch(e) {}
 }
@@ -2105,7 +2158,9 @@ async function fetchLeads() {
         return normalizeLeadRows(getLocalLeads());
     }
     try {
-        const res = await fetch(SCRIPT_URL + '?t=' + Date.now());
+        const params = new URLSearchParams({ t: Date.now() });
+        if (sourceFilter !== 'all') params.set('source', sourceFilter);
+        const res = await fetch(SCRIPT_URL + '?' + params.toString());
         const data = await res.json();
         SCRIPT_REACHABLE = true;
         return normalizeLeadRows(data.leads || []);
@@ -2304,8 +2359,10 @@ function showLeadDetailsById(leadId) {
 
 function applyFiltersAndSort() {
     let filtered = [...leadsData];
+    const now = Date.now();
     if (statusFilter !== 'all') filtered = filtered.filter(lead => (lead['Status'] || 'new').toLowerCase() === statusFilter.toLowerCase());
     if (paymentFilter !== 'all') filtered = filtered.filter(lead => (lead['Payment Status'] || 'unpaid').toLowerCase() === paymentFilter.toLowerCase());
+    if (sourceFilter !== 'all') filtered = filtered.filter(lead => (lead['Source'] || 'website').toLowerCase() === sourceFilter.toLowerCase());
     if (searchTerm.trim() !== '') {
         const term = searchTerm.toLowerCase();
         filtered = filtered.filter(lead => (lead['Business Name'] || lead['Name'] || '').toLowerCase().includes(term) || (lead['Phone'] || '').toLowerCase().includes(term) || (lead['Email'] || '').toLowerCase().includes(term) || (lead['Lead ID'] || '').toLowerCase().includes(term));
@@ -2328,13 +2385,14 @@ let leadsPerPage = 20;
 function renderLeadsTableBody() {
     const tbody = document.getElementById('leadsTableBody');
     if (!tbody) return;
-    if (filteredLeads.length === 0) { tbody.innerHTML = '<tr><td colspan="16">No leads found</td></tr>'; return; }
+    if (filteredLeads.length === 0) { tbody.innerHTML = '<tr><td colspan="17">No leads found</td></tr>'; updatePaginationInfo(); return; }
     const totalPages = Math.ceil(filteredLeads.length / leadsPerPage);
     if (leadsPage > totalPages) leadsPage = totalPages;
     if (leadsPage < 1) leadsPage = 1;
     const start = (leadsPage - 1) * leadsPerPage;
     const pageItems = filteredLeads.slice(start, start + leadsPerPage);
-    let html = '';
+    const frag = document.createDocumentFragment();
+    const table = document.createElement('table');
     pageItems.forEach((lead, idx) => {
         const leadIdSafe = escapeHtml(String(lead['Lead ID'] || (start + idx + 1)));
         const businessName = escapeHtml(String(lead['Business Name'] || lead['Name'] || '-'));
@@ -2348,14 +2406,16 @@ function renderLeadsTableBody() {
         const paymentStatus = escapeHtml(String(lead['Payment Status'] || 'unpaid'));
         const preferredLang = escapeHtml(String(lead['Preferred Language'] || lead['Preferred Language for Website'] || '-'));
         const requestType = escapeHtml(String(lead['action'] || lead['Request Type'] || (lead['service'] ? 'Service Order' : (lead['editType'] ? 'Edit Request' : (lead['Category'] ? 'Demo' : 'Consultation')))));
-        const source = escapeHtml(String(lead['Source'] || lead['Referrer'] || '-'));
+        const sourceVal = String(lead['Source'] || 'website').toLowerCase();
+        const sourceLabel = sourceVal === 'bot' ? 'Bot' : (sourceVal === 'website' ? 'Site' : escapeHtml(lead['Source'] || 'Site'));
+        const sourceClass = sourceVal === 'bot' ? 'source-bot' : 'source-site';
         const actualScore = lead['Rating'] || lead['Score'] || 0;
-        let stars = ''; for(let i=1;i<=5;i++) stars += i<=actualScore ? '★' : '☆';
+        let stars = ''; for(let i=1;i<=5;i++) stars += i<=actualScore ? '\u2605' : '\u2606';
         let statusClass = 'status-new'; if (status === 'paid' || status === 'site_built') statusClass = 'status-paid'; if (status === 'sent' || status === 'messaged') statusClass = 'status-sent';
         let paymentClass = 'status-new'; if (paymentStatus === 'paid' || paymentStatus === 'confirmed') paymentClass = 'status-paid';
-        html += `<tr>
-            <td><input type="checkbox" class="leadCheckbox" data-id="${leadIdSafe}"></td>
-            <td>${leadIdSafe}</td>
+        const tr = document.createElement('tr');
+        tr.innerHTML = `<td><input type="checkbox" class="leadCheckbox" data-id="${leadIdSafe}"></td>
+            <td title="${leadIdSafe}">${leadIdSafe.substring(0,12)}...</td>
             <td>${businessName}</td>
             <td>${city}</td>
             <td>${phone}</td>
@@ -2367,85 +2427,145 @@ function renderLeadsTableBody() {
             <td>${createdAt}</td>
             <td><span class="status-badge ${statusClass}">${status}</span></td>
             <td><span class="status-badge ${paymentClass}">${paymentStatus}</span></td>
-            <td>${source}</td>
+            <td><span class="source-badge ${sourceClass}">${sourceLabel}</span></td>
             <td><span style="color:var(--gold);">${stars}</span> (${actualScore})</td>
-            <td>
+            <td style="white-space:nowrap;">
                 <button class="btn-icon" onclick="showLeadDetailsById('${leadIdSafe}')" title="Details"><i class="fas fa-info-circle"></i></button>
-                <button class="btn-icon" onclick="alert('Add note for lead ${leadIdSafe}')" title="Quick Note"><i class="fas fa-pencil-alt"></i></button>
                 <button class="btn-icon" onclick="confirmPayment('${leadIdSafe}')" title="Confirm Payment"><i class="fas fa-check-circle"></i></button>
-                <button class="btn-icon" onclick="alert('Delete lead ${leadIdSafe}')" title="Delete"><i class="fas fa-trash"></i></button>
-            </td>
-        </tr>`;
+            </td>`;
+        frag.appendChild(tr);
     });
-    // Add pagination row
-    html += `<tr><td colspan="16" style="text-align:center; padding:12px;">
-        <div style="display:flex; gap:10px; justify-content:center; align-items:center;">
-            <button class="btn btn-sm" onclick="leadsPage=1;renderLeadsTableBody();" ${leadsPage<=1?'disabled':''}>First</button>
-            <button class="btn btn-sm" onclick="leadsPage--;renderLeadsTableBody();" ${leadsPage<=1?'disabled':''}>Prev</button>
-            <span>${filteredLeads.length} leads | Page ${leadsPage} / ${totalPages}</span>
-            <button class="btn btn-sm" onclick="leadsPage++;renderLeadsTableBody();" ${leadsPage>=totalPages?'disabled':''}>Next</button>
-            <button class="btn btn-sm" onclick="leadsPage=${totalPages};renderLeadsTableBody();" ${leadsPage>=totalPages?'disabled':''}>Last</button>
-            <select onchange="leadsPerPage=parseInt(this.value);leadsPage=1;renderLeadsTableBody();" class="search-input" style="width:80px;">
-                <option value="10" ${leadsPerPage===10?'selected':''}>10</option>
-                <option value="20" ${leadsPerPage===20?'selected':''}>20</option>
-                <option value="50" ${leadsPerPage===50?'selected':''}>50</option>
-                <option value="100" ${leadsPerPage===100?'selected':''}>100</option>
-            </select>
-        </div>
-    </td></tr>`;
-    tbody.innerHTML = html;
+    tbody.innerHTML = '';
+    tbody.appendChild(frag);
+    updatePaginationInfo();
     const selectAllCheckbox = document.getElementById('selectAllLeads');
     if (selectAllCheckbox) selectAllCheckbox.onchange = (e) => { document.querySelectorAll('.leadCheckbox').forEach(cb => cb.checked = e.target.checked); };
 }
+
+function updatePaginationInfo() {
+    const info = document.getElementById('leadsPaginationInfo');
+    if (!info) return;
+    const totalPages = Math.ceil(filteredLeads.length / leadsPerPage) || 1;
+    info.innerHTML = `<button class="btn btn-sm" onclick="leadsPage=1;renderLeadsTableBody();" ${leadsPage<=1?'disabled':''}>First</button>
+        <button class="btn btn-sm" onclick="leadsPage--;renderLeadsTableBody();" ${leadsPage<=1?'disabled':''}>Prev</button>
+        <span style="margin:0 10px;">${filteredLeads.length} leads | Page ${leadsPage}/${totalPages}</span>
+        <button class="btn btn-sm" onclick="leadsPage++;renderLeadsTableBody();" ${leadsPage>=totalPages?'disabled':''}>Next</button>
+        <button class="btn btn-sm" onclick="leadsPage=${totalPages};renderLeadsTableBody();" ${leadsPage>=totalPages?'disabled':''}>Last</button>
+        <select onchange="leadsPerPage=parseInt(this.value);leadsPage=1;renderLeadsTableBody();" class="search-input" style="width:80px;margin-left:10px;">
+            <option value="10" ${leadsPerPage===10?'selected':''}>10</option>
+            <option value="20" ${leadsPerPage===20?'selected':''}>20</option>
+            <option value="50" ${leadsPerPage===50?'selected':''}>50</option>
+            <option value="100" ${leadsPerPage===100?'selected':''}>100</option>
+        </select>`;
+}
+
+let leadsChartInstance = null;
+let leadsTableBuilt = false;
 
 async function renderLeadsTable() {
     leadsPage = 1;
     leadsData = await fetchLeads();
     applyFiltersAndSort();
     const totalLeads = leadsData.length;
-    const offlineBanner = SCRIPT_REACHABLE === false ? '<div style="background:#fef3cd;color:#856404;padding:8px 15px;border-radius:12px;margin-bottom:10px;">Offline mode — showing local leads only</div>' : '';
+    const siteCount = leadsData.filter(l => (l['Source'] || 'website') === 'website').length;
+    const botCount = leadsData.filter(l => l['Source'] === 'bot').length;
+    const offlineBanner = SCRIPT_REACHABLE === false ? '<div class="offline-banner">' + (currentLang === 'ru' ? '\u041e\u0444\u043b\u0430\u0439\u043d-\u0440\u0435\u0436\u0438\u043c \u2014 \u0434\u0430\u043d\u043d\u044b\u0435 \u0438\u0437 \u0431\u0440\u0430\u0443\u0437\u0435\u0440\u0430' : 'Offline mode \u2014 browser data only') + '</div>' : '';
     document.getElementById('adminContent').innerHTML = offlineBanner + `
         <div class="quick-actions">
             <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;">
-                <div><strong>Total Leads:</strong> ${totalLeads} ${SCRIPT_REACHABLE === false ? '(local)' : ''}</div>
+                <div>
+                    <strong>Total:</strong> ${totalLeads}
+                    <span class="source-badge source-site" style="margin-left:10px;">Site: ${siteCount}</span>
+                    <span class="source-badge source-bot" style="margin-left:5px;">Bot: ${botCount}</span>
+                </div>
                 <div>
                     <button class="btn" id="refreshLeadsBtn"><i class="fas fa-sync-alt"></i> Refresh</button>
                     <button class="btn" id="exportCsvBtn"><i class="fas fa-file-csv"></i> Export CSV</button>
-                    <button class="btn" id="exportPdfBtn"><i class="fas fa-file-pdf"></i> Export PDF</button>
                     <button class="btn" id="bulkReminderBtn"><i class="fas fa-bell"></i> Bulk Reminder</button>
-                    <button class="btn" id="bulkStatusBtn"><i class="fas fa-tags"></i> Bulk Status</button>
                 </div>
             </div>
         </div>
-        <div class="filter-bar">
-            <input type="text" id="searchName" class="search-input" placeholder="Search by name" style="width: 180px;">
-            <input type="text" id="searchPhone" class="search-input" placeholder="Search by phone" style="width: 180px;">
-            <input type="text" id="searchEmail" class="search-input" placeholder="Search by email" style="width: 180px;">
-            <input type="date" id="dateFrom" class="search-input" style="width: 140px;">
-            <input type="date" id="dateTo" class="search-input" style="width: 140px;">
-            <select id="statusFilterSelect" class="search-input" style="width: 150px;"><option value="all">All Statuses</option><option value="new">New</option><option value="sent">Sent</option><option value="paid">Paid</option></select>
-            <select id="paymentFilterSelect" class="search-input" style="width: 150px;"><option value="all">All Payments</option><option value="unpaid">Unpaid</option><option value="paid">Paid</option><option value="confirmed">Confirmed</option></select>
-            <button class="btn" id="resetFiltersBtn">Reset</button>
+        <div class="filter-bar" style="display:flex;gap:10px;flex-wrap:wrap;">
+            <input type="text" id="searchName" class="search-input" placeholder="Search name/phone/email" style="width:200px;">
+            <select id="sourceFilterSelect" class="search-input" style="width:130px;">
+                <option value="all">All Sources</option>
+                <option value="website">Site Leads</option>
+                <option value="bot">Bot Leads</option>
+            </select>
+            <select id="statusFilterSelect" class="search-input" style="width:130px;">
+                <option value="all">All Statuses</option>
+                <option value="new">New</option>
+                <option value="sent">Sent</option>
+                <option value="paid">Paid</option>
+                <option value="site_built">Site Built</option>
+            </select>
+            <select id="paymentFilterSelect" class="search-input" style="width:130px;">
+                <option value="all">All Payments</option>
+                <option value="unpaid">Unpaid</option>
+                <option value="paid">Paid</option>
+            </select>
+            <button class="btn btn-sm" id="resetFiltersBtn">Reset</button>
         </div>
-        <canvas id="leadsTrendChart" width="400" height="150" style="max-height: 200px; margin-bottom: 20px;"></canvas>
+        <canvas id="leadsChart" width="400" height="150" style="max-height:200px;margin-bottom:20px;"></canvas>
         <div style="overflow-x: auto;">
-            <table class="leads-table"><thead><tr><th><input type="checkbox" id="selectAllLeads"></th><th data-sort="Lead ID">ID <i class="fas fa-sort"></i></th><th data-sort="Business Name">Business <i class="fas fa-sort"></i></th><th data-sort="City">City <i class="fas fa-sort"></i></th><th data-sort="Phone">Phone <i class="fas fa-sort"></i></th><th data-sort="Email">Email <i class="fas fa-sort"></i></th><th data-sort="Category">Type <i class="fas fa-sort"></i></th><th data-sort="Budget">Budget <i class="fas fa-sort"></i></th><th data-sort="Preferred Language">Language <i class="fas fa-sort"></i></th><th data-sort="Request Type">Request <i class="fas fa-sort"></i></th><th data-sort="Created At">Created <i class="fas fa-sort"></i></th><th data-sort="Status">Status <i class="fas fa-sort"></i></th><th data-sort="Payment Status">Payment <i class="fas fa-sort"></i></th><th data-sort="Source">Source <i class="fas fa-sort"></i></th><th data-sort="Score">Score <i class="fas fa-sort"></i></th><th>Actions</th></tr></thead><tbody id="leadsTableBody"></tbody></table>
+            <table class="leads-table"><thead><tr>
+                <th><input type="checkbox" id="selectAllLeads"></th>
+                <th data-sort="Lead ID">ID <i class="fas fa-sort"></i></th>
+                <th data-sort="Business Name">Business <i class="fas fa-sort"></i></th>
+                <th data-sort="City">City <i class="fas fa-sort"></i></th>
+                <th data-sort="Phone">Phone <i class="fas fa-sort"></i></th>
+                <th data-sort="Email">Email <i class="fas fa-sort"></i></th>
+                <th data-sort="Category">Type <i class="fas fa-sort"></i></th>
+                <th data-sort="Budget">Budget <i class="fas fa-sort"></i></th>
+                <th data-sort="Preferred Language">Lang <i class="fas fa-sort"></i></th>
+                <th data-sort="Request Type">Request <i class="fas fa-sort"></i></th>
+                <th data-sort="Created At">Created <i class="fas fa-sort"></i></th>
+                <th data-sort="Status">Status <i class="fas fa-sort"></i></th>
+                <th data-sort="Payment Status">Payment <i class="fas fa-sort"></i></th>
+                <th data-sort="Source">Source <i class="fas fa-sort"></i></th>
+                <th data-sort="Score">Score <i class="fas fa-sort"></i></th>
+                <th>Actions</th>
+            </tr></thead><tbody id="leadsTableBody"></tbody></table>
         </div>
-        <div id="bulkStatusSelect" style="display: none; margin-top: 15px;"><select id="bulkStatusValue" class="search-input"><option value="new">New</option><option value="sent">Sent</option><option value="paid">Paid</option></select><button class="btn" id="applyBulkStatus">Apply</button></div>
+        <div style="text-align:center;padding:12px;" id="leadsPaginationInfo"></div>
     `;
-    new Chart(document.getElementById('leadsTrendChart').getContext('2d'), { type: 'line', data: { labels: ['Day -6','Day -5','Day -4','Day -3','Day -2','Yesterday','Today'], datasets: [{ label: 'Leads per day', data: [Math.floor(Math.random()*10), Math.floor(Math.random()*12), Math.floor(Math.random()*8), Math.floor(Math.random()*15), Math.floor(Math.random()*10), Math.floor(Math.random()*12), Math.floor(Math.random()*8)], borderColor: 'var(--gold)', fill: false }] } });
-    document.getElementById('refreshLeadsBtn').onclick = async () => { await renderLeadsTable(); };
+    leadsTableBuilt = true;
+
+    try {
+        const ctx = document.getElementById('leadsChart').getContext('2d');
+        if (leadsChartInstance) leadsChartInstance.destroy();
+        leadsChartInstance = new Chart(ctx, { type: 'line', data: { labels: Array.from({length:7},(_,i)=>'Day -'+(6-i)), datasets: [{ label: 'Leads/day', data: Array.from({length:7},()=>Math.floor(Math.random()*15)), borderColor: 'var(--gold)', fill: false }] } });
+    } catch(e) {}
+
+    document.getElementById('refreshLeadsBtn').onclick = () => refreshLeads();
     document.getElementById('exportCsvBtn').onclick = exportToCSV;
-    document.getElementById('exportPdfBtn').onclick = () => { alert('PDF export would be implemented here (using print or jsPDF)'); };
-    document.getElementById('bulkReminderBtn').onclick = () => { const selected = Array.from(document.querySelectorAll('.leadCheckbox:checked')).map(cb => cb.getAttribute('data-id')); if(selected.length === 0) alert('No leads selected'); else alert(`Reminder sent to ${selected.length} leads (simulated)`); };
-    document.getElementById('bulkStatusBtn').onclick = () => { const div = document.getElementById('bulkStatusSelect'); div.style.display = div.style.display === 'none' ? 'block' : 'none'; };
-    document.getElementById('applyBulkStatus').onclick = () => { const newStatus = document.getElementById('bulkStatusValue').value; const selected = Array.from(document.querySelectorAll('.leadCheckbox:checked')).map(cb => cb.getAttribute('data-id')); if(selected.length === 0) alert('No leads selected'); else alert(`Status changed to ${newStatus} for ${selected.length} leads (simulated)`); document.getElementById('bulkStatusSelect').style.display = 'none'; };
-    ['searchName','searchPhone','searchEmail','dateFrom','dateTo'].forEach(id => { document.getElementById(id).addEventListener('input', () => { searchTerm = `${document.getElementById('searchName').value}|${document.getElementById('searchPhone').value}|${document.getElementById('searchEmail').value}`; applyFiltersAndSort(); }); });
+
+    document.getElementById('searchName').addEventListener('input', () => { searchTerm = document.getElementById('searchName').value; applyFiltersAndSort(); });
+    document.getElementById('sourceFilterSelect').onchange = (e) => { sourceFilter = e.target.value; applyFiltersAndSort(); };
     document.getElementById('statusFilterSelect').onchange = (e) => { statusFilter = e.target.value; applyFiltersAndSort(); };
     document.getElementById('paymentFilterSelect').onchange = (e) => { paymentFilter = e.target.value; applyFiltersAndSort(); };
-    document.getElementById('resetFiltersBtn').onclick = () => { document.getElementById('searchName').value = ''; document.getElementById('searchPhone').value = ''; document.getElementById('searchEmail').value = ''; document.getElementById('dateFrom').value = ''; document.getElementById('dateTo').value = ''; document.getElementById('statusFilterSelect').value = 'all'; document.getElementById('paymentFilterSelect').value = 'all'; searchTerm = ''; statusFilter = 'all'; paymentFilter = 'all'; applyFiltersAndSort(); };
+    document.getElementById('resetFiltersBtn').onclick = () => {
+        document.getElementById('searchName').value = '';
+        document.getElementById('sourceFilterSelect').value = 'all';
+        document.getElementById('statusFilterSelect').value = 'all';
+        document.getElementById('paymentFilterSelect').value = 'all';
+        searchTerm = ''; sourceFilter = 'all'; statusFilter = 'all'; paymentFilter = 'all';
+        applyFiltersAndSort();
+    };
     document.querySelectorAll('.leads-table th[data-sort]').forEach(th => { th.style.cursor = 'pointer'; th.onclick = () => { const column = th.getAttribute('data-sort'); if (sortColumn === column) sortDirection = sortDirection === 'asc' ? 'desc' : 'asc'; else { sortColumn = column; sortDirection = 'asc'; } applyFiltersAndSort(); }; });
+
     renderLeadsTableBody();
+}
+
+async function refreshLeads() {
+    leadsData = await fetchLeads();
+    const siteCount = leadsData.filter(l => (l['Source'] || 'website') === 'website').length;
+    const botCount = leadsData.filter(l => l['Source'] === 'bot').length;
+    const totalContainers = document.querySelectorAll('.quick-actions div div strong');
+    if (totalContainers.length > 0) {
+        totalContainers[0].parentElement.innerHTML = `<strong>Total:</strong> ${leadsData.length} <span class="source-badge source-site" style="margin-left:10px;">Site: ${siteCount}</span> <span class="source-badge source-bot" style="margin-left:5px;">Bot: ${botCount}</span>`;
+    }
+    applyFiltersAndSort();
 }
 
 function exportToCSV() {
@@ -2469,13 +2589,25 @@ async function renderDashboard() {
     const newLeads = leads.filter(l => l.Status === 'new' || l.Status === 'pending_payment').length;
     const sent = leads.filter(l => l.Status === 'sent').length;
     const paid = leads.filter(l => l['Payment Status'] === 'paid' || l['Payment Status'] === 'confirmed').length;
-    const offlineNotice = SCRIPT_REACHABLE === false ? '<div style="background:#fef3cd;color:#856404;padding:10px;border-radius:12px;margin-bottom:15px;">⚠ Offline mode — showing local browser data only.</div>' : '';
+    const offlineNotice = SCRIPT_REACHABLE === false ? '<div class="offline-banner">' + (currentLang === 'ru' ? '\u041e\u0444\u043b\u0430\u0439\u043d-\u0440\u0435\u0436\u0438\u043c \u2014 \u0434\u0430\u043d\u043d\u044b\u0435 \u0438\u0437 \u0431\u0440\u0430\u0443\u0437\u0435\u0440\u0430' : 'Offline mode \u2014 browser data only') + '</div>' : '';
     document.getElementById('adminContent').innerHTML = offlineNotice + `
-        <div class="quick-actions"><button class="btn" onclick="alert('Export CSV')"><i class="fas fa-download"></i> Export CSV</button><button class="btn" onclick="alert('Mass message')"><i class="fas fa-bullhorn"></i> Mass message</button><button class="btn" onclick="alert('Backup created')"><i class="fas fa-database"></i> Backup</button></div>
+        <div class="quick-actions"><button class="btn" onclick="refreshDashboard()"><i class="fas fa-sync-alt"></i> Refresh</button><button class="btn" onclick="exportToCSV()"><i class="fas fa-download"></i> Export CSV</button></div>
         <div class="stats-cards"><div class="stat-card"><div class="stat-number">${total}</div><div>${translations[currentLang].stats_total}</div></div><div class="stat-card"><div class="stat-number">${newLeads}</div><div>${translations[currentLang].stats_new}</div></div><div class="stat-card"><div class="stat-number">${sent}</div><div>${translations[currentLang].stats_sent}</div></div><div class="stat-card"><div class="stat-number">${paid}</div><div>${translations[currentLang].stats_paid}</div></div></div>
-        <canvas id="leadsChart" width="400" height="200"></canvas>
+        <canvas id="statsChart" width="400" height="200"></canvas>
     `;
-    new Chart(document.getElementById('leadsChart'),{type:'line',data:{labels:['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],datasets:[{label:'Leads',data:[Math.floor(total*0.2),Math.floor(total*0.3),Math.floor(total*0.1),Math.floor(total*0.4),Math.floor(total*0.2),Math.floor(total*0.5),Math.floor(total*0.3)],borderColor:'var(--gold)',fill:false}]}});
+    try { new Chart(document.getElementById('statsChart'),{type:'line',data:{labels:['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],datasets:[{label:'Leads',data:[Math.floor(total*0.2),Math.floor(total*0.3),Math.floor(total*0.1),Math.floor(total*0.4),Math.floor(total*0.2),Math.floor(total*0.5),Math.floor(total*0.3)],borderColor:'var(--gold)',fill:false}]}}); } catch(e) {}
+}
+
+async function refreshDashboard() {
+    let leads = [];
+    try { leads = await fetchLeads(); } catch(e) { leads = []; }
+    const total = leads.length;
+    const newLeads = leads.filter(l => l.Status === 'new' || l.Status === 'pending_payment').length;
+    const sent = leads.filter(l => l.Status === 'sent').length;
+    const paid = leads.filter(l => l['Payment Status'] === 'paid' || l['Payment Status'] === 'confirmed').length;
+    const nums = document.querySelectorAll('.stat-number');
+    if (nums.length >= 4) { nums[0].textContent = total; nums[1].textContent = newLeads; nums[2].textContent = sent; nums[3].textContent = paid; }
+    const offlineNotice = SCRIPT_REACHABLE === false ? '<div class="offline-banner">' + (currentLang === 'ru' ? '\u041e\u0444\u043b\u0430\u0439\u043d-\u0440\u0435\u0436\u0438\u043c \u2014 \u0434\u0430\u043d\u043d\u044b\u0435 \u0438\u0437 \u0431\u0440\u0430\u0443\u0437\u0435\u0440\u0430' : 'Offline mode \u2014 browser data only') + '</div>' : '';
 }
 
 function escapeHtml(str) { return String(str).replace(/[&<>"']/g, function(m) { if (m === '&') return '&amp;'; if (m === '<') return '&lt;'; if (m === '>') return '&gt;'; if (m === '"') return '&quot;'; if (m === "'") return '&#39;'; return m; }); }
@@ -2742,7 +2874,7 @@ const staggerObserver = new IntersectionObserver((entries) => { entries.forEach(
 staggerElements.forEach(el => { el.classList.add('stagger-item'); staggerObserver.observe(el); });
 let refreshInterval = null;
 const adminPanelEl = document.getElementById('adminPanel');
-if (adminPanelEl) { const observer = new MutationObserver((mutations) => { mutations.forEach((mutation) => { if (mutation.attributeName === 'class') { if (adminPanelEl.classList.contains('open')) { if (!refreshInterval) { refreshInterval = setInterval(() => { if (currentAdminTab === 'leads' && typeof renderLeadsTable === 'function') { renderLeadsTable(); } else if (currentAdminTab === 'dashboard' && typeof renderDashboard === 'function') { renderDashboard(); } }, 30000); } } else { if (refreshInterval) { clearInterval(refreshInterval); refreshInterval = null; } } } }); }); observer.observe(adminPanelEl, { attributes: true }); }
+if (adminPanelEl) { const observer = new MutationObserver((mutations) => { mutations.forEach((mutation) => { if (mutation.attributeName === 'class') { if (adminPanelEl.classList.contains('open')) { if (!refreshInterval) { refreshInterval = setInterval(() => { if (currentAdminTab === 'leads' && typeof refreshLeads === 'function') { refreshLeads(); } else if (currentAdminTab === 'dashboard' && typeof refreshDashboard === 'function') { refreshDashboard(); } }, 30000); } } else { if (refreshInterval) { clearInterval(refreshInterval); refreshInterval = null; } } } }); }); observer.observe(adminPanelEl, { attributes: true }); }
 (function mergeTemplatesCatalogFromGitHub() {
     var catalogUrl = 'https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/main/templates-catalog.json';
     fetch(catalogUrl + '?t=' + Date.now()).then(function(r) { if (!r.ok) return null; return r.json(); }).then(function(data) {
