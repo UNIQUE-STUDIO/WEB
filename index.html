@@ -1891,9 +1891,14 @@ function openOrderServiceModal(serviceName, preselectedTemplateId = null) {
         if (preselectedCard) preselectedCard.click();
         document.getElementById('selectedTemplateId').value = preselectedTemplateId;
     }
-    if (templates.length === 0) {
-        const defaultIds = { ecommerce: 'ecommerce_1', corporate: 'corporate_1', landing: 'landing_1' };
-        document.getElementById('selectedTemplateId').value = defaultIds[category] || 'landing_1';
+    if (!document.getElementById('selectedTemplateId').value) {
+        if (templates.length > 0) {
+            const firstCard = document.querySelector('#serviceTemplatesContainer .template-card');
+            if (firstCard) firstCard.click();
+        } else {
+            const defaultIds = { ecommerce: 'ecommerce_1', corporate: 'corporate_1', landing: 'landing_1' };
+            document.getElementById('selectedTemplateId').value = defaultIds[category] || 'landing_1';
+        }
     }
     openModal('orderService');
 }
@@ -2407,11 +2412,7 @@ function attachFormHandler(formId, action, langId, phoneCodeId, phoneInputId) {
             }
         }
         if (formId === 'orderServiceForm') {
-            const templateId = document.getElementById('selectedTemplateId').value;
-            if (!templateId) {
-                alert(currentLang === 'ru' ? 'Пожалуйста, выберите шаблон' : 'Please select a template');
-                return;
-            }
+            const templateId = document.getElementById('selectedTemplateId').value || 'landing_1';
             fd.append('template_id', templateId);
             fd.append('Template Used', templateId);
         }
