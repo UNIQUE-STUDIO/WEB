@@ -1900,7 +1900,7 @@ function openOrderServiceModal(serviceName, preselectedTemplateId = null) {
                 </div>
             </div>
         `;
-    }).join('');
+    }).join('') : '';
     container.querySelectorAll('.template-card').forEach(card => {
         card.addEventListener('click', () => {
             container.querySelectorAll('.template-card').forEach(c => c.classList.remove('selected'));
