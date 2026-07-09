@@ -1847,23 +1847,45 @@ function renderTemplatesPage() {
 }
 
 function openOrderServiceModal(serviceName, preselectedTemplateId = null) {
-    document.getElementById('orderServiceName').value = serviceName;
-    document.getElementById('orderName').value = '';
-    document.getElementById('orderEmail').value = '';
-    document.getElementById('orderPhone').value = '';
-    document.getElementById('orderMessage').value = '';
-    document.getElementById('orderAgree').checked = false;
-    document.getElementById('selectedTemplateId').value = '';
+    console.log('[order] openOrderServiceModal called:', serviceName, 'preselected:', preselectedTemplateId);
+    
+    const serviceInput = document.getElementById('orderServiceName');
+    const nameInput = document.getElementById('orderName');
+    const emailInput = document.getElementById('orderEmail');
+    const phoneInput = document.getElementById('orderPhone');
+    const messageInput = document.getElementById('orderMessage');
+    const agreeCheck = document.getElementById('orderAgree');
+    const templateSelect = document.getElementById('selectedTemplateId');
+    const container = document.getElementById('serviceTemplatesContainer');
+    
+    if (!serviceInput || !container || !templateSelect) {
+        console.error('[order] Missing critical DOM elements:', {
+            serviceInput: !!serviceInput,
+            container: !!container,
+            templateSelect: !!templateSelect
+        });
+        alert('Order form not initialized. Please refresh the page.');
+        return;
+    }
+    
+    serviceInput.value = serviceName || '';
+    if (nameInput) nameInput.value = '';
+    if (emailInput) emailInput.value = '';
+    if (phoneInput) phoneInput.value = '';
+    if (messageInput) messageInput.value = '';
+    if (agreeCheck) agreeCheck.checked = false;
+    templateSelect.value = '';
     let category = '';
     if (serviceName === 'Online Store' || serviceName === 'Интернет-магазин') category = 'ecommerce';
     else if (serviceName === 'Corporate Website' || serviceName === 'Корпоративный сайт') category = 'corporate';
     else if (serviceName === 'Website Editing' || serviceName === 'Редактирование сайта') category = 'landing';
     else if (serviceName === 'Landing Page' || serviceName === 'Лендинг') category = 'landing';
     else category = 'landing';
-    const templates = templatesData[category] || [];
-    const container = document.getElementById('serviceTemplatesContainer');
-    const t = translations[currentLang];
-    container.innerHTML = templates.map(tmpl => {
+    console.log('[order] Category:', category, '| templatesData keys:', Object.keys(templatesData || {}));
+    const templates = (templatesData && templatesData[category]) ? templatesData[category] : [];
+    const t = translations[currentLang] || translations.en;
+    console.log('[order] Templates found:', templates.length, '| container:', !!container);
+    container.innerHTML = templates.length > 0 ? templates.map(tmpl => {
         const name = tmpl.name[currentLang] || tmpl.name.en;
         const price = tmpl.price[currentLang] || tmpl.price.en;
         const imgUrl = customImages.templates[tmpl.id] || tmpl.image || '';
@@ -1879,28 +1901,35 @@ function openOrderServiceModal(serviceName, preselectedTemplateId = null) {
             </div>
         `;
     }).join('');
-    document.querySelectorAll('#serviceTemplatesContainer .template-card').forEach(card => {
+    container.querySelectorAll('.template-card').forEach(card => {
         card.addEventListener('click', () => {
-            document.querySelectorAll('#serviceTemplatesContainer .template-card').forEach(c => c.classList.remove('selected'));
+            container.querySelectorAll('.template-card').forEach(c => c.classList.remove('selected'));
             card.classList.add('selected');
-            document.getElementById('selectedTemplateId').value = card.getAttribute('data-template-id');
+            templateSelect.value = card.getAttribute('data-template-id');
         });
     });
     if (preselectedTemplateId && templates.length > 0) {
-        const preselectedCard = document.querySelector(`#serviceTemplatesContainer .template-card[data-template-id="${preselectedTemplateId}"]`);
-        if (preselectedCard) preselectedCard.click();
-        document.getElementById('selectedTemplateId').value = preselectedTemplateId;
+        const preselectedCard = container.querySelector(`.template-card[data-template-id="${preselectedTemplateId}"]`);
+        if (preselectedCard) { preselectedCard.classList.add('selected'); templateSelect.value = preselectedTemplateId; }
     }
-    if (!document.getElementById('selectedTemplateId').value) {
+    if (!templateSelect.value) {
         if (templates.length > 0) {
-            const firstCard = document.querySelector('#serviceTemplatesContainer .template-card');
-            if (firstCard) firstCard.click();
+            const firstCard = container.querySelector('.template-card');
+            if (firstCard) { firstCard.classList.add('selected'); templateSelect.value = firstCard.getAttribute('data-template-id'); }
         } else {
             const defaultIds = { ecommerce: 'ecommerce_1', corporate: 'corporate_1', landing: 'landing_1' };
-            document.getElementById('selectedTemplateId').value = defaultIds[category] || 'landing_1';
+            templateSelect.value = defaultIds[category] || 'landing_1';
         }
     }
-    openModal('orderService');
+    console.log('[order] Final template ID:', templateSelect.value);
+    
+    try {
+        openModal('orderService');
+        console.log('[order] Modal opened successfully');
+    } catch(e) {
+        console.error('[order] Failed to open modal:', e);
+        alert('Could not open order form. Please refresh.');
+    }
 }
 
 // ==================== SERVICE CARDS (with template selection) ====================
@@ -1968,7 +1997,10 @@ function renderServices() {
     }).join('');
     document.querySelectorAll('.order-service-btn').forEach(btn => {
         btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
             const serviceName = btn.getAttribute('data-service');
+            console.log('[order] Service button clicked:', serviceName, '| btn:', btn);
             openOrderServiceModal(serviceName);
         });
     });
@@ -2413,10 +2445,13 @@ function attachFormHandler(formId, action, langId, phoneCodeId, phoneInputId) {
         }
         if (formId === 'orderServiceForm') {
             const templateId = document.getElementById('selectedTemplateId').value || 'landing_1';
+            console.log('[order] Submitting with template:', templateId);
             fd.append('template_id', templateId);
             fd.append('Template Used', templateId);
         }
+        console.log('[order] Sending to backend:', action);
         const result = await sendToAppsScript(fd, action);
+        console.log('[order] Result:', result);
         if (result.success) {
             const msg = result.local ? 'Saved locally (offline mode)' : (translations[currentLang]?.send_btn || 'Submitted successfully');
             showSuccessToast(msg);
