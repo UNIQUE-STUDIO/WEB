@@ -1,461 +1,148 @@
 {
   "landing": [
     {
-      "id": "ext__3-col-portfolio",
-      "name": {
-        "en": "Three Column Portfolio Template for Bootstrap 3",
-        "ru": "3 колонка портфолио"
-      },
-      "slug": "3-col-portfolio",
-      "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/3-col-portfolio/index.html"
-    },
-    {
       "id": "ext__agile-agency-free-bootstrap-web-template",
-      "name": {
-        "en": "Agile Agency Free Bootstrap Web Template",
-        "ru": "Agile Agency бесплатный Bootstrap веб шаблон"
-      },
+      "name": { "en": "Agile Agency", "ru": "Агентство Agile" },
       "slug": "agile-agency-free-bootstrap-web-template",
-      "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=500&fit=crop",
+      "image": "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=500&fit=crop",
       "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/agile-agency-free-bootstrap-web-template/index.html"
     },
     {
       "id": "ext__amaze-photography-bootstrap-html5-template",
-      "name": {
-        "en": "Amaze Photography Bootstrap HTML5 Template",
-        "ru": "Amaze фотография Bootstrap HTML5 шаблон"
-      },
+      "name": { "en": "Amaze Photography", "ru": "Фотостудия Amaze" },
       "slug": "amaze-photography-bootstrap-html5-template",
-      "image": "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=800&h=500&fit=crop",
+      "image": "https://images.unsplash.com/photo-1542038784456-1ea8e935640e?w=800&h=500&fit=crop",
       "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/amaze-photography-bootstrap-html5-template/index.html"
     },
     {
       "id": "ext__avenger-multi-purpose-responsive-html5-bootstrap-template",
-      "name": {
-        "en": "Avenger Multi-purpose Responsive HTML5 Bootstrap Template",
-        "ru": "Avenger многоцелевой многоцелевой адаптивный HTML5 Bootstrap шаблон"
-      },
+      "name": { "en": "Avenger Multi-Purpose", "ru": "Avenger — Универсальный" },
       "slug": "avenger-multi-purpose-responsive-html5-bootstrap-template",
       "image": "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=800&h=500&fit=crop",
       "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/avenger-multi-purpose-responsive-html5-bootstrap-template/index.html"
     },
     {
-      "id": "ext__blazer-responsive-html5-coming-soon-template",
-      "name": {
-        "en": "Blazer - Responsive HTML5 Coming Soon Template",
-        "ru": "Blazer адаптивный HTML5 скоро скоро шаблон"
-      },
-      "slug": "blazer-responsive-html5-coming-soon-template",
-      "image": "https://images.unsplash.com/photo-1559028012-481c04fa702d?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/blazer-responsive-html5-coming-soon-template/index.html"
-    },
-    {
       "id": "ext__brand-html5-app-landing-page-responsive-web-template",
-      "name": {
-        "en": "Brand html5 Multipurpose Landing Page for Apps",
-        "ru": "бренд HTML5 приложение лендинг страница адаптивный веб шаблон"
-      },
+      "name": { "en": "Brand App Landing", "ru": "Лендинг приложения Brand" },
       "slug": "brand-html5-app-landing-page-responsive-web-template",
-      "image": "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&h=500&fit=crop",
+      "image": "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&h=500&fit=crop",
       "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/brand-html5-app-landing-page-responsive-web-template/index.html"
     },
     {
-      "id": "ext__cloud-hosting-free-bootstrap-responsive-website-template",
-      "name": {
-        "en": "Cloud-Hosting-Free-Bootstrap-Responsive-Webiste-Template",
-        "ru": "облако хостинг бесплатный Bootstrap адаптивный сайт шаблон"
-      },
-      "slug": "cloud-hosting-free-bootstrap-responsive-website-template",
-      "image": "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/cloud-hosting-free-bootstrap-responsive-website-template/index.html"
-    },
-    {
       "id": "ext__clouds-html5-multipurpose-landing-page-template",
-      "name": {
-        "en": "Clouds html5 Multipurpose Landing Page for Apps",
-        "ru": "облака HTML5 многоцелевой лендинг страница шаблон"
-      },
+      "name": { "en": "Clouds Landing Page", "ru": "Облачный лендинг Clouds" },
       "slug": "clouds-html5-multipurpose-landing-page-template",
-      "image": "https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=800&h=500&fit=crop",
+      "image": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=500&fit=crop",
       "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/clouds-html5-multipurpose-landing-page-template/index.html"
     },
     {
       "id": "ext__delight-multi-purpose-free-html5-website-template",
-      "name": {
-        "en": "Delight Free Bootstrap Theme",
-        "ru": "Delight многоцелевой многоцелевой бесплатный HTML5 сайт шаблон"
-      },
+      "name": { "en": "Delight Theme", "ru": "Delight — Универсальный" },
       "slug": "delight-multi-purpose-free-html5-website-template",
       "image": "https://images.unsplash.com/photo-1512758017271-d7b84c2113e8?w=800&h=500&fit=crop",
       "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/delight-multi-purpose-free-html5-website-template/index.html"
     },
     {
-      "id": "ext__delite-music-html5-bootstrap-responsive-web-template",
-      "name": {
-        "en": "Delite Music HTML5 Bootstrap Responsive web template-WebThemez",
-        "ru": "Delite Mузыка HTML5 Bootstrap адаптивный веб шаблон"
-      },
-      "slug": "delite-music-html5-bootstrap-responsive-web-template",
-      "image": "https://images.unsplash.com/photo-1522542550221-31fd19575a2d?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/delite-music-html5-bootstrap-responsive-web-template/index.html"
-    },
-    {
-      "id": "ext__elegant-free-multi-purpose-bootstrap-responsive-template",
-      "name": {
-        "en": "Elegant Free Multi purpose Bootstrap Responsive Template",
-        "ru": "Elegant бесплатный многоцелевой многоцелевой Bootstrap адаптивный шаблон"
-      },
-      "slug": "elegant-free-multi-purpose-bootstrap-responsive-template",
-      "image": "https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/elegant-free-multi-purpose-bootstrap-responsive-template/index.html"
-    },
-    {
-      "id": "ext__endure-html5-responsive-coming-soon-template",
-      "name": {
-        "en": "Endure Coming Soon HTML Responsive Template",
-        "ru": "Endurе HTML5 адаптивный скоро скоро шаблон"
-      },
-      "slug": "endure-html5-responsive-coming-soon-template",
-      "image": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/endure-html5-responsive-coming-soon-template/index.html"
-    },
-    {
-      "id": "ext__fiber-hosting-bootstrap-website-template",
-      "name": {
-        "en": "Fiber hosting bootstrap website template",
-        "ru": "Fibеr хостинг Bootstrap сайт шаблон"
-      },
-      "slug": "fiber-hosting-bootstrap-website-template",
-      "image": "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/fiber-hosting-bootstrap-website-template/index.html"
-    },
-    {
       "id": "ext__foodz-mobile-app-bootstrap-landing-page",
-      "name": {
-        "en": "Foodz one page responsive HTML5 mobile landing page",
-        "ru": "Foodz мобильный приложение Bootstrap лендинг страница"
-      },
+      "name": { "en": "Foodz Mobile App", "ru": "Мобильное приложение Foodz" },
       "slug": "foodz-mobile-app-bootstrap-landing-page",
       "image": "https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&h=500&fit=crop",
       "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/foodz-mobile-app-bootstrap-landing-page/index.html"
     },
     {
-      "id": "ext__free-bootstrap-template-for-multi-purpose-ladder",
-      "name": {
-        "en": "Free Bootstrap Template",
-        "ru": "бесплатный Bootstrap шаблон для многоцелевой многоцелевой Ladder"
-      },
-      "slug": "free-bootstrap-template-for-multi-purpose-ladder",
-      "image": "https://images.unsplash.com/photo-1484417894907-623942c8ee29?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/free-bootstrap-template-for-multi-purpose-ladder/index.html"
-    },
-    {
-      "id": "ext__free-portfolio-html5-responsive-website-sam",
-      "name": {
-        "en": "Free-Portfolio-HTML5-Responsive-Website-Sam",
-        "ru": "бесплатный портфолио HTML5 адаптивный сайт Сэм"
-      },
-      "slug": "free-portfolio-html5-responsive-website-sam",
-      "image": "https://images.unsplash.com/photo-1504805572947-34fad45aed93?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/free-portfolio-html5-responsive-website-sam/index.html"
-    },
-    {
       "id": "ext__grand-free-bootstrap-responsive-website-template",
-      "name": {
-        "en": "Grand free bootstrap responsive website template",
-        "ru": "Grand бесплатный Bootstrap адаптивный сайт шаблон"
-      },
+      "name": { "en": "Grand Business", "ru": "Grand — Бизнес" },
       "slug": "grand-free-bootstrap-responsive-website-template",
       "image": "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&h=500&fit=crop",
       "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/grand-free-bootstrap-responsive-website-template/index.html"
     },
     {
-      "id": "ext__iam-html5-responsive-portfolio-resume-template",
-      "name": {
-        "en": "Iam html5 portfolio resume template",
-        "ru": "IAM HTML5 адаптивный портфолио резюме шаблон"
-      },
-      "slug": "iam-html5-responsive-portfolio-resume-template",
-      "image": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/iam-html5-responsive-portfolio-resume-template/index.html"
-    },
-    {
-      "id": "ext__iclick-photography-bootstrap-free-website-template",
-      "name": {
-        "en": "iClick Photography Bootstrap Free Website Template",
-        "ru": "iClick фотография Bootstrap бесплатный сайт шаблон"
-      },
-      "slug": "iclick-photography-bootstrap-free-website-template",
-      "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/iclick-photography-bootstrap-free-website-template/index.html"
-    },
-    {
-      "id": "ext__idata-hosting-free-bootstrap-responsive-website-template",
-      "name": {
-        "en": "iData-Hosting-Free-Bootstrap-Responsive-Webiste-Template",
-        "ru": "iData хостинг бесплатный Bootstrap адаптивный сайт шаблон"
-      },
-      "slug": "idata-hosting-free-bootstrap-responsive-website-template",
-      "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/idata-hosting-free-bootstrap-responsive-website-template/index.html"
-    },
-    {
       "id": "ext__interio",
-      "name": {
-        "en": "iNterio",
-        "ru": "Interio"
-      },
+      "name": { "en": "Interio Design", "ru": "Дизайн интерьера Interio" },
       "slug": "interio",
-      "image": "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=800&h=500&fit=crop",
+      "image": "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=500&fit=crop",
       "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/interio/index.html"
     },
     {
       "id": "ext__internet-portal",
-      "name": {
-        "en": "Internet Broadcast &middot; We share the relevant.",
-        "ru": "Internet Portal"
-      },
+      "name": { "en": "Internet Portal", "ru": "Интернет-портал" },
       "slug": "internet-portal",
-      "image": "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=800&h=500&fit=crop",
+      "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=500&fit=crop",
       "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/internet-portal/index.html"
     },
     {
-      "id": "ext__john-bootstrap-one-page-html5-free-resume-template",
-      "name": {
-        "en": "John Bootstrap One Page HTML5 Free Resume Template",
-        "ru": "Джон Bootstrap одностраничный страница HTML5 бесплатный резюме шаблон"
-      },
-      "slug": "john-bootstrap-one-page-html5-free-resume-template",
-      "image": "https://images.unsplash.com/photo-1559028012-481c04fa702d?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/john-bootstrap-one-page-html5-free-resume-template/index.html"
-    },
-    {
-      "id": "ext__johndoe-portfolio-resume-bootstrap-template",
-      "name": {
-        "en": "Johndoe Portfolio Resume Bootstrap Template",
-        "ru": "John Doe портфолио резюме Bootstrap шаблон"
-      },
-      "slug": "johndoe-portfolio-resume-bootstrap-template",
-      "image": "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/johndoe-portfolio-resume-bootstrap-template/index.html"
-    },
-    {
-      "id": "ext__me-resume-personal-portfolio-responsive-template",
-      "name": {
-        "en": "ME – Resume and Personal Portfolio Responsive Template",
-        "ru": "я резюме персональный портфолио адаптивный шаблон"
-      },
-      "slug": "me-resume-personal-portfolio-responsive-template",
-      "image": "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/me-resume-personal-portfolio-responsive-template/index.html"
-    },
-    {
-      "id": "ext__midway-free-html5-website-template-for-multi-purpose",
-      "name": {
-        "en": "Midway Free HTML5 Website Template for Multi-Purpose",
-        "ru": "Midway бесплатный HTML5 сайт шаблон для многоцелевой многоцелевой"
-      },
-      "slug": "midway-free-html5-website-template-for-multi-purpose",
-      "image": "https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/midway-free-html5-website-template-for-multi-purpose/index.html"
-    },
-    {
-      "id": "ext__mobile-app-free-one-page-responsive-html5-landing-page",
-      "name": {
-        "en": "Mobile App free one page responsive HTML5 landing page",
-        "ru": "мобильный приложение бесплатный одностраничный страница адаптивный HTML5 лендинг страница"
-      },
-      "slug": "mobile-app-free-one-page-responsive-html5-landing-page",
-      "image": "https://images.unsplash.com/photo-1512758017271-d7b84c2113e8?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/mobile-app-free-one-page-responsive-html5-landing-page/index.html"
-    },
-    {
       "id": "ext__mobile-app-landing-page-html5-template",
-      "name": {
-        "en": "Mobile App Landing Page HTML5 template",
-        "ru": "мобильный приложение лендинг страница HTML5 шаблон"
-      },
+      "name": { "en": "Mobile App Landing", "ru": "Лендинг мобильного приложения" },
       "slug": "mobile-app-landing-page-html5-template",
-      "image": "https://images.unsplash.com/photo-1522542550221-31fd19575a2d?w=800&h=500&fit=crop",
+      "image": "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&h=500&fit=crop",
       "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/mobile-app-landing-page-html5-template/index.html"
     },
     {
-      "id": "ext__next-responsive-coming-soon-bootstrap-template",
-      "name": {
-        "en": "Next Responsive Coming Soon Bootstrap Template",
-        "ru": "Next адаптивный скоро скоро Bootstrap шаблон"
-      },
-      "slug": "next-responsive-coming-soon-bootstrap-template",
-      "image": "https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/next-responsive-coming-soon-bootstrap-template/index.html"
-    },
-    {
       "id": "ext__reveal",
-      "name": {
-        "en": "Reveal Bootstrap Template",
-        "ru": "Reveal"
-      },
+      "name": { "en": "Reveal Bootstrap", "ru": "Reveal — Презентация" },
       "slug": "reveal",
-      "image": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=500&fit=crop",
+      "image": "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?w=800&h=500&fit=crop",
       "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/reveal/index.html"
     },
     {
-      "id": "ext__rider-free-multi-purpose-bootstrap-template",
-      "name": {
-        "en": "Rider Free Mulit Purpose Bootstrap Template",
-        "ru": "Rider бесплатный многоцелевой многоцелевой Bootstrap шаблон"
-      },
-      "slug": "rider-free-multi-purpose-bootstrap-template",
-      "image": "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/rider-free-multi-purpose-bootstrap-template/index.html"
-    },
-    {
-      "id": "ext__skytouch-onepage-bootstrap-responsive-web-template",
-      "name": {
-        "en": "SkyTouch - Corporate Responsive Template",
-        "ru": "Skytouch одностраничный Bootstrap адаптивный веб шаблон"
-      },
-      "slug": "skytouch-onepage-bootstrap-responsive-web-template",
-      "image": "https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/skytouch-onepage-bootstrap-responsive-web-template/index.html"
-    },
-    {
       "id": "ext__smartapp-free-html5-landing-page",
-      "name": {
-        "en": "SmartApp html5 landing page",
-        "ru": "SmartApp бесплатный HTML5 лендинг страница"
-      },
+      "name": { "en": "SmartApp Landing", "ru": "Умное приложение SmartApp" },
       "slug": "smartapp-free-html5-landing-page",
       "image": "https://images.unsplash.com/photo-1484417894907-623942c8ee29?w=800&h=500&fit=crop",
       "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/smartapp-free-html5-landing-page/index.html"
     },
     {
-      "id": "ext__speed-hosting-bootstrap-free-html5-template",
-      "name": {
-        "en": "Speed Hosting Bootstrap Free HTML5 Template",
-        "ru": "скорость хостинг Bootstrap бесплатный HTML5 шаблон"
-      },
-      "slug": "speed-hosting-bootstrap-free-html5-template",
-      "image": "https://images.unsplash.com/photo-1504805572947-34fad45aed93?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/speed-hosting-bootstrap-free-html5-template/index.html"
-    },
-    {
       "id": "ext__startbootstrap-agency-1.0.2",
-      "name": {
-        "en": "Agency - Start Bootstrap Theme",
-        "ru": "Start Bootstrap Agency 1.0.2"
-      },
+      "name": { "en": "Agency Pro", "ru": "Агентство Pro" },
       "slug": "startbootstrap-agency-1.0.2",
-      "image": "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&h=500&fit=crop",
+      "image": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=500&fit=crop",
       "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/startbootstrap-agency-1.0.2/index.html"
     },
     {
-      "id": "ext__startbootstrap-clean-blog-1.0.2",
-      "name": {
-        "en": "Clean Blog",
-        "ru": "Start Bootstrap Clean Blog 1.0.2"
-      },
-      "slug": "startbootstrap-clean-blog-1.0.2",
-      "image": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/startbootstrap-clean-blog-1.0.2/index.html"
-    },
-    {
       "id": "ext__startbootstrap-freelancer-1.0.2",
-      "name": {
-        "en": "Freelancer - Start Bootstrap Theme",
-        "ru": "Start Bootstrap Freelancer 1.0.2"
-      },
+      "name": { "en": "Freelancer Portfolio", "ru": "Портфолио фрилансера" },
       "slug": "startbootstrap-freelancer-1.0.2",
       "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=500&fit=crop",
       "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/startbootstrap-freelancer-1.0.2/index.html"
     },
     {
-      "id": "ext__startbootstrap-grayscale-1.0.3",
-      "name": {
-        "en": "Grayscale - Start Bootstrap Theme",
-        "ru": "Start Bootstrap Grayscale 1.0.3"
-      },
-      "slug": "startbootstrap-grayscale-1.0.3",
-      "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/startbootstrap-grayscale-1.0.3/index.html"
-    },
-    {
       "id": "ext__startbootstrap-stylish-portfolio-1.0.2",
-      "name": {
-        "en": "Stylish Portfolio - Start Bootstrap Theme",
-        "ru": "Start Bootstrap Stylish портфолио 1.0.2"
-      },
+      "name": { "en": "Stylish Portfolio", "ru": "Стильное портфолио" },
       "slug": "startbootstrap-stylish-portfolio-1.0.2",
       "image": "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=800&h=500&fit=crop",
       "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/startbootstrap-stylish-portfolio-1.0.2/index.html"
     },
     {
       "id": "ext__stylish-portfolio",
-      "name": {
-        "en": "Stylish Portfolio Template for Bootstrap",
-        "ru": "Stylish портфолио"
-      },
+      "name": { "en": "Stylish Portfolio 2", "ru": "Стильное портфолио 2" },
       "slug": "stylish-portfolio",
-      "image": "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=800&h=500&fit=crop",
+      "image": "https://images.unsplash.com/photo-1504805572947-34fad45aed93?w=800&h=500&fit=crop",
       "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/stylish-portfolio/index.html"
     },
     {
       "id": "ext__target-multipurpose-free-bootstrap-responsive-template",
-      "name": {
-        "en": "Target Multi-purpose Free Bootstrap Responsive Template",
-        "ru": "Target многоцелевой бесплатный Bootstrap адаптивный шаблон"
-      },
+      "name": { "en": "Target Multi-Purpose", "ru": "Target — Универсальный" },
       "slug": "target-multipurpose-free-bootstrap-responsive-template",
       "image": "https://images.unsplash.com/photo-1559028012-481c04fa702d?w=800&h=500&fit=crop",
       "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/target-multipurpose-free-bootstrap-responsive-template/index.html"
     },
     {
       "id": "ext__techro",
-      "name": {
-        "en": "Techro - Flat Free Responsive bootstrap template",
-        "ru": "Techro"
-      },
+      "name": { "en": "Techro Flat Design", "ru": "Techro — Технологии" },
       "slug": "techro",
       "image": "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&h=500&fit=crop",
       "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/techro/index.html"
     },
     {
       "id": "ext__traveller-bootstrap-responsive-web-template",
-      "name": {
-        "en": "My Travel - Single page website",
-        "ru": "Traveller Bootstrap адаптивный веб шаблон"
-      },
+      "name": { "en": "Travel Agency", "ru": "Туристическое агентство" },
       "slug": "traveller-bootstrap-responsive-web-template",
-      "image": "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=800&h=500&fit=crop",
+      "image": "https://images.unsplash.com/photo-1488085061387-422e29b40080?w=800&h=500&fit=crop",
       "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/traveller-bootstrap-responsive-web-template/index.html"
     },
     {
-      "id": "ext__trendy-free-bootstrap-responsive-website-template",
-      "name": {
-        "en": "Trendy free bootstrap responsive website template",
-        "ru": "Trendy бесплатный Bootstrap адаптивный сайт шаблон"
-      },
-      "slug": "trendy-free-bootstrap-responsive-website-template",
-      "image": "https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/trendy-free-bootstrap-responsive-website-template/index.html"
-    },
-    {
-      "id": "ext__unique-free-responsive-html5-template",
-      "name": {
-        "en": "Unique",
-        "ru": "Unique бесплатный адаптивный HTML5 шаблон"
-      },
-      "slug": "unique-free-responsive-html5-template",
-      "image": "https://images.unsplash.com/photo-1512758017271-d7b84c2113e8?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/unique-free-responsive-html5-template/index.html"
-    },
-    {
       "id": "ext__wow-portfolio-multi-purpose-html5-template",
-      "name": {
-        "en": "Wow Portfolio Multi Purpose HTML5 Template",
-        "ru": "WOW портфолио многоцелевой многоцелевой HTML5 шаблон"
-      },
+      "name": { "en": "WOW Portfolio", "ru": "Портфолио WOW" },
       "slug": "wow-portfolio-multi-purpose-html5-template",
       "image": "https://images.unsplash.com/photo-1522542550221-31fd19575a2d?w=800&h=500&fit=crop",
       "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/wow-portfolio-multi-purpose-html5-template/index.html"
@@ -463,536 +150,223 @@
   ],
   "corporate": [
     {
-      "id": "ext__atlanta-free-business-bootstrap-template",
-      "name": {
-        "en": "Atlanta - Free business bootstrap template",
-        "ru": "Atlanta бесплатный бизнес Bootstrap шаблон"
-      },
-      "slug": "atlanta-free-business-bootstrap-template",
-      "image": "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/atlanta-free-business-bootstrap-template/index.html"
-    },
-    {
       "id": "ext__businessr-corporate-bootstrap-responsive-web-template",
-      "name": {
-        "en": "Bootstrap Responsive Web Template",
-        "ru": "Businessr корпоративный Bootstrap адаптивный веб шаблон"
-      },
+      "name": { "en": "Businessr Corporate", "ru": "Корпоративный Businessr" },
       "slug": "businessr-corporate-bootstrap-responsive-web-template",
       "image": "https://images.unsplash.com/photo-1497215842964-222b430dc094?w=800&h=500&fit=crop",
       "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/businessr-corporate-bootstrap-responsive-web-template/index.html"
     },
     {
       "id": "ext__creative-bee-corporate-free-html5-web-template",
-      "name": {
-        "en": "Creative Bee Corporate Free HTML5 Template",
-        "ru": "креативный Bee корпоративный бесплатный HTML5 веб шаблон"
-      },
+      "name": { "en": "Creative Bee", "ru": "Креативное агентство" },
       "slug": "creative-bee-corporate-free-html5-web-template",
       "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=500&fit=crop",
       "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/creative-bee-corporate-free-html5-web-template/index.html"
     },
     {
       "id": "ext__creative-free-responsive-html5-business-template",
-      "name": {
-        "en": "Unique",
-        "ru": "креативный бесплатный адаптивный HTML5 бизнес шаблон"
-      },
+      "name": { "en": "Creative Business", "ru": "Креативный бизнес" },
       "slug": "creative-free-responsive-html5-business-template",
       "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=500&fit=crop",
       "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/creative-free-responsive-html5-business-template/index.html"
     },
     {
       "id": "ext__enlive-corporate-free-html5-bootstrap-web-template",
-      "name": {
-        "en": "Enlive-Corporate-Free-HTML5-Bootstrap-Web-Template",
-        "ru": "Enlive корпоративный бесплатный HTML5 Bootstrap веб шаблон"
-      },
+      "name": { "en": "Enlive Corporate", "ru": "Корпоративный Enlive" },
       "slug": "enlive-corporate-free-html5-bootstrap-web-template",
       "image": "https://images.unsplash.com/photo-1541746972996-4e0b0f43e02a?w=800&h=500&fit=crop",
       "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/enlive-corporate-free-html5-bootstrap-web-template/index.html"
     },
     {
       "id": "ext__everest-corporate-business-bootstrap-template",
-      "name": {
-        "en": "Everest Bootstrap Multi-purpose Responsive Template",
-        "ru": "Everest корпоративный бизнес Bootstrap шаблон"
-      },
+      "name": { "en": "Everest Business", "ru": "Бизнес Everest" },
       "slug": "everest-corporate-business-bootstrap-template",
       "image": "https://images.unsplash.com/photo-1556761175-b413da4baf72?w=800&h=500&fit=crop",
       "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/everest-corporate-business-bootstrap-template/index.html"
     },
     {
-      "id": "ext__frames-corporate-bootstrap-free-html5-template",
-      "name": {
-        "en": "Frames Corporate Bootstrap Free HTML5 Template",
-        "ru": "Frames корпоративный Bootstrap бесплатный HTML5 шаблон"
-      },
-      "slug": "frames-corporate-bootstrap-free-html5-template",
-      "image": "https://images.unsplash.com/photo-1558402525-d1968a143ea5?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/frames-corporate-bootstrap-free-html5-template/index.html"
-    },
-    {
-      "id": "ext__free-bootstrap-template-rockline-business",
-      "name": {
-        "en": "Free Bootstrap Template Rockline Business",
-        "ru": "бесплатный Bootstrap шаблон Rockline бизнес"
-      },
-      "slug": "free-bootstrap-template-rockline-business",
-      "image": "https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/free-bootstrap-template-rockline-business/index.html"
-    },
-    {
       "id": "ext__kavin-corporate-bootstrap-responsive-web-template",
-      "name": {
-        "en": "Kavin Corporate Free HTML5 Template",
-        "ru": "Kavin корпоративный Bootstrap адаптивный веб шаблон"
-      },
+      "name": { "en": "Kavin Corporate", "ru": "Корпоративный Kavin" },
       "slug": "kavin-corporate-bootstrap-responsive-web-template",
       "image": "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&h=500&fit=crop",
       "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/kavin-corporate-bootstrap-responsive-web-template/index.html"
     },
     {
-      "id": "ext__moto-business-html5-responsive-web-template",
-      "name": {
-        "en": "Moto Free Bootstrap Theme",
-        "ru": "Moto бизнес HTML5 адаптивный веб шаблон"
-      },
-      "slug": "moto-business-html5-responsive-web-template",
-      "image": "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/moto-business-html5-responsive-web-template/index.html"
-    },
-    {
-      "id": "ext__ninja-business-consulting-html-responsive-web-template",
-      "name": {
-        "en": "Ninja Free Bootstrap Theme",
-        "ru": "Ninja бизнес консалтинг HTML адаптивный веб шаблон"
-      },
-      "slug": "ninja-business-consulting-html-responsive-web-template",
-      "image": "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/ninja-business-consulting-html-responsive-web-template/index.html"
-    },
-    {
       "id": "ext__retro-free-consulting-responsive-html5-website-template",
-      "name": {
-        "en": "Retro - Free Consulting Responsive Website Template",
-        "ru": "Ретро бесплатный консалтинг адаптивный HTML5 сайт шаблон"
-      },
+      "name": { "en": "Retro Consulting", "ru": "Консалтинг Retro" },
       "slug": "retro-free-consulting-responsive-html5-website-template",
-      "image": "https://images.unsplash.com/photo-1497215842964-222b430dc094?w=800&h=500&fit=crop",
+      "image": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=500&fit=crop",
       "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/retro-free-consulting-responsive-html5-website-template/index.html"
     },
     {
-      "id": "ext__rocket-business-bootstrap-free-responsive-web-theme",
-      "name": {
-        "en": "Rocket Business Bootstrap Free Responsive Web template",
-        "ru": "Rocket бизнес Bootstrap бесплатный адаптивный веб theme"
-      },
-      "slug": "rocket-business-bootstrap-free-responsive-web-theme",
-      "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/rocket-business-bootstrap-free-responsive-web-theme/index.html"
-    },
-    {
-      "id": "ext__swifty-business-html5-website-template",
-      "name": {
-        "en": "Swifty Bootstrap Multi-purpose Responsive Template",
-        "ru": "Swifty бизнес HTML5 сайт шаблон"
-      },
-      "slug": "swifty-business-html5-website-template",
-      "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/swifty-business-html5-website-template/index.html"
-    },
-    {
-      "id": "ext__team-business-flat-bootstrap-html5-template",
-      "name": {
-        "en": "Team Business Flat Bootstrap Free HTML5 Template",
-        "ru": "команда бизнес плоский Bootstrap HTML5 шаблон"
-      },
-      "slug": "team-business-flat-bootstrap-html5-template",
-      "image": "https://images.unsplash.com/photo-1541746972996-4e0b0f43e02a?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/team-business-flat-bootstrap-html5-template/index.html"
-    },
-    {
       "id": "ext__techking-free-html5-template-for-corporate-business",
-      "name": {
-        "en": "TechKing Free HTML5 Template for Corporate Business",
-        "ru": "TechKing бесплатный HTML5 шаблон для корпоративный бизнес"
-      },
+      "name": { "en": "TechKing Corporate", "ru": "Корпоративный TechKing" },
       "slug": "techking-free-html5-template-for-corporate-business",
-      "image": "https://images.unsplash.com/photo-1556761175-b413da4baf72?w=800&h=500&fit=crop",
+      "image": "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800&h=500&fit=crop",
       "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/techking-free-html5-template-for-corporate-business/index.html"
     },
     {
       "id": "ext__vibe-free-html5-template-for-corporate-website",
-      "name": {
-        "en": "Vibe Free HTML5 Template for corporate website",
-        "ru": "Vibe бесплатный HTML5 шаблон для корпоративный сайт"
-      },
+      "name": { "en": "Vibe Corporate", "ru": "Корпоративный Vibe" },
       "slug": "vibe-free-html5-template-for-corporate-website",
       "image": "https://images.unsplash.com/photo-1558402525-d1968a143ea5?w=800&h=500&fit=crop",
       "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/vibe-free-html5-template-for-corporate-website/index.html"
     },
     {
       "id": "ext__vone-free-business-html5-responsive-website",
-      "name": {
-        "en": "vOne - Free Business HTML5 Responsive Website",
-        "ru": "VOne бесплатный бизнес HTML5 адаптивный сайт"
-      },
+      "name": { "en": "vOne Business", "ru": "Бизнес vOne" },
       "slug": "vone-free-business-html5-responsive-website",
       "image": "https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=800&h=500&fit=crop",
       "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/vone-free-business-html5-responsive-website/index.html"
-    },
-    {
-      "id": "ext__vteam-a-corporate-multipurpose-free-bootstrap-responsive-template",
-      "name": {
-        "en": "vTeam a Corporate Multipurpose Free Bootstrap Responsive template",
-        "ru": "VTeam корпоративный многоцелевой бесплатный Bootstrap адаптивный шаблон"
-      },
-      "slug": "vteam-a-corporate-multipurpose-free-bootstrap-responsive-template",
-      "image": "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/vteam-a-corporate-multipurpose-free-bootstrap-responsive-template/index.html"
     }
   ],
   "ecommerce": [
     {
       "id": "ext__above-educational-bootstrap-responsive-template",
-      "name": {
-        "en": "Above Multi-purpose Free Bootstrap Responsive Template",
-        "ru": "Above образовательный Bootstrap адаптивный шаблон"
-      },
+      "name": { "en": "Above Education", "ru": "Образовательный Above" },
       "slug": "above-educational-bootstrap-responsive-template",
-      "image": "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=500&fit=crop",
+      "image": "https://images.unsplash.com/photo-1523050854058-8df9010ef4f9?w=800&h=500&fit=crop",
       "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/above-educational-bootstrap-responsive-template/index.html"
     },
     {
       "id": "ext__add-life-health-fitness-free-bootstrap-html5-template",
-      "name": {
-        "en": "Add-Life-Health-Fitness-Free-Bootstrap-HTML5-Template",
-        "ru": "добавь Life здоровье фитнес бесплатный Bootstrap HTML5 шаблон"
-      },
+      "name": { "en": "FitLife Gym", "ru": "Фитнес-центр FitLife" },
       "slug": "add-life-health-fitness-free-bootstrap-html5-template",
-      "image": "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&h=500&fit=crop",
+      "image": "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&h=500&fit=crop",
       "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/add-life-health-fitness-free-bootstrap-html5-template/index.html"
     },
     {
       "id": "ext__aerosky-real-estate-html-responsive-website-template",
-      "name": {
-        "en": "Real Estate Builders Free Responsive Website - icon",
-        "ru": "AeroSky недвижимость недвижимость HTML адаптивный сайт шаблон"
-      },
+      "name": { "en": "AeroSky Real Estate", "ru": "Недвижимость AeroSky" },
       "slug": "aerosky-real-estate-html-responsive-website-template",
-      "image": "https://images.unsplash.com/photo-1472851294608-062f824d29cc?w=800&h=500&fit=crop",
+      "image": "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&h=500&fit=crop",
       "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/aerosky-real-estate-html-responsive-website-template/index.html"
     },
     {
       "id": "ext__aroma-beauty-and-spa-responsive-bootstrap-template",
-      "name": {
-        "en": "Aroma-Beauty-and-Spa-Responsive-Bootstrap-Template",
-        "ru": "аромат красота и спа адаптивный Bootstrap шаблон"
-      },
+      "name": { "en": "Aroma Beauty & Spa", "ru": "Салон красоты Aroma" },
       "slug": "aroma-beauty-and-spa-responsive-bootstrap-template",
-      "image": "https://images.unsplash.com/photo-1607082349566-187342175e2f?w=800&h=500&fit=crop",
+      "image": "https://images.unsplash.com/photo-1560066984-138dadb4c035?w=800&h=500&fit=crop",
       "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/aroma-beauty-and-spa-responsive-bootstrap-template/index.html"
     },
     {
       "id": "ext__b-school-free-education-html5-website-template",
-      "name": {
-        "en": "B-School Free Education HTML5 Website Template",
-        "ru": "B школа бесплатный образование HTML5 сайт шаблон"
-      },
+      "name": { "en": "B-School Education", "ru": "Бизнес-школа B-School" },
       "slug": "b-school-free-education-html5-website-template",
-      "image": "https://images.unsplash.com/photo-1505330622279-bf7d7fc918f4?w=800&h=500&fit=crop",
+      "image": "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&h=500&fit=crop",
       "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/b-school-free-education-html5-website-template/index.html"
     },
     {
       "id": "ext__beauty-salon-bootstrap-html5-template",
-      "name": {
-        "en": "Beauty Salon Bootstrap HTML5 Template",
-        "ru": "красота салон Bootstrap HTML5 шаблон"
-      },
+      "name": { "en": "Beauty Salon Pro", "ru": "Салон красоты Pro" },
       "slug": "beauty-salon-bootstrap-html5-template",
       "image": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&h=500&fit=crop",
       "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/beauty-salon-bootstrap-html5-template/index.html"
     },
     {
       "id": "ext__bestro-restaurant-bootstrap-html5-template",
-      "name": {
-        "en": "Bistro Restaurant Free HTML5 Bootstrap Template",
-        "ru": "Bestro ресторан Bootstrap HTML5 шаблон"
-      },
+      "name": { "en": "Bistro Restaurant", "ru": "Ресторан Bistro" },
       "slug": "bestro-restaurant-bootstrap-html5-template",
-      "image": "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&h=500&fit=crop",
+      "image": "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=500&fit=crop",
       "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/bestro-restaurant-bootstrap-html5-template/index.html"
     },
     {
       "id": "ext__car-care-auto-mobile-html5-bootstrap-web-template",
-      "name": {
-        "en": "Car Care Free Bootstrap Theme",
-        "ru": "авто уход авто мобильный HTML5 Bootstrap веб шаблон"
-      },
+      "name": { "en": "Car Care Pro", "ru": "Автосервис Car Care" },
       "slug": "car-care-auto-mobile-html5-bootstrap-web-template",
-      "image": "https://images.unsplash.com/photo-1607083206869-4c7672e72a8a?w=800&h=500&fit=crop",
+      "image": "https://images.unsplash.com/photo-1487754180451-c456f719a1fc?w=800&h=500&fit=crop",
       "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/car-care-auto-mobile-html5-bootstrap-web-template/index.html"
     },
     {
       "id": "ext__car-repair-html5-bootstrap-template",
-      "name": {
-        "en": "Car Repair HTML5 Bootstrap Template",
-        "ru": "авто ремонт HTML5 Bootstrap шаблон"
-      },
+      "name": { "en": "Car Repair Shop", "ru": "Автомастерская" },
       "slug": "car-repair-html5-bootstrap-template",
-      "image": "https://images.unsplash.com/photo-1556742118-9cce3461e68b?w=800&h=500&fit=crop",
+      "image": "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=800&h=500&fit=crop",
       "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/car-repair-html5-bootstrap-template/index.html"
     },
     {
-      "id": "ext__car-zone-automobile-bootstrap-responsive-web-template",
-      "name": {
-        "en": "CAR ZONE",
-        "ru": "авто зона автомобиль Bootstrap адаптивный веб шаблон"
-      },
-      "slug": "car-zone-automobile-bootstrap-responsive-web-template",
-      "image": "https://images.unsplash.com/photo-1481437156560-3205f6a55735?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/car-zone-automobile-bootstrap-responsive-web-template/index.html"
-    },
-    {
       "id": "ext__coffee-shop-free-html5-template",
-      "name": {
-        "en": "Coffee Shop Free HTML Website Template",
-        "ru": "кофе магазин бесплатный HTML5 шаблон"
-      },
+      "name": { "en": "Coffee Shop", "ru": "Кофейня" },
       "slug": "coffee-shop-free-html5-template",
-      "image": "https://images.unsplash.com/photo-1621761191319-c6fb62004040?w=800&h=500&fit=crop",
+      "image": "https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=800&h=500&fit=crop",
       "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/coffee-shop-free-html5-template/index.html"
     },
     {
       "id": "ext__eat-restaurant-bootstrap-html5-template",
-      "name": {
-        "en": "Eat Restaurant Bootstrap HTML5 Responsive Template",
-        "ru": "Eat ресторан Bootstrap HTML5 шаблон"
-      },
+      "name": { "en": "Eat Restaurant", "ru": "Ресторан Eat" },
       "slug": "eat-restaurant-bootstrap-html5-template",
-      "image": "https://images.unsplash.com/photo-1544441893-675973e31985?w=800&h=500&fit=crop",
+      "image": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&h=500&fit=crop",
       "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/eat-restaurant-bootstrap-html5-template/index.html"
     },
     {
       "id": "ext__fit-healthy-fitness-and-gym-html5-bootstrap-theme",
-      "name": {
-        "en": "Fit Healthy fitness HTML5 Bootstrap Template",
-        "ru": "фит здоровый фитнес и спортзал HTML5 Bootstrap theme"
-      },
+      "name": { "en": "Fit Healthy Gym", "ru": "Фитнес-клуб Fit Healthy" },
       "slug": "fit-healthy-fitness-and-gym-html5-bootstrap-theme",
-      "image": "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=500&fit=crop",
+      "image": "https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=800&h=500&fit=crop",
       "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/fit-healthy-fitness-and-gym-html5-bootstrap-theme/index.html"
     },
     {
-      "id": "ext__fitness-zone-html5-bootstrap-responsive-web-template",
-      "name": {
-        "en": "Fitness Zone HTML5 Bootstrap Responsive web template-WebThemez",
-        "ru": "фитнес зона HTML5 Bootstrap адаптивный веб шаблон"
-      },
-      "slug": "fitness-zone-html5-bootstrap-responsive-web-template",
-      "image": "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/fitness-zone-html5-bootstrap-responsive-web-template/index.html"
-    },
-    {
-      "id": "ext__free-bootstrap-template-real-estate-my-home",
-      "name": {
-        "en": "Free Bootstrap Template Real estate website",
-        "ru": "бесплатный Bootstrap шаблон недвижимость недвижимость мой дом"
-      },
-      "slug": "free-bootstrap-template-real-estate-my-home",
-      "image": "https://images.unsplash.com/photo-1472851294608-062f824d29cc?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/free-bootstrap-template-real-estate-my-home/index.html"
-    },
-    {
       "id": "ext__free-bootstrap-template-restaurant-website-treehut",
-      "name": {
-        "en": "TreeHut - Free Bootstrap Template Restaurant website",
-        "ru": "бесплатный Bootstrap шаблон ресторан сайт Treehut"
-      },
+      "name": { "en": "TreeHut Restaurant", "ru": "Ресторан TreeHut" },
       "slug": "free-bootstrap-template-restaurant-website-treehut",
-      "image": "https://images.unsplash.com/photo-1607082349566-187342175e2f?w=800&h=500&fit=crop",
+      "image": "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&h=500&fit=crop",
       "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/free-bootstrap-template-restaurant-website-treehut/index.html"
     },
     {
       "id": "ext__getdoctor-free-bootstrap-responsive-website-template",
-      "name": {
-        "en": "WebThemez - Single page website",
-        "ru": "GetDoctor бесплатный Bootstrap адаптивный сайт шаблон"
-      },
+      "name": { "en": "GetDoctor Medical", "ru": "Медицинский GetDoctor" },
       "slug": "getdoctor-free-bootstrap-responsive-website-template",
-      "image": "https://images.unsplash.com/photo-1505330622279-bf7d7fc918f4?w=800&h=500&fit=crop",
+      "image": "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=800&h=500&fit=crop",
       "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/getdoctor-free-bootstrap-responsive-website-template/index.html"
     },
     {
       "id": "ext__golden-hotel-free-html5-bootstrap-web-template",
-      "name": {
-        "en": "Golden-Hotel-Free-HTML5-Bootstrap-Web-Template",
-        "ru": "золотой отель бесплатный HTML5 Bootstrap веб шаблон"
-      },
+      "name": { "en": "Golden Hotel", "ru": "Отель Golden" },
       "slug": "golden-hotel-free-html5-bootstrap-web-template",
-      "image": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&h=500&fit=crop",
+      "image": "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&h=500&fit=crop",
       "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/golden-hotel-free-html5-bootstrap-web-template/index.html"
     },
     {
-      "id": "ext__icon-real-estate-developers-free-responsive-html-template",
-      "name": {
-        "en": "Real Estate Builders Free Responsive Website - icon",
-        "ru": "Icon недвижимость недвижимость Developers бесплатный адаптивный HTML шаблон"
-      },
-      "slug": "icon-real-estate-developers-free-responsive-html-template",
-      "image": "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/icon-real-estate-developers-free-responsive-html-template/index.html"
-    },
-    {
-      "id": "ext__ideal-interior-design-free-bootstrap-website-template",
-      "name": {
-        "en": "Ideal Interior Design Free Bootstrap Website Template",
-        "ru": "идеальный интерьер дизайн бесплатный Bootstrap сайт шаблон"
-      },
-      "slug": "ideal-interior-design-free-bootstrap-website-template",
-      "image": "https://images.unsplash.com/photo-1607083206869-4c7672e72a8a?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/ideal-interior-design-free-bootstrap-website-template/index.html"
-    },
-    {
       "id": "ext__learn-educational-free-responsive-web-template",
-      "name": {
-        "en": "Learn - Free Educational Responsive Web Template",
-        "ru": "учись образовательный бесплатный адаптивный веб шаблон"
-      },
+      "name": { "en": "Learn Education", "ru": "Образовательный Learn" },
       "slug": "learn-educational-free-responsive-web-template",
-      "image": "https://images.unsplash.com/photo-1556742118-9cce3461e68b?w=800&h=500&fit=crop",
+      "image": "https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=800&h=500&fit=crop",
       "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/learn-educational-free-responsive-web-template/index.html"
     },
     {
-      "id": "ext__lovely-wedding-bootstrap-free-website-template",
-      "name": {
-        "en": "Lovely Wedding Bootstrap Free Website Template",
-        "ru": "прекрасный свадьба Bootstrap бесплатный сайт шаблон"
-      },
-      "slug": "lovely-wedding-bootstrap-free-website-template",
-      "image": "https://images.unsplash.com/photo-1481437156560-3205f6a55735?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/lovely-wedding-bootstrap-free-website-template/index.html"
-    },
-    {
       "id": "ext__medplus-medical",
-      "name": {
-        "en": "Medplus a medical bootstrap web template",
-        "ru": "MedPlus медицинский"
-      },
+      "name": { "en": "MedPlus Medical", "ru": "Медицинский MedPlus" },
       "slug": "medplus-medical",
-      "image": "https://images.unsplash.com/photo-1621761191319-c6fb62004040?w=800&h=500&fit=crop",
+      "image": "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=800&h=500&fit=crop",
       "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/medplus-medical/index.html"
     },
     {
       "id": "ext__park-city-bootstrap-html-real-estate-responsive-template",
-      "name": {
-        "en": "Park City Multi-purpose Free Bootstrap Responsive Template",
-        "ru": "парк сити Bootstrap HTML недвижимость недвижимость адаптивный шаблон"
-      },
+      "name": { "en": "Park City Real Estate", "ru": "Недвижимость Park City" },
       "slug": "park-city-bootstrap-html-real-estate-responsive-template",
-      "image": "https://images.unsplash.com/photo-1544441893-675973e31985?w=800&h=500&fit=crop",
+      "image": "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&h=500&fit=crop",
       "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/park-city-bootstrap-html-real-estate-responsive-template/index.html"
     },
     {
-      "id": "ext__real-estate-builders-free-responsive-website-templates-adesign",
-      "name": {
-        "en": "Real Estate Builders Free Responsive Website Templates - A Design",
-        "ru": "недвижимость недвижимость строители бесплатный адаптивный сайт шаблоны ADesign"
-      },
-      "slug": "real-estate-builders-free-responsive-website-templates-adesign",
-      "image": "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/real-estate-builders-free-responsive-website-templates-adesign/index.html"
-    },
-    {
-      "id": "ext__relax-interior-free-bootstrap-responsive-website-template",
-      "name": {
-        "en": "Relax Interior Free Bootstrap Responsive Website Template",
-        "ru": "релакс интерьер бесплатный Bootstrap адаптивный сайт шаблон"
-      },
-      "slug": "relax-interior-free-bootstrap-responsive-website-template",
-      "image": "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/relax-interior-free-bootstrap-responsive-website-template/index.html"
-    },
-    {
       "id": "ext__school-educational-html5-template",
-      "name": {
-        "en": "School Educational Free HTML5 Bootstrap Template",
-        "ru": "школа образовательный HTML5 шаблон"
-      },
+      "name": { "en": "School Education", "ru": "Школьный сайт" },
       "slug": "school-educational-html5-template",
-      "image": "https://images.unsplash.com/photo-1472851294608-062f824d29cc?w=800&h=500&fit=crop",
+      "image": "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=800&h=500&fit=crop",
       "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/school-educational-html5-template/index.html"
     },
     {
-      "id": "ext__smart-interior-designs-html5-bootstrap-web-template",
-      "name": {
-        "en": "Smart Interior Designs HTML5 Bootstrap Web Template",
-        "ru": "умный интерьер дизайн HTML5 Bootstrap веб шаблон"
-      },
-      "slug": "smart-interior-designs-html5-bootstrap-web-template",
-      "image": "https://images.unsplash.com/photo-1607082349566-187342175e2f?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/smart-interior-designs-html5-bootstrap-web-template/index.html"
-    },
-    {
-      "id": "ext__styleinn-bootstrap-interior-design-website-template",
-      "name": {
-        "en": "Interior-Design-Responsive-Website-Templates-StyleInn",
-        "ru": "StyleInn Bootstrap интерьер дизайн сайт шаблон"
-      },
-      "slug": "styleinn-bootstrap-interior-design-website-template",
-      "image": "https://images.unsplash.com/photo-1505330622279-bf7d7fc918f4?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/styleinn-bootstrap-interior-design-website-template/index.html"
-    },
-    {
       "id": "ext__the-best-wedding-free-bootstrap-template",
-      "name": {
-        "en": "The Best Wedding Free Bootstrap Template",
-        "ru": "лучший свадьба бесплатный Bootstrap шаблон"
-      },
+      "name": { "en": "Best Wedding", "ru": "Свадебный сайт" },
       "slug": "the-best-wedding-free-bootstrap-template",
-      "image": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&h=500&fit=crop",
+      "image": "https://images.unsplash.com/photo-1519741497674-611481863552?w=800&h=500&fit=crop",
       "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/the-best-wedding-free-bootstrap-template/index.html"
     },
     {
       "id": "ext__touch-hospital-medical-bootstrap-html5-template",
-      "name": {
-        "en": "Touch Hospital Medical Free HTML5 Bootstrap Template",
-        "ru": "Touch больница медицинский Bootstrap HTML5 шаблон"
-      },
+      "name": { "en": "Touch Hospital", "ru": "Больница Touch" },
       "slug": "touch-hospital-medical-bootstrap-html5-template",
-      "image": "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&h=500&fit=crop",
+      "image": "https://images.unsplash.com/photo-1538108149393-fbbd81895907?w=800&h=500&fit=crop",
       "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/touch-hospital-medical-bootstrap-html5-template/index.html"
-    },
-    {
-      "id": "ext__vcare-free-html5-template-hospital-website",
-      "name": {
-        "en": "vCare Free Bootstrap Theme",
-        "ru": "VCare бесплатный HTML5 шаблон больница сайт"
-      },
-      "slug": "vcare-free-html5-template-hospital-website",
-      "image": "https://images.unsplash.com/photo-1607083206869-4c7672e72a8a?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/vcare-free-html5-template-hospital-website/index.html"
-    },
-    {
-      "id": "ext__victory-educational-institution-free-html5-bootstrap-template",
-      "name": {
-        "en": "Victory Educational Institution Free HTML5 Bootstrap Template",
-        "ru": "победа образовательный учреждение бесплатный HTML5 Bootstrap шаблон"
-      },
-      "slug": "victory-educational-institution-free-html5-bootstrap-template",
-      "image": "https://images.unsplash.com/photo-1556742118-9cce3461e68b?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/victory-educational-institution-free-html5-bootstrap-template/index.html"
-    },
-    {
-      "id": "ext__wedding-bells-free-responsive-html5-template",
-      "name": {
-        "en": "Wedding Bells Free Responsive HTML5 Template",
-        "ru": "свадьба колокольчики бесплатный адаптивный HTML5 шаблон"
-      },
-      "slug": "wedding-bells-free-responsive-html5-template",
-      "image": "https://images.unsplash.com/photo-1481437156560-3205f6a55735?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/wedding-bells-free-responsive-html5-template/index.html"
     }
   ]
 }
