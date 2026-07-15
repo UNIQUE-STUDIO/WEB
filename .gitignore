@@ -14,3 +14,4 @@ node_modules/
 .windsurf/
 .mcp.json
 eslint.config.mjs
+templates-preview

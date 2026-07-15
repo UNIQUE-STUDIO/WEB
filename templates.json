@@ -2,115 +2,223 @@
   "landing": [
     {
       "id": "landing_1",
-      "name": { "en": "Business Growth", "ru": "Рост Бизнеса" },
+      "name": {
+        "en": "Business Growth",
+        "ru": "Рост Бизнеса"
+      },
       "slug": "business-growth",
-      "price": { "en": "from 6,000 ₽", "ru": "от 6 000 ₽" },
+      "price": {
+        "en": "from 6,000 ₽",
+        "ru": "от 6 000 ₽"
+      },
       "image": "/images/templates/landing_1.svg",
-      "preview_url": "",
-      "desc": { "en": "Modern landing page with high conversion rate. Ideal for services and consulting.", "ru": "Современный лендинг с высокой конверсией. Идеален для услуг и консалтинга." }
+      "preview_url": "/templates-preview/startbootstrap-agency-1.0.2/",
+      "desc": {
+        "en": "Modern landing page with high conversion rate. Ideal for services and consulting.",
+        "ru": "Современный лендинг с высокой конверсией. Идеален для услуг и консалтинга."
+      }
     },
     {
       "id": "landing_2",
-      "name": { "en": "Creative Studio", "ru": "Креативная Студия" },
+      "name": {
+        "en": "Creative Studio",
+        "ru": "Креативная Студия"
+      },
       "slug": "creative-studio",
-      "price": { "en": "from 6,500 ₽", "ru": "от 6 500 ₽" },
+      "price": {
+        "en": "from 6,500 ₽",
+        "ru": "от 6 500 ₽"
+      },
       "image": "/images/templates/landing_2.svg",
-      "preview_url": "",
-      "desc": { "en": "Bold design for creative agencies, photographers and designers.", "ru": "Смелый дизайн для креативных агентств, фотографов и дизайнеров." }
+      "preview_url": "/templates-preview/startbootstrap-freelancer-1.0.2/",
+      "desc": {
+        "en": "Bold design for creative agencies, photographers and designers.",
+        "ru": "Смелый дизайн для креативных агентств, фотографов и дизайнеров."
+      }
     },
     {
       "id": "landing_3",
-      "name": { "en": "Medical Center", "ru": "Медицинский Центр" },
+      "name": {
+        "en": "Medical Center",
+        "ru": "Медицинский Центр"
+      },
       "slug": "medical-center",
-      "price": { "en": "from 7,000 ₽", "ru": "от 7 000 ₽" },
+      "price": {
+        "en": "from 7,000 ₽",
+        "ru": "от 7 000 ₽"
+      },
       "image": "/images/templates/landing_3.svg",
-      "preview_url": "",
-      "desc": { "en": "Trustworthy design for clinics, dentists and medical services.", "ru": "Вызывающий доверие дизайн для клиник, стоматологий и медицинских услуг." }
+      "preview_url": "/templates-preview/touch-hospital-medical-bootstrap-html5-template/",
+      "desc": {
+        "en": "Trustworthy design for clinics, dentists and medical services.",
+        "ru": "Вызывающий доверие дизайн для клиник, стоматологий и медицинских услуг."
+      }
     },
     {
       "id": "landing_4",
-      "name": { "en": "Restaurant Premium", "ru": "Ресторан Премиум" },
+      "name": {
+        "en": "Restaurant Premium",
+        "ru": "Ресторан Премиум"
+      },
       "slug": "restaurant-premium",
-      "price": { "en": "from 7,500 ₽", "ru": "от 7 500 ₽" },
+      "price": {
+        "en": "from 7,500 ₽",
+        "ru": "от 7 500 ₽"
+      },
       "image": "/images/templates/landing_4.svg",
-      "preview_url": "",
-      "desc": { "en": "Elegant design for restaurants, cafes and food delivery with online booking.", "ru": "Элегантный дизайн для ресторанов, кафе и доставки еды с онлайн-бронированием." }
+      "preview_url": "/templates-preview/bestro-restaurant-bootstrap-html5-template/",
+      "desc": {
+        "en": "Elegant design for restaurants, cafes and food delivery with online booking.",
+        "ru": "Элегантный дизайн для ресторанов, кафе и доставки еды с онлайн-бронированием."
+      }
     }
   ],
   "ecommerce": [
     {
       "id": "ecommerce_1",
-      "name": { "en": "Fashion Store", "ru": "Магазин Одежды" },
+      "name": {
+        "en": "Fashion Store",
+        "ru": "Магазин Одежды"
+      },
       "slug": "fashion-store",
-      "price": { "en": "from 12,000 ₽", "ru": "от 12 000 ₽" },
+      "price": {
+        "en": "from 12,000 ₽",
+        "ru": "от 12 000 ₽"
+      },
       "image": "/images/templates/ecommerce_1.svg",
-      "preview_url": "",
-      "desc": { "en": "Stylish online store for clothing, accessories and fashion brands.", "ru": "Стильный интернет-магазин для одежды, аксессуаров и модных брендов." }
+      "preview_url": "/templates-preview/startbootstrap-stylish-portfolio-1.0.2/",
+      "desc": {
+        "en": "Stylish online store for clothing, accessories and fashion brands.",
+        "ru": "Стильный интернет-магазин для одежды, аксессуаров и модных брендов."
+      }
     },
     {
       "id": "ecommerce_2",
-      "name": { "en": "Tech Shop", "ru": "Техно-Магазин" },
+      "name": {
+        "en": "Tech Shop",
+        "ru": "Техно-Магазин"
+      },
       "slug": "tech-shop",
-      "price": { "en": "from 14,000 ₽", "ru": "от 14 000 ₽" },
+      "price": {
+        "en": "from 14,000 ₽",
+        "ru": "от 14 000 ₽"
+      },
       "image": "/images/templates/ecommerce_2.svg",
-      "preview_url": "",
-      "desc": { "en": "Modern electronics store with product comparison and smart filters.", "ru": "Современный магазин электроники с сравнением товаров и умными фильтрами." }
+      "preview_url": "/templates-preview/brand-html5-app-landing-page-responsive-web-template/",
+      "desc": {
+        "en": "Modern electronics store with product comparison and smart filters.",
+        "ru": "Современный магазин электроники с сравнением товаров и умными фильтрами."
+      }
     },
     {
       "id": "ecommerce_3",
-      "name": { "en": "Cosmetics Shop", "ru": "Магазин Косметики" },
+      "name": {
+        "en": "Cosmetics Shop",
+        "ru": "Магазин Косметики"
+      },
       "slug": "cosmetics-shop",
-      "price": { "en": "from 13,000 ₽", "ru": "от 13 000 ₽" },
+      "price": {
+        "en": "from 13,000 ₽",
+        "ru": "от 13 000 ₽"
+      },
       "image": "/images/templates/ecommerce_3.svg",
-      "preview_url": "",
-      "desc": { "en": "Beautiful design for cosmetics, perfumes and beauty products.", "ru": "Красивый дизайн для косметики, парфюмерии и бьюти-товаров." }
+      "preview_url": "/templates-preview/aroma-beauty-and-spa-responsive-bootstrap-template/",
+      "desc": {
+        "en": "Beautiful design for cosmetics, perfumes and beauty products.",
+        "ru": "Красивый дизайн для косметики, парфюмерии и бьюти-товаров."
+      }
     },
     {
       "id": "ecommerce_4",
-      "name": { "en": "Food Market", "ru": "Продуктовый Маркет" },
+      "name": {
+        "en": "Food Market",
+        "ru": "Продуктовый Маркет"
+      },
       "slug": "food-market",
-      "price": { "en": "from 15,000 ₽", "ru": "от 15 000 ₽" },
+      "price": {
+        "en": "from 15,000 ₽",
+        "ru": "от 15 000 ₽"
+      },
       "image": "/images/templates/ecommerce_4.svg",
-      "preview_url": "",
-      "desc": { "en": "Grocery delivery store with quick order and payment integration.", "ru": "Магазин доставки продуктов с быстрым заказом и интеграцией оплаты." }
+      "preview_url": "/templates-preview/foodz-mobile-app-bootstrap-landing-page/",
+      "desc": {
+        "en": "Grocery delivery store with quick order and payment integration.",
+        "ru": "Магазин доставки продуктов с быстрым заказом и интеграцией оплаты."
+      }
     }
   ],
   "corporate": [
     {
       "id": "corporate_1",
-      "name": { "en": "Enterprise Pro", "ru": "Корпоративный Pro" },
+      "name": {
+        "en": "Enterprise Pro",
+        "ru": "Корпоративный Pro"
+      },
       "slug": "enterprise-pro",
-      "price": { "en": "from 9,000 ₽", "ru": "от 9 000 ₽" },
+      "price": {
+        "en": "from 9,000 ₽",
+        "ru": "от 9 000 ₽"
+      },
       "image": "/images/templates/corporate_1.svg",
-      "preview_url": "",
-      "desc": { "en": "Solid corporate website with team, services and case studies sections.", "ru": "Солидный корпоративный сайт с разделами команды, услуг и кейсов." }
+      "preview_url": "/templates-preview/everest-corporate-business-bootstrap-template/",
+      "desc": {
+        "en": "Solid corporate website with team, services and case studies sections.",
+        "ru": "Солидный корпоративный сайт с разделами команды, услуг и кейсов."
+      }
     },
     {
       "id": "corporate_2",
-      "name": { "en": "Real Estate Agency", "ru": "Агентство Недвижимости" },
+      "name": {
+        "en": "Real Estate Agency",
+        "ru": "Агентство Недвижимости"
+      },
       "slug": "real-estate-agency",
-      "price": { "en": "from 10,000 ₽", "ru": "от 10 000 ₽" },
+      "price": {
+        "en": "from 10,000 ₽",
+        "ru": "от 10 000 ₽"
+      },
       "image": "/images/templates/corporate_2.svg",
-      "preview_url": "",
-      "desc": { "en": "Real estate website with property catalog, map search and mortgage calculator.", "ru": "Сайт недвижимости с каталогом объектов, поиском по карте и ипотечным калькулятором." }
+      "preview_url": "/templates-preview/aerosky-real-estate-html-responsive-website-template/",
+      "desc": {
+        "en": "Real estate website with property catalog, map search and mortgage calculator.",
+        "ru": "Сайт недвижимости с каталогом объектов, поиском по карте и ипотечным калькулятором."
+      }
     },
     {
       "id": "corporate_3",
-      "name": { "en": "Law Firm", "ru": "Юридическая Фирма" },
+      "name": {
+        "en": "Law Firm",
+        "ru": "Юридическая Фирма"
+      },
       "slug": "law-firm",
-      "price": { "en": "from 9,500 ₽", "ru": "от 9 500 ₽" },
+      "price": {
+        "en": "from 9,500 ₽",
+        "ru": "от 9 500 ₽"
+      },
       "image": "/images/templates/corporate_3.svg",
-      "preview_url": "",
-      "desc": { "en": "Professional law firm website with practice areas and consultation booking.", "ru": "Профессиональный сайт юрфирмы с направлениями практики и записью на консультацию." }
+      "preview_url": "/templates-preview/atlanta-free-business-bootstrap-template/",
+      "desc": {
+        "en": "Professional law firm website with practice areas and consultation booking.",
+        "ru": "Профессиональный сайт юрфирмы с направлениями практики и записью на консультацию."
+      }
     },
     {
       "id": "corporate_4",
-      "name": { "en": "Construction Company", "ru": "Строительная Компания" },
+      "name": {
+        "en": "Construction Company",
+        "ru": "Строительная Компания"
+      },
       "slug": "construction-company",
-      "price": { "en": "from 11,000 ₽", "ru": "от 11 000 ₽" },
+      "price": {
+        "en": "from 11,000 ₽",
+        "ru": "от 11 000 ₽"
+      },
       "image": "/images/templates/corporate_4.svg",
-      "preview_url": "",
-      "desc": { "en": "Construction company site with project gallery, timeline and cost calculator.", "ru": "Сайт строительной компании с галереей проектов, таймлайном и калькулятором стоимости." }
+      "preview_url": "/templates-preview/green-corp-flat-free-responsive-mobile-website/",
+      "desc": {
+        "en": "Construction company site with project gallery, timeline and cost calculator.",
+        "ru": "Сайт строительной компании с галереей проектов, таймлайном и калькулятором стоимости."
+      }
     }
   ]
 }

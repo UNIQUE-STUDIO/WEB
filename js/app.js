@@ -1737,16 +1737,31 @@ window.addEventListener('scroll', () =>
     scrollBtn.classList.toggle('visible', window.scrollY > 300),
 );
 scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-document
-    .querySelector('.mobile-menu')
-    .addEventListener('click', () => document.querySelector('.nav').classList.toggle('active'));
-document
-    .querySelectorAll('.nav a')
-    .forEach((a) =>
-        a.addEventListener('click', () =>
-            document.querySelector('.nav').classList.remove('active'),
-        ),
-    );
+const mobileMenuBtn = document.querySelector('.mobile-menu');
+const navEl = document.querySelector('.nav');
+const overlay = document.createElement('div');
+overlay.className = 'mobile-overlay';
+document.body.appendChild(overlay);
+
+function openMobileMenu() {
+    navEl.classList.add('active');
+    overlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    mobileMenuBtn.innerHTML = '<i class="fas fa-times"></i>';
+}
+function closeMobileMenu() {
+    navEl.classList.remove('active');
+    overlay.classList.remove('active');
+    document.body.style.overflow = '';
+    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+}
+
+mobileMenuBtn.addEventListener('click', () => {
+    if (navEl.classList.contains('active')) closeMobileMenu();
+    else openMobileMenu();
+});
+overlay.addEventListener('click', closeMobileMenu);
+document.querySelectorAll('.nav a').forEach((a) => a.addEventListener('click', closeMobileMenu));
 document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
