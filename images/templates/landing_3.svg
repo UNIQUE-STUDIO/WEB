@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500">
+  <defs>
+    <linearGradient id="hero3" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#047857"/><stop offset="100%" stop-color="#059669"/></linearGradient>
+  </defs>
+  <rect width="800" height="500" fill="#f0fdf4"/>
+  <!-- Header -->
+  <rect x="0" y="0" width="800" height="52" fill="#fff"/>
+  <text x="30" y="32" font-family="Arial,sans-serif" font-size="14" font-weight="bold" fill="#047857">MEDICAL CENTER</text>
+  <text x="560" y="32" font-family="Arial,sans-serif" font-size="11" fill="#71717a">Departments</text>
+  <text x="650" y="32" font-family="Arial,sans-serif" font-size="11" fill="#71717a">Doctors</text>
+  <rect x="710" y="18" width="60" height="28" rx="14" fill="#f0fdf4" stroke="#047857" stroke-width="1.5"/>
+  <text x="740" y="37" font-family="Arial,sans-serif" font-size="10" fill="#047857" text-anchor="middle">Appointment</text>
+  <!-- Hero -->
+  <rect x="0" y="52" width="400" height="160" fill="url(#hero3)"/>
+  <text x="200" y="100" font-family="Arial,sans-serif" font-size="22" font-weight="bold" fill="#fff" text-anchor="middle">Your Health Matters</text>
+  <text x="200" y="128" font-family="Arial,sans-serif" font-size="11" fill="#a7f3d0" text-anchor="middle">Compassionate care with advanced technology</text>
+  <text x="200" y="150" font-family="Arial,sans-serif" font-size="11" fill="#a7f3d0" text-anchor="middle"> 50+ Specialists   Open 24/7</text>
+  <!-- Booking Form -->
+  <rect x="0" y="52" width="400" height="160" fill="#ecfdf5"/>
+  <text x="200" y="80" font-family="Arial,sans-serif" font-size="14" font-weight="bold" fill="#047857" text-anchor="middle">Book Appointment</text>
+  <rect x="50" y="96" width="300" height="28" rx="6" fill="#fff" stroke="#a7f3d0" stroke-width="1"/>
+  <text x="60" y="114" font-family="Arial,sans-serif" font-size="10" fill="#a1a1aa">Full Name</text>
+  <rect x="50" y="132" width="300" height="28" rx="6" fill="#fff" stroke="#a7f3d0" stroke-width="1"/>
+  <text x="60" y="150" font-family="Arial,sans-serif" font-size="10" fill="#a1a1aa">Select Department</text>
+  <rect x="50" y="168" width="300" height="28" rx="6" fill="url(#hero3)"/>
+  <text x="200" y="186" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#fff" text-anchor="middle">Schedule Now</text>
+  <!-- Services Cards -->
+  <rect x="30" y="240" width="110" height="100" rx="10" fill="#fff" stroke="#bbf7d0" stroke-width="1"/>
+  <text x="85" y="275" font-size="20" text-anchor="middle">&#10010;</text>
+  <text x="85" y="296" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#1e293b" text-anchor="middle">Cardiology</text>
+  <text x="85" y="312" font-family="Arial,sans-serif" font-size="9" fill="#94a3b8" text-anchor="middle">12 Doctors</text>
+  <rect x="160" y="240" width="110" height="100" rx="10" fill="#fff" stroke="#bbf7d0" stroke-width="1"/>
+  <text x="215" y="275" font-size="20" text-anchor="middle">&#9654;</text>
+  <text x="215" y="296" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#1e293b" text-anchor="middle">Neurology</text>
+  <text x="215" y="312" font-family="Arial,sans-serif" font-size="9" fill="#94a3b8" text-anchor="middle">8 Doctors</text>
+  <rect x="290" y="240" width="110" height="100" rx="10" fill="#fff" stroke="#bbf7d0" stroke-width="1"/>
+  <text x="345" y="275" font-size="20" text-anchor="middle">&#9733;</text>
+  <text x="345" y="296" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#1e293b" text-anchor="middle">Pediatrics</text>
+  <text x="345" y="312" font-family="Arial,sans-serif" font-size="9" fill="#94a3b8" text-anchor="middle">15 Doctors</text>
+  <rect x="420" y="240" width="110" height="100" rx="10" fill="#fff" stroke="#bbf7d0" stroke-width="1"/>
+  <text x="475" y="275" font-size="20" text-anchor="middle">&#9881;</text>
+  <text x="475" y="296" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#1e293b" text-anchor="middle">Orthopedics</text>
+  <text x="475" y="312" font-family="Arial,sans-serif" font-size="9" fill="#94a3b8" text-anchor="middle">6 Doctors</text>
+  <rect x="550" y="240" width="110" height="100" rx="10" fill="#fff" stroke="#bbf7d0" stroke-width="1"/>
+  <text x="605" y="275" font-size="20" text-anchor="middle">&#9679;</text>
+  <text x="605" y="296" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#1e293b" text-anchor="middle">Dermatology</text>
+  <text x="605" y="312" font-family="Arial,sans-serif" font-size="9" fill="#94a3b8" text-anchor="middle">4 Doctors</text>
+  <rect x="680" y="240" width="90" height="100" rx="10" fill="#047857"/>
+  <text x="725" y="285" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#fff" text-anchor="middle">View</text>
+  <text x="725" y="300" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#fff" text-anchor="middle">All</text>
+  <!-- Stats -->
+  <rect x="30" y="370" width="740" height="90" rx="12" fill="url(#hero3)"/>
+  <text x="185" y="415" font-family="Arial,sans-serif" font-size="22" font-weight="bold" fill="#fff" text-anchor="middle">25,000+</text>
+  <text x="185" y="438" font-family="Arial,sans-serif" font-size="10" fill="#a7f3d0" text-anchor="middle">Happy Patients</text>
+  <text x="400" y="415" font-family="Arial,sans-serif" font-size="22" font-weight="bold" fill="#fff" text-anchor="middle">50+</text>
+  <text x="400" y="438" font-family="Arial,sans-serif" font-size="10" fill="#a7f3d0" text-anchor="middle">Specialists</text>
+  <text x="615" y="415" font-family="Arial,sans-serif" font-size="22" font-weight="bold" fill="#fff" text-anchor="middle">24/7</text>
+  <text x="615" y="438" font-family="Arial,sans-serif" font-size="10" fill="#a7f3d0" text-anchor="middle">Emergency Care</text>
+</svg>

@@ -1,351 +1,116 @@
 {
   "landing": [
     {
-      "id": "ext__agile-agency-free-bootstrap-web-template",
-      "name": { "en": "Agile Agency", "ru": "Агентство Agile" },
-      "slug": "agile-agency-free-bootstrap-web-template",
-      "image": "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/agile-agency-free-bootstrap-web-template/index.html"
+      "id": "landing_1",
+      "name": { "en": "Business Growth", "ru": "Рост Бизнеса" },
+      "slug": "business-growth",
+      "price": { "en": "from 6,000 ₽", "ru": "от 6 000 ₽" },
+      "image": "/images/templates/landing_1.svg",
+      "preview_url": "",
+      "desc": { "en": "Modern landing page with high conversion rate. Ideal for services and consulting.", "ru": "Современный лендинг с высокой конверсией. Идеален для услуг и консалтинга." }
     },
     {
-      "id": "ext__amaze-photography-bootstrap-html5-template",
-      "name": { "en": "Amaze Photography", "ru": "Фотостудия Amaze" },
-      "slug": "amaze-photography-bootstrap-html5-template",
-      "image": "https://images.unsplash.com/photo-1542038784456-1ea8e935640e?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/amaze-photography-bootstrap-html5-template/index.html"
+      "id": "landing_2",
+      "name": { "en": "Creative Studio", "ru": "Креативная Студия" },
+      "slug": "creative-studio",
+      "price": { "en": "from 6,500 ₽", "ru": "от 6 500 ₽" },
+      "image": "/images/templates/landing_2.svg",
+      "preview_url": "",
+      "desc": { "en": "Bold design for creative agencies, photographers and designers.", "ru": "Смелый дизайн для креативных агентств, фотографов и дизайнеров." }
     },
     {
-      "id": "ext__avenger-multi-purpose-responsive-html5-bootstrap-template",
-      "name": { "en": "Avenger Multi-Purpose", "ru": "Avenger — Универсальный" },
-      "slug": "avenger-multi-purpose-responsive-html5-bootstrap-template",
-      "image": "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/avenger-multi-purpose-responsive-html5-bootstrap-template/index.html"
+      "id": "landing_3",
+      "name": { "en": "Medical Center", "ru": "Медицинский Центр" },
+      "slug": "medical-center",
+      "price": { "en": "from 7,000 ₽", "ru": "от 7 000 ₽" },
+      "image": "/images/templates/landing_3.svg",
+      "preview_url": "",
+      "desc": { "en": "Trustworthy design for clinics, dentists and medical services.", "ru": "Вызывающий доверие дизайн для клиник, стоматологий и медицинских услуг." }
     },
     {
-      "id": "ext__bizpage-free-business-bootstrap-html5-template",
-      "name": { "en": "BizPage Business", "ru": "Бизнес BizPage" },
-      "slug": "bizpage-free-business-bootstrap-html5-template",
-      "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/bizpage-free-business-bootstrap-html5-template/index.html"
-    },
-    {
-      "id": "ext__devfolio-personal-portfolio-bootstrap-4-html-template",
-      "name": { "en": "DevFolio Portfolio", "ru": "Портфолио DevFolio" },
-      "slug": "devfolio-personal-portfolio-bootstrap-4-html-template",
-      "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/devfolio-personal-portfolio-bootstrap-4-html-template/index.html"
-    },
-    {
-      "id": "ext__free-bootstrap-template-for-multi-purpose-seo",
-      "name": { "en": "SEO Multi-Purpose", "ru": "SEO — Универсальный" },
-      "slug": "free-bootstrap-template-for-multi-purpose-seo",
-      "image": "https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/free-bootstrap-template-for-multi-purpose-seo/index.html"
-    },
-    {
-      "id": "ext__geo-corporate-free-bootstrap-website-template",
-      "name": { "en": "Geo Corporate", "ru": "Корпоративный Geo" },
-      "slug": "geo-corporate-free-bootstrap-website-template",
-      "image": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/geo-corporate-free-bootstrap-website-template/index.html"
-    },
-    {
-      "id": "ext__i-folio-free-one-page-responsive-template",
-      "name": { "en": "iFolio One Page", "ru": "Одностраничный iFolio" },
-      "slug": "i-folio-free-one-page-responsive-template",
-      "image": "https://images.unsplash.com/photo-1522542550221-31fd19575a2d?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/i-folio-free-one-page-responsive-template/index.html"
-    },
-    {
-      "id": "ext__inew-free-modern-bootstrap-responsive-website-template",
-      "name": { "en": "iNew Modern", "ru": "Современный iNew" },
-      "slug": "inew-free-modern-bootstrap-responsive-website-template",
-      "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/inew-free-modern-bootstrap-responsive-website-template/index.html"
-    },
-    {
-      "id": "ext__intro-in-haus-free-personal-website-template",
-      "name": { "en": "Intro In Haus", "ru": "Персональный Intro" },
-      "slug": "intro-in-haus-free-personal-website-template",
-      "image": "https://images.unsplash.com/photo-1504805572947-34fad45aed93?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/intro-in-haus-free-personal-website-template/index.html"
-    },
-    {
-      "id": "ext__knight-free-bootstrap-template",
-      "name": { "en": "Knight Bootstrap", "ru": "Knight — Стартап" },
-      "slug": "knight-free-bootstrap-template",
-      "image": "https://images.unsplash.com/photo-1559028012-481c04fa702d?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/knight-free-bootstrap-template/index.html"
-    },
-    {
-      "id": "ext__layoutit-infragistics-bootstrap",
-      "name": { "en": "LayoutIt Bootstrap", "ru": "Макет LayoutIt" },
-      "slug": "layoutit-infragistics-bootstrap",
-      "image": "https://images.unsplash.com/photo-1512758017271-d7b84c2113e8?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/layoutit-infragistics-bootstrap/index.html"
-    },
-    {
-      "id": "ext__lucent-free-responsive-bootstrap-website-template",
-      "name": { "en": "Lucent Responsive", "ru": "Адаптивный Lucent" },
-      "slug": "lucent-free-responsive-bootstrap-website-template",
-      "image": "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/lucent-free-responsive-bootstrap-website-template/index.html"
-    },
-    {
-      "id": "ext__mentor-free-html5-bootstrap-education-template",
-      "name": { "en": "Mentor Education", "ru": "Образовательный Mentor" },
-      "slug": "mentor-free-html5-bootstrap-education-template",
-      "image": "https://images.unsplash.com/photo-1523050854058-8df9010ef4f9?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/mentor-free-html5-bootstrap-education-template/index.html"
-    },
-    {
-      "id": "ext__merit-free-bootstrap-education-template",
-      "name": { "en": "Merit Education", "ru": "Образовательный Merit" },
-      "slug": "merit-free-bootstrap-education-template",
-      "image": "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/merit-free-bootstrap-education-template/index.html"
-    },
-    {
-      "id": "ext__meyawo-landing-page-template",
-      "name": { "en": "Meyawo Landing", "ru": "Лендинг Meyawo" },
-      "slug": "meyawo-landing-page-template",
-      "image": "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/meyawo-landing-page-template/index.html"
-    },
-    {
-      "id": "ext__regna-bootstrap-template",
-      "name": { "en": "Regna Bootstrap", "ru": "Regna — Презентация" },
-      "slug": "regna-bootstrap-template",
-      "image": "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/regna-bootstrap-template/index.html"
-    },
-    {
-      "id": "ext__reveal-bootstrap-html5-template",
-      "name": { "en": "Reveal HTML5", "ru": "Reveal — Портфолио" },
-      "slug": "reveal-bootstrap-html5-template",
-      "image": "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/reveal-bootstrap-html5-template/index.html"
-    },
-    {
-      "id": "ext__sailor-free-bootstrap-website-html-template",
-      "name": { "en": "Sailor Website", "ru": "Сайт Sailor" },
-      "slug": "sailor-free-bootstrap-website-html-template",
-      "image": "https://images.unsplash.com/photo-1484417894907-623942c8ee29?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/sailor-free-bootstrap-website-html-template/index.html"
-    },
-    {
-      "id": "ext__shuffle-multipurpose-free-simple-bootstrap-template",
-      "name": { "en": "Shuffle Multi", "ru": "Shuffle — Визитка" },
-      "slug": "shuffle-multipurpose-free-simple-bootstrap-template",
-      "image": "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/shuffle-multipurpose-free-simple-bootstrap-template/index.html"
-    }
-  ],
-  "corporate": [
-    {
-      "id": "ext__alstar-free-bootstrap-website-template",
-      "name": { "en": "Alstar Corporate", "ru": "Корпоративный Alstar" },
-      "slug": "alstar-free-bootstrap-website-template",
-      "image": "https://images.unsplash.com/photo-1497215842964-222b430dc094?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/alstar-free-bootstrap-website-template/index.html"
-    },
-    {
-      "id": "ext__businessr-free-corporate-bootstrap-responsive-website-template",
-      "name": { "en": "Businessr Corp", "ru": "Корпоративный Businessr" },
-      "slug": "businessr-free-corporate-bootstrap-responsive-website-template",
-      "image": "https://images.unsplash.com/photo-1556761175-b413da4baf72?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/businessr-free-corporate-bootstrap-responsive-website-template/index.html"
-    },
-    {
-      "id": "ext__chapter-one-free-corporate-bootstrap-template",
-      "name": { "en": "Chapter One Corp", "ru": "Корпоративный Chapter One" },
-      "slug": "chapter-one-free-corporate-bootstrap-template",
-      "image": "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/chapter-one-free-corporate-bootstrap-template/index.html"
-    },
-    {
-      "id": "ext__company-free-bootstrap-html5-template",
-      "name": { "en": "Company HTML5", "ru": "Компания HTML5" },
-      "slug": "company-free-bootstrap-html5-template",
-      "image": "https://images.unsplash.com/photo-1541746972996-4e0b0f43e02a?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/company-free-bootstrap-html5-template/index.html"
-    },
-    {
-      "id": "ext__edulite-free-bootstrap-educational-website-template",
-      "name": { "en": "EduLite Education", "ru": "Образовательный EduLite" },
-      "slug": "edulite-free-bootstrap-educational-website-template",
-      "image": "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/edulite-free-bootstrap-educational-website-template/index.html"
-    },
-    {
-      "id": "ext__hostro-free-web-hosting-bootstrap-template",
-      "name": { "en": "Hostro Hosting", "ru": "Хостинг Hostro" },
-      "slug": "hostro-free-web-hosting-bootstrap-template",
-      "image": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/hostro-free-web-hosting-bootstrap-template/index.html"
-    },
-    {
-      "id": "ext__mobileapp-free-responsive-mobile-app-website-template",
-      "name": { "en": "Mobile App Pro", "ru": "Мобильное приложение" },
-      "slug": "mobileapp-free-responsive-mobile-app-website-template",
-      "image": "https://images.unsplash.com/photo-1526498460520-4c246339dccb?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/mobileapp-free-responsive-mobile-app-website-template/index.html"
-    },
-    {
-      "id": "ext__techking-free-html5-template-for-corporate-business",
-      "name": { "en": "TechKing Corporate", "ru": "Корпоративный TechKing" },
-      "slug": "techking-free-html5-template-for-corporate-business",
-      "image": "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/techking-free-html5-template-for-corporate-business/index.html"
-    },
-    {
-      "id": "ext__vibe-free-html5-template-for-corporate-website",
-      "name": { "en": "Vibe Corporate", "ru": "Корпоративный Vibe" },
-      "slug": "vibe-free-html5-template-for-corporate-website",
-      "image": "https://images.unsplash.com/photo-1558402525-d1968a143ea5?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/vibe-free-html5-template-for-corporate-website/index.html"
-    },
-    {
-      "id": "ext__enlive-corporate-free-html5-bootstrap-web-template",
-      "name": { "en": "Enlive Corporate", "ru": "Корпоративный Enlive" },
-      "slug": "enlive-corporate-free-html5-bootstrap-web-template",
-      "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/enlive-corporate-free-html5-bootstrap-web-template/index.html"
-    },
-    {
-      "id": "ext__everest-corporate-business-bootstrap-template",
-      "name": { "en": "Everest Business", "ru": "Бизнес Everest" },
-      "slug": "everest-corporate-business-bootstrap-template",
-      "image": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/everest-corporate-business-bootstrap-template/index.html"
-    },
-    {
-      "id": "ext__kavin-corporate-bootstrap-responsive-web-template",
-      "name": { "en": "Kavin Corporate", "ru": "Корпоративный Kavin" },
-      "slug": "kavin-corporate-bootstrap-responsive-web-template",
-      "image": "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/kavin-corporate-bootstrap-responsive-web-template/index.html"
-    },
-    {
-      "id": "ext__retro-free-consulting-responsive-html5-website-template",
-      "name": { "en": "Retro Consulting", "ru": "Консалтинг Retro" },
-      "slug": "retro-free-consulting-responsive-html5-website-template",
-      "image": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/retro-free-consulting-responsive-html5-website-template/index.html"
-    },
-    {
-      "id": "ext__vone-free-business-html5-responsive-website",
-      "name": { "en": "vOne Business", "ru": "Бизнес vOne" },
-      "slug": "vone-free-business-html5-responsive-website",
-      "image": "https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/vone-free-business-html5-responsive-website/index.html"
+      "id": "landing_4",
+      "name": { "en": "Restaurant Premium", "ru": "Ресторан Премиум" },
+      "slug": "restaurant-premium",
+      "price": { "en": "from 7,500 ₽", "ru": "от 7 500 ₽" },
+      "image": "/images/templates/landing_4.svg",
+      "preview_url": "",
+      "desc": { "en": "Elegant design for restaurants, cafes and food delivery with online booking.", "ru": "Элегантный дизайн для ресторанов, кафе и доставки еды с онлайн-бронированием." }
     }
   ],
   "ecommerce": [
     {
-      "id": "ext__beauty-salon-bootstrap-html5-template",
-      "name": { "en": "Beauty Salon Pro", "ru": "Салон красоты Pro" },
-      "slug": "beauty-salon-bootstrap-html5-template",
-      "image": "https://images.unsplash.com/photo-1560066984-138dadb4c035?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/beauty-salon-bootstrap-html5-template/index.html"
+      "id": "ecommerce_1",
+      "name": { "en": "Fashion Store", "ru": "Магазин Одежды" },
+      "slug": "fashion-store",
+      "price": { "en": "from 12,000 ₽", "ru": "от 12 000 ₽" },
+      "image": "/images/templates/ecommerce_1.svg",
+      "preview_url": "",
+      "desc": { "en": "Stylish online store for clothing, accessories and fashion brands.", "ru": "Стильный интернет-магазин для одежды, аксессуаров и модных брендов." }
     },
     {
-      "id": "ext__bestro-restaurant-bootstrap-html5-template",
-      "name": { "en": "Bistro Restaurant", "ru": "Ресторан Bistro" },
-      "slug": "bestro-restaurant-bootstrap-html5-template",
-      "image": "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/bestro-restaurant-bootstrap-html5-template/index.html"
+      "id": "ecommerce_2",
+      "name": { "en": "Tech Shop", "ru": "Техно-Магазин" },
+      "slug": "tech-shop",
+      "price": { "en": "from 14,000 ₽", "ru": "от 14 000 ₽" },
+      "image": "/images/templates/ecommerce_2.svg",
+      "preview_url": "",
+      "desc": { "en": "Modern electronics store with product comparison and smart filters.", "ru": "Современный магазин электроники с сравнением товаров и умными фильтрами." }
     },
     {
-      "id": "ext__car-care-auto-mobile-html5-bootstrap-web-template",
-      "name": { "en": "Car Care Service", "ru": "Автосервис Car Care" },
-      "slug": "car-care-auto-mobile-html5-bootstrap-web-template",
-      "image": "https://images.unsplash.com/photo-1487754180451-c456f719a1fc?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/car-care-auto-mobile-html5-bootstrap-web-template/index.html"
+      "id": "ecommerce_3",
+      "name": { "en": "Cosmetics Shop", "ru": "Магазин Косметики" },
+      "slug": "cosmetics-shop",
+      "price": { "en": "from 13,000 ₽", "ru": "от 13 000 ₽" },
+      "image": "/images/templates/ecommerce_3.svg",
+      "preview_url": "",
+      "desc": { "en": "Beautiful design for cosmetics, perfumes and beauty products.", "ru": "Красивый дизайн для косметики, парфюмерии и бьюти-товаров." }
     },
     {
-      "id": "ext__coffee-shop-free-html5-template",
-      "name": { "en": "Coffee Shop", "ru": "Кофейня" },
-      "slug": "coffee-shop-free-html5-template",
-      "image": "https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/coffee-shop-free-html5-template/index.html"
+      "id": "ecommerce_4",
+      "name": { "en": "Food Market", "ru": "Продуктовый Маркет" },
+      "slug": "food-market",
+      "price": { "en": "from 15,000 ₽", "ru": "от 15 000 ₽" },
+      "image": "/images/templates/ecommerce_4.svg",
+      "preview_url": "",
+      "desc": { "en": "Grocery delivery store with quick order and payment integration.", "ru": "Магазин доставки продуктов с быстрым заказом и интеграцией оплаты." }
+    }
+  ],
+  "corporate": [
+    {
+      "id": "corporate_1",
+      "name": { "en": "Enterprise Pro", "ru": "Корпоративный Pro" },
+      "slug": "enterprise-pro",
+      "price": { "en": "from 9,000 ₽", "ru": "от 9 000 ₽" },
+      "image": "/images/templates/corporate_1.svg",
+      "preview_url": "",
+      "desc": { "en": "Solid corporate website with team, services and case studies sections.", "ru": "Солидный корпоративный сайт с разделами команды, услуг и кейсов." }
     },
     {
-      "id": "ext__eat-restaurant-bootstrap-html5-template",
-      "name": { "en": "Eat Restaurant", "ru": "Ресторан Eat" },
-      "slug": "eat-restaurant-bootstrap-html5-template",
-      "image": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/eat-restaurant-bootstrap-html5-template/index.html"
+      "id": "corporate_2",
+      "name": { "en": "Real Estate Agency", "ru": "Агентство Недвижимости" },
+      "slug": "real-estate-agency",
+      "price": { "en": "from 10,000 ₽", "ru": "от 10 000 ₽" },
+      "image": "/images/templates/corporate_2.svg",
+      "preview_url": "",
+      "desc": { "en": "Real estate website with property catalog, map search and mortgage calculator.", "ru": "Сайт недвижимости с каталогом объектов, поиском по карте и ипотечным калькулятором." }
     },
     {
-      "id": "ext__getdoctor-free-bootstrap-responsive-website-template",
-      "name": { "en": "GetDoctor Medical", "ru": "Медицинский GetDoctor" },
-      "slug": "getdoctor-free-bootstrap-responsive-website-template",
-      "image": "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/getdoctor-free-bootstrap-responsive-website-template/index.html"
+      "id": "corporate_3",
+      "name": { "en": "Law Firm", "ru": "Юридическая Фирма" },
+      "slug": "law-firm",
+      "price": { "en": "from 9,500 ₽", "ru": "от 9 500 ₽" },
+      "image": "/images/templates/corporate_3.svg",
+      "preview_url": "",
+      "desc": { "en": "Professional law firm website with practice areas and consultation booking.", "ru": "Профессиональный сайт юрфирмы с направлениями практики и записью на консультацию." }
     },
     {
-      "id": "ext__golden-hotel-free-html5-bootstrap-web-template",
-      "name": { "en": "Golden Hotel", "ru": "Отель Golden" },
-      "slug": "golden-hotel-free-html5-bootstrap-web-template",
-      "image": "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/golden-hotel-free-html5-bootstrap-web-template/index.html"
-    },
-    {
-      "id": "ext__medplus-medical",
-      "name": { "en": "MedPlus Healthcare", "ru": "Медицинский MedPlus" },
-      "slug": "medplus-medical",
-      "image": "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/medplus-medical/index.html"
-    },
-    {
-      "id": "ext__park-city-bootstrap-html-real-estate-responsive-template",
-      "name": { "en": "Park City Estate", "ru": "Недвижимость Park City" },
-      "slug": "park-city-bootstrap-html-real-estate-responsive-template",
-      "image": "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/park-city-bootstrap-html-real-estate-responsive-template/index.html"
-    },
-    {
-      "id": "ext__touch-hospital-medical-bootstrap-html5-template",
-      "name": { "en": "Touch Hospital", "ru": "Больница Touch" },
-      "slug": "touch-hospital-medical-bootstrap-html5-template",
-      "image": "https://images.unsplash.com/photo-1538108149393-fbbd81895907?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/touch-hospital-medical-bootstrap-html5-template/index.html"
-    },
-    {
-      "id": "ext__aroma-beauty-and-spa-responsive-bootstrap-template",
-      "name": { "en": "Aroma Beauty & Spa", "ru": "Спа-салон Aroma" },
-      "slug": "aroma-beauty-and-spa-responsive-bootstrap-template",
-      "image": "https://images.unsplash.com/photo-1540555700478-4be289fbec6f?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/aroma-beauty-and-spa-responsive-bootstrap-template/index.html"
-    },
-    {
-      "id": "ext__car-repair-html5-bootstrap-template",
-      "name": { "en": "Car Repair Shop", "ru": "Автомастерская" },
-      "slug": "car-repair-html5-bootstrap-template",
-      "image": "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/car-repair-html5-bootstrap-template/index.html"
-    },
-    {
-      "id": "ext__b-school-free-education-html5-website-template",
-      "name": { "en": "B-School Pro", "ru": "Бизнес-школа B-School" },
-      "slug": "b-school-free-education-html5-website-template",
-      "image": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/b-school-free-education-html5-website-template/index.html"
-    },
-    {
-      "id": "ext__learn-educational-free-responsive-web-template",
-      "name": { "en": "Learn Online", "ru": "Онлайн-обучение Learn" },
-      "slug": "learn-educational-free-responsive-web-template",
-      "image": "https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/learn-educational-free-responsive-web-template/index.html"
-    },
-    {
-      "id": "ext__fit-healthy-fitness-and-gym-html5-bootstrap-theme",
-      "name": { "en": "Fit Healthy Gym", "ru": "Фитнес-клуб Fit Healthy" },
-      "slug": "fit-healthy-fitness-and-gym-html5-bootstrap-theme",
-      "image": "https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=800&h=500&fit=crop",
-      "preview_url": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/UNIQUE-STUDIO/website-templates-GITHUB/master/fit-healthy-fitness-and-gym-html5-bootstrap-theme/index.html"
+      "id": "corporate_4",
+      "name": { "en": "Construction Company", "ru": "Строительная Компания" },
+      "slug": "construction-company",
+      "price": { "en": "from 11,000 ₽", "ru": "от 11 000 ₽" },
+      "image": "/images/templates/corporate_4.svg",
+      "preview_url": "",
+      "desc": { "en": "Construction company site with project gallery, timeline and cost calculator.", "ru": "Сайт строительной компании с галереей проектов, таймлайном и калькулятором стоимости." }
     }
   ]
 }

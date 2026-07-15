@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500">
+  <defs>
+    <linearGradient id="lawoverlay" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0f2341"/><stop offset="100%" stop-color="#1a2d4a"/></linearGradient>
+  </defs>
+  <rect width="800" height="500" fill="#f8fafc"/>
+  <!-- Header -->
+  <rect x="0" y="0" width="800" height="50" fill="#fff"/>
+  <text x="30" y="32" font-family="Arial,sans-serif" font-size="14" font-weight="bold" fill="#0f2341">JUSTICE &amp; PARTNERS LLP</text>
+  <text x="540" y="32" font-family="Arial,sans-serif" font-size="10" fill="#64748b">Practice Areas</text>
+  <text x="630" y="32" font-family="Arial,sans-serif" font-size="10" fill="#64748b">Attorneys</text>
+  <rect x="700" y="20" width="70" height="28" rx="6" fill="#0f2341"/>
+  <text x="735" y="37" font-family="Arial,sans-serif" font-size="9" font-weight="bold" fill="#fff" text-anchor="middle">Consult</text>
+  <!-- Hero -->
+  <rect x="0" y="50" width="800" height="120" fill="url(#lawoverlay)"/>
+  <text x="400" y="95" font-family="Arial,sans-serif" font-size="20" font-weight="bold" fill="#f8fafc" text-anchor="middle">Trusted Legal Counsel Since 1985</text>
+  <text x="400" y="120" font-family="Arial,sans-serif" font-size="10" fill="#94a3b8" text-anchor="middle">Corporate Law   Litigation   Real Estate   Family Law   Intellectual Property</text>
+  <rect x="330" y="136" width="140" height="32" rx="8" fill="#c9a84c"/>
+  <text x="400" y="157" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#fff" text-anchor="middle">Schedule Consultation</text>
+  <!-- Practice Areas -->
+  <text x="20" y="210" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#0f2341">Practice Areas</text>
+  <!-- Row 1 -->
+  <rect x="20" y="225" width="180" height="85" rx="8" fill="#fff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <rect x="32" y="237" width="4" height="20" rx="2" fill="#c9a84c"/>
+  <text x="46" y="252" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#0f2341">Corporate Law</text>
+  <text x="32" y="275" font-family="Arial,sans-serif" font-size="9" fill="#64748b">M&amp;A, governance, compliance,</text>
+  <text x="32" y="290" font-family="Arial,sans-serif" font-size="9" fill="#64748b">contracts, securities regulation</text>
+  <rect x="215" y="225" width="180" height="85" rx="8" fill="#fff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <rect x="227" y="237" width="4" height="20" rx="2" fill="#c9a84c"/>
+  <text x="241" y="252" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#0f2341">Litigation</text>
+  <text x="227" y="275" font-family="Arial,sans-serif" font-size="9" fill="#64748b">Civil, commercial, class action,</text>
+  <text x="227" y="290" font-family="Arial,sans-serif" font-size="9" fill="#64748b">arbitration &amp; mediation</text>
+  <rect x="410" y="225" width="180" height="85" rx="8" fill="#fff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <rect x="422" y="237" width="4" height="20" rx="2" fill="#c9a84c"/>
+  <text x="436" y="252" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#0f2341">Real Estate</text>
+  <text x="422" y="275" font-family="Arial,sans-serif" font-size="9" fill="#64748b">Transactions, zoning, landlord-</text>
+  <text x="422" y="290" font-family="Arial,sans-serif" font-size="9" fill="#64748b">tenant, property disputes</text>
+  <rect x="605" y="225" width="175" height="85" rx="8" fill="#fff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <rect x="617" y="237" width="4" height="20" rx="2" fill="#c9a84c"/>
+  <text x="631" y="252" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#0f2341">IP &amp; Technology</text>
+  <text x="617" y="275" font-family="Arial,sans-serif" font-size="9" fill="#64748b">Patents, trademarks, copyright,</text>
+  <text x="617" y="290" font-family="Arial,sans-serif" font-size="9" fill="#64748b">data privacy, licensing</text>
+  <!-- Row 2 -->
+  <rect x="20" y="322" width="180" height="85" rx="8" fill="#fff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <rect x="32" y="334" width="4" height="20" rx="2" fill="#c9a84c"/>
+  <text x="46" y="349" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#0f2341">Family Law</text>
+  <text x="32" y="372" font-family="Arial,sans-serif" font-size="9" fill="#64748b">Divorce, custody, prenups,</text>
+  <text x="32" y="387" font-family="Arial,sans-serif" font-size="9" fill="#64748b">adoption, estate planning</text>
+  <rect x="215" y="322" width="180" height="85" rx="8" fill="#fff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <rect x="227" y="334" width="4" height="20" rx="2" fill="#c9a84c"/>
+  <text x="241" y="349" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#0f2341">Employment Law</text>
+  <text x="227" y="372" font-family="Arial,sans-serif" font-size="9" fill="#64748b">Labor disputes, discrimination,</text>
+  <text x="227" y="387" font-family="Arial,sans-serif" font-size="9" fill="#64748b">handbooks, compliance</text>
+  <!-- Contact Card -->
+  <rect x="410" y="322" width="370" height="85" rx="8" fill="url(#lawoverlay)"/>
+  <text x="595" y="348" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#f8fafc" text-anchor="middle">Need Legal Advice?</text>
+  <text x="595" y="372" font-family="Arial,sans-serif" font-size="10" fill="#94a3b8" text-anchor="middle">Free initial consultation with our senior partners</text>
+  <rect x="520" y="380" width="140" height="28" rx="6" fill="#c9a84c"/>
+  <text x="590" y="399" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#fff" text-anchor="middle">Contact Us</text>
+  <!-- Footer bar -->
+  <rect x="20" y="425" width="760" height="1" fill="#e2e8f0"/>
+  <text x="400" y="462" font-family="Arial,sans-serif" font-size="9" fill="#94a3b8" text-anchor="middle"> 2026 Justice Partners LLP   All rights reserved   Attorney Advertising   Privacy Policy</text>
+</svg>
