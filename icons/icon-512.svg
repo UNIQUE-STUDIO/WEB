@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="64" fill="#C8A96A"/>
+  <text x="256" y="210" text-anchor="middle" font-family="Inter, sans-serif" font-weight="800" font-size="140" fill="#FDF8F0">UW</text>
+  <text x="256" y="350" text-anchor="middle" font-family="Inter, sans-serif" font-weight="600" font-size="48" fill="#FDF8F0" opacity="0.85">WEB STU</text>
+</svg>

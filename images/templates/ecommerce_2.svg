@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500">
+  <defs>
+    <linearGradient id="techbg" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#0f172a"/><stop offset="100%" stop-color="#1e293b"/></linearGradient>
+    <linearGradient id="techbar" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#06b6d4"/><stop offset="100%" stop-color="#0891b2"/></linearGradient>
+  </defs>
+  <rect width="800" height="500" fill="#0f172a"/>
+  <!-- Header -->
+  <rect x="0" y="0" width="800" height="48" fill="#1e293b"/>
+  <text x="30" y="30" font-family="Arial,sans-serif" font-size="14" font-weight="bold" fill="#06b6d4">TECHSHOP</text>
+  <text x="500" y="30" font-family="Arial,sans-serif" font-size="10" fill="#94a3b8">Laptops</text>
+  <text x="565" y="30" font-family="Arial,sans-serif" font-size="10" fill="#94a3b8">Phones</text>
+  <text x="625" y="30" font-family="Arial,sans-serif" font-size="10" fill="#94a3b8">Gaming</text>
+  <text x="685" y="30" font-family="Arial,sans-serif" font-size="10" fill="#94a3b8">Accessories</text>
+  <rect x="750" y="22" width="30" height="20" rx="10" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+  <!-- Banner -->
+  <rect x="0" y="48" width="800" height="70" fill="url(#techbar)"/>
+  <text x="400" y="78" font-family="Arial,sans-serif" font-size="14" font-weight="bold" fill="#fff" text-anchor="middle">New Arrivals: Next-Gen Hardware</text>
+  <text x="400" y="100" font-family="Arial,sans-serif" font-size="10" fill="#cffafe" text-anchor="middle">Free 2-day shipping   Extended warranty available</text>
+  <!-- Product Cards Row -->
+  <rect x="20" y="136" width="235" height="170" rx="10" fill="#1e293b"/>
+  <rect x="35" y="148" width="205" height="80" rx="6" fill="#0f172a"/>
+  <text x="137" y="196" font-size="26" text-anchor="middle">&#128187;</text>
+  <text x="35" y="248" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#f8fafc">ProBook X15</text>
+  <text x="35" y="266" font-family="Arial,sans-serif" font-size="9" fill="#94a3b8">i9-13900H   32GB RAM   1TB SSD   15.6" 4K</text>
+  <text x="35" y="288" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#06b6d4">$1,899</text>
+  <rect x="227" y="278" width="16" height="16" rx="4" fill="#06b6d4"/>
+  <rect x="275" y="136" width="235" height="170" rx="10" fill="#1e293b"/>
+  <rect x="290" y="148" width="205" height="80" rx="6" fill="#0f172a"/>
+  <text x="392" y="196" font-size="26" text-anchor="middle">&#128241;</text>
+  <text x="290" y="248" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#f8fafc">PixelPhone X</text>
+  <text x="290" y="266" font-family="Arial,sans-serif" font-size="9" fill="#94a3b8">Snapdragon 8 Gen3   12GB   256GB   50MP</text>
+  <text x="290" y="288" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#06b6d4">$999</text>
+  <rect x="482" y="278" width="16" height="16" rx="4" fill="#06b6d4"/>
+  <rect x="530" y="136" width="250" height="170" rx="10" fill="#1e293b"/>
+  <rect x="545" y="148" width="220" height="80" rx="6" fill="#0f172a"/>
+  <text x="655" y="196" font-size="26" text-anchor="middle">&#127918;</text>
+  <text x="545" y="248" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#f8fafc">GPX-5080 Graphics</text>
+  <text x="545" y="266" font-family="Arial,sans-serif" font-size="9" fill="#94a3b8">16GB GDDR7   DLSS 4   Ray Tracing   3x DP</text>
+  <text x="545" y="288" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#06b6d4">$749</text>
+  <rect x="737" y="278" width="16" height="16" rx="4" fill="#06b6d4"/>
+  <!-- Second Row -->
+  <rect x="20" y="322" width="235" height="140" rx="10" fill="#1e293b"/>
+  <rect x="35" y="334" width="205" height="65" rx="6" fill="#0f172a"/>
+  <text x="137" y="372" font-size="22" text-anchor="middle">&#127911;</text>
+  <text x="35" y="410" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#f8fafc">Buds Pro ANC</text>
+  <text x="35" y="426" font-family="Arial,sans-serif" font-size="9" fill="#94a3b8">Active noise cancel   30h battery   IPX5</text>
+  <text x="35" y="448" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#06b6d4">$199</text>
+  <rect x="275" y="322" width="235" height="140" rx="10" fill="#1e293b"/>
+  <rect x="290" y="334" width="205" height="65" rx="6" fill="#0f172a"/>
+  <text x="392" y="372" font-size="22" text-anchor="middle">&#128190;</text>
+  <text x="290" y="410" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#f8fafc">4K Monitor 32"</text>
+  <text x="290" y="426" font-family="Arial,sans-serif" font-size="9" fill="#94a3b8">IPS   144Hz   1ms   HDR600</text>
+  <text x="290" y="448" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#06b6d4">$549</text>
+  <rect x="530" y="322" width="250" height="140" rx="10" fill="#1e293b"/>
+  <rect x="545" y="334" width="220" height="65" rx="6" fill="#0f172a"/>
+  <text x="655" y="372" font-size="22" text-anchor="middle">&#9889;</text>
+  <text x="545" y="410" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#f8fafc">Mech Keyboard RGB</text>
+  <text x="545" y="426" font-family="Arial,sans-serif" font-size="9" fill="#94a3b8">Cherry MX Blue   Hot-swap   Aluminum</text>
+  <text x="545" y="448" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#06b6d4">$159</text>
+</svg>

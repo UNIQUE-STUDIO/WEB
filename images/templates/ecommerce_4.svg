@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500">
+  <defs>
+    <linearGradient id="foodhero" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#166534"/><stop offset="100%" stop-color="#15803d"/></linearGradient>
+  </defs>
+  <rect width="800" height="500" fill="#f7fee7"/>
+  <!-- Header -->
+  <rect x="0" y="0" width="800" height="48" fill="#fff"/>
+  <text x="30" y="30" font-family="Arial,sans-serif" font-size="14" font-weight="bold" fill="#166534">FRESH MARKET</text>
+  <text x="500" y="30" font-family="Arial,sans-serif" font-size="10" fill="#71717a">Fruits</text>
+  <text x="560" y="30" font-family="Arial,sans-serif" font-size="10" fill="#71717a">Vegetables</text>
+  <text x="630" y="30" font-family="Arial,sans-serif" font-size="10" fill="#71717a">Organic</text>
+  <rect x="700" y="20" width="70" height="28" rx="14" fill="#f97316"/>
+  <text x="735" y="38" font-family="Arial,sans-serif" font-size="9" font-weight="bold" fill="#fff" text-anchor="middle">Cart 3</text>
+  <!-- Hero -->
+  <rect x="0" y="48" width="800" height="85" fill="url(#foodhero)"/>
+  <text x="400" y="82" font-family="Arial,sans-serif" font-size="16" font-weight="bold" fill="#fff" text-anchor="middle">Farm Fresh, Delivered Daily</text>
+  <text x="400" y="104" font-family="Arial,sans-serif" font-size="10" fill="#bbf7d0" text-anchor="middle">Free delivery on orders over $50   Same-day pickup available</text>
+  <rect x="320" y="116" width="160" height="28" rx="14" fill="#f97316"/>
+  <text x="400" y="135" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#fff" text-anchor="middle">Shop Weekly Deals</text>
+  <!-- Category Cards -->
+  <rect x="15" y="155" width="145" height="130" rx="12" fill="#fff" stroke="#dcfce7" stroke-width="1.5"/>
+  <rect x="45" y="175" width="85" height="55" rx="10" fill="#fef3c7"/>
+  <text x="87" y="210" font-size="22" text-anchor="middle">&#127822;</text>
+  <text x="87" y="252" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#1e293b" text-anchor="middle">Fresh Fruits</text>
+  <text x="87" y="270" font-family="Arial,sans-serif" font-size="9" fill="#f97316" text-anchor="middle">120 Items</text>
+  <rect x="175" y="155" width="145" height="130" rx="12" fill="#fff" stroke="#dcfce7" stroke-width="1.5"/>
+  <rect x="205" y="175" width="85" height="55" rx="10" fill="#dcfce7"/>
+  <text x="247" y="210" font-size="22" text-anchor="middle">&#129382;</text>
+  <text x="247" y="252" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#1e293b" text-anchor="middle">Vegetables</text>
+  <text x="247" y="270" font-family="Arial,sans-serif" font-size="9" fill="#f97316" text-anchor="middle">200 Items</text>
+  <rect x="335" y="155" width="145" height="130" rx="12" fill="#fff" stroke="#dcfce7" stroke-width="1.5"/>
+  <rect x="365" y="175" width="85" height="55" rx="10" fill="#e0e7ff"/>
+  <text x="407" y="210" font-size="22" text-anchor="middle">&#129371;</text>
+  <text x="407" y="252" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#1e293b" text-anchor="middle">Dairy &amp; Eggs</text>
+  <text x="407" y="270" font-family="Arial,sans-serif" font-size="9" fill="#f97316" text-anchor="middle">80 Items</text>
+  <rect x="495" y="155" width="145" height="130" rx="12" fill="#fff" stroke="#dcfce7" stroke-width="1.5"/>
+  <rect x="525" y="175" width="85" height="55" rx="10" fill="#fce7f3"/>
+  <text x="567" y="210" font-size="22" text-anchor="middle">&#127838;</text>
+  <text x="567" y="252" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#1e293b" text-anchor="middle">Bakery</text>
+  <text x="567" y="270" font-family="Arial,sans-serif" font-size="9" fill="#f97316" text-anchor="middle">60 Items</text>
+  <rect x="655" y="155" width="130" height="130" rx="12" fill="#f97316"/>
+  <text x="720" y="215" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#fff" text-anchor="middle">View</text>
+  <text x="720" y="232" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#fff" text-anchor="middle">All</text>
+  <text x="720" y="249" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#fff" text-anchor="middle">Categories</text>
+  <!-- Featured Products -->
+  <text x="15" y="320" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#1e293b">Today's Picks</text>
+  <rect x="15" y="335" width="245" height="80" rx="10" fill="#fff" stroke="#f4f4f5" stroke-width="1"/>
+  <rect x="25" y="343" width="54" height="54" rx="8" fill="#fef3c7"/>
+  <text x="52" y="376" font-size="18" text-anchor="middle">&#127817;</text>
+  <text x="92" y="360" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#1e293b">Organic Avocados</text>
+  <text x="92" y="376" font-family="Arial,sans-serif" font-size="9" fill="#6b7280">Pack of 4   Ready to eat</text>
+  <text x="200" y="405" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#166534">$5.99</text>
+  <rect x="275" y="335" width="245" height="80" rx="10" fill="#fff" stroke="#f4f4f5" stroke-width="1"/>
+  <rect x="285" y="343" width="54" height="54" rx="8" fill="#dcfce7"/>
+  <text x="312" y="376" font-size="18" text-anchor="middle">&#127813;</text>
+  <text x="352" y="360" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#1e293b">Cherry Tomatoes</text>
+  <text x="352" y="376" font-family="Arial,sans-serif" font-size="9" fill="#6b7280">Organic   500g   Grade A</text>
+  <text x="460" y="405" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#166534">$3.49</text>
+  <rect x="535" y="335" width="250" height="80" rx="10" fill="#fff" stroke="#f4f4f5" stroke-width="1"/>
+  <rect x="545" y="343" width="54" height="54" rx="8" fill="#e0f2fe"/>
+  <text x="572" y="376" font-size="18" text-anchor="middle">&#129385;</text>
+  <text x="612" y="360" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#1e293b">Fresh Blueberries</text>
+  <text x="612" y="376" font-family="Arial,sans-serif" font-size="9" fill="#6b7280">250g   Locally grown</text>
+  <text x="725" y="405" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#166534">$4.99</text>
+  <!-- Bottom -->
+  <rect x="15" y="432" width="770" height="1" fill="#dcfce7"/>
+  <text x="400" y="468" font-family="Arial,sans-serif" font-size="9" fill="#9ca3af" text-anchor="middle">Free delivery over $50   Freshness guaranteed   100% organic certification   Easy returns</text>
+</svg>

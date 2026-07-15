@@ -1,0 +1,17 @@
+node_modules/
+.agent/
+.claude/
+.codebuddy/
+.codex/
+.continue/
+.cursor/
+.gemini/
+.kiro/
+.opencode/
+.qoder/
+.roo/
+.trae/
+.windsurf/
+.mcp.json
+eslint.config.mjs
+templates-preview
