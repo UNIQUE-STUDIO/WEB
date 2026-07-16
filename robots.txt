@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://uniquewebstudio.com/sitemap.xml
