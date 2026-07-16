@@ -1,0 +1,23 @@
+# CODEOWNERS - Automatic Review Assignments
+
+# Unique Studio is the default owner for all files
+* @UNIQUE-STUDIO
+
+# Frontend files
+/index.html @UNIQUE-STUDIO
+/css/** @UNIQUE-STUDIO
+/js/** @UNIQUE-STUDIO
+
+# Templates
+/templates.json @UNIQUE-STUDIO
+/templates-preview/** @UNIQUE-STUDIO
+
+# Config & CI
+/.github/** @UNIQUE-STUDIO
+/manifest.json @UNIQUE-STUDIO
+/sw.js @UNIQUE-STUDIO
+/sitemap.xml @UNIQUE-STUDIO
+/robots.txt @UNIQUE-STUDIO
+
+# Docs
+/README.md @UNIQUE-STUDIO

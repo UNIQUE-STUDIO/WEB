@@ -1,0 +1,42 @@
+name: Template Request
+description: Request a new website template category or design
+title: "[Template]: "
+labels: ["templates", "enhancement"]
+assignees: []
+body:
+  - type: textarea
+    id: idea
+    attributes:
+      label: Template idea
+      description: Describe the template you'd like to see.
+      placeholder: "A photography portfolio with dark theme and masonry grid..."
+    validations:
+      required: true
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      options:
+        - Landing Page
+        - Ecommerce / Shop
+        - Corporate / Business
+        - Real Estate
+        - Medical / Health
+        - Food / Restaurant
+        - Portfolio / Creative
+        - New category (specify below)
+  - type: input
+    id: reference
+    attributes:
+      label: Reference URL
+      description: Link to a similar design for inspiration (optional)
+      placeholder: https://...
+  - type: textarea
+    id: features
+    attributes:
+      label: Must-have features
+      description: What features should this template include?
+      placeholder: |
+        - Parallax scrolling
+        - Contact form
+        - Gallery with lightbox

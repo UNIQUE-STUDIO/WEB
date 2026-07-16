@@ -1,0 +1,14 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Documentation
+    url: https://unique-studio.github.io/WEB/
+    about: Visit our website for documentation and templates.
+  - name: VK Community
+    url: https://vk.com/unique__business
+    about: Join our VK community for support and updates.
+  - name: Telegram
+    url: https://t.me/UNIQE_WEB_STUDIO
+    about: Contact us on Telegram.
+  - name: Email Support
+    url: mailto:uniqe.studio@yandex.ru
+    about: Send us an email for private inquiries.
