@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
+  <defs>
+    <linearGradient id="maxGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0088cc"/>
+      <stop offset="50%" stop-color="#6B3FA0"/>
+      <stop offset="100%" stop-color="#CC338B"/>
+    </linearGradient>
+  </defs>
+  <circle cx="24" cy="24" r="23" fill="url(#maxGrad)"/>
+  <text x="24" y="32" font-family="Arial,Helvetica,sans-serif" font-size="24" font-weight="bold" fill="#ffffff" text-anchor="middle">M</text>
+</svg>
