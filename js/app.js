@@ -215,7 +215,10 @@ let translations = {
         filter_landing: 'Лендинги',
         filter_shop: 'Магазины',
         filter_corp: 'Корпоративные',
-        search_placeholder: 'Поиск...',
+        filter_realestate: 'Недвижимость',
+        filter_medical: 'Медицина',
+        filter_food: 'Рестораны',
+        filter_portfolio: 'Портфолио',        search_placeholder: 'Поиск...',
         order_btn: 'Заказать',
         preview_btn: 'Демо',
         add_review_btn: 'Оставить отзыв',
@@ -451,7 +454,10 @@ let translations = {
         filter_landing: 'Landings',
         filter_shop: 'Shops',
         filter_corp: 'Corporate',
-        search_placeholder: 'Search...',
+        filter_realestate: 'Real Estate',
+        filter_medical: 'Medical',
+        filter_food: 'Food',
+        filter_portfolio: 'Portfolio',        search_placeholder: 'Search...',
         add_review_btn: 'Leave a review',
         edit_name: 'Your name',
         edit_email: 'Email',
@@ -852,17 +858,21 @@ function renderTemplatesPage() {
     const start = (templatesPage - 1) * templatesPerPage;
     const pageItems = allTemplates.slice(start, start + templatesPerPage);
 
-    const catCounts = { all: 0, landing: 0, ecommerce: 0, corporate: 0 };
+    const catCounts = { all: 0 };
     for (let cat in templatesData) {
         catCounts[cat] = templatesData[cat].length;
         catCounts.all += templatesData[cat].length;
     }
+    const filterKeys = { landing: 'filter_landing', ecommerce: 'filter_shop', corporate: 'filter_corp', realestate: 'filter_realestate', medical: 'filter_medical', food: 'filter_food', portfolio: 'filter_portfolio' };
+    let filterBtns = `<button class="filter-btn ${templatesFilterCategory === 'all' ? 'active' : ''}" data-filter="all">${t.filter_all || 'All'} (${catCounts.all})</button>`;
+    for (let cat in templatesData) {
+        const key = filterKeys[cat] || 'filter_' + cat;
+        const label = t[key] || cat.charAt(0).toUpperCase() + cat.slice(1);
+        filterBtns += `<button class="filter-btn ${templatesFilterCategory === cat ? 'active' : ''}" data-filter="${cat}">${label} (${catCounts[cat]})</button>`;
+    }
     const filterHtml = `
         <div class="template-filters" style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:20px; align-items:center;">
-            <button class="filter-btn ${templatesFilterCategory === 'all' ? 'active' : ''}" data-filter="all">${t.filter_all || 'All'} (${catCounts.all})</button>
-            <button class="filter-btn ${templatesFilterCategory === 'landing' ? 'active' : ''}" data-filter="landing">${t.filter_landing || 'Landing'} (${catCounts.landing})</button>
-            <button class="filter-btn ${templatesFilterCategory === 'ecommerce' ? 'active' : ''}" data-filter="ecommerce">${t.filter_shop || 'E-commerce'} (${catCounts.ecommerce})</button>
-            <button class="filter-btn ${templatesFilterCategory === 'corporate' ? 'active' : ''}" data-filter="corporate">${t.filter_corp || 'Corporate'} (${catCounts.corporate})</button>
+            ${filterBtns}
             <input type="text" id="templatesSearch" class="search-input" placeholder="${t.search_placeholder || 'Search...'}" value="${escapeHtml(templatesFilterSearch)}" style="width:200px; margin-left:auto;">
         </div>`;
 
