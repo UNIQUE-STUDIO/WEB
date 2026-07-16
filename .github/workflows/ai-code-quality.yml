@@ -1,0 +1,39 @@
+name: AI Code Quality Check
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  checks: write
+  pull-requests: write
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: HTML Validation
+        uses: Cyb3r-Jak3/html5validator-action@master
+        with:
+          root: .
+          css: false
+          format: gnu
+        continue-on-error: true
+
+      - name: Link Checker
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: --no-progress --max-concurrency 5 './**/*.html'
+          fail: false
+        continue-on-error: true
+
+      - name: Performance Budget Check
+        run: |
+          echo "=== File Size Report ==="
+          find . -name "*.css" -not -path "*/templates-preview/*" -not -path "*/.git/*" -exec wc -c {} \; | awk '{sum+=$1} END {printf "Total CSS: %d bytes (limit: 500KB)\n", sum; if(sum>500000) exit 1}'
+          find . -name "*.js" -not -path "*/templates-preview/*" -not -path "*/node_modules/*" -not -path "*/.git/*" -exec wc -c {} \; | awk '{sum+=$1} END {printf "Total JS: %d bytes (limit: 1MB)\n", sum; if(sum>1000000) exit 1}'

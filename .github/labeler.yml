@@ -1,0 +1,66 @@
+# Auto-labeler Configuration
+# Used by: .github/workflows/ai-pr-review.yml
+
+# Template/Landing related changes
+"category: landing":
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'templates-preview/clouds-*/**'
+          - 'templates-preview/tm-622/**'
+          - 'templates-preview/tm-623/**'
+          - 'templates-preview/html5up-dimension/**'
+
+"category: ecommerce":
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'templates-preview/tm-627/**'
+          - 'templates-preview/aroma-beauty*/**'
+          - 'templates-preview/brand-html5*/**'
+          - 'templates-preview/html5up-bigpicture/**'
+
+"category: corporate":
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'templates-preview/businessr*/**'
+          - 'templates-preview/target-multipurpose*/**'
+          - 'templates-preview/tm-626/**'
+          - 'templates-preview/html5up-editorial/**'
+
+"category: portfolio":
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'templates-preview/tm-620/**'
+          - 'templates-preview/html5up-massively/**'
+          - 'templates-preview/html5up-hyperspace/**'
+          - 'templates-preview/rider*/**'
+
+"templates":
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'templates.json'
+          - 'templates-preview/**'
+          - 'images/templates/**'
+
+"frontend":
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'index.html'
+          - 'css/**'
+          - 'js/**'
+          - 'images/**'
+
+"config":
+  - changed-files:
+      - any-glob-to-any-file:
+          - '.github/**'
+          - 'manifest.json'
+          - 'sw.js'
+          - 'robots.txt'
+          - 'sitemap.xml'
+
+"documentation":
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'README.md'
+          - 'LICENSE'
+          - '*.md'

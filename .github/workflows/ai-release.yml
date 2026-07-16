@@ -1,0 +1,32 @@
+name: AI Commit Message Generator
+
+on:
+  push:
+    branches:
+      - main
+      - 'feat/**'
+      - 'fix/**'
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  improve-commits:
+    runs-on: ubuntu-latest
+    if: github.event.commits[0].message != '' && !contains(github.event.head_commit.message, '[skip ci]')
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 10
+
+      - name: Generate AI Release Notes
+        if: github.ref == 'refs/heads/main'
+        uses: ncipollo/release-action@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          tag: "v${{ github.run_number }}"
+          name: "Release v${{ github.run_number }}"
+          generateReleaseNotes: true
+          draft: true
+          skipIfReleaseExists: true

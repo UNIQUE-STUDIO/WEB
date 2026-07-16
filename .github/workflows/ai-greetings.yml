@@ -1,0 +1,39 @@
+name: AI Greetings Bot
+
+on:
+  issues:
+    types: [opened]
+  pull_request_target:
+    types: [opened]
+
+permissions:
+  issues: write
+  pull-requests: write
+
+jobs:
+  greeting:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/first-interaction@v1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          issue-message: |
+            Welcome to Unique Web Studio!
+
+            Thank you for opening your first issue. Our team will review it shortly.
+
+            In the meantime, please ensure you've provided:
+            - Clear description of the issue
+            - Steps to reproduce (if applicable)
+            - Expected vs actual behavior
+
+            We appreciate your contribution!
+          pr-message: |
+            Thank you for your first pull request to Unique Web Studio!
+
+            Our automated checks are running:
+            - Code quality validation
+            - Security scanning
+            - Performance budget check
+
+            A maintainer will review your PR soon. In the meantime, ensure all checks pass.

@@ -1,0 +1,45 @@
+name: AI PR Reviewer (PR-Agent)
+
+on:
+  pull_request:
+    types: [opened, reopened, ready_for_review]
+  issue_comment:
+    types: [created]
+
+permissions:
+  contents: read
+  pull-requests: write
+  issues: write
+
+jobs:
+  pr_agent:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.sender.type != 'Bot' }}
+    steps:
+      - name: PR-Agent Review
+        uses: Codium-ai/pr-agent@main
+        env:
+          CONFIG_MODEL: "claude-3-5-haiku-latest"
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          OPENAI_KEY: ${{ secrets.OPENAI_API_KEY }}
+
+      - name: PR-Agent Describe
+        uses: Codium-ai/pr-agent@main
+        env:
+          CONFIG_MODEL: "claude-3-5-haiku-latest"
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          OPENAI_KEY: ${{ secrets.OPENAI_API_KEY }}
+        with:
+          commands: |
+            /describe
+            /review --pr_reviewer.extra_instructions="Focus on security, performance, and best practices."
+
+  auto_label:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request' && github.event.action == 'opened'
+    steps:
+      - uses: actions/labeler@v5
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          configuration-path: .github/labeler.yml
+          sync-labels: true
