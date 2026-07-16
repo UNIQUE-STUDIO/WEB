@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ledger Slideshow</title>
+</head>
+<!--
+  Ledger Slideshow
+  https://templatemo.com/tm-626-ledger-slideshow
+-->
+<body>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,300;1,8..60,400;1,8..60,500&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ee:cubic-bezier(0.19,1,0.22,1);
+  --eq:cubic-bezier(0.77,0,0.175,1);
+  --es:cubic-bezier(0.34,1.56,0.64,1);
+
+  /* Forest green + bone + tarnished gold */
+  --bone:#F5F0E6;
+  --bone-2:#EFE9DC;
+  --cream:#EDE5D3;
+  --green:#1F3A2E;
+  --green-2:#2F5042;
+  --green-3:#4A6B5C;
+  --gold:#B89968;
+  --gold-soft:#D4BB91;
+  --ink:#1F3A2E;
+  --ink-2:#3A4A42;
+  --ink-3:#6B7B73;
+  --rule:rgba(31,58,46,.16);
+  --rule-2:rgba(31,58,46,.08);
+
+  --font-serif:'Source Serif 4',Georgia,serif;
+  --font-mono:'JetBrains Mono','Courier New',monospace;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;width:100%;background:var(--bone);color:var(--ink);font-family:var(--font-serif);-webkit-font-smoothing:antialiased;overflow:hidden;font-feature-settings:'liga' 1,'kern' 1,'tnum' 1}
+
+/* Subtle paper texture - very faint warm noise */
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;background-image:radial-gradient(circle at 20% 30%,rgba(184,153,104,.04) 0%,transparent 50%),radial-gradient(circle at 80% 70%,rgba(31,58,46,.03) 0%,transparent 50%);opacity:.9}
+
+.deck{position:fixed;inset:0;overflow:hidden;z-index:1}
+.slide{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity 1.1s var(--eq),visibility 1.1s,transform 1.1s var(--eq);z-index:1;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;transform:translateX(30px)}
+.slide.active{opacity:1;visibility:visible;transform:translateX(0);transition-delay:.45s}
+.slide.exiting{transition-delay:0s;transform:translateX(-20px)}
+.slide-inner{min-height:100%;padding:100px 7vmin 80px;display:flex;flex-direction:column;position:relative}
+
+/* === Persistent chrome === */
+.brand{position:fixed;top:34px;left:42px;z-index:100;display:flex;align-items:baseline;gap:12px;font-family:var(--font-serif);font-weight:600;font-size:20px;letter-spacing:-.005em;color:var(--ink)}
+.brand .mark{display:inline-block;width:9px;height:9px;background:var(--gold);transform:translateY(-1px)}
+.brand .sub{font-family:var(--font-mono);font-weight:500;font-size:9px;letter-spacing:.28em;text-transform:uppercase;color:var(--ink-3)}
+
+.nav{position:fixed;top:30px;right:30px;display:flex;gap:4px;align-items:center;z-index:100;font-family:var(--font-mono)}
+.nav button{background:var(--bone);border:1px solid var(--ink);color:var(--ink);cursor:pointer;width:36px;height:36px;display:grid;place-items:center;border-radius:0;font-family:inherit;font-size:13px;font-weight:500;transition:all .25s var(--ee)}
+.nav button:hover{background:var(--ink);color:var(--bone)}
+.counter{font-size:11px;letter-spacing:.16em;padding:0 14px;color:var(--ink);min-width:78px;text-align:center;background:var(--bone);border:1px solid var(--ink);height:36px;display:flex;align-items:center;justify-content:center;font-weight:500;gap:3px}
+.counter .sep{color:var(--ink-3)}
+.counter strong{font-weight:600;color:var(--ink)}
+
+.section-tag{position:fixed;bottom:34px;left:42px;z-index:100;font-family:var(--font-mono);font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:var(--ink-3);display:flex;gap:12px;align-items:center;pointer-events:none;font-weight:500}
+.section-tag::before{content:'';width:24px;height:1px;background:var(--gold)}
+
+.tm-credit{position:fixed;bottom:34px;right:42px;z-index:100;font-family:var(--font-mono);font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:var(--ink-3);text-decoration:none;display:flex;gap:10px;align-items:center;transition:color .25s;font-weight:500}
+.tm-credit:hover{color:var(--ink)}
+.tm-credit::after{content:'';width:24px;height:1px;background:var(--gold)}
+
+/* === Popup menu - Table of Exhibits === */
+.menu-btn .icon{display:flex;flex-direction:column;gap:3px;align-items:center}
+.menu-btn .icon i{display:block;width:14px;height:1.5px;background:currentColor;transition:all .3s var(--ee)}
+.menu-btn.open .icon i:nth-child(1){transform:translateY(4.5px) rotate(45deg)}
+.menu-btn.open .icon i:nth-child(2){opacity:0}
+.menu-btn.open .icon i:nth-child(3){transform:translateY(-4.5px) rotate(-45deg)}
+
+.menu-overlay{position:fixed;inset:0;background:rgba(31,58,46,.55);z-index:200;opacity:0;visibility:hidden;transition:opacity .35s var(--ee),visibility .35s}
+.menu-overlay.open{opacity:1;visibility:visible}
+.menu-panel{position:fixed;top:50%;left:50%;transform:translate(-50%,-48%) scale(.97);width:min(600px,92vw);max-height:84vh;overflow-y:auto;overflow-x:hidden;background:var(--bone);border:1px solid var(--ink);z-index:201;opacity:0;visibility:hidden;transition:opacity .4s var(--ee),visibility .4s,transform .5s var(--es);box-shadow:0 30px 80px rgba(31,58,46,.2);scrollbar-width:thin;scrollbar-color:var(--gold) transparent}
+.menu-panel.open{opacity:1;visibility:visible;transform:translate(-50%,-50%) scale(1)}
+.menu-panel::-webkit-scrollbar{width:8px}
+.menu-panel::-webkit-scrollbar-track{background:transparent}
+.menu-panel::-webkit-scrollbar-thumb{background:var(--gold);border:2px solid transparent;background-clip:padding-box}
+.menu-panel::-webkit-scrollbar-thumb:hover{background:var(--green-2);background-clip:padding-box}
+.menu-header{padding:28px 32px 20px;border-bottom:1px solid var(--ink);display:flex;justify-content:space-between;align-items:baseline}
+.menu-header h3{font-family:var(--font-serif);font-weight:400;font-size:24px;letter-spacing:-.01em}
+.menu-header h3 em{font-style:italic;color:var(--gold)}
+.menu-header .menu-meta{font-family:var(--font-mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-3);font-weight:500}
+.menu-list{padding:4px 0;display:flex;flex-direction:column}
+.menu-item{display:grid;grid-template-columns:50px 1fr auto;gap:18px;padding:16px 32px;cursor:pointer;transition:all .2s var(--ee);border-bottom:1px solid var(--rule-2);align-items:center;position:relative}
+.menu-item:last-child{border-bottom:none}
+.menu-item:hover{background:var(--cream)}
+.menu-item:hover .mi-arr{transform:translateX(4px);color:var(--gold)}
+.menu-item.current{background:var(--cream)}
+.menu-item.current::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--gold)}
+.menu-item .mi-num{font-family:var(--font-mono);font-size:10px;color:var(--ink-3);letter-spacing:.18em;font-weight:500;text-transform:uppercase}
+.menu-item.current .mi-num{color:var(--gold)}
+.menu-item .mi-label{font-family:var(--font-serif);font-weight:400;font-size:17px;letter-spacing:-.005em;color:var(--ink);line-height:1.2}
+.menu-item .mi-label em{font-style:italic;color:var(--gold)}
+.menu-item .mi-sub{font-family:var(--font-serif);font-style:italic;font-size:12px;color:var(--ink-3);margin-top:3px;letter-spacing:.005em}
+.menu-item .mi-arr{color:var(--ink-3);font-size:13px;transition:all .25s;font-family:var(--font-mono);font-weight:500}
+.menu-footer{padding:18px 32px 22px;border-top:1px solid var(--ink);display:flex;justify-content:space-between;align-items:center;font-family:var(--font-mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3);font-weight:500}
+.menu-footer kbd{background:var(--cream);border:1px solid var(--rule);padding:3px 8px;font-family:var(--font-mono);font-size:9.5px;color:var(--ink);margin:0 4px;font-weight:600}
+
+/* === Reveal === */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity 1.1s var(--ee),transform 1.1s var(--ee)}
+.slide.active .reveal{opacity:1;transform:translateY(0)}
+.slide.active .reveal:nth-of-type(1){transition-delay:.55s}
+.slide.active .reveal:nth-of-type(2){transition-delay:.7s}
+.slide.active .reveal:nth-of-type(3){transition-delay:.85s}
+.slide.active .reveal:nth-of-type(4){transition-delay:1s}
+.slide.active .reveal:nth-of-type(5){transition-delay:1.15s}
+.slide.active .reveal:nth-of-type(6){transition-delay:1.3s}
+.slide.active .reveal:nth-of-type(7){transition-delay:1.45s}
+.slide.active .reveal:nth-of-type(8){transition-delay:1.6s}
+
+.mw{display:inline-block;overflow:hidden;vertical-align:bottom}
+.mw>span{display:inline-block;transform:translateY(110%);transition:transform 1.3s var(--ee)}
+.slide.active .mw>span{transform:translateY(0)}
+
+/* Hairline draw animation */
+.hr-draw{height:1px;background:var(--ink);transform-origin:left center;transform:scaleX(0);transition:transform 1.4s var(--ee)}
+.slide.active .hr-draw{transform:scaleX(1);transition-delay:.7s}
+
+/* === Shared elements === */
+.exhibit-label{font-family:var(--font-mono);font-weight:500;font-size:10px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:12px}
+.exhibit-label::before{content:'';width:24px;height:1px;background:var(--gold)}
+.h-display{font-family:var(--font-serif);font-weight:300;line-height:1;letter-spacing:-.025em;color:var(--ink)}
+.h-display em{font-style:italic;font-weight:300;color:var(--gold)}
+.body-lg{font-family:var(--font-serif);font-weight:400;font-size:clamp(16px,1.45vw,20px);line-height:1.65;color:var(--ink-2)}
+.body-md{font-family:var(--font-serif);font-size:14px;line-height:1.6;color:var(--ink-2)}
+.body-sm{font-family:var(--font-mono);font-size:11px;line-height:1.5;color:var(--ink-3);letter-spacing:.05em}
+
+.btn-primary{background:var(--ink);color:var(--bone);padding:14px 28px;font-family:var(--font-mono);font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;display:inline-flex;align-items:center;gap:12px;cursor:pointer;transition:all .3s var(--ee);border:1px solid var(--ink);text-decoration:none}
+.btn-primary:hover{background:var(--gold);border-color:var(--gold);color:var(--ink)}
+.btn-secondary{background:transparent;color:var(--ink);padding:14px 28px;font-family:var(--font-mono);font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;display:inline-flex;align-items:center;gap:12px;cursor:pointer;transition:all .3s var(--ee);border:1px solid var(--ink);text-decoration:none}
+.btn-secondary:hover{background:var(--ink);color:var(--bone)}
+
+/* === SLIDE 1 - COVER === */
+.s-cover{padding:100px 7vmin 80px;display:grid;grid-template-rows:auto 1fr auto;gap:3vmin}
+.s-cover-top{display:flex;justify-content:space-between;align-items:flex-start;padding-bottom:18px;border-bottom:1px solid var(--ink);font-family:var(--font-mono);font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:var(--ink-3);font-weight:500;gap:24px;flex-wrap:wrap}
+.s-cover-top .tl,.s-cover-top .tr{display:flex;flex-direction:column;gap:6px}
+.s-cover-top .tr{text-align:right;align-items:flex-end}
+.s-cover-top strong{color:var(--ink);font-weight:600;font-size:13px;letter-spacing:.18em}
+.s-cover-center{display:flex;flex-direction:column;justify-content:center;gap:36px;position:relative;padding:4vmin 0}
+.s-cover-eyebrow{font-family:var(--font-mono);font-weight:600;font-size:11px;letter-spacing:.4em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:14px}
+.s-cover-eyebrow::before,.s-cover-eyebrow::after{content:'';flex:0 0 32px;height:1px;background:var(--gold)}
+.s-cover h1{font-size:clamp(54px,9vw,140px);max-width:14ch;font-weight:300}
+.s-cover h1 em{font-family:var(--font-serif);font-style:italic;color:var(--gold);font-weight:300}
+.s-cover-sub{font-family:var(--font-serif);font-style:italic;font-weight:400;font-size:clamp(19px,1.9vw,28px);color:var(--ink-2);max-width:620px;line-height:1.4}
+.s-cover-start{align-self:flex-start;display:inline-flex;align-items:center;gap:14px;text-decoration:none;color:var(--ink);cursor:pointer;padding:18px 0;transition:gap .35s var(--ee);font-family:var(--font-mono);font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;border-bottom:1px solid var(--ink)}
+.s-cover-start:hover{gap:20px;color:var(--gold);border-color:var(--gold)}
+.s-cover-bot{display:grid;grid-template-columns:repeat(4,1fr);gap:5vmin;padding-top:20px;border-top:1px solid var(--ink)}
+.s-cover-bot .item{display:flex;flex-direction:column;gap:6px}
+.s-cover-bot .item .lbl{font-family:var(--font-mono);font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-3);font-weight:500}
+.s-cover-bot .item .val{font-family:var(--font-serif);font-weight:500;font-size:17px;letter-spacing:-.005em;color:var(--ink)}
+.s-cover-bot .item .val em{font-style:italic;color:var(--gold);font-weight:500}
+
+/* === SLIDE 2 - EXECUTIVE SUMMARY === */
+.s-summary{justify-content:flex-start}
+.s-summary-head{display:grid;grid-template-columns:2fr 1fr;gap:5vmin;align-items:end;padding-bottom:18px;border-bottom:1px solid var(--ink)}
+.s-summary-head h2{font-family:var(--font-serif);font-weight:300;font-size:clamp(36px,5vw,68px);line-height:1;letter-spacing:-.02em;margin-top:14px}
+.s-summary-head h2 em{font-style:italic;color:var(--gold)}
+.s-summary-head .meta{font-family:var(--font-mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3);text-align:right;font-weight:500;line-height:1.7}
+.s-summary-head .meta strong{color:var(--ink);font-weight:600;font-size:13px;letter-spacing:.16em;display:block;margin-bottom:6px}
+.s-summary-body{margin-top:4vmin;font-family:var(--font-serif);font-weight:400;font-size:clamp(16px,1.45vw,20px);line-height:1.7;color:var(--ink);column-count:2;column-gap:6vmin;column-rule:1px solid var(--rule)}
+.s-summary-body p{margin-bottom:14px;break-inside:avoid}
+.s-summary-body p:first-child::first-letter{font-family:var(--font-serif);font-weight:500;font-size:5.4em;line-height:.82;float:left;margin:8px 12px -4px 0;color:var(--gold)}
+.s-summary-body em{font-style:italic}
+.s-summary-body strong{font-weight:600;color:var(--ink)}
+.s-summary-sig{margin-top:24px;font-family:var(--font-serif);font-style:italic;font-size:16px;color:var(--ink-3);break-before:column;display:flex;flex-direction:column;gap:4px}
+.s-summary-sig strong{font-style:normal;font-weight:500;color:var(--ink);font-size:14px;letter-spacing:.01em}
+
+/* === SLIDE 3 - WHERE WE STAND === */
+.s-stand{gap:4vmin;justify-content:center}
+.s-stand-head{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;flex-wrap:wrap}
+.s-stand-head .sh-l{flex:1;min-width:300px}
+.s-stand-head h2{font-family:var(--font-serif);font-weight:300;font-size:clamp(36px,4.8vw,64px);line-height:1;letter-spacing:-.02em;margin-top:14px}
+.s-stand-head h2 em{font-style:italic;color:var(--gold)}
+.s-stand-head .sh-r{font-family:var(--font-serif);font-style:italic;font-size:17px;line-height:1.55;color:var(--ink-2);max-width:380px;border-left:1px solid var(--rule);padding-left:20px}
+.s-stand-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:5vmin;padding-top:24px;border-top:1px solid var(--ink)}
+.s-stand-chart{background:var(--cream);padding:32px 36px;display:flex;flex-direction:column;gap:18px;position:relative}
+.s-stand-chart .ex-lbl{font-family:var(--font-mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);font-weight:600}
+.s-stand-chart h3{font-family:var(--font-serif);font-weight:400;font-size:clamp(20px,2vw,28px);letter-spacing:-.01em;line-height:1.1}
+.s-stand-chart h3 em{font-style:italic;color:var(--gold)}
+.s-stand-chart-area{flex:1;min-height:220px;position:relative;display:flex;align-items:flex-end;gap:12px;padding:20px 0 30px;border-bottom:1px solid var(--rule)}
+.s-stand-bar{flex:1;display:flex;flex-direction:column;align-items:center;gap:8px;position:relative}
+.s-stand-bar .val{font-family:var(--font-mono);font-size:11px;font-weight:600;color:var(--ink);letter-spacing:.04em}
+.s-stand-bar .col{width:100%;background:var(--green-2);transform:scaleY(0);transform-origin:bottom;transition:transform 1.4s var(--ee)}
+.slide.active .s-stand-bar .col{transform:scaleY(1)}
+.slide.active .s-stand-bar:nth-child(1) .col{transition-delay:.9s}
+.slide.active .s-stand-bar:nth-child(2) .col{transition-delay:1s}
+.slide.active .s-stand-bar:nth-child(3) .col{transition-delay:1.1s}
+.slide.active .s-stand-bar:nth-child(4) .col{transition-delay:1.2s}
+.slide.active .s-stand-bar:nth-child(5) .col{transition-delay:1.3s}
+.s-stand-bar.gold .col{background:var(--gold)}
+.s-stand-bar .yr{position:absolute;bottom:-22px;font-family:var(--font-mono);font-size:9.5px;letter-spacing:.15em;color:var(--ink-3);font-weight:500}
+.s-stand-chart-note{font-family:var(--font-mono);font-size:9.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-3);font-weight:500;padding-top:14px}
+.s-stand-points{display:flex;flex-direction:column;gap:20px}
+.stand-point{padding-bottom:18px;border-bottom:1px solid var(--rule);display:flex;flex-direction:column;gap:8px}
+.stand-point:last-child{border-bottom:none}
+.stand-point .sp-num{font-family:var(--font-mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);font-weight:600}
+.stand-point h4{font-family:var(--font-serif);font-weight:500;font-size:17px;letter-spacing:-.005em;color:var(--ink);line-height:1.25}
+.stand-point p{font-family:var(--font-serif);font-size:15.5px;line-height:1.55;color:var(--ink-2)}
+
+/* === SLIDE 4 - THREE HORIZONS === */
+.s-horizons{gap:3.5vmin;justify-content:center}
+.s-horizons-head{padding-bottom:18px;border-bottom:1px solid var(--ink)}
+.s-horizons-head h2{font-family:var(--font-serif);font-weight:300;font-size:clamp(36px,4.8vw,64px);line-height:1;letter-spacing:-.02em;margin-top:14px}
+.s-horizons-head h2 em{font-style:italic;color:var(--gold)}
+.s-horizons-head p{font-family:var(--font-serif);font-style:italic;font-size:17px;color:var(--ink-2);max-width:720px;margin-top:14px;line-height:1.55}
+.horizons-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0}
+.horizon{padding:28px 32px;display:flex;flex-direction:column;gap:16px;border-right:1px solid var(--rule);min-height:280px}
+.horizon:last-child{border-right:none}
+.horizon:nth-child(2){background:var(--bone-2)}
+.horizon:nth-child(1){padding-left:0}
+.horizon:nth-child(3){padding-right:0}
+.horizon .h-year{font-family:var(--font-mono);font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);font-weight:600;display:flex;align-items:baseline;gap:10px}
+.horizon .h-year .big{font-family:var(--font-serif);font-style:italic;font-size:38px;color:var(--ink);font-weight:300;line-height:.9;letter-spacing:-.01em}
+.horizon h3{font-family:var(--font-serif);font-weight:400;font-size:clamp(22px,2.2vw,30px);line-height:1.1;letter-spacing:-.01em;margin-top:4px}
+.horizon h3 em{font-style:italic;color:var(--gold)}
+.horizon p{font-family:var(--font-serif);font-size:16px;line-height:1.55;color:var(--ink-2);font-weight:400}
+.horizon ul{list-style:none;display:flex;flex-direction:column;gap:8px;margin-top:6px;padding-top:14px;border-top:1px solid var(--rule)}
+.horizon ul li{font-family:var(--font-serif);font-size:15px;line-height:1.5;color:var(--ink);padding-left:18px;position:relative}
+.horizon ul li::before{content:'\002B';position:absolute;left:0;color:var(--gold);font-weight:600;font-family:var(--font-mono);font-size:11px;top:3px}
+.horizon .h-budget{margin-top:auto;padding-top:14px;border-top:1px solid var(--rule);display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3);font-weight:500}
+.horizon .h-budget strong{color:var(--ink);font-weight:600}
+
+/* === SLIDE 5 - STRATEGIC PILLARS === */
+.s-pillars{gap:3.5vmin;justify-content:center}
+.s-pillars-head{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;flex-wrap:wrap;padding-bottom:18px;border-bottom:1px solid var(--ink)}
+.s-pillars-head .sp-l{flex:1;min-width:300px}
+.s-pillars-head h2{font-family:var(--font-serif);font-weight:300;font-size:clamp(36px,4.8vw,64px);line-height:1;letter-spacing:-.02em;margin-top:14px}
+.s-pillars-head h2 em{font-style:italic;color:var(--gold)}
+.s-pillars-head .sp-r{font-family:var(--font-serif);font-style:italic;font-size:17px;color:var(--ink-2);max-width:360px;line-height:1.55;border-left:1px solid var(--rule);padding-left:20px}
+.pillars-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+.pillar{padding:26px 28px;display:flex;flex-direction:column;gap:14px;border-right:1px solid var(--rule);position:relative;min-height:300px}
+.pillar:last-child{border-right:none}
+.pillar:nth-child(1){padding-left:0}
+.pillar:nth-child(4){padding-right:0}
+.pillar .p-letter{font-family:var(--font-serif);font-style:italic;font-weight:400;font-size:64px;line-height:.85;color:var(--gold);letter-spacing:-.02em}
+.pillar h4{font-family:var(--font-serif);font-weight:500;font-size:18px;line-height:1.2;letter-spacing:-.005em;color:var(--ink)}
+.pillar h4 em{font-style:italic;color:var(--gold)}
+.pillar p{font-family:var(--font-serif);font-size:15px;line-height:1.55;color:var(--ink-2);flex:1}
+.pillar .p-alloc{padding-top:14px;border-top:1px solid var(--rule);font-family:var(--font-mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3);font-weight:500;display:flex;justify-content:space-between;align-items:baseline}
+.pillar .p-alloc strong{font-family:var(--font-serif);font-style:italic;font-weight:500;color:var(--ink);font-size:18px;letter-spacing:-.01em;text-transform:none}
+
+/* === SLIDE 6 - FINANCIAL OUTLOOK === */
+.s-financial{gap:3vmin;justify-content:center}
+.s-financial-head{padding-bottom:14px;border-bottom:1px solid var(--ink)}
+.s-financial-head h2{font-family:var(--font-serif);font-weight:300;font-size:clamp(34px,4.6vw,60px);line-height:1;letter-spacing:-.02em;margin-top:14px}
+.s-financial-head h2 em{font-style:italic;color:var(--gold)}
+.fin-table-wrap{overflow-x:auto;scrollbar-width:thin;scrollbar-color:var(--gold) transparent}
+.fin-table-wrap::-webkit-scrollbar{height:8px}
+.fin-table-wrap::-webkit-scrollbar-thumb{background:var(--gold);border:2px solid transparent;background-clip:padding-box}
+.fin-table{width:100%;border-collapse:collapse;font-family:var(--font-serif);min-width:680px;font-variant-numeric:tabular-nums}
+.fin-table thead th{padding:14px 16px;font-family:var(--font-mono);font-weight:500;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3);text-align:right;border-bottom:2px solid var(--ink);white-space:nowrap}
+.fin-table thead th:first-child{text-align:left;color:var(--ink)}
+.fin-table thead th.fy{color:var(--gold)}
+.fin-table tbody td{padding:14px 16px;font-size:14.5px;color:var(--ink);border-bottom:1px solid var(--rule);text-align:right;font-variant-numeric:tabular-nums}
+.fin-table tbody td:first-child{text-align:left;font-weight:500}
+.fin-table tbody td.fy{color:var(--ink);font-weight:600;background:var(--cream)}
+.fin-table tbody tr.subtotal td{border-top:1px solid var(--ink);border-bottom:none;font-weight:600;padding-top:18px}
+.fin-table tbody tr.total td{font-family:var(--font-serif);font-weight:600;font-size:16px;border-top:2px solid var(--ink);border-bottom:none;padding-top:16px}
+.fin-table tbody tr.total td.fy{color:var(--gold)}
+.fin-table tbody tr.indent td:first-child{padding-left:32px;font-weight:400;color:var(--ink-2);font-size:13.5px}
+.fin-table .delta-pos{color:var(--green-2);font-family:var(--font-mono);font-size:11px;font-weight:600;letter-spacing:.04em}
+.fin-table .delta-neg{color:#9b4a3c;font-family:var(--font-mono);font-size:11px;font-weight:600;letter-spacing:.04em}
+.fin-notes{display:grid;grid-template-columns:1fr 1fr;gap:24px;padding-top:14px;border-top:1px solid var(--rule)}
+.fin-notes .note{font-family:var(--font-serif);font-style:italic;font-size:12.5px;line-height:1.55;color:var(--ink-3)}
+.fin-notes .note strong{font-style:normal;color:var(--gold);font-weight:600;font-family:var(--font-mono);font-size:11px;letter-spacing:.05em;margin-right:6px}
+
+/* === SLIDE 7 - RISKS === */
+.s-risks{gap:3.5vmin;justify-content:center}
+.s-risks-head{padding-bottom:18px;border-bottom:1px solid var(--ink)}
+.s-risks-head h2{font-family:var(--font-serif);font-weight:300;font-size:clamp(36px,4.8vw,64px);line-height:1;letter-spacing:-.02em;margin-top:14px}
+.s-risks-head h2 em{font-style:italic;color:var(--gold)}
+.s-risks-head p{font-family:var(--font-serif);font-style:italic;font-size:17px;color:var(--ink-2);max-width:640px;margin-top:14px;line-height:1.55}
+.risks-list{display:flex;flex-direction:column;gap:0}
+.risk-row{display:grid;grid-template-columns:40px 1.2fr 1.5fr 80px;gap:24px;padding:22px 0;border-bottom:1px solid var(--rule);align-items:start;transition:padding .3s var(--ee),background .3s var(--ee)}
+.risk-row:hover{padding-left:14px;background:linear-gradient(90deg,var(--cream) 0%,transparent 100%)}
+.risk-row:last-child{border-bottom:none}
+.risk-row .rr-num{font-family:var(--font-mono);font-size:11px;letter-spacing:.18em;color:var(--gold);font-weight:600}
+.risk-row .rr-title{font-family:var(--font-serif);font-weight:500;font-size:17px;line-height:1.3;letter-spacing:-.005em;color:var(--ink)}
+.risk-row .rr-title em{font-style:italic;color:var(--gold)}
+.risk-row .rr-mitigation{font-family:var(--font-serif);font-size:16px;line-height:1.55;color:var(--ink-2)}
+.risk-row .rr-level{font-family:var(--font-mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3);text-align:right;font-weight:600}
+.risk-row .rr-level.high{color:#9b4a3c}
+.risk-row .rr-level.med{color:var(--gold)}
+.risk-row .rr-level.low{color:var(--green-2)}
+
+/* === SLIDE 8 - MORE FROM TEMPLATEMO === */
+.s-more{gap:3vmin;justify-content:center}
+.s-more-head{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;flex-wrap:wrap;padding-bottom:18px;border-bottom:1px solid var(--ink)}
+.s-more-head .sm-l{flex:1;min-width:300px}
+.s-more-head h2{font-family:var(--font-serif);font-weight:300;font-size:clamp(34px,4.6vw,60px);line-height:1;letter-spacing:-.02em;margin-top:14px}
+.s-more-head h2 em{font-style:italic;color:var(--gold)}
+.s-more-head .sm-r{font-family:var(--font-serif);font-style:italic;font-size:17px;color:var(--ink-2);max-width:360px;line-height:1.55}
+.s-more-head .sm-r a{color:var(--gold);text-decoration:none;border-bottom:1px solid var(--gold);transition:opacity .25s}
+.s-more-head .sm-r a:hover{opacity:.7}
+.more-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.more-card{display:flex;flex-direction:column;text-decoration:none;color:inherit;border:1px solid var(--rule);background:var(--bone);overflow:hidden;transition:transform .4s var(--ee),border-color .4s var(--ee),box-shadow .4s var(--ee);opacity:0}
+.more-card:hover{transform:translateY(-4px);border-color:var(--gold);box-shadow:0 14px 30px rgba(31,58,46,.1)}
+@keyframes moreCardIn{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+.slide.active .more-card{animation:moreCardIn 1s var(--ee) forwards}
+.slide.active .more-card:nth-child(1){animation-delay:.6s}
+.slide.active .more-card:nth-child(2){animation-delay:.75s}
+.slide.active .more-card:nth-child(3){animation-delay:.9s}
+.slide.active .more-card:nth-child(4){animation-delay:1.05s}
+.more-card .mc-thumb{aspect-ratio:16/10;overflow:hidden;position:relative;background:var(--cream);border-bottom:1px solid var(--rule)}
+.more-card .mc-thumb img{width:100%;height:100%;object-fit:cover;object-position:top center;transition:transform .8s var(--ee);display:block;filter:saturate(.92)}
+.more-card:hover .mc-thumb img{transform:scale(1.05);transform-origin:top center}
+.more-card .mc-body{padding:18px 22px 22px;display:flex;flex-direction:column;gap:8px;flex:1}
+.more-card .mc-tag{font-family:var(--font-mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3);display:flex;align-items:center;gap:8px;font-weight:600}
+.more-card .mc-tag::before{content:'';width:6px;height:6px;background:var(--gold)}
+.more-card .mc-title{font-family:var(--font-serif);font-weight:500;font-size:18px;letter-spacing:-.005em;line-height:1.2;color:var(--ink)}
+.more-card .mc-desc{font-family:var(--font-serif);font-size:13px;line-height:1.5;color:var(--ink-2);flex:1}
+.more-card .mc-cta{font-family:var(--font-mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink);font-weight:600;display:inline-flex;align-items:center;gap:6px;border-bottom:1px solid var(--ink);padding-bottom:4px;align-self:flex-start;margin-top:4px;transition:all .3s}
+.more-card:hover .mc-cta{color:var(--gold);border-color:var(--gold);gap:10px}
+
+/* === SLIDE 9 - SIGN-OFF === */
+.s-signoff{padding:100px 7vmin 80px;display:grid;grid-template-rows:auto 1fr auto;gap:4vmin}
+.s-signoff-top{display:flex;justify-content:space-between;align-items:center;padding-bottom:18px;border-bottom:1px solid var(--ink);font-family:var(--font-mono);font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:var(--ink-3);font-weight:500}
+.s-signoff-top strong{color:var(--gold);font-weight:600}
+.s-signoff-center{display:grid;grid-template-columns:1.4fr 1fr;gap:6vmin;align-items:center}
+.s-signoff-headline h2{font-family:var(--font-serif);font-weight:300;font-size:clamp(52px,8vw,128px);line-height:.95;letter-spacing:-.025em;color:var(--ink)}
+.s-signoff-headline h2 em{font-style:italic;color:var(--gold)}
+.s-signoff-headline p{margin-top:24px;font-family:var(--font-serif);font-style:italic;font-weight:400;font-size:clamp(17px,1.55vw,22px);line-height:1.55;color:var(--ink-2);max-width:540px}
+.s-signoff-card{background:var(--cream);padding:34px 36px;display:flex;flex-direction:column;gap:20px}
+.s-signoff-card h3{font-family:var(--font-mono);font-weight:600;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold)}
+.s-signoff-rows{display:flex;flex-direction:column;gap:14px}
+.s-signoff-rows .row{display:flex;flex-direction:column;gap:3px;padding-bottom:12px;border-bottom:1px solid var(--rule)}
+.s-signoff-rows .row:last-child{border-bottom:none}
+.s-signoff-rows .row .lbl{font-family:var(--font-mono);font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-3);font-weight:500}
+.s-signoff-rows .row .val{font-family:var(--font-serif);font-weight:500;font-size:16px;letter-spacing:-.005em;color:var(--ink)}
+.s-signoff-rows .row .val em{font-style:italic;color:var(--gold)}
+.s-signoff-rows .row .val a{color:inherit;text-decoration:none}
+.s-signoff-rows .row .val a:hover{color:var(--gold)}
+.s-signoff-cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:4px}
+.s-signoff-notes{font-family:var(--font-serif);font-style:italic;font-weight:400;font-size:15px;line-height:1.55;color:var(--ink-3);max-width:780px;padding-top:14px;border-top:1px solid var(--rule)}
+.s-signoff-notes a{color:var(--gold);text-decoration:none;border-bottom:1px solid var(--gold)}
+.s-signoff-notes a:hover{opacity:.7}
+.s-signoff-bot{display:flex;justify-content:space-between;align-items:center;padding-top:18px;border-top:1px solid var(--ink);font-family:var(--font-mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-3);flex-wrap:wrap;gap:14px;font-weight:500}
+.s-signoff-bot strong{color:var(--ink);font-weight:600}
+
+/* Slide-level scrollbar */
+.slide{scrollbar-width:thin;scrollbar-color:var(--gold) transparent}
+.slide::-webkit-scrollbar{width:8px;height:8px}
+.slide::-webkit-scrollbar-track{background:transparent}
+.slide::-webkit-scrollbar-thumb{background:var(--gold);border:2px solid transparent;background-clip:padding-box}
+.slide::-webkit-scrollbar-thumb:hover{background:var(--green-2);background-clip:padding-box}
+
+/* In-flow footer */
+.slide-footer{display:none}
+
+/* Responsive */
+@media (max-width:1024px){
+  .s-summary-head{grid-template-columns:1fr;gap:18px}
+  .s-summary-head .meta{text-align:left}
+  .s-summary-body{column-count:1}
+  .s-stand-grid{grid-template-columns:1fr;gap:32px}
+  .horizons-grid{grid-template-columns:1fr;gap:0}
+  .horizon{border-right:none;border-bottom:1px solid var(--rule);padding:24px 0 !important}
+  .horizon:last-child{border-bottom:none}
+  .horizon:nth-child(2){background:transparent;padding:24px 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+  .pillars-grid{grid-template-columns:repeat(2,1fr);gap:0}
+  .pillar{padding:24px 24px !important;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+  .pillar:nth-child(2n){border-right:none}
+  .pillar:nth-child(n+3){border-bottom:none}
+  .more-grid{grid-template-columns:repeat(2,1fr)}
+  .fin-notes{grid-template-columns:1fr;gap:14px}
+  .s-signoff-center{grid-template-columns:1fr;gap:32px}
+  .s-cover-bot{grid-template-columns:repeat(2,1fr);gap:24px}
+  .risk-row{grid-template-columns:30px 1fr 80px;gap:14px}
+  .risk-row .rr-mitigation{grid-column:2/4;font-size:13.5px;color:var(--ink-3)}
+}
+@media (max-width:640px){
+  html,body{overflow:hidden}
+  .slide-inner,.s-cover,.s-signoff{padding:76px 18px 24px}
+  .brand{top:20px;left:20px;font-size:16px}
+  .nav{top:18px;right:18px;gap:4px}
+  .nav button{width:32px;height:32px;font-size:12px}
+  .counter{padding:0 10px;font-size:10px;height:32px;min-width:68px}
+  .section-tag,.tm-credit{display:none}
+  .more-grid{grid-template-columns:1fr}
+  .pillars-grid{grid-template-columns:1fr}
+  .pillar{padding:20px 0 !important;border-right:none}
+  .s-cover-bot{grid-template-columns:1fr 1fr;gap:18px}
+  .risk-row{grid-template-columns:1fr;gap:6px;padding:18px 0}
+  .risk-row .rr-num,.risk-row .rr-level{font-size:9.5px}
+  .risk-row .rr-mitigation{grid-column:auto}
+  .s-summary-body p:first-child::first-letter{font-size:4.2em}
+  /* in-flow footer */
+  .slide-footer{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:24px 0 0;margin-top:auto;border-top:1px solid var(--rule);font-family:var(--font-mono);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3);flex-wrap:wrap;font-weight:500}
+  .slide-footer .sf-section{display:flex;align-items:center;gap:8px}
+  .slide-footer .sf-section::before{content:'';width:18px;height:1px;background:var(--gold)}
+  .slide-footer .sf-credit{display:flex;align-items:center;gap:7px;color:var(--ink-3);text-decoration:none}
+  .slide-footer .sf-credit::after{content:'';width:18px;height:1px;background:var(--gold)}
+  .menu-panel{width:94vw;max-height:88vh}
+  .menu-header{padding:20px 22px 16px}
+  .menu-item{padding:14px 22px;gap:14px;grid-template-columns:40px 1fr auto}
+  .menu-item .mi-num{font-size:9.5px}
+  .menu-item .mi-label{font-size:15px}
+  .menu-footer{padding:14px 22px 18px;font-size:9px}
+}
+@media (max-height:500px) and (orientation:landscape){
+  .slide-inner,.s-cover,.s-signoff{padding:60px 28px 40px}
+  .nav{top:14px;right:14px}
+  .brand{top:14px;left:16px}
+  .section-tag{bottom:14px;left:16px}
+  .tm-credit{bottom:14px;right:16px}
+}
+</style>
+</head>
+<body>
+
+<div class="brand">
+  <span class="mark"></span>Ledger<span class="sub">Mmxxvi</span>
+</div>
+
+<div class="section-tag"><span id="sectionName">Cover</span></div>
+
+<a class="tm-credit" href="https://templatemo.com" target="_blank" rel="nofollow noopener">
+  <span>Design: TemplateMo</span>
+</a>
+
+<div class="deck" id="deck">
+
+  <!-- ============ 1. COVER ============ -->
+  <section class="slide active" data-section="Cover" data-sub="Statement of plan" data-exhibit="">
+    <div class="slide-inner s-cover">
+      <div class="s-cover-top reveal">
+        <div class="tl">
+          <span>Linden &amp; Hare <strong>Advisory</strong></span>
+          <span>Strategic Practice Group</span>
+        </div>
+        <div class="tr">
+          <span><strong>Confidential</strong></span>
+          <span>For internal Board distribution</span>
+        </div>
+      </div>
+      <div class="s-cover-center">
+        <div class="s-cover-eyebrow reveal">Strategic Plan</div>
+        <h1 class="h-display reveal">
+          <span class="mw"><span>A <em>considered</em></span></span><br>
+          <span class="mw"><span>path forward.</span></span>
+        </h1>
+        <p class="s-cover-sub reveal">Three-year strategic plan for the period MMXXVI to MMXXVIII, prepared by the partnership for the Board of Directors.</p>
+        <a class="s-cover-start reveal" data-goto="2">
+          <span>Begin reading</span>
+          <span>&rarr;</span>
+        </a>
+      </div>
+      <div class="s-cover-bot">
+        <div class="item reveal">
+          <span class="lbl">Prepared by</span>
+          <span class="val"><em>Linden</em> &amp; Hare</span>
+        </div>
+        <div class="item reveal">
+          <span class="lbl">Period</span>
+          <span class="val">MMXXVI to MMXXVIII</span>
+        </div>
+        <div class="item reveal">
+          <span class="lbl">Classification</span>
+          <span class="val">Board confidential</span>
+        </div>
+        <div class="item reveal">
+          <span class="lbl">Issue</span>
+          <span class="val"><em>No. 03</em></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 2. EXECUTIVE SUMMARY ============ -->
+  <section class="slide" data-section="Executive Summary" data-sub="A letter from the partnership" data-exhibit="I">
+    <div class="slide-inner s-summary">
+      <div class="s-summary-head">
+        <div>
+          <div class="exhibit-label reveal">Exhibit I</div>
+          <h2 class="reveal">A letter from the <em>partnership</em>.</h2>
+        </div>
+        <div class="meta reveal">
+          <strong>To the Board</strong>
+          <span>From the Managing Partners</span>
+          <span>Drafted &middot; March MMXXVI</span>
+          <span>Pages &middot; 02 of 09</span>
+        </div>
+      </div>
+      <div class="s-summary-body reveal">
+        <p>This document represents the partnership's considered view on where Linden &amp; Hare should direct its energy over the coming three years. It is the product of nine months of deliberation, conversations with every senior practitioner in the firm, and an honest accounting of the headwinds we expect to navigate.</p>
+        <p>Three priorities organise our thinking. <strong>First</strong>, we will deepen the four practice areas where we hold genuine advantage. <strong>Second</strong>, we will commit to a deliberate succession of partners through MMXXVIII. <strong>Third</strong>, we will rebuild our institutional knowledge systems so that what one partner learns becomes what every partner knows.</p>
+        <p>None of this is dramatic. It is, in our view, the right kind of unglamorous, and a long bet on the unfashionable proposition that <em>fewer, better engagements</em> remain the soundest foundation a firm of our character can stand on.</p>
+        <p class="s-summary-sig">
+          <strong>The Managing Partners</strong>
+          <em>Linden &amp; Hare Advisory</em>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 3. WHERE WE STAND ============ -->
+  <section class="slide" data-section="Where We Stand" data-sub="Current-state analysis" data-exhibit="II">
+    <div class="slide-inner s-stand">
+      <div class="s-stand-head">
+        <div class="sh-l">
+          <div class="exhibit-label reveal">Exhibit II</div>
+          <h2 class="reveal">Where we <em>stand</em>, plainly.</h2>
+        </div>
+        <p class="sh-r reveal">A reading of the partnership's position at the close of fiscal year MMXXV, against the four metrics we have agreed to be measured by.</p>
+      </div>
+      <div class="s-stand-grid">
+        <div class="s-stand-chart reveal">
+          <span class="ex-lbl">Figure 2.1 &middot; Revenue per partner</span>
+          <h3>Revenue per <em>partner</em>, five-year trend.</h3>
+          <div class="s-stand-chart-area">
+            <div class="s-stand-bar"><span class="val">$2.1M</span><span class="col" style="height:55%"></span><span class="yr">MMXXI</span></div>
+            <div class="s-stand-bar"><span class="val">$2.4M</span><span class="col" style="height:64%"></span><span class="yr">MMXXII</span></div>
+            <div class="s-stand-bar"><span class="val">$2.6M</span><span class="col" style="height:70%"></span><span class="yr">MMXXIII</span></div>
+            <div class="s-stand-bar"><span class="val">$2.9M</span><span class="col" style="height:78%"></span><span class="yr">MMXXIV</span></div>
+            <div class="s-stand-bar gold"><span class="val">$3.2M</span><span class="col" style="height:88%"></span><span class="yr">MMXXV</span></div>
+          </div>
+          <span class="s-stand-chart-note">Source &middot; Internal P&amp;L, audited &middot; Year-end figures</span>
+        </div>
+        <div class="s-stand-points">
+          <div class="stand-point reveal">
+            <span class="sp-num">i.</span>
+            <h4>Profitability is healthy.</h4>
+            <p>Revenue per partner up 52% over the planning horizon. Margins steady at 28%.</p>
+          </div>
+          <div class="stand-point reveal">
+            <span class="sp-num">ii.</span>
+            <h4>Headcount is constrained.</h4>
+            <p>Senior associate ranks have thinned. Three partners approach retirement before MMXXVIII.</p>
+          </div>
+          <div class="stand-point reveal">
+            <span class="sp-num">iii.</span>
+            <h4>Sector concentration is rising.</h4>
+            <p>Financial services now represents 62% of fee income. Higher than we are comfortable with.</p>
+          </div>
+          <div class="stand-point reveal">
+            <span class="sp-num">iv.</span>
+            <h4>Brand strength has compounded.</h4>
+            <p>Inbound mandate inquiries up 41% year-on-year. Client retention remains above 94%.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 4. THREE HORIZONS ============ -->
+  <section class="slide" data-section="The Three Horizons" data-sub="Year-by-year priorities" data-exhibit="III">
+    <div class="slide-inner s-horizons">
+      <div class="s-horizons-head">
+        <div class="exhibit-label reveal">Exhibit III</div>
+        <h2 class="reveal">The three <em>horizons</em>.</h2>
+        <p class="reveal">A sequenced plan, with each year's priorities chosen to enable the next. The intent is not to do more, but to do the right thing in the right order.</p>
+      </div>
+      <div class="horizons-grid">
+        <div class="horizon reveal">
+          <div class="h-year"><span class="big">i.</span>MMXXVI</div>
+          <h3>Consolidate the <em>core</em>.</h3>
+          <p>The year we cease activities that do not earn their place. Practice review, partner alignment, internal systems audit.</p>
+          <ul>
+            <li>Practice portfolio review</li>
+            <li>Senior associate hiring (six positions)</li>
+            <li>Knowledge platform RFP</li>
+            <li>Exit non-core advisory lines</li>
+          </ul>
+          <div class="h-budget"><span>Investment</span><strong>$4.2M</strong></div>
+        </div>
+        <div class="horizon reveal">
+          <div class="h-year"><span class="big">ii.</span>MMXXVII</div>
+          <h3>Diversify the <em>book</em>.</h3>
+          <p>Reduce financial-services concentration toward a target of 45%. Build out the industrial and energy practice groups.</p>
+          <ul>
+            <li>Industrial sector lead hire</li>
+            <li>Energy transition practice launch</li>
+            <li>Two lateral partner additions</li>
+            <li>European office feasibility study</li>
+          </ul>
+          <div class="h-budget"><span>Investment</span><strong>$6.8M</strong></div>
+        </div>
+        <div class="horizon reveal">
+          <div class="h-year"><span class="big">iii.</span>MMXXVIII</div>
+          <h3>Plan the <em>succession</em>.</h3>
+          <p>Three partner retirements scheduled. New partner class promoted. Operational handover complete by Q4.</p>
+          <ul>
+            <li>Partner class of MMXXVIII promoted</li>
+            <li>Retirement transitions for three principals</li>
+            <li>Knowledge platform fully deployed</li>
+            <li>Five-year plan refresh begins</li>
+          </ul>
+          <div class="h-budget"><span>Investment</span><strong>$3.6M</strong></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 5. STRATEGIC PILLARS ============ -->
+  <section class="slide" data-section="Strategic Pillars" data-sub="Four lettered initiatives" data-exhibit="IV">
+    <div class="slide-inner s-pillars">
+      <div class="s-pillars-head">
+        <div class="sp-l">
+          <div class="exhibit-label reveal">Exhibit IV</div>
+          <h2 class="reveal">Four <em>pillars</em>, lettered.</h2>
+        </div>
+        <p class="sp-r reveal">The four initiatives that, together, constitute the strategic plan in full. Each is owned by a named partner and measured against an explicit budget.</p>
+      </div>
+      <div class="pillars-grid">
+        <div class="pillar reveal">
+          <span class="p-letter">A.</span>
+          <h4>Practice <em>depth</em>.</h4>
+          <p>A formal commitment to four practice areas. Anything outside is referred to trusted partner firms rather than declined or contorted.</p>
+          <div class="p-alloc"><span>Allocation</span><strong>$3.4M</strong></div>
+        </div>
+        <div class="pillar reveal">
+          <span class="p-letter">B.</span>
+          <h4>Partner <em>succession</em>.</h4>
+          <p>A three-year, transparent path for the promotion of seven senior associates to partner, with explicit milestones and review checkpoints.</p>
+          <div class="p-alloc"><span>Allocation</span><strong>$1.8M</strong></div>
+        </div>
+        <div class="pillar reveal">
+          <span class="p-letter">C.</span>
+          <h4>Knowledge <em>systems</em>.</h4>
+          <p>A modernised internal knowledge platform so that engagement insights compound across the partnership rather than evaporate with each closing memo.</p>
+          <div class="p-alloc"><span>Allocation</span><strong>$2.6M</strong></div>
+        </div>
+        <div class="pillar reveal">
+          <span class="p-letter">D.</span>
+          <h4>Sector <em>balance</em>.</h4>
+          <p>A measured rebalancing of fee composition. Reduce financial-services concentration to a target of 45% over the plan horizon.</p>
+          <div class="p-alloc"><span>Allocation</span><strong>$2.2M</strong></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 6. FINANCIAL OUTLOOK ============ -->
+  <section class="slide" data-section="Financial Outlook" data-sub="Three-year forecast" data-exhibit="V">
+    <div class="slide-inner s-financial">
+      <div class="s-financial-head">
+        <div class="exhibit-label reveal">Exhibit V</div>
+        <h2 class="reveal">Financial <em>outlook</em>, in figures.</h2>
+      </div>
+      <div class="fin-table-wrap reveal">
+        <table class="fin-table">
+          <thead>
+            <tr>
+              <th>USD, millions</th>
+              <th>FY MMXXV<br><span style="font-weight:400;color:var(--ink-3)">Actual</span></th>
+              <th>FY MMXXVI<br><span style="font-weight:400;color:var(--ink-3)">Forecast</span></th>
+              <th>FY MMXXVII<br><span style="font-weight:400;color:var(--ink-3)">Forecast</span></th>
+              <th class="fy">FY MMXXVIII<br><span style="font-weight:400">Target</span></th>
+              <th>3-yr &#916;</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Fee income, gross</td>
+              <td>74.2</td>
+              <td>78.5</td>
+              <td>86.3</td>
+              <td class="fy">96.8</td>
+              <td><span class="delta-pos">+30.5%</span></td>
+            </tr>
+            <tr class="indent">
+              <td>Financial services<sup>&dagger;</sup></td>
+              <td>46.0</td>
+              <td>45.8</td>
+              <td>44.7</td>
+              <td class="fy">43.6</td>
+              <td><span class="delta-neg">&minus;5.2%</span></td>
+            </tr>
+            <tr class="indent">
+              <td>Industrial &amp; energy</td>
+              <td>18.4</td>
+              <td>22.1</td>
+              <td>28.9</td>
+              <td class="fy">36.4</td>
+              <td><span class="delta-pos">+97.8%</span></td>
+            </tr>
+            <tr class="indent">
+              <td>Other practices</td>
+              <td>9.8</td>
+              <td>10.6</td>
+              <td>12.7</td>
+              <td class="fy">16.8</td>
+              <td><span class="delta-pos">+71.4%</span></td>
+            </tr>
+            <tr class="subtotal">
+              <td>Operating expense</td>
+              <td>(53.5)</td>
+              <td>(58.2)</td>
+              <td>(62.8)</td>
+              <td class="fy">(68.4)</td>
+              <td><span class="delta-pos">+27.9%</span></td>
+            </tr>
+            <tr class="total">
+              <td>Distributable earnings<sup>&Dagger;</sup></td>
+              <td>20.7</td>
+              <td>20.3</td>
+              <td>23.5</td>
+              <td class="fy">28.4</td>
+              <td><span class="delta-pos">+37.2%</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="fin-notes">
+        <div class="note"><strong>&dagger;</strong>Financial services concentration falls to 45.0% of gross fees by FY MMXXVIII, in line with the rebalancing target set under Pillar D.</div>
+        <div class="note"><strong>&Dagger;</strong>Distributable earnings shown before partner draws. Audited figures available on request from the Office of the Managing Partner.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 7. RISKS ============ -->
+  <section class="slide" data-section="Risks" data-sub="Identified risks and mitigation" data-exhibit="VI">
+    <div class="slide-inner s-risks">
+      <div class="s-risks-head">
+        <div class="exhibit-label reveal">Exhibit VI</div>
+        <h2 class="reveal">Risks &amp; their <em>mitigation</em>.</h2>
+        <p class="reveal">Six material risks identified by the partnership, with the response strategy assigned to each. Reviewed quarterly by the Board's Risk Committee.</p>
+      </div>
+      <div class="risks-list">
+        <div class="risk-row reveal">
+          <span class="rr-num">i.</span>
+          <div class="rr-title">Partner <em>departure</em> during transition.</div>
+          <div class="rr-mitigation">Retention package adjustments for senior partners in MMXXVI. Quarterly partnership health surveys begin Q2.</div>
+          <span class="rr-level high">High</span>
+        </div>
+        <div class="risk-row reveal">
+          <span class="rr-num">ii.</span>
+          <div class="rr-title">Sector <em>concentration</em> shock.</div>
+          <div class="rr-mitigation">Active rebalancing toward 45% under Pillar D. Industrial sector lead in place by Q3 MMXXVI.</div>
+          <span class="rr-level high">High</span>
+        </div>
+        <div class="risk-row reveal">
+          <span class="rr-num">iii.</span>
+          <div class="rr-title">Knowledge platform <em>delivery</em> slippage.</div>
+          <div class="rr-mitigation">Phased rollout with parallel legacy systems. Independent technology review at MMXXVII midpoint.</div>
+          <span class="rr-level med">Medium</span>
+        </div>
+        <div class="risk-row reveal">
+          <span class="rr-num">iv.</span>
+          <div class="rr-title">Lateral hire <em>integration</em> failure.</div>
+          <div class="rr-mitigation">Eighteen-month integration program for all lateral partners. Cultural fit prioritized over revenue ramp.</div>
+          <span class="rr-level med">Medium</span>
+        </div>
+        <div class="risk-row reveal">
+          <span class="rr-num">v.</span>
+          <div class="rr-title">European office <em>feasibility</em> overruns.</div>
+          <div class="rr-mitigation">Hard budget cap of $1.2M for MMXXVII study. Go/no-go decision before FY MMXXVIII commitments.</div>
+          <span class="rr-level low">Low</span>
+        </div>
+        <div class="risk-row reveal">
+          <span class="rr-num">vi.</span>
+          <div class="rr-title">Macro-economic <em>downturn</em>.</div>
+          <div class="rr-mitigation">Cash reserves maintained at twelve months operating expense. Practice mix already weighted toward defensive sectors.</div>
+          <span class="rr-level low">Low</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 8. MORE FROM TEMPLATEMO ============ -->
+  <section class="slide" data-section="Related templates" data-sub="From the TemplateMo collection" data-exhibit="VII">
+    <div class="slide-inner s-more">
+      <div class="s-more-head">
+        <div class="sm-l">
+          <div class="exhibit-label reveal">Exhibit VII</div>
+          <h2 class="reveal">Related <em>templates</em>.</h2>
+        </div>
+        <p class="sm-r reveal">Four free HTML &amp; CSS templates from the same collection. The full catalog is at <a href="https://templatemo.com" target="_blank" rel="nofollow noopener">templatemo.com</a>.</p>
+      </div>
+      <div class="more-grid">
+        <a class="more-card" href="https://templatemo.com/tm-625-folio-slideshow" target="_blank" rel="nofollow noopener">
+          <div class="mc-thumb"><img src="https://templatemo.com/thumbnails-360/tm-625-folio-slideshow.jpg" alt="Folio Slideshow template" loading="lazy"></div>
+          <div class="mc-body">
+            <div class="mc-tag">TM-625 &middot; Slideshow</div>
+            <div class="mc-title">Folio Slideshow</div>
+            <div class="mc-desc">A nine-slide photography studio portfolio deck with serif typography, drop caps, and editorial page-turn transitions.</div>
+            <span class="mc-cta">View template &rarr;</span>
+          </div>
+        </a>
+        <a class="more-card" href="https://templatemo.com/tm-624-lustro-slideshow" target="_blank" rel="nofollow noopener">
+          <div class="mc-thumb"><img src="https://templatemo.com/thumbnails-360/tm-624-lustro-slideshow.jpg" alt="Lustro Slideshow template" loading="lazy"></div>
+          <div class="mc-body">
+            <div class="mc-tag">TM-624 &middot; Slideshow</div>
+            <div class="mc-title">Lustro Slideshow</div>
+            <div class="mc-desc">A nine-slide product launch deck with dark glassmorphic styling, popup menu, and a comparison table.</div>
+            <span class="mc-cta">View template &rarr;</span>
+          </div>
+        </a>
+        <a class="more-card" href="https://templatemo.com/tm-622-clearwave" target="_blank" rel="nofollow noopener">
+          <div class="mc-thumb"><img src="https://templatemo.com/thumbnails-360/tm-622-clearwave.jpg" alt="Clearwave template" loading="lazy"></div>
+          <div class="mc-body">
+            <div class="mc-tag">TM-622 &middot; SaaS</div>
+            <div class="mc-title">Clearwave</div>
+            <div class="mc-desc">A free SaaS landing page template built with pure HTML, CSS, and JavaScript. No frameworks, no dependencies.</div>
+            <span class="mc-cta">View template &rarr;</span>
+          </div>
+        </a>
+        <a class="more-card" href="https://templatemo.com/tm-621-luminary" target="_blank" rel="nofollow noopener">
+          <div class="mc-thumb"><img src="https://templatemo.com/thumbnails-360/tm-621-luminary.jpg" alt="Luminary template" loading="lazy"></div>
+          <div class="mc-body">
+            <div class="mc-tag">TM-621 &middot; SaaS / B2B</div>
+            <div class="mc-title">Luminary</div>
+            <div class="mc-desc">Designed for SaaS platforms, workflow automation tools, and B2B technology product launches.</div>
+            <span class="mc-cta">View template &rarr;</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 9. SIGN-OFF ============ -->
+  <section class="slide" data-section="Sign-off" data-sub="Board adoption" data-exhibit="VIII">
+    <div class="slide-inner s-signoff">
+      <div class="s-signoff-top">
+        <span>End of plan &middot; Issue <strong>No. 03</strong></span>
+        <span>Drafted March, MMXXVI</span>
+      </div>
+      <div class="s-signoff-center">
+        <div class="s-signoff-headline">
+          <h2 class="h-display">
+            <span class="mw"><span>For the Board's</span></span><br>
+            <span class="mw"><span><em>consideration</em>.</span></span>
+          </h2>
+          <p>The partnership respectfully submits this plan for Board adoption. We welcome questions, amendments, and dissent at the meeting of March the twenty-eighth.</p>
+        </div>
+        <div class="s-signoff-card">
+          <h3>Office of the Managing Partner</h3>
+          <div class="s-signoff-rows">
+            <div class="row">
+              <span class="lbl">Firm</span>
+              <span class="val"><em>Linden</em> &amp; Hare Advisory</span>
+            </div>
+            <div class="row">
+              <span class="lbl">Correspondence</span>
+              <span class="val"><a href="mailto:office@lindenhare.firm">office@lindenhare.firm</a></span>
+            </div>
+            <div class="row">
+              <span class="lbl">Telephone</span>
+              <span class="val">+1 (212) 555 0184</span>
+            </div>
+            <div class="row">
+              <span class="lbl">Established</span>
+              <span class="val">MCMXLVII</span>
+            </div>
+          </div>
+          <div class="s-signoff-cta">
+            <a class="btn-primary" data-goto="1">Return to cover</a>
+          </div>
+        </div>
+      </div>
+      <div class="s-signoff-notes">
+        Set in <em>Source Serif 4</em> with metadata in JetBrains Mono. Numerical figures rendered with tabular-figure variants. This document is confidential and intended for Board distribution only; please do not reproduce without the express permission of the Office of the Managing Partner.
+      </div>
+      <div class="s-signoff-bot">
+        <span><strong>Linden &amp; Hare Advisory</strong> &middot; Strategic Plan MMXXVI</span>
+        <span>Designed in collaboration with TemplateMo</span>
+        <span>Issue No. 03 &middot; Confidential</span>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- POPUP MENU -->
+<div class="menu-overlay" id="menuOverlay"></div>
+<div class="menu-panel" id="menuPanel" role="dialog" aria-label="Table of exhibits">
+  <div class="menu-header">
+    <h3>Table of <em>exhibits</em></h3>
+    <div class="menu-meta"><span id="menuCurr">01</span> / <span id="menuTotal">09</span></div>
+  </div>
+  <div class="menu-list" id="menuList"></div>
+  <div class="menu-footer">
+    <span>Press <kbd>M</kbd> to toggle</span>
+    <span><kbd>1</kbd>&ndash;<kbd>9</kbd> direct jump</span>
+  </div>
+</div>
+
+<!-- NAV -->
+<div class="nav">
+  <button id="prev" aria-label="Previous slide">&larr;</button>
+  <button id="menuBtn" class="menu-btn" aria-label="Open table of exhibits"><span class="icon"><i></i><i></i><i></i></span></button>
+  <div class="counter">p. <strong id="curr">01</strong> <span class="sep">of</span> <span id="total">09</span></div>
+  <button id="next" aria-label="Next slide">&rarr;</button>
+</div>
+
+<script>
+(function(){
+  var slides=document.querySelectorAll('.slide');
+  var currEl=document.getElementById('curr');
+  var totalEl=document.getElementById('total');
+  var menuCurrEl=document.getElementById('menuCurr');
+  var menuTotalEl=document.getElementById('menuTotal');
+  var sectionEl=document.getElementById('sectionName');
+  var prevBtn=document.getElementById('prev');
+  var nextBtn=document.getElementById('next');
+  var menuBtn=document.getElementById('menuBtn');
+  var menuOverlay=document.getElementById('menuOverlay');
+  var menuPanel=document.getElementById('menuPanel');
+  var menuList=document.getElementById('menuList');
+  var idx=0,isAnimating=false,menuOpen=false;
+  totalEl.textContent=String(slides.length).padStart(2,'0');
+  menuTotalEl.textContent=String(slides.length).padStart(2,'0');
+
+  /* Inject in-flow footer (mobile only) */
+  slides.forEach(function(s){
+    var inner=s.querySelector('.slide-inner');
+    if(!inner)return;
+    var footer=document.createElement('div');
+    footer.className='slide-footer';
+    footer.innerHTML='<div class="sf-section"><span>'+s.dataset.section+'</span></div>'+
+      '<a class="sf-credit" href="https://templatemo.com" target="_blank" rel="nofollow noopener"><span>Design: TemplateMo</span></a>';
+    inner.appendChild(footer);
+  });
+
+  /* Build menu items - show "Exhibit X" prefix for items that have it */
+  slides.forEach(function(s,i){
+    var item=document.createElement('div');
+    item.className='menu-item';
+    item.dataset.idx=i;
+    var prefix=s.dataset.exhibit?'Exhibit '+s.dataset.exhibit:'Cover';
+    item.innerHTML='<span class="mi-num">'+prefix+'</span>'+
+      '<div><div class="mi-label">'+s.dataset.section+'</div>'+
+      (s.dataset.sub?'<div class="mi-sub">'+s.dataset.sub+'</div>':'')+'</div>'+
+      '<span class="mi-arr">&rarr;</span>';
+    item.addEventListener('click',function(){go(i);closeMenu()});
+    menuList.appendChild(item);
+  });
+  var menuItems=menuList.querySelectorAll('.menu-item');
+  function refreshMenuActive(){menuItems.forEach(function(el,i){el.classList.toggle('current',i===idx)})}
+  refreshMenuActive();
+
+  function go(t){
+    if(isAnimating||t===idx||t<0||t>=slides.length)return;
+    isAnimating=true;
+    var old=slides[idx],next=slides[t];
+    old.classList.add('exiting');
+    old.classList.remove('active');
+    setTimeout(function(){
+      next.classList.add('active');
+      next.scrollTop=0;
+      old.classList.remove('exiting');
+      idx=t;
+      var n=String(idx+1).padStart(2,'0');
+      currEl.textContent=n;
+      menuCurrEl.textContent=n;
+      sectionEl.textContent=next.dataset.section;
+      refreshMenuActive();
+      setTimeout(function(){isAnimating=false},1100);
+    },380);
+  }
+
+  function openMenu(){menuOpen=true;menuOverlay.classList.add('open');menuPanel.classList.add('open');menuBtn.classList.add('open')}
+  function closeMenu(){menuOpen=false;menuOverlay.classList.remove('open');menuPanel.classList.remove('open');menuBtn.classList.remove('open')}
+  function toggleMenu(){menuOpen?closeMenu():openMenu()}
+
+  prevBtn.addEventListener('click',function(){go(idx-1)});
+  nextBtn.addEventListener('click',function(){go(idx+1)});
+  menuBtn.addEventListener('click',toggleMenu);
+  menuOverlay.addEventListener('click',closeMenu);
+
+  document.addEventListener('click',function(e){
+    var el=e.target.closest('[data-goto]');
+    if(!el)return;
+    e.preventDefault();
+    var n=parseInt(el.dataset.goto,10);
+    if(!isNaN(n)&&n>=1&&n<=slides.length)go(n-1);
+  });
+
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Escape'&&menuOpen){closeMenu();return}
+    if(menuOpen)return;
+    if(e.key==='ArrowRight')go(idx+1);
+    if(e.key==='ArrowLeft')go(idx-1);
+    if(e.key===' '){e.preventDefault();go(idx+1)}
+    if(e.key==='m'||e.key==='M')toggleMenu();
+    if(/^[1-9]$/.test(e.key))go(parseInt(e.key,10)-1);
+  });
+
+  /* Touch swipe */
+  var tx=0,ty=0,scrolling=false;
+  document.addEventListener('touchstart',function(e){tx=e.touches[0].clientX;ty=e.touches[0].clientY;scrolling=false},{passive:true});
+  document.addEventListener('touchmove',function(e){
+    var dx=Math.abs(e.touches[0].clientX-tx);
+    var dy=Math.abs(e.touches[0].clientY-ty);
+    if(dy>dx)scrolling=true;
+  },{passive:true});
+  document.addEventListener('touchend',function(e){
+    if(scrolling||menuOpen)return;
+    var dx=e.changedTouches[0].clientX-tx;
+    var dy=Math.abs(e.changedTouches[0].clientY-ty);
+    if(Math.abs(dx)>60&&dy<40)dx<0?go(idx+1):go(idx-1);
+  },{passive:true});
+})();
+</script>
+
+</body>
+</html>
