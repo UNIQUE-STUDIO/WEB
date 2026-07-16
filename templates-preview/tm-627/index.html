@@ -1,0 +1,1105 @@
+<!--
+  HYPRLUV Slideshow
+  https://templatemo.com/tm-627-hyprluv-slideshow
+-->
+<!DOCTYPE html>
+<!--
+  TM-627 / HYPRLUV
+  Electronic Press Kit (EPK) slideshow template
+  Free HTML template by TemplateMo (https://templatemo.com)
+  Single file, vanilla JS. No build step, no dependencies.
+  Loud Y2K / editorial poster aesthetic. Hot orange, acid lime, black.
+  Replace all demo copy, stats, dates, and contact details before publishing.
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>HYPRLUV // Electronic Press Kit · TM-627 · TemplateMo</title>
+<meta name="description" content="HYPRLUV, a loud Y2K hyperpop electronic press kit. Free single page slideshow HTML template TM-627 from TemplateMo.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;500;600;700&family=VT323&display=swap" rel="stylesheet">
+<style>
+  /* TOKENS */
+  :root{
+    --ink:#0B0B0B;
+    --ink-2:#161616;
+    --orange:#FF5826;   /* hot orange, softened a touch from #FF4A00 */
+    --lime:#D0F53A;     /* acid lime, softened a touch from #D4FF00 */
+    --bone:#F3EFE3;
+    --pink:#FF3D7F;
+    --white:#FFFFFF;
+
+    --font-display:"Anton", "Arial Narrow", sans-serif;
+    --font-body:"Space Grotesk", system-ui, sans-serif;
+    --font-pixel:"VT323", ui-monospace, monospace;
+
+    --pop:cubic-bezier(0.16, 1, 0.3, 1);      /* snappy expo out */
+    --snap:cubic-bezier(0.34, 1.56, 0.64, 1); /* slight overshoot */
+
+    --bar:60px;          /* top bar height, desktop */
+    --foot:50px;         /* fixed footer bar height, desktop */
+    --edge:clamp(18px, 3.6vw, 50px);
+  }
+
+  /* RESET */
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    font-family:var(--font-body);
+    background:var(--ink);
+    color:var(--white);
+    line-height:1.4;
+    overflow:hidden;            /* deck owns the scroll */
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+  a{color:inherit;text-decoration:none}
+  button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
+  img{max-width:100%;display:block}
+  ::selection{background:var(--lime);color:var(--ink)}
+
+  /* CUSTOM SCROLLBARS */
+  .scrollable{scrollbar-width:thin;scrollbar-color:var(--orange) transparent}
+  .scrollable::-webkit-scrollbar{width:9px;height:9px}
+  .scrollable::-webkit-scrollbar-track{background:rgba(255,255,255,.06)}
+  .scrollable::-webkit-scrollbar-thumb{
+    background:var(--orange);
+    border:2px solid var(--ink);
+    border-radius:0;
+  }
+  .scrollable::-webkit-scrollbar-thumb:hover{background:var(--lime)}
+  .s-lime .scrollable,.s-bone .scrollable{scrollbar-color:var(--ink) transparent}
+  .s-lime .scrollable::-webkit-scrollbar-thumb,
+  .s-bone .scrollable::-webkit-scrollbar-thumb{background:var(--ink);border-color:transparent}
+
+  /* TOP BAR */
+  .topbar{
+    position:fixed;top:0;left:0;right:0;z-index:60;
+    height:var(--bar);
+    display:flex;align-items:center;justify-content:space-between;
+    padding:0 var(--edge);
+    background:var(--ink);
+    border-bottom:3px solid var(--lime);
+  }
+  .mark{
+    font-family:var(--font-display);
+    font-size:clamp(19px,2.2vw,26px);
+    letter-spacing:.5px;line-height:1;color:var(--white);
+    display:inline-flex;align-items:center;gap:.4em;
+  }
+  .mark b{color:var(--orange)}
+  .mark .dot{
+    width:.42em;height:.42em;background:var(--lime);border-radius:50%;
+    display:inline-block;animation:blink 1.4s steps(2) infinite;
+  }
+  @keyframes blink{50%{opacity:0}}
+
+  .topright{display:flex;align-items:center;gap:clamp(12px,2vw,20px)}
+  .counter{
+    font-family:var(--font-pixel);
+    font-size:21px;letter-spacing:1px;color:var(--lime);
+    white-space:nowrap;
+  }
+  .counter .now{color:var(--white)}
+  .menu-btn{
+    font-family:var(--font-pixel);font-size:21px;letter-spacing:2px;
+    background:var(--orange);color:var(--ink);
+    padding:5px 15px 3px;border:3px solid var(--ink);
+    box-shadow:4px 4px 0 var(--lime);
+    transition:transform .18s var(--snap),box-shadow .18s var(--pop);
+  }
+  .menu-btn:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--lime)}
+  .menu-btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--lime)}
+
+  /* progress bar under the top bar */
+  .progress{
+    position:fixed;top:var(--bar);left:0;right:0;z-index:60;height:5px;
+    background:rgba(255,255,255,.08);
+  }
+  .progress i{
+    display:block;height:100%;width:11.11%;
+    background:var(--orange);
+    transition:width .5s var(--pop);
+  }
+
+  /* DECK + SLIDES */
+  .deck{position:fixed;inset:0;overflow:hidden}
+  .slide{
+    position:absolute;inset:0;
+    opacity:0;visibility:hidden;
+    /* the background only fades, the content carries the staggered motion */
+    transition:opacity .26s var(--pop),visibility 0s linear .26s;
+  }
+  .slide.active{
+    opacity:1;visibility:visible;z-index:1;
+    /* incoming background fades in just after the outgoing one is gone */
+    transition:opacity .3s var(--pop) .24s,visibility 0s;
+  }
+  .slide.leaving{
+    opacity:0;z-index:2;        /* outgoing sits on top and fades out first */
+    transition:opacity .26s var(--pop),visibility 0s linear .26s;
+  }
+
+  /* scrollable inner column. content centers, footer pins to the bottom */
+  .inner{
+    position:relative;z-index:1;
+    height:100%;width:100%;
+    overflow-y:auto;overflow-x:hidden;
+    padding:calc(var(--bar) + 18px) var(--edge) calc(var(--foot) + 12px);
+    display:flex;flex-direction:column;
+  }
+  .wrap{width:100%;max-width:1120px;margin:auto}   /* auto margins center the block vertically */
+
+  /* one persistent background layer behind every slide. it animates its
+     background-color directly, so a colour change is a true hue to hue blend
+     (orange straight to black) with no opacity crossfade and no muddy dip */
+  .stage-bg{
+    position:absolute;inset:0;z-index:0;
+    background-color:var(--ink);
+    transition:background-color .62s var(--pop);
+    will-change:background-color;
+  }
+
+  /* slides keep their TEXT colour but the background is owned by .stage-bg,
+     so slide opacity only fades the content, never the colour */
+  .s-ink   {color:var(--white)}
+  .s-orange{color:var(--ink)}
+  .s-lime  {color:var(--ink)}
+  .s-bone  {color:var(--ink)}
+
+  /* halftone atmosphere so slides are never flat */
+  .s-ink::before,.s-orange::before,.s-lime::before,.s-bone::before{
+    content:"";position:absolute;inset:0;pointer-events:none;z-index:0;
+    background-image:radial-gradient(currentColor 1px,transparent 1.4px);
+    background-size:26px 26px;opacity:.06;
+  }
+
+  /* TYPE HELPERS */
+  .kicker{
+    font-family:var(--font-pixel);font-size:clamp(16px,1.7vw,21px);
+    letter-spacing:3px;text-transform:uppercase;
+    display:inline-block;
+  }
+  .huge{
+    font-family:var(--font-display);
+    font-size:clamp(50px,11vw,142px);
+    line-height:.86;letter-spacing:-.5px;text-transform:uppercase;
+  }
+  .big{
+    font-family:var(--font-display);
+    font-size:clamp(30px,4.6vw,58px);
+    line-height:1.08;letter-spacing:.5px;text-transform:uppercase;  /* loose enough that the two lines never touch */
+  }
+  .mid{
+    font-family:var(--font-display);
+    font-size:clamp(24px,3.4vw,42px);
+    line-height:.98;letter-spacing:.5px;text-transform:uppercase;
+  }
+  .lead{font-size:clamp(16px,1.55vw,20px);line-height:1.52;max-width:60ch}
+  .mono{font-family:var(--font-pixel);font-size:19px;letter-spacing:1px}
+  .hl-lime{color:var(--lime)}
+  .hl-orange{color:var(--orange)}
+  .hl-pink{color:var(--pink)}
+
+  /* STICKERS, STARS, TAGS, BUTTONS */
+  .sticker{
+    display:inline-block;
+    font-family:var(--font-pixel);font-size:clamp(14px,1.5vw,19px);
+    letter-spacing:1.5px;text-transform:uppercase;
+    padding:6px 12px 3px;
+    border:3px solid var(--ink);
+    background:var(--lime);color:var(--ink);
+    box-shadow:4px 4px 0 var(--ink);
+    transform:rotate(-4deg);
+  }
+  .sticker.o{background:var(--orange);color:var(--ink)}
+  .sticker.p{background:var(--pink);color:var(--ink)}
+  .sticker.w{background:var(--white);color:var(--ink)}
+  .sticker.r2{transform:rotate(3deg)}
+  .sticker.r3{transform:rotate(-8deg)}
+
+  .star{display:inline-block;width:1em;height:1em;vertical-align:middle}
+  .spin{animation:spin 6s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+
+  .tags{display:flex;flex-wrap:wrap;gap:9px;margin-top:6px}
+  .tag{
+    font-family:var(--font-pixel);font-size:16px;letter-spacing:1px;
+    text-transform:uppercase;
+    padding:4px 11px 2px;border:2px solid currentColor;
+  }
+
+  .btnrow{display:flex;flex-wrap:wrap;gap:12px;margin-top:6px}
+  .btn{
+    display:inline-flex;align-items:center;gap:.6em;
+    font-family:var(--font-display);font-size:clamp(16px,1.6vw,20px);
+    letter-spacing:.5px;text-transform:uppercase;
+    padding:11px 19px 9px;border:3px solid var(--ink);
+    background:var(--ink);color:var(--lime);
+    box-shadow:5px 5px 0 var(--lime);
+    transition:transform .18s var(--snap),box-shadow .18s var(--pop),background .18s,color .18s;
+  }
+  .btn:hover{transform:translate(-3px,-3px);box-shadow:8px 8px 0 var(--lime)}
+  .btn:active{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--lime)}
+  .btn.fill{background:var(--lime);color:var(--ink);box-shadow:5px 5px 0 var(--ink)}
+  .btn.fill:hover{box-shadow:8px 8px 0 var(--ink)}
+  .btn.ghost{background:transparent;color:currentColor;box-shadow:5px 5px 0 currentColor}
+  .s-orange .btn,.s-lime .btn,.s-bone .btn{border-color:var(--ink)}
+
+  /* MARQUEE (in-flow, full bleed to the viewport edges) */
+  .marquee{
+    overflow:hidden;white-space:nowrap;width:100%;
+    border-top:3px solid currentColor;border-bottom:3px solid currentColor;
+    padding:7px 0;
+  }
+  .marquee.bleed{width:calc(100% + 2 * var(--edge));max-width:none;margin-left:calc(-1 * var(--edge));margin-right:calc(-1 * var(--edge))}
+  .marquee .track{
+    display:inline-block;white-space:nowrap;
+    font-family:var(--font-display);font-size:clamp(22px,3.2vw,38px);
+    letter-spacing:1px;text-transform:uppercase;
+    animation:scroll 22s linear infinite;will-change:transform;
+  }
+  .marquee.rtl .track{animation-direction:reverse}
+  .marquee .track span{padding:0 .35em}
+  .marquee .track .s{color:var(--orange)}
+  @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  .marquee.thin .track{font-family:var(--font-pixel);font-size:clamp(18px,2vw,24px);letter-spacing:2px}
+
+  /* SLIDE 1 COVER */
+  .cover{display:flex;flex-direction:column;gap:clamp(12px,2.2vh,24px)}
+  .cover .toprow{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap}
+  .cover .stickwrap{display:flex;gap:9px;flex-wrap:wrap}
+  .cover .title{position:relative}
+  .cover .title .huge{color:var(--lime)}
+  .cover .title .huge .o{color:var(--orange)}
+  .cover .floatstar{
+    position:absolute;right:0;top:-.15em;width:clamp(54px,10vw,128px);height:auto;color:var(--orange);
+  }
+  .cover .botrow{display:flex;justify-content:space-between;align-items:flex-end;gap:18px;flex-wrap:wrap}
+
+  /* SLIDE 2 BIO */
+  .bio-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:clamp(20px,3.4vw,46px);align-items:start}
+  .bio-meta{display:flex;flex-direction:column;gap:14px}
+  .meta-card{border:3px solid var(--ink);padding:13px 15px;background:rgba(255,255,255,.18)}
+  .meta-card .k{font-family:var(--font-pixel);font-size:16px;letter-spacing:1px;text-transform:uppercase;opacity:.8}
+  .meta-card .v{font-family:var(--font-display);font-size:clamp(20px,2.1vw,27px);text-transform:uppercase;line-height:1}
+
+  /* SLIDE 3 RELEASES */
+  .rel-hero{
+    border:3px solid var(--lime);padding:clamp(14px,2.4vw,22px);
+    display:flex;justify-content:space-between;gap:18px;align-items:flex-end;flex-wrap:wrap;
+    background:linear-gradient(120deg,rgba(255,88,38,.16),rgba(208,245,58,.10));
+    margin-bottom:10px;
+  }
+  .rel-list{display:flex;flex-direction:column}
+  .rel-row{
+    display:grid;grid-template-columns:1fr auto auto;gap:16px;align-items:baseline;
+    padding:8px 4px;border-top:2px solid rgba(255,255,255,.18);
+    transition:padding-left .2s var(--pop),color .2s;
+  }
+  .rel-row:hover{padding-left:14px;color:var(--lime)}
+  .rel-row .t{font-family:var(--font-display);font-size:clamp(20px,2.6vw,32px);text-transform:uppercase;line-height:1}
+  .rel-row .ty{font-family:var(--font-pixel);font-size:17px;letter-spacing:1px;text-transform:uppercase;opacity:.8}
+  .rel-row .yr{font-family:var(--font-pixel);font-size:20px;letter-spacing:1px;color:var(--orange)}
+
+  /* SLIDE 4 STATS */
+  .stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;border:3px solid var(--ink);background:var(--ink)}
+  .stat{background:var(--lime);color:var(--ink);padding:clamp(12px,2vw,22px);min-height:80px;display:flex;flex-direction:column;justify-content:center}
+  .stat .n{font-family:var(--font-display);font-size:clamp(38px,5.2vw,74px);line-height:.82;letter-spacing:-1px}
+  .stat .l{font-family:var(--font-pixel);font-size:clamp(14px,1.5vw,18px);letter-spacing:1.5px;text-transform:uppercase;margin-top:5px}
+  .stat:hover{background:var(--orange)}
+  .stat:hover .n{color:var(--ink)}
+
+  /* SLIDE 5 PRESS */
+  .quote-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .quote{border:3px solid var(--ink);padding:clamp(13px,2vw,22px);position:relative;background:var(--white)}
+  .quote .mk{font-family:var(--font-display);font-size:54px;line-height:.5;color:var(--orange);height:.5em;display:block}
+  .quote p{font-size:clamp(16px,1.8vw,20px);font-weight:600;line-height:1.3;margin:4px 0 9px}
+  .quote .src{font-family:var(--font-pixel);font-size:17px;letter-spacing:1.5px;text-transform:uppercase}
+  .quote:nth-child(2),.quote:nth-child(3){background:var(--lime)}
+
+  /* SLIDE 6 TOUR */
+  .tour-list{display:flex;flex-direction:column;border-top:3px solid var(--orange)}
+  .tour-row{
+    display:grid;grid-template-columns:auto 1fr auto auto;gap:clamp(12px,2.2vw,30px);align-items:center;
+    padding:9px 4px;border-bottom:2px solid rgba(255,255,255,.16);
+    transition:background .2s,padding-left .2s var(--pop);
+  }
+  .tour-row:hover{background:rgba(255,88,38,.12);padding-left:12px}
+  .tour-row .date{font-family:var(--font-pixel);font-size:clamp(17px,1.9vw,22px);letter-spacing:1px;color:var(--lime);white-space:nowrap}
+  .tour-row .city{font-family:var(--font-display);font-size:clamp(20px,2.8vw,34px);text-transform:uppercase;line-height:1}
+  .tour-row .venue{font-family:var(--font-pixel);font-size:17px;letter-spacing:1px;text-transform:uppercase;opacity:.8;text-align:right}
+  .status{
+    font-family:var(--font-pixel);font-size:16px;letter-spacing:1.5px;text-transform:uppercase;
+    padding:4px 11px 2px;border:2px solid currentColor;white-space:nowrap;text-align:center;justify-self:end;
+  }
+  .status.sold{background:var(--orange);color:var(--ink);border-color:var(--ink)}
+  .status.few{background:var(--pink);color:var(--ink);border-color:var(--ink)}
+  .status.on{color:var(--lime)}
+
+  /* SLIDE 7 GALLERY: portrait press photos, dynamic height, scrolls sideways so the shots can stay large */
+  .gal-strip{
+    display:flex;gap:14px;margin-top:14px;
+    height:clamp(360px, 56vh, 900px);     /* dynamic: up to 900, never below 360 */
+    overflow-x:auto;overflow-y:hidden;
+    scroll-snap-type:x proximity;padding-bottom:12px;
+    scrollbar-width:thin;scrollbar-color:var(--ink) transparent;
+  }
+  .gal-strip::-webkit-scrollbar{height:10px}
+  .gal-strip::-webkit-scrollbar-track{background:rgba(11,11,11,.12)}
+  .gal-strip::-webkit-scrollbar-thumb{background:var(--ink)}
+  /* slide 07 step arrows: scroll the strip one photo at a time */
+  .gal-nav{display:flex;gap:8px}
+  .gal-arrow{
+    width:44px;height:44px;display:grid;place-items:center;
+    background:var(--ink);color:var(--lime);border:3px solid var(--ink);
+    transition:transform .16s var(--snap),opacity .16s,background .16s,color .16s;
+  }
+  .gal-arrow:hover{background:var(--lime);color:var(--ink)}
+  .gal-arrow:active{transform:scale(.9)}
+  .gal-arrow:disabled{opacity:.32;cursor:not-allowed}
+  .gal-arrow svg{width:22px;height:22px}
+  .shot{
+    flex:0 0 auto;height:100%;aspect-ratio:3/4;       /* portrait */
+    scroll-snap-align:start;position:relative;overflow:hidden;
+    border:3px solid var(--ink);display:flex;align-items:flex-end;
+    transition:transform .25s var(--snap);
+  }
+  .shot:hover{transform:translateY(-6px)}
+  .shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
+  .shot .cap{
+    position:relative;z-index:1;width:100%;font-family:var(--font-pixel);font-size:15px;letter-spacing:1px;
+    padding:6px 9px 4px;background:var(--ink);color:var(--lime);text-transform:uppercase;
+  }
+  /* coloured block shows while the sample photo loads or if it is blocked */
+  .shot:nth-child(1){background:linear-gradient(150deg,var(--orange),var(--pink))}
+  .shot:nth-child(2){background:linear-gradient(150deg,var(--lime),var(--orange))}
+  .shot:nth-child(3){background:linear-gradient(150deg,var(--pink),var(--lime))}
+  .shot:nth-child(4){background:linear-gradient(150deg,var(--orange),var(--lime))}
+  .shot:nth-child(5){background:linear-gradient(150deg,var(--lime),var(--pink))}
+  .shot:nth-child(6){background:linear-gradient(150deg,var(--pink),var(--orange))}
+  .shot:nth-child(7){background:linear-gradient(150deg,var(--orange),var(--ink))}
+  .shot:nth-child(8){background:linear-gradient(150deg,var(--lime),var(--ink))}
+
+  /* SLIDE 8 CONTACT */
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .cc{border:3px solid var(--lime);padding:11px 14px;background:rgba(208,245,58,.06)}
+  .cc .k{font-family:var(--font-pixel);font-size:16px;letter-spacing:1.5px;text-transform:uppercase;color:var(--lime)}
+  .cc .v{font-family:var(--font-display);font-size:clamp(20px,2.3vw,28px);text-transform:uppercase;line-height:1.05;margin-top:4px}
+  .cc a:hover{color:var(--orange)}
+  .socials{display:flex;flex-wrap:wrap;gap:9px;margin-top:6px}
+
+  /* SLIDE 9 CROSS PROMO */
+  .promo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  .promo{
+    border:3px solid var(--lime);padding:15px;background:var(--ink-2);
+    display:flex;flex-direction:column;gap:7px;min-height:128px;
+    transition:transform .22s var(--snap),box-shadow .22s var(--pop);
+  }
+  .promo:hover{transform:translate(-4px,-4px);box-shadow:8px 8px 0 var(--orange)}
+  .promo .tm{font-family:var(--font-pixel);font-size:16px;letter-spacing:1.5px;color:var(--orange)}
+  .promo .nm{font-family:var(--font-display);font-size:clamp(22px,2.6vw,34px);text-transform:uppercase;line-height:.94;color:var(--lime)}
+  .promo .ds{font-size:14px;opacity:.82;margin-top:auto}
+
+  /* PREV / NEXT PILLS (desktop) */
+  /* fixed footer bar: static, mirrors the header, never rides the transition */
+  .footerbar{
+    position:fixed;left:0;right:0;bottom:0;z-index:60;
+    height:var(--foot);
+    display:flex;align-items:center;justify-content:space-between;gap:14px;
+    padding:0 var(--edge);
+    background:var(--ink);
+    border-top:3px solid var(--orange);
+  }
+  .foot-credit{
+    font-family:var(--font-pixel);font-size:16px;letter-spacing:1px;
+    color:rgba(255,255,255,.72);
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;
+  }
+  .foot-credit a{color:var(--orange)}
+  .foot-credit a:hover{color:var(--lime)}
+  .nav-pills{display:flex;gap:10px;flex:0 0 auto}
+  .pill{
+    width:44px;height:44px;display:grid;place-items:center;
+    background:var(--ink);color:var(--lime);border:3px solid var(--lime);
+    transition:transform .16s var(--snap),background .16s,color .16s;
+  }
+  .pill:hover{background:var(--lime);color:var(--ink)}
+  .pill:active{transform:scale(.9)}
+  .pill:disabled{opacity:.3;cursor:not-allowed}
+  .pill svg{width:23px;height:23px}
+
+  /* POPUP NAV MENU */
+  .nav-pop{
+    position:fixed;inset:0;z-index:90;
+    background:var(--ink);
+    display:flex;flex-direction:column;
+    transform:translateY(-100%);
+    transition:transform .5s var(--pop);
+    overflow-y:auto;                 /* landscape / short viewport safe */
+    padding:80px var(--edge);        /* generous top + bottom */
+  }
+  .nav-pop.open{transform:none}
+  .nav-pop .nav-head{
+    display:flex;justify-content:space-between;align-items:center;gap:18px;
+    border-bottom:3px solid var(--lime);padding-bottom:16px;margin-bottom:auto;
+  }
+  .nav-pop .x{
+    font-family:var(--font-pixel);font-size:23px;letter-spacing:2px;
+    background:var(--lime);color:var(--ink);padding:5px 15px 3px;border:3px solid var(--ink);
+    box-shadow:4px 4px 0 var(--orange);
+  }
+  .nav-list{list-style:none;display:flex;flex-direction:column;gap:2px;margin:auto 0}
+  .nav-list li a{
+    display:flex;align-items:baseline;gap:16px;
+    font-family:var(--font-display);font-size:clamp(22px,3.6vw,42px);
+    text-transform:uppercase;line-height:1.02;color:var(--white);
+    padding:4px 0;transition:color .15s,transform .2s var(--pop);
+  }
+  .nav-list li a .ix{font-family:var(--font-pixel);font-size:clamp(17px,1.9vw,24px);color:var(--orange);min-width:2.4em}
+  .nav-list li a:hover{color:var(--lime);transform:translateX(14px)}
+  .nav-list li a:hover .ix{color:var(--lime)}
+  .nav-foot{
+    margin-top:auto;padding-top:16px;border-top:3px solid var(--orange);
+    font-family:var(--font-pixel);font-size:18px;letter-spacing:1px;color:rgba(255,255,255,.7);
+  }
+  .nav-foot a{color:var(--orange)}
+
+  /* REVEALS */
+  [data-reveal]{opacity:0;transform:translateY(22px);transition:opacity .46s var(--pop),transform .46s var(--pop)}
+  [data-reveal].in{opacity:1;transform:none}
+  .slide.out [data-reveal]{transition:opacity .26s var(--pop),transform .26s var(--pop)}  /* snappy staggered exit */
+
+  /* RESPONSIVE */
+  @media (max-width:900px){
+    .bio-grid{grid-template-columns:1fr}
+    .quote-grid,.contact-grid{grid-template-columns:1fr}
+    .stat-grid{grid-template-columns:repeat(2,1fr)}
+    .gal-strip{height:clamp(360px, 54vh, 700px)}
+    .promo-grid{grid-template-columns:1fr}
+    .rel-row{grid-template-columns:1fr auto;row-gap:2px}
+    .rel-row .ty{grid-column:1;opacity:.7}
+    .tour-row{grid-template-columns:1fr auto;row-gap:4px}
+    .tour-row .venue{grid-column:1;text-align:left}
+    .tour-row .status{grid-column:2;grid-row:1}
+  }
+  @media (max-width:640px){
+    :root{--bar:54px;--foot:46px}
+    .counter{display:none}
+    .foot-credit .fc-long{display:none}
+    .foot-credit{font-size:14px}
+    .pill{width:40px;height:40px}
+    .pill svg{width:21px;height:21px}
+    .gal-strip{height:clamp(360px, 56vh, 520px)}
+    .cover .floatstar{display:none}
+  }
+
+  /* REDUCED MOTION */
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important}
+    .marquee .track{animation:none;transform:none}
+    .spin{animation:none}
+    [data-reveal]{opacity:1;transform:none}
+    .slide,.slide.active,.slide.leaving{transition-delay:0s !important;transition-duration:.001ms !important}
+  }
+</style>
+</head>
+<body>
+
+<!-- ===================== TOP BAR ===================== -->
+<header class="topbar">
+  <a href="#" class="mark" data-goto="0" aria-label="HYPRLUV, go to cover">HYPR<b>LUV</b><span class="dot"></span></a>
+  <div class="topright">
+    <span class="counter"><span class="now">01</span> / 09</span>
+    <button class="menu-btn" id="menuBtn" aria-haspopup="true" aria-expanded="false">MENU +</button>
+  </div>
+</header>
+<div class="progress" aria-hidden="true"><i id="progBar"></i></div>
+
+<!-- ===================== DECK ===================== -->
+<main class="deck" id="deck">
+  <div class="stage-bg" id="stageBg" aria-hidden="true"></div>
+
+  <!-- ============ SLIDE 1 : COVER ============ -->
+  <section class="slide s-ink active" data-slide="0">
+    <div class="inner scrollable">
+      <div class="wrap cover">
+        <div class="toprow" data-reveal>
+          <span class="kicker hl-lime">Electronic Press Kit · 2026</span>
+          <div class="stickwrap">
+            <span class="sticker o">Now Booking</span>
+            <span class="sticker r2">New Album</span>
+          </div>
+        </div>
+
+        <div class="title" data-reveal>
+          <svg class="star spin floatstar" viewBox="0 0 100 100" fill="currentColor" aria-hidden="true">
+            <path d="M50 0c4 28 18 42 50 50-32 8-46 22-50 50-4-28-18-42-50-50 32-8 46-22 50-50z"/>
+          </svg>
+          <h1 class="huge">HYPR<span class="o">LUV</span></h1>
+        </div>
+
+        <p class="lead" data-reveal style="font-size:clamp(16px,1.8vw,21px);font-weight:600">
+          Maximum volume hyperpop. Glossy chaos for people who treat the volume knob as a suggestion.
+        </p>
+
+        <div class="botrow" data-reveal>
+          <div class="btnrow">
+            <a class="btn fill" href="#" data-goto="2">Hear The Music</a>
+            <a class="btn" href="#" data-goto="7">Booking</a>
+          </div>
+          <span class="mono">EPK / TM-627</span>
+        </div>
+      </div>
+
+      <!-- in-flow bottom marquee -->
+      <div class="marquee bleed" data-reveal style="margin-top:20px;border-bottom:none;background:var(--lime);color:var(--ink)">
+        <div class="track">
+          <span>New album "Maximum Volume" out now</span><span class="s">&#10022;</span>
+          <span>2.4M monthly listeners</span><span class="s">&#10022;</span>
+          <span>As loud as legally allowed</span><span class="s">&#10022;</span>
+          <span>New album "Maximum Volume" out now</span><span class="s">&#10022;</span>
+          <span>2.4M monthly listeners</span><span class="s">&#10022;</span>
+          <span>As loud as legally allowed</span><span class="s">&#10022;</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SLIDE 2 : BIO ============ -->
+  <section class="slide s-orange" data-slide="1">
+    <div class="inner scrollable">
+      <div class="wrap">
+        <span class="kicker" data-reveal>02 / Who</span>
+        <h2 class="big" data-reveal style="margin:6px 0 16px">Who is<br>HYPRLUV</h2>
+        <div class="bio-grid">
+          <div data-reveal>
+            <p class="lead" style="margin-bottom:14px">
+              HYPRLUV is the solo project of a producer, vocalist, and full time noise enthusiast making hyperpop for the year 2000 that never quite arrived. Born online, raised in the club, built to be played far too loud.
+            </p>
+            <p class="lead">
+              Since the first bedroom upload in 2023, HYPRLUV has gone from blown out laptop speakers to sold out rooms across three continents, turning sugar rush melodies and system crash drums into a sound that refuses to sit still.
+            </p>
+            <div class="tags" style="margin-top:18px">
+              <span class="tag">Hyperpop</span>
+              <span class="tag">Electro Club</span>
+              <span class="tag">Glitch Pop</span>
+              <span class="tag">Y2K Revival</span>
+              <span class="tag">Maximalist</span>
+            </div>
+          </div>
+          <div class="bio-meta" data-reveal>
+            <div class="meta-card">
+              <div class="k">Based</div>
+              <div class="v">Bangkok / Everywhere</div>
+            </div>
+            <div class="meta-card">
+              <div class="k">For Fans Of</div>
+              <div class="v">Neonblood, K Rush, Sugarwave</div>
+            </div>
+            <div class="meta-card">
+              <div class="k">Active Since</div>
+              <div class="v">2023</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SLIDE 3 : RELEASES ============ -->
+  <section class="slide s-ink" data-slide="2">
+    <div class="inner scrollable">
+      <div class="wrap">
+        <span class="kicker hl-orange" data-reveal>03 / The Music</span>
+        <h2 class="big hl-lime" data-reveal style="margin:6px 0 14px">The Music</h2>
+
+        <div class="rel-hero" data-reveal>
+          <div>
+            <span class="sticker">Latest</span>
+            <div class="mid hl-lime" style="margin-top:10px">Maximum Volume</div>
+            <p class="mono" style="margin-top:5px;color:var(--white)">Album · 12 tracks · 38 minutes · zero chill</p>
+          </div>
+          <a class="btn fill" href="#">Stream Now</a>
+        </div>
+
+        <div class="rel-list">
+          <div class="rel-row" data-reveal><span class="t">1000 Gigabytes Of Luv</span><span class="ty">Single</span><span class="yr">2025</span></div>
+          <div class="rel-row" data-reveal><span class="t">Crash My Heart</span><span class="ty">Single</span><span class="yr">2025</span></div>
+          <div class="rel-row" data-reveal><span class="t">Stardust.exe</span><span class="ty">EP</span><span class="yr">2024</span></div>
+          <div class="rel-row" data-reveal><span class="t">Bubblegum Hyperdrive</span><span class="ty">Single</span><span class="yr">2024</span></div>
+          <div class="rel-row" data-reveal><span class="t">First Upload</span><span class="ty">Demo</span><span class="yr">2023</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SLIDE 4 : STATS ============ -->
+  <section class="slide s-lime" data-slide="3">
+    <div class="inner scrollable">
+      <div class="wrap">
+        <span class="kicker" data-reveal>04 / By The Numbers</span>
+        <h2 class="big" data-reveal style="margin:6px 0 16px">By The<br>Numbers</h2>
+        <div class="stat-grid" data-reveal>
+          <div class="stat"><span class="n">2.4M</span><span class="l">Monthly Listeners</span></div>
+          <div class="stat"><span class="n">180M</span><span class="l">Total Streams</span></div>
+          <div class="stat"><span class="n">920K</span><span class="l">Followers</span></div>
+          <div class="stat"><span class="n">50M</span><span class="l">Video Views</span></div>
+          <div class="stat"><span class="n">64</span><span class="l">Sold Out Shows</span></div>
+          <div class="stat"><span class="n">18</span><span class="l">Countries Played</span></div>
+        </div>
+        <p class="mono" data-reveal style="margin-top:14px">Numbers refreshed quarterly. Yes, they are still going up.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SLIDE 5 : PRESS ============ -->
+  <section class="slide s-bone" data-slide="4">
+    <div class="inner scrollable">
+      <div class="wrap">
+        <span class="kicker hl-orange" data-reveal>05 / Press</span>
+        <h2 class="big" data-reveal style="margin:6px 0 16px">What The<br>Press Says</h2>
+        <div class="quote-grid">
+          <div class="quote" data-reveal>
+            <span class="mk">"</span>
+            <p>The loudest thing to happen to pop since the year 2000.</p>
+            <span class="src">Noise Quarterly</span>
+          </div>
+          <div class="quote" data-reveal>
+            <span class="mk">"</span>
+            <p>A glorious system crash you can actually dance to.</p>
+            <span class="src">Pixel Press</span>
+          </div>
+          <div class="quote" data-reveal>
+            <span class="mk">"</span>
+            <p>If sugar had a sound, this would be the overdose.</p>
+            <span class="src">Volt Mag</span>
+          </div>
+          <div class="quote" data-reveal>
+            <span class="mk">"</span>
+            <p>Genuinely impossible to listen to quietly.</p>
+            <span class="src">Static Zine</span>
+          </div>
+        </div>
+      </div>
+      <!-- in-flow press logo marquee -->
+      <div class="marquee thin bleed" data-reveal style="margin-top:12px;border-bottom:none;background:var(--ink);color:var(--lime)">
+        <div class="track">
+          <span>Noise Quarterly</span><span class="s">&#10022;</span><span>Pixel Press</span><span class="s">&#10022;</span>
+          <span>Volt Mag</span><span class="s">&#10022;</span><span>Static Zine</span><span class="s">&#10022;</span><span>Hyperwave</span><span class="s">&#10022;</span>
+          <span>Noise Quarterly</span><span class="s">&#10022;</span><span>Pixel Press</span><span class="s">&#10022;</span>
+          <span>Volt Mag</span><span class="s">&#10022;</span><span>Static Zine</span><span class="s">&#10022;</span><span>Hyperwave</span><span class="s">&#10022;</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SLIDE 6 : TOUR ============ -->
+  <section class="slide s-ink" data-slide="5">
+    <div class="inner scrollable">
+      <div class="wrap">
+        <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:14px;flex-wrap:wrap" data-reveal>
+          <div>
+            <span class="kicker hl-orange">06 / Live</span>
+            <h2 class="big hl-lime" style="margin-top:6px">On Tour</h2>
+          </div>
+          <span class="sticker o r3">2026 Dates</span>
+        </div>
+        <div class="tour-list" style="margin-top:18px">
+          <div class="tour-row" data-reveal><span class="date">12 Jun 2026</span><span class="city">Bangkok</span><span class="venue">Neon Hall</span><span class="status sold">Sold Out</span></div>
+          <div class="tour-row" data-reveal><span class="date">19 Jun 2026</span><span class="city">Singapore</span><span class="venue">Circuit Room</span><span class="status on">On Sale</span></div>
+          <div class="tour-row" data-reveal><span class="date">27 Jun 2026</span><span class="city">Tokyo</span><span class="venue">Static Dome</span><span class="status on">On Sale</span></div>
+          <div class="tour-row" data-reveal><span class="date">04 Jul 2026</span><span class="city">Seoul</span><span class="venue">Hyper Arena</span><span class="status few">Few Left</span></div>
+          <div class="tour-row" data-reveal><span class="date">11 Jul 2026</span><span class="city">Berlin</span><span class="venue">Volt Club</span><span class="status sold">Sold Out</span></div>
+          <div class="tour-row" data-reveal><span class="date">18 Jul 2026</span><span class="city">London</span><span class="venue">The Gloss</span><span class="status on">On Sale</span></div>
+        </div>
+        <p class="mono" data-reveal style="margin-top:14px">More dates dropping all year. Booking inquiries on the contact slide.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SLIDE 7 : GALLERY ============ -->
+  <section class="slide s-orange" data-slide="6">
+    <div class="inner scrollable">
+      <div class="wrap">
+        <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:14px;flex-wrap:wrap" data-reveal>
+          <div>
+            <span class="kicker">07 / Visuals</span>
+            <h2 class="big" style="margin-top:6px">Press Photos</h2>
+          </div>
+          <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+            <div class="gal-nav">
+              <button class="gal-arrow" id="galPrev" aria-label="Previous photo">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M15 5l-7 7 7 7"/></svg>
+              </button>
+              <button class="gal-arrow" id="galNext" aria-label="Next photo">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M9 5l7 7-7 7"/></svg>
+              </button>
+            </div>
+            <a class="btn" href="#">Download Hi Res</a>
+          </div>
+        </div>
+        <div class="gal-strip" id="galStrip" style="margin-top:14px" data-reveal data-noswipe>
+          <figure class="shot"><img src="images/pic-01.jpg" alt="HYPRLUV press photo" loading="lazy"><figcaption class="cap">Press 01</figcaption></figure>
+          <figure class="shot"><img src="images/pic-02.jpg" alt="HYPRLUV press photo" loading="lazy"><figcaption class="cap">Press 02</figcaption></figure>
+          <figure class="shot"><img src="images/pic-03.jpg" alt="HYPRLUV live photo" loading="lazy"><figcaption class="cap">Live 01</figcaption></figure>
+          <figure class="shot"><img src="images/pic-04.jpg" alt="HYPRLUV live photo" loading="lazy"><figcaption class="cap">Live 02</figcaption></figure>
+          <figure class="shot"><img src="images/pic-05.jpg" alt="HYPRLUV studio photo" loading="lazy"><figcaption class="cap">Studio</figcaption></figure>
+          <figure class="shot"><img src="images/pic-06.jpg" alt="HYPRLUV backstage photo" loading="lazy"><figcaption class="cap">Backstage</figcaption></figure>
+          <figure class="shot"><img src="images/pic-07.jpg" alt="HYPRLUV cover art" loading="lazy"><figcaption class="cap">Cover Art</figcaption></figure>
+          <figure class="shot"><img src="images/pic-08.jpg" alt="HYPRLUV logo pack" loading="lazy"><figcaption class="cap">Logo Pack</figcaption></figure>
+        </div>
+        <p class="mono" data-reveal style="margin-top:12px;color:var(--ink)">Scroll sideways for more. Swap the sample images for your own hi res shots. Photo credit: add photographer name here.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SLIDE 8 : CONTACT ============ -->
+  <section class="slide s-ink" data-slide="7">
+    <div class="inner scrollable">
+      <div class="wrap">
+        <span class="kicker hl-orange" data-reveal>08 / Contact</span>
+        <h2 class="big hl-lime" data-reveal style="margin:6px 0 16px">Booking &amp;<br>Contact</h2>
+        <div class="contact-grid">
+          <div class="cc" data-reveal><div class="k">Management</div><div class="v">Maya Reyes<br><a href="mailto:mgmt@hyprluv.fm">mgmt@hyprluv.fm</a></div></div>
+          <div class="cc" data-reveal><div class="k">Booking (Worldwide)</div><div class="v">Loudhaus Agency<br><a href="mailto:book@hyprluv.fm">book@hyprluv.fm</a></div></div>
+          <div class="cc" data-reveal><div class="k">Label</div><div class="v">Volt Records</div></div>
+          <div class="cc" data-reveal><div class="k">Press</div><div class="v"><a href="mailto:press@hyprluv.fm">press@hyprluv.fm</a></div></div>
+        </div>
+        <div class="socials" data-reveal>
+          <span class="tag">@hyprluv</span>
+          <span class="tag">hyprluv.fm</span>
+          <span class="tag">All platforms</span>
+        </div>
+        <div class="btnrow" data-reveal style="margin-top:18px">
+          <a class="btn fill" href="#">Download Full EPK</a>
+          <a class="btn" href="#">Stream Now</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SLIDE 9 : MORE FROM TEMPLATEMO ============ -->
+  <section class="slide s-ink" data-slide="8">
+    <div class="inner scrollable">
+      <div class="wrap">
+        <span class="kicker hl-orange" data-reveal>09 / TemplateMo</span>
+        <h2 class="big hl-lime" data-reveal style="margin:6px 0 8px">More From<br>TemplateMo</h2>
+        <p class="lead" data-reveal style="margin-bottom:16px">Three more free single file slideshow decks, each with a different mood.</p>
+        <div class="promo-grid">
+          <a class="promo" href="https://templatemo.com" target="_blank" rel="nofollow noopener" data-reveal>
+            <span class="tm">TM-624</span><span class="nm">Lustro</span>
+            <span class="ds">Dark glassmorphic SaaS launch deck. Indigo and pink.</span>
+          </a>
+          <a class="promo" href="https://templatemo.com" target="_blank" rel="nofollow noopener" data-reveal>
+            <span class="tm">TM-625</span><span class="nm">Folio</span>
+            <span class="ds">Soft editorial photography portfolio. Powder plum and coral.</span>
+          </a>
+          <a class="promo" href="https://templatemo.com" target="_blank" rel="nofollow noopener" data-reveal>
+            <span class="tm">TM-626</span><span class="nm">Ledger</span>
+            <span class="ds">Formal consulting strategic plan. Forest green, bone, gold.</span>
+          </a>
+        </div>
+        <div class="btnrow" data-reveal style="margin-top:18px">
+          <a class="btn fill" href="https://templatemo.com" target="_blank" rel="nofollow noopener">Browse 600+ Free Templates</a>
+          <a class="btn" href="#" data-goto="0">Back To Start</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===================== FIXED FOOTER BAR (static, like the header) ===================== -->
+<footer class="footerbar">
+  <span class="foot-credit"><span class="fc-long">TM-627 HYPRLUV EPK &middot; </span>Free template by <a href="https://templatemo.com" target="_blank" rel="nofollow noopener">TemplateMo</a></span>
+  <div class="nav-pills">
+    <button class="pill" id="prevBtn" aria-label="Previous slide">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M15 5l-7 7 7 7"/></svg>
+    </button>
+    <button class="pill" id="nextBtn" aria-label="Next slide">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M9 5l7 7-7 7"/></svg>
+    </button>
+  </div>
+</footer>
+
+<!-- ===================== POPUP NAV ===================== -->
+<nav class="nav-pop" id="navPop" aria-hidden="true">
+  <div class="nav-head">
+    <span class="mark">HYPR<b style="color:var(--orange)">LUV</b></span>
+    <button class="x" id="navClose" aria-label="Close menu">CLOSE &#10005;</button>
+  </div>
+  <ul class="nav-list">
+    <li><a href="#" data-goto="0"><span class="ix">01</span>Cover</a></li>
+    <li><a href="#" data-goto="1"><span class="ix">02</span>Who</a></li>
+    <li><a href="#" data-goto="2"><span class="ix">03</span>The Music</a></li>
+    <li><a href="#" data-goto="3"><span class="ix">04</span>Numbers</a></li>
+    <li><a href="#" data-goto="4"><span class="ix">05</span>Press</a></li>
+    <li><a href="#" data-goto="5"><span class="ix">06</span>On Tour</a></li>
+    <li><a href="#" data-goto="6"><span class="ix">07</span>Photos</a></li>
+    <li><a href="#" data-goto="7"><span class="ix">08</span>Contact</a></li>
+    <li><a href="#" data-goto="8"><span class="ix">09</span>TemplateMo</a></li>
+  </ul>
+  <div class="nav-foot">
+    Arrow keys, swipe, or tap. Free HTML template by <a href="https://templatemo.com" target="_blank" rel="nofollow noopener">TemplateMo</a>.
+  </div>
+</nav>
+
+<script>
+(function(){
+  "use strict";
+
+  var deck    = document.getElementById("deck");
+  var slides  = Array.prototype.slice.call(deck.querySelectorAll(".slide"));
+  var total   = slides.length;
+  var current = 0;
+  var animating = false;
+  var pending = null;   /* latest target requested mid transition */
+
+  var nowEl   = document.querySelector(".counter .now");
+  var progBar = document.getElementById("progBar");
+  var menuBtn = document.getElementById("menuBtn");
+  var navPop  = document.getElementById("navPop");
+  var navClose= document.getElementById("navClose");
+  var prevBtn = document.getElementById("prevBtn");
+  var nextBtn = document.getElementById("nextBtn");
+
+  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* persistent background layer + per slide colour lookup */
+  var stageBg = document.getElementById("stageBg");
+  var rootCS  = getComputedStyle(document.documentElement);
+  var BGVAR   = { "s-ink":"--ink", "s-orange":"--orange", "s-lime":"--lime", "s-bone":"--bone" };
+  function slideColor(slide){
+    var key = ["s-ink","s-orange","s-lime","s-bone"].filter(function(c){ return slide.classList.contains(c); })[0] || "s-ink";
+    return rootCS.getPropertyValue(BGVAR[key]).trim() || "#0B0B0B";
+  }
+
+  /* fill each marquee so the scrolling text always spans the full width
+     and loops with no gap. the track is rebuilt from an even number of
+     identical copies, so the -50% keyframe stays seamless at any width */
+  function debounce(fn, ms){
+    var t; return function(){ clearTimeout(t); t = setTimeout(fn, ms); };
+  }
+  function fillMarquees(){
+    document.querySelectorAll(".marquee").forEach(function(m){
+      var track = m.querySelector(".track");
+      if (!track) return;
+      if (track.dataset.base === undefined){ track.dataset.base = track.innerHTML; }
+      var w = m.clientWidth;
+      /* full reset only when the width truly changed (load or resize), so the
+         post font-load pass never flashes the track away and back */
+      if (track.dataset.fillW !== String(w)){
+        track.dataset.fillW = String(w);
+        track.innerHTML = track.dataset.base;
+      }
+      /* top up only if short, this only ever grows so it cannot flicker */
+      var guard = 0;
+      while (track.scrollWidth < w * 2 && guard < 40){
+        track.insertAdjacentHTML("beforeend", track.dataset.base);
+        guard++;
+      }
+      track.style.animationDuration = Math.max(14, track.scrollWidth / 110).toFixed(1) + "s";
+    });
+  }
+
+  /* reveal items inside a slide, staggered */
+  function reveal(slide){
+    var items = slide.querySelectorAll("[data-reveal]");
+    items.forEach(function(el, i){
+      if (reduced){ el.classList.add("in"); return; }
+      setTimeout(function(){ el.classList.add("in"); }, 90 + i * 80);
+    });
+  }
+
+  /* failsafe: if anything stalls, force everything visible after 3s */
+  setTimeout(function(){
+    document.querySelectorAll("[data-reveal]").forEach(function(el){ el.classList.add("in"); });
+  }, 3000);
+
+  function pad(n){ return (n < 9 ? "0" : "") + (n + 1); }
+
+  function update(){
+    if (nowEl) nowEl.textContent = pad(current);
+    if (progBar) progBar.style.width = ((current + 1) / total * 100) + "%";
+    if (prevBtn) prevBtn.disabled = (current === 0);
+    if (nextBtn) nextBtn.disabled = (current === total - 1);
+  }
+
+  /* transition timing knobs (ms): raise to slow the choreography, lower to speed it */
+  var STEP_OUT = 40;   /* gap between each item leaving */
+  var STEP_IN  = 55;   /* gap between each item arriving */
+  var BG_GAP   = 250;  /* background handoff (outgoing fades, then incoming) */
+
+  function goTo(index){
+    index = Math.max(0, Math.min(total - 1, index));
+    if (index === current) return;
+    if (animating){ pending = index; return; }
+    animating = true;
+
+    var prevS = slides[current];
+    var nextS = slides[index];
+    current = index;
+    update();
+
+    var outItems = Array.prototype.slice.call(prevS.querySelectorAll("[data-reveal].in"));
+    var inItems  = Array.prototype.slice.call(nextS.querySelectorAll("[data-reveal]"));
+    inItems.forEach(function(el){ el.classList.remove("in"); });   /* incoming starts hidden */
+    var innerNext = nextS.querySelector(".inner");
+
+    function finish(){
+      slides.forEach(function(s){ if (s !== nextS){ s.classList.remove("active"); s.classList.remove("leaving"); s.classList.remove("out"); } });
+      animating = false;
+      if (pending !== null){ var p = pending; pending = null; goTo(p); }
+    }
+
+    if (reduced){
+      if (stageBg) stageBg.style.backgroundColor = slideColor(nextS);
+      outItems.forEach(function(el){ el.classList.remove("in"); });
+      prevS.classList.remove("active");
+      nextS.classList.add("active");
+      if (innerNext) innerNext.scrollTop = 0;
+      inItems.forEach(function(el){ el.classList.add("in"); });
+      finish();
+      return;
+    }
+
+    /* PHASE A: outgoing content leaves in sequence (last item first) */
+    prevS.classList.add("out");
+    outItems.slice().reverse().forEach(function(el, i){
+      setTimeout(function(){ el.classList.remove("in"); }, i * STEP_OUT);
+    });
+    var outDone = (outItems.length ? (outItems.length - 1) * STEP_OUT : 0) + 180;
+
+    /* PHASE B: blend the persistent background colour, then swap which
+       slide owns the content. the colour change is one smooth interpolation */
+    setTimeout(function(){
+      if (stageBg) stageBg.style.backgroundColor = slideColor(nextS);
+      prevS.classList.remove("active");
+      prevS.classList.add("leaving");
+      nextS.classList.add("active");
+      if (innerNext) innerNext.scrollTop = 0;
+    }, outDone);
+
+    /* PHASE C: incoming content arrives in sequence as its background appears */
+    setTimeout(function(){
+      inItems.forEach(function(el, i){
+        setTimeout(function(){ el.classList.add("in"); }, i * STEP_IN);
+      });
+    }, outDone + BG_GAP);
+
+    var inDone = (inItems.length ? (inItems.length - 1) * STEP_IN : 0) + 500;
+    setTimeout(finish, outDone + BG_GAP + inDone);
+  }
+
+  function next(){ if (current < total - 1) goTo(current + 1, 1); }
+  function prev(){ if (current > 0) goTo(current - 1, -1); }
+
+  /* ---- menu ---- */
+  function openMenu(){
+    navPop.classList.add("open");
+    navPop.setAttribute("aria-hidden", "false");
+    menuBtn.setAttribute("aria-expanded", "true");
+  }
+  function closeMenu(){
+    navPop.classList.remove("open");
+    navPop.setAttribute("aria-hidden", "true");
+    menuBtn.setAttribute("aria-expanded", "false");
+  }
+  menuBtn.addEventListener("click", openMenu);
+  navClose.addEventListener("click", closeMenu);
+
+  /* ---- data-goto delegation ---- */
+  document.addEventListener("click", function(e){
+    var t = e.target.closest("[data-goto]");
+    if (!t) return;
+    e.preventDefault();
+    var idx = parseInt(t.getAttribute("data-goto"), 10);
+    if (!isNaN(idx)){
+      if (navPop.classList.contains("open")) closeMenu();
+      goTo(idx);
+    }
+  });
+
+  prevBtn.addEventListener("click", prev);
+  nextBtn.addEventListener("click", next);
+
+  /* ---- keyboard ---- */
+  document.addEventListener("keydown", function(e){
+    if (navPop.classList.contains("open")){
+      if (e.key === "Escape") closeMenu();
+      return;
+    }
+    switch(e.key){
+      case "ArrowRight": case "ArrowDown": case "PageDown":
+        e.preventDefault(); next(); break;
+      case "ArrowLeft": case "ArrowUp": case "PageUp":
+        e.preventDefault(); prev(); break;
+      case " ":
+        e.preventDefault(); next(); break;
+      case "Home":
+        e.preventDefault(); goTo(0); break;
+      case "End":
+        e.preventDefault(); goTo(total - 1); break;
+      default:
+        if (/^[1-9]$/.test(e.key)){ e.preventDefault(); goTo(parseInt(e.key,10) - 1); }
+    }
+  });
+
+  /* ---- swipe (axis aware so vertical scroll still works) ---- */
+  var sx = 0, sy = 0, tracking = false;
+  deck.addEventListener("touchstart", function(e){
+    if (e.touches.length !== 1) { tracking = false; return; }
+    if (e.target.closest && e.target.closest("[data-noswipe]")) { tracking = false; return; }
+    sx = e.touches[0].clientX; sy = e.touches[0].clientY; tracking = true;
+  }, {passive:true});
+  deck.addEventListener("touchend", function(e){
+    if (!tracking) return;
+    tracking = false;
+    var t = e.changedTouches[0];
+    var dx = t.clientX - sx;
+    var dy = t.clientY - sy;
+    if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.4){
+      if (dx < 0) next(); else prev();
+    }
+  }, {passive:true});
+
+  /* slide 07 gallery: step the strip by exactly one photo */
+  (function(){
+    var strip = document.getElementById("galStrip");
+    var gp = document.getElementById("galPrev");
+    var gn = document.getElementById("galNext");
+    if (!strip || !gp || !gn) return;
+    function step(){
+      var card = strip.querySelector(".shot");
+      var cs = getComputedStyle(strip);
+      var gap = parseFloat(cs.columnGap || cs.gap) || 14;
+      return card ? card.getBoundingClientRect().width + gap : strip.clientWidth * 0.8;
+    }
+    function sync(){
+      var max = strip.scrollWidth - strip.clientWidth - 1;
+      gp.disabled = strip.scrollLeft <= 0;
+      gn.disabled = strip.scrollLeft >= max;
+    }
+    var behavior = reduced ? "auto" : "smooth";
+    gp.addEventListener("click", function(){ strip.scrollBy({left:-step(), behavior:behavior}); });
+    gn.addEventListener("click", function(){ strip.scrollBy({left: step(), behavior:behavior}); });
+    strip.addEventListener("scroll", function(){ window.requestAnimationFrame(sync); }, {passive:true});
+    window.addEventListener("resize", debounce(sync, 200));
+    sync();
+  })();
+
+  /* init */
+  if (stageBg) stageBg.style.backgroundColor = slideColor(slides[0]);
+  reveal(slides[0]);
+  update();
+  fillMarquees();
+  if (document.fonts && document.fonts.ready){ document.fonts.ready.then(fillMarquees); }
+  window.addEventListener("resize", debounce(fillMarquees, 200));
+})();
+</script>
+</body>
+</html>
