@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.commits[0].message != '' && !contains(github.event.head_commit.message, '[skip ci]')
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 10
 
