@@ -39,37 +39,37 @@
     {
       "id": "landing_3",
       "name": {
-        "en": "Corporate Launch",
-        "ru": "Корпоративный Старт"
+        "en": "Cloud Launch",
+        "ru": "Cloud Старт"
       },
-      "slug": "corporate-launch",
+      "slug": "cloud-launch",
       "price": {
-        "en": "from 9,000 ₽",
-        "ru": "от 9 000 ₽"
+        "en": "from 10,000 ₽",
+        "ru": "от 10 000 ₽"
       },
-      "image": "/images/templates/enlive-corporate-free-html5-bootstrap-web-template.svg",
-      "preview_url": "/templates-preview/enlive-corporate-free-html5-bootstrap-web-template/",
+      "image": "/images/templates/clouds-html5-multipurpose-landing-page-template.svg",
+      "preview_url": "/templates-preview/clouds-html5-multipurpose-landing-page-template/",
       "desc": {
-        "en": "Feature-rich single-page with pricing, team and portfolio blocks.",
-        "ru": "Насыщенный одностраничник с ценами, командой и портфолио."
+        "en": "Modern landing with parallax effects, WOW.js animations and video background.",
+        "ru": "Современный лендинг с параллакс-эффектами, WOW.js анимацией и видео-фоном."
       }
     },
     {
       "id": "landing_4",
       "name": {
-        "en": "Hotel Premium",
-        "ru": "Отель Премиум"
+        "en": "Vibe Pro",
+        "ru": "Vibe Pro"
       },
-      "slug": "hotel-premium",
+      "slug": "vibe-pro",
       "price": {
-        "en": "from 10,000 ₽",
-        "ru": "от 10 000 ₽"
+        "en": "from 9,500 ₽",
+        "ru": "от 9 500 ₽"
       },
-      "image": "/images/templates/golden-hotel-free-html5-bootstrap-web-template.svg",
-      "preview_url": "/templates-preview/golden-hotel-free-html5-bootstrap-web-template/",
+      "image": "/images/templates/vibe-free-html5-template-for-corporate-website.svg",
+      "preview_url": "/templates-preview/vibe-free-html5-template-for-corporate-website/",
       "desc": {
-        "en": "Luxury hotel landing with 3D slider, rooms gallery and booking CTA.",
-        "ru": "Лендинг отеля с 3D слайдером, галереей номеров и формой бронирования."
+        "en": "Sleek corporate landing with smooth scroll animations and modern gradient design.",
+        "ru": "Элегантный корпоративный лендинг с плавной прокруткой и современным градиентным дизайном."
       }
     }
   ],
@@ -187,37 +187,37 @@
     {
       "id": "corporate_3",
       "name": {
-        "en": "Consulting Firm",
-        "ru": "Консалтинг Фирма"
+        "en": "BusinessR Pro",
+        "ru": "BusinessR Pro"
       },
-      "slug": "consulting-firm",
+      "slug": "businessr-pro",
       "price": {
-        "en": "from 14,000 ₽",
-        "ru": "от 14 000 ₽"
+        "en": "from 15,000 ₽",
+        "ru": "от 15 000 ₽"
       },
-      "image": "/images/templates/retro-free-consulting-responsive-html5-website-template.svg",
-      "preview_url": "/templates-preview/retro-free-consulting-responsive-html5-website-template/",
+      "image": "/images/templates/businessr-corporate-bootstrap-responsive-web-template.svg",
+      "preview_url": "/templates-preview/businessr-corporate-bootstrap-responsive-web-template/",
       "desc": {
-        "en": "9-page consulting firm site with sidebar pages and case studies.",
-        "ru": "9-страничный сайт консалтинга с боковыми страницами и кейсами."
+        "en": "Full parallax corporate site with WOW.js, carousels and multi-section layout.",
+        "ru": "Полный корпоративный сайт с параллаксом, WOW.js, каруселями и многосекционной версткой."
       }
     },
     {
       "id": "corporate_4",
       "name": {
-        "en": "Swifty Business",
-        "ru": "Swifty Бизнес"
+        "en": "Target Business",
+        "ru": "Target Бизнес"
       },
-      "slug": "swifty-business",
+      "slug": "target-business",
       "price": {
-        "en": "from 12,000 ₽",
-        "ru": "от 12 000 ₽"
+        "en": "from 14,000 ₽",
+        "ru": "от 14 000 ₽"
       },
-      "image": "/images/templates/swifty-business-html5-website-template.svg",
-      "preview_url": "/templates-preview/swifty-business-html5-website-template/",
+      "image": "/images/templates/target-multipurpose-free-bootstrap-responsive-template.svg",
+      "preview_url": "/templates-preview/target-multipurpose-free-bootstrap-responsive-template/",
       "desc": {
-        "en": "6-page multi-purpose business site with carousels and lightboxes.",
-        "ru": "6-страничный многоцелевой бизнес-сайт с каруселями и лайтбоксами."
+        "en": "6-page animated business site with flexslider, fancybox and isotope portfolio.",
+        "ru": "6-страничный анимированный бизнес-сайт с flexslider, fancybox и isotope портфолио."
       }
     }
   ],
