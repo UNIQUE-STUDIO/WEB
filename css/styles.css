@@ -1335,38 +1335,9 @@ body.dark section:nth-child(even) {
 }
 
 @media (width <= 768px) {
-    .nav {
-        position: fixed;
-        top: 75px;
-        left: -100%;
-        width: 80%;
-        height: 100vh;
-        background: var(--bg-card);
-        flex-direction: column;
-        padding: 40px;
-        transition: 0.3s;
-        gap: 25px;
-        backdrop-filter: blur(20px);
-        border-radius: 0 30px 30px 0;
-    }
-    .nav.active {
-        left: 0;
-    }
-    .mobile-menu {
-        display: block;
-    }
-    h1 {
-        font-size: 2.6rem;
-    }
-    h2 {
-        font-size: 2rem;
-    }
-    .btn-group {
-        gap: 16px;
-    }
-    .btn {
-        padding: 12px 24px;
-        font-size: 1rem;
+    .typewriter-text {
+        animation: none;
+        white-space: normal;
     }
 }
 
@@ -3086,6 +3057,15 @@ a:has(> .portfolio-card):hover .portfolio-card img {
         text-align: center;
         padding-top: 90px;
         padding-bottom: 40px;
+        background:
+            linear-gradient(
+                110deg,
+                rgb(12, 15, 20, 0.95) 0%,
+                rgb(12, 15, 20, 0.85) 50%,
+                rgb(12, 15, 20, 0.65) 100%
+            ),
+            url("../images/photos/hero-bg.jpg")
+                center/cover no-repeat;
     }
     .hero .container {
         display: flex;
@@ -3528,6 +3508,15 @@ a:has(> .portfolio-card):hover .portfolio-card img {
     .hero {
         min-height: 65vh;
         padding-top: 80px;
+        background:
+            linear-gradient(
+                110deg,
+                rgb(12, 15, 20, 0.96) 0%,
+                rgb(12, 15, 20, 0.90) 60%,
+                rgb(12, 15, 20, 0.75) 100%
+            ),
+            url("../images/photos/hero-bg.jpg")
+                center/cover no-repeat;
     }
     .hero-title {
         font-size: 1.8rem;
@@ -3612,7 +3601,6 @@ a:has(> .portfolio-card):hover .portfolio-card img {
    TOUCH & ACCESSIBILITY
    ============================================================ */
 @media (hover: none) and (pointer: coarse) {
-    /* Increase tap targets for touch devices */
     .btn,
     .btn-outline,
     .filter-btn,
@@ -3627,8 +3615,18 @@ a:has(> .portfolio-card):hover .portfolio-card img {
         min-height: 44px;
         min-width: 44px;
     }
+    input, select, textarea, .search-input, .country-code {
+        min-height: 44px;
+        font-size: 16px;
+    }
     .nav a {
         padding: 14px 0;
+    }
+    .filter-btn {
+        padding: 12px 18px;
+    }
+    .share-btn i {
+        font-size: 1.2rem;
     }
 
     /* Disable hover animations that break on touch */

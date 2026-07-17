@@ -6,7 +6,12 @@ if ('serviceWorker' in navigator) {
 const DEFAULT_SCRIPT_URL =
     'https://script.google.com/macros/s/AKfycbw0eEHPeS5Ad2RxlRlErM8Ffbkw0NmfDkYiUCtzj6qieUnPBe3iCpgzq-teblsDeQnN/exec';
 let SCRIPT_URL = localStorage.getItem('apps_script_url_override') || DEFAULT_SCRIPT_URL;
-let currentLang = localStorage.getItem('lang') || 'en';
+let currentLang = (() => {
+    var saved = localStorage.getItem('lang');
+    if (saved === 'ru' || saved === 'en') return saved;
+    var browserLang = (navigator.language || navigator.userLanguage || '').toLowerCase();
+    return browserLang.startsWith('ru') ? 'ru' : 'en';
+})();
 let currentAdminTab = 'dashboard';
 let leadsData = [];
 
@@ -141,16 +146,11 @@ async function initScriptEndpoint() {
     }
 
     SCRIPT_REACHABLE = false;
-    console.warn(
-        '[forms] Backend offline - using LOCAL MODE. Leads saved in browser. Redeploy Apps Script to restore backend.',
-    );
-    setTimeout(
-        () =>
-            showWarningBanner(
-                '⚠ Backend offline — leads are saved in your browser. Deploy Apps Script to sync.',
-            ),
-        2000,
-    );
+    console.info('[forms] Local mode - data stored in your browser.');
+    setTimeout(() => {
+        var el = document.getElementById('backendStatus');
+        if (el) el.textContent = '💾 Local Mode';
+    }, 500);
 }
 
 // Template data: loaded dynamically from templates.json, with localStorage cache
@@ -1841,7 +1841,7 @@ function saveLeadLocally(leadData, action) {
     leadData['action'] = action;
     leads.unshift(leadData);
     localStorage.setItem('localLeads', JSON.stringify(leads));
-    showWarningBanner('Backend unavailable. Lead saved locally.');
+    showSuccessToast('Data saved successfully');
     return { success: true, message: 'Saved locally', local: true };
 }
 
