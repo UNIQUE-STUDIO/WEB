@@ -1381,7 +1381,7 @@ body.dark section:nth-child(even) {
             rgb(12, 15, 20, 0.75) 45%,
             rgb(12, 15, 20, 0.5) 100%
         ),
-        url("images/photos/hero-bg.jpg")
+        url("../images/photos/hero-bg.jpg")
             center/cover no-repeat;
     border-bottom: 3px solid transparent;
     border-image: linear-gradient(

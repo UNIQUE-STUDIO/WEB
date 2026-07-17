@@ -34,12 +34,12 @@ let statusFilter = 'all';
 let paymentFilter = 'all';
 let sourceFilter = 'all';
 let searchTerm = '';
-let customImages = JSON.parse(localStorage.getItem('customImages')) || {
-    services: {},
-    portfolio: {},
-    blog: {},
-    templates: {},
-};
+let customImages = (() => {
+    const stored = JSON.parse(localStorage.getItem('customImages'));
+    if (stored && stored._v === 2) return stored;
+    localStorage.removeItem('customImages');
+    return { services: {}, portfolio: {}, blog: {}, templates: {}, _v: 2 };
+})();
 const defaultImagePack = {
     services: {
         'Landing Page': 'images/photos/services/landing.jpg',
