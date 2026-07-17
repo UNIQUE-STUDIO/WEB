@@ -2,267 +2,519 @@
   "landing": [
     {
       "id": "landing_1",
-      "name": { "en": "Clearwave SaaS", "ru": "Clearwave SaaS" },
+      "name": {
+        "en": "Clearwave SaaS",
+        "ru": "Clearwave SaaS"
+      },
       "slug": "clearwave-saas",
-      "price": { "en": "from 12,000 ₽", "ru": "от 12 000 ₽" },
-      "image": "images/templates/tm-622.svg",
+      "price": {
+        "en": "from 12,000 ₽",
+        "ru": "от 12 000 ₽"
+      },
+      "image": "",
       "preview_url": "/templates-preview/tm-622/",
-      "desc": { "en": "Modern SaaS landing with 3D phone carousel and ocean-blue design. Pure CSS.", "ru": "Современный SaaS лендинг с 3D каруселью телефона. Чистый CSS." }
+      "desc": {
+        "en": "Modern SaaS landing with 3D phone carousel and ocean-blue design. Pure CSS.",
+        "ru": "Современный SaaS лендинг с 3D каруселью телефона. Чистый CSS."
+      }
     },
     {
       "id": "landing_2",
-      "name": { "en": "Novapay Fintech", "ru": "Novapay Fintech" },
+      "name": {
+        "en": "Novapay Fintech",
+        "ru": "Novapay Fintech"
+      },
       "slug": "novapay-fintech",
-      "price": { "en": "from 11,000 ₽", "ru": "от 11 000 ₽" },
-      "image": "images/templates/tm-623.svg",
+      "price": {
+        "en": "from 11,000 ₽",
+        "ru": "от 11 000 ₽"
+      },
+      "image": "",
       "preview_url": "/templates-preview/tm-623/",
-      "desc": { "en": "Sleek fintech landing with deep slate base and sky blue accents. Pure HTML/CSS.", "ru": "Элегантный финтех лендинг с тёмно-сланцевой базой и небесно-голубыми акцентами." }
+      "desc": {
+        "en": "Sleek fintech landing with deep slate base and sky blue accents. Pure HTML/CSS.",
+        "ru": "Элегантный финтех лендинг с тёмно-сланцевой базой и небесно-голубыми акцентами."
+      }
     },
     {
       "id": "landing_3",
-      "name": { "en": "Cloud Launch", "ru": "Cloud Старт" },
+      "name": {
+        "en": "Cloud Launch",
+        "ru": "Cloud Старт"
+      },
       "slug": "cloud-launch",
-      "price": { "en": "from 10,000 ₽", "ru": "от 10 000 ₽" },
-      "image": "images/templates/clouds-html5-multipurpose-landing-page-template.svg",
+      "price": {
+        "en": "from 10,000 ₽",
+        "ru": "от 10 000 ₽"
+      },
+      "image": "",
       "preview_url": "/templates-preview/clouds-html5-multipurpose-landing-page-template/",
-      "desc": { "en": "Parallax landing with WOW.js animations, video background and modern gradient.", "ru": "Параллакс лендинг с WOW.js анимацией, видео-фоном и современным градиентом." }
+      "desc": {
+        "en": "Parallax landing with WOW.js animations, video background and modern gradient.",
+        "ru": "Параллакс лендинг с WOW.js анимацией, видео-фоном и современным градиентом."
+      }
     },
     {
       "id": "landing_4",
-      "name": { "en": "Dimension Card", "ru": "Dimension Карта" },
+      "name": {
+        "en": "Dimension Card",
+        "ru": "Dimension Карта"
+      },
       "slug": "dimension-card",
-      "price": { "en": "from 9,000 ₽", "ru": "от 9 000 ₽" },
-      "image": "images/templates/html5up-dimension.svg",
+      "price": {
+        "en": "from 9,000 ₽",
+        "ru": "от 9 000 ₽"
+      },
+      "image": "",
       "preview_url": "/templates-preview/html5up-dimension/",
-      "desc": { "en": "Minimalist fullscreen card layout with elegant transitions. HTML5 UP design.", "ru": "Минималистичный полноэкранный макет с элегантными переходами. Дизайн HTML5 UP." }
+      "desc": {
+        "en": "Minimalist fullscreen card layout with elegant transitions. HTML5 UP design.",
+        "ru": "Минималистичный полноэкранный макет с элегантными переходами. Дизайн HTML5 UP."
+      }
     }
   ],
   "ecommerce": [
     {
       "id": "ecommerce_1",
-      "name": { "en": "Hyperluv EPK", "ru": "Hyperluv EPK" },
+      "name": {
+        "en": "Hyperluv EPK",
+        "ru": "Hyperluv EPK"
+      },
       "slug": "hyperluv-epk",
-      "price": { "en": "from 10,000 ₽", "ru": "от 10 000 ₽" },
-      "image": "images/templates/tm-627.svg",
+      "price": {
+        "en": "from 10,000 ₽",
+        "ru": "от 10 000 ₽"
+      },
+      "image": "",
       "preview_url": "/templates-preview/tm-627/",
-      "desc": { "en": "Y2K-inspired electronic press kit for artists, DJs and music acts. Pure CSS.", "ru": "Электронный пресс-кит в стиле Y2K для артистов и музыкантов. Чистый CSS." }
+      "desc": {
+        "en": "Y2K-inspired electronic press kit for artists, DJs and music acts. Pure CSS.",
+        "ru": "Электронный пресс-кит в стиле Y2K для артистов и музыкантов. Чистый CSS."
+      }
     },
     {
       "id": "ecommerce_2",
-      "name": { "en": "Big Picture Showcase", "ru": "Big Picture Витрина" },
+      "name": {
+        "en": "Big Picture Showcase",
+        "ru": "Big Picture Витрина"
+      },
       "slug": "big-picture-showcase",
-      "price": { "en": "from 12,000 ₽", "ru": "от 12 000 ₽" },
-      "image": "images/templates/html5up-bigpicture.svg",
+      "price": {
+        "en": "from 12,000 ₽",
+        "ru": "от 12 000 ₽"
+      },
+      "image": "",
       "preview_url": "/templates-preview/html5up-bigpicture/",
-      "desc": { "en": "Full-screen background portfolio with smooth scrolling sections. HTML5 UP.", "ru": "Полноэкранное портфолио с плавной прокруткой секций. HTML5 UP." }
+      "desc": {
+        "en": "Full-screen background portfolio with smooth scrolling sections. HTML5 UP.",
+        "ru": "Полноэкранное портфолио с плавной прокруткой секций. HTML5 UP."
+      }
     },
     {
       "id": "ecommerce_3",
-      "name": { "en": "App Market", "ru": "App Маркет" },
+      "name": {
+        "en": "App Market",
+        "ru": "App Маркет"
+      },
       "slug": "app-market",
-      "price": { "en": "from 12,000 ₽", "ru": "от 12 000 ₽" },
-      "image": "images/templates/brand-html5-app-landing-page-responsive-web-template.svg",
+      "price": {
+        "en": "from 12,000 ₽",
+        "ru": "от 12 000 ₽"
+      },
+      "image": "",
       "preview_url": "/templates-preview/brand-html5-app-landing-page-responsive-web-template/",
-      "desc": { "en": "Modern app showcase landing with features grid and download CTAs.", "ru": "Современный лендинг приложения с сеткой функций и кнопками загрузки." }
+      "desc": {
+        "en": "Modern app showcase landing with features grid and download CTAs.",
+        "ru": "Современный лендинг приложения с сеткой функций и кнопками загрузки."
+      }
     },
     {
       "id": "ecommerce_4",
-      "name": { "en": "Beauty Shop", "ru": "Магазин Красоты" },
+      "name": {
+        "en": "Beauty Shop",
+        "ru": "Магазин Красоты"
+      },
       "slug": "beauty-shop",
-      "price": { "en": "from 13,000 ₽", "ru": "от 13 000 ₽" },
-      "image": "images/templates/aroma-beauty-and-spa-responsive-bootstrap-template.svg",
+      "price": {
+        "en": "from 13,000 ₽",
+        "ru": "от 13 000 ₽"
+      },
+      "image": "",
       "preview_url": "/templates-preview/aroma-beauty-and-spa-responsive-bootstrap-template/",
-      "desc": { "en": "Elegant beauty and spa template with service menu and booking system.", "ru": "Элегантный шаблон красоты и спа с меню услуг и системой бронирования." }
+      "desc": {
+        "en": "Elegant beauty and spa template with service menu and booking system.",
+        "ru": "Элегантный шаблон красоты и спа с меню услуг и системой бронирования."
+      }
     }
   ],
   "corporate": [
     {
       "id": "corporate_1",
-      "name": { "en": "BusinessR Pro", "ru": "BusinessR Pro" },
+      "name": {
+        "en": "BusinessR Pro",
+        "ru": "BusinessR Pro"
+      },
       "slug": "businessr-pro",
-      "price": { "en": "from 15,000 ₽", "ru": "от 15 000 ₽" },
-      "image": "images/templates/businessr-corporate-bootstrap-responsive-web-template.svg",
+      "price": {
+        "en": "from 15,000 ₽",
+        "ru": "от 15 000 ₽"
+      },
+      "image": "",
       "preview_url": "/templates-preview/businessr-corporate-bootstrap-responsive-web-template/",
-      "desc": { "en": "Full parallax corporate site with WOW.js, carousels and multi-section layout.", "ru": "Полный корпоративный сайт с параллаксом, WOW.js, каруселями и многосекционной версткой." }
+      "desc": {
+        "en": "Full parallax corporate site with WOW.js, carousels and multi-section layout.",
+        "ru": "Полный корпоративный сайт с параллаксом, WOW.js, каруселями и многосекционной версткой."
+      }
     },
     {
       "id": "corporate_2",
-      "name": { "en": "Target Business", "ru": "Target Бизнес" },
+      "name": {
+        "en": "Target Business",
+        "ru": "Target Бизнес"
+      },
       "slug": "target-business",
-      "price": { "en": "from 14,000 ₽", "ru": "от 14 000 ₽" },
-      "image": "images/templates/target-multipurpose-free-bootstrap-responsive-template.svg",
+      "price": {
+        "en": "from 14,000 ₽",
+        "ru": "от 14 000 ₽"
+      },
+      "image": "",
       "preview_url": "/templates-preview/target-multipurpose-free-bootstrap-responsive-template/",
-      "desc": { "en": "6-page animated business site with flexslider, fancybox and isotope portfolio.", "ru": "6-страничный анимированный бизнес-сайт с flexslider, fancybox и isotope портфолио." }
+      "desc": {
+        "en": "6-page animated business site with flexslider, fancybox and isotope portfolio.",
+        "ru": "6-страничный анимированный бизнес-сайт с flexslider, fancybox и isotope портфолио."
+      }
     },
     {
       "id": "corporate_3",
-      "name": { "en": "Ledger Consulting", "ru": "Ledger Консалтинг" },
+      "name": {
+        "en": "Ledger Consulting",
+        "ru": "Ledger Консалтинг"
+      },
       "slug": "ledger-consulting",
-      "price": { "en": "from 13,000 ₽", "ru": "от 13 000 ₽" },
-      "image": "images/templates/tm-626.svg",
+      "price": {
+        "en": "from 13,000 ₽",
+        "ru": "от 13 000 ₽"
+      },
+      "image": "",
       "preview_url": "/templates-preview/tm-626/",
-      "desc": { "en": "Single-file HTML slideshow for consulting and professional services. Pure CSS.", "ru": "Однофайловая HTML презентация для консалтинга и профессиональных услуг. Чистый CSS." }
+      "desc": {
+        "en": "Single-file HTML slideshow for consulting and professional services. Pure CSS.",
+        "ru": "Однофайловая HTML презентация для консалтинга и профессиональных услуг. Чистый CSS."
+      }
     },
     {
       "id": "corporate_4",
-      "name": { "en": "Editorial Magazine", "ru": "Editorial Журнал" },
+      "name": {
+        "en": "Editorial Magazine",
+        "ru": "Editorial Журнал"
+      },
       "slug": "editorial-magazine",
-      "price": { "en": "from 14,000 ₽", "ru": "от 14 000 ₽" },
-      "image": "images/templates/html5up-editorial.svg",
+      "price": {
+        "en": "from 14,000 ₽",
+        "ru": "от 14 000 ₽"
+      },
+      "image": "",
       "preview_url": "/templates-preview/html5up-editorial/",
-      "desc": { "en": "Sidebar magazine layout for corporate blogs and publications. HTML5 UP design.", "ru": "Макет журнала с боковой панелью для корпоративных блогов. Дизайн HTML5 UP." }
+      "desc": {
+        "en": "Sidebar magazine layout for corporate blogs and publications. HTML5 UP design.",
+        "ru": "Макет журнала с боковой панелью для корпоративных блогов. Дизайн HTML5 UP."
+      }
     }
   ],
   "realestate": [
     {
       "id": "realestate_1",
-      "name": { "en": "AeroSky Realty", "ru": "AeroSky Недвижимость" },
+      "name": {
+        "en": "AeroSky Realty",
+        "ru": "AeroSky Недвижимость"
+      },
       "slug": "aerosky-realty",
-      "price": { "en": "from 18,000 ₽", "ru": "от 18 000 ₽" },
-      "image": "images/templates/aerosky-real-estate-html-responsive-website-template.svg",
+      "price": {
+        "en": "from 18,000 ₽",
+        "ru": "от 18 000 ₽"
+      },
+      "image": "",
       "preview_url": "/templates-preview/aerosky-real-estate-html-responsive-website-template/",
-      "desc": { "en": "10-page real estate website with property gallery, blog and contact.", "ru": "10-страничный сайт недвижимости с галереей объектов, блогом и контактами." }
+      "desc": {
+        "en": "10-page real estate website with property gallery, blog and contact.",
+        "ru": "10-страничный сайт недвижимости с галереей объектов, блогом и контактами."
+      }
     },
     {
       "id": "realestate_2",
-      "name": { "en": "BuildPro", "ru": "BuildPro" },
+      "name": {
+        "en": "BuildPro",
+        "ru": "BuildPro"
+      },
       "slug": "buildpro",
-      "price": { "en": "from 16,000 ₽", "ru": "от 16 000 ₽" },
-      "image": "images/templates/real-estate-builders-free-responsive-website-templates-adesign.svg",
+      "price": {
+        "en": "from 16,000 ₽",
+        "ru": "от 16 000 ₽"
+      },
+      "image": "",
       "preview_url": "/templates-preview/real-estate-builders-free-responsive-website-templates-adesign/",
-      "desc": { "en": "7-page real estate builder site with project showcase and rich imagery.", "ru": "7-страничный сайт застройщика с демонстрацией проектов и богатой графикой." }
+      "desc": {
+        "en": "7-page real estate builder site with project showcase and rich imagery.",
+        "ru": "7-страничный сайт застройщика с демонстрацией проектов и богатой графикой."
+      }
     },
     {
       "id": "realestate_3",
-      "name": { "en": "Icon Developers", "ru": "Icon Девелоперы" },
+      "name": {
+        "en": "Icon Developers",
+        "ru": "Icon Девелоперы"
+      },
       "slug": "icon-developers",
-      "price": { "en": "from 15,000 ₽", "ru": "от 15 000 ₽" },
-      "image": "images/templates/icon-real-estate-developers-free-responsive-html-template.svg",
+      "price": {
+        "en": "from 15,000 ₽",
+        "ru": "от 15 000 ₽"
+      },
+      "image": "",
       "preview_url": "/templates-preview/icon-real-estate-developers-free-responsive-html-template/",
-      "desc": { "en": "7-page real estate developer site with project listings and team profiles.", "ru": "7-страничный сайт девелопера с листингом проектов и профилями команды." }
+      "desc": {
+        "en": "7-page real estate developer site with project listings and team profiles.",
+        "ru": "7-страничный сайт девелопера с листингом проектов и профилями команды."
+      }
     },
     {
       "id": "realestate_4",
-      "name": { "en": "Park City Homes", "ru": "Park City Дома" },
+      "name": {
+        "en": "Park City Homes",
+        "ru": "Park City Дома"
+      },
       "slug": "park-city-homes",
-      "price": { "en": "from 13,000 ₽", "ru": "от 13 000 ₽" },
-      "image": "images/templates/park-city-bootstrap-html-real-estate-responsive-template.svg",
+      "price": {
+        "en": "from 13,000 ₽",
+        "ru": "от 13 000 ₽"
+      },
+      "image": "",
       "preview_url": "/templates-preview/park-city-bootstrap-html-real-estate-responsive-template/",
-      "desc": { "en": "6-page real estate template with carousels, lightboxes and gallery.", "ru": "6-страничный шаблон недвижимости с каруселями, лайтбоксами и галереей." }
+      "desc": {
+        "en": "6-page real estate template with carousels, lightboxes and gallery.",
+        "ru": "6-страничный шаблон недвижимости с каруселями, лайтбоксами и галереей."
+      }
     }
   ],
   "medical": [
     {
       "id": "medical_1",
-      "name": { "en": "Touch Hospital", "ru": "Touch Больница" },
+      "name": {
+        "en": "Touch Hospital",
+        "ru": "Touch Больница"
+      },
       "slug": "touch-hospital",
-      "price": { "en": "from 14,000 ₽", "ru": "от 14 000 ₽" },
-      "image": "images/templates/touch-hospital-medical-bootstrap-html5-template.svg",
+      "price": {
+        "en": "from 14,000 ₽",
+        "ru": "от 14 000 ₽"
+      },
+      "image": "",
       "preview_url": "/templates-preview/touch-hospital-medical-bootstrap-html5-template/",
-      "desc": { "en": "7-page hospital website with services, doctors gallery and appointment booking.", "ru": "7-страничный сайт больницы с услугами, галереей врачей и записью на приём." }
+      "desc": {
+        "en": "7-page hospital website with services, doctors gallery and appointment booking.",
+        "ru": "7-страничный сайт больницы с услугами, галереей врачей и записью на приём."
+      }
     },
     {
       "id": "medical_2",
-      "name": { "en": "Vcare Clinic", "ru": "Vcare Клиника" },
+      "name": {
+        "en": "Vcare Clinic",
+        "ru": "Vcare Клиника"
+      },
       "slug": "vcare-clinic",
-      "price": { "en": "from 13,000 ₽", "ru": "от 13 000 ₽" },
-      "image": "images/templates/vcare-free-html5-template-hospital-website.svg",
+      "price": {
+        "en": "from 13,000 ₽",
+        "ru": "от 13 000 ₽"
+      },
+      "image": "",
       "preview_url": "/templates-preview/vcare-free-html5-template-hospital-website/",
-      "desc": { "en": "6-page clinic site with medical services, team profiles and contact forms.", "ru": "6-страничный сайт клиники с услугами, профилями команды и формами связи." }
+      "desc": {
+        "en": "6-page clinic site with medical services, team profiles and contact forms.",
+        "ru": "6-страничный сайт клиники с услугами, профилями команды и формами связи."
+      }
     },
     {
       "id": "medical_3",
-      "name": { "en": "MedPlus Center", "ru": "MedPlus Центр" },
+      "name": {
+        "en": "MedPlus Center",
+        "ru": "MedPlus Центр"
+      },
       "slug": "medplus-center",
-      "price": { "en": "from 11,000 ₽", "ru": "от 11 000 ₽" },
-      "image": "images/templates/medplus-medical.svg",
+      "price": {
+        "en": "from 11,000 ₽",
+        "ru": "от 11 000 ₽"
+      },
+      "image": "",
       "preview_url": "/templates-preview/medplus-medical/",
-      "desc": { "en": "Premium single-page medical with doctors, events and insurance plan cards.", "ru": "Премиум одностраничник медицины с врачами, событиями и карточками планов." }
+      "desc": {
+        "en": "Premium single-page medical with doctors, events and insurance plan cards.",
+        "ru": "Премиум одностраничник медицины с врачами, событиями и карточками планов."
+      }
     },
     {
       "id": "medical_4",
-      "name": { "en": "FitLife Gym", "ru": "FitLife Фитнес" },
+      "name": {
+        "en": "FitLife Gym",
+        "ru": "FitLife Фитнес"
+      },
       "slug": "fitlife-gym",
-      "price": { "en": "from 10,000 ₽", "ru": "от 10 000 ₽" },
-      "image": "images/templates/add-life-health-fitness-free-bootstrap-html5-template.svg",
+      "price": {
+        "en": "from 10,000 ₽",
+        "ru": "от 10 000 ₽"
+      },
+      "image": "",
       "preview_url": "/templates-preview/add-life-health-fitness-free-bootstrap-html5-template/",
-      "desc": { "en": "Health and fitness landing with classes schedule, pricing plans and trainers.", "ru": "Лендинг здоровья и фитнеса с расписанием, ценами и тренерами." }
+      "desc": {
+        "en": "Health and fitness landing with classes schedule, pricing plans and trainers.",
+        "ru": "Лендинг здоровья и фитнеса с расписанием, ценами и тренерами."
+      }
     }
   ],
   "food": [
     {
       "id": "food_1",
-      "name": { "en": "Bestro Restaurant", "ru": "Bestro Ресторан" },
+      "name": {
+        "en": "Bestro Restaurant",
+        "ru": "Bestro Ресторан"
+      },
       "slug": "bestro-restaurant",
-      "price": { "en": "from 12,000 ₽", "ru": "от 12 000 ₽" },
-      "image": "images/templates/bestro-restaurant-bootstrap-html5-template.svg",
+      "price": {
+        "en": "from 12,000 ₽",
+        "ru": "от 12 000 ₽"
+      },
+      "image": "",
       "preview_url": "/templates-preview/bestro-restaurant-bootstrap-html5-template/",
-      "desc": { "en": "6-page restaurant site with menu, gallery and reservation form.", "ru": "6-страничный сайт ресторана с меню, галереей и формой бронирования." }
+      "desc": {
+        "en": "6-page restaurant site with menu, gallery and reservation form.",
+        "ru": "6-страничный сайт ресторана с меню, галереей и формой бронирования."
+      }
     },
     {
       "id": "food_2",
-      "name": { "en": "TreeHut Cafe", "ru": "TreeHut Кафе" },
+      "name": {
+        "en": "TreeHut Cafe",
+        "ru": "TreeHut Кафе"
+      },
       "slug": "treehut-cafe",
-      "price": { "en": "from 9,000 ₽", "ru": "от 9 000 ₽" },
-      "image": "images/templates/free-bootstrap-template-restaurant-website-treehut.svg",
+      "price": {
+        "en": "from 9,000 ₽",
+        "ru": "от 9 000 ₽"
+      },
+      "image": "",
       "preview_url": "/templates-preview/free-bootstrap-template-restaurant-website-treehut/",
-      "desc": { "en": "Stylish restaurant landing with menu grid, gallery and team section.", "ru": "Стильный ресторанный лендинг с сеткой меню, галереей и разделом команды." }
+      "desc": {
+        "en": "Stylish restaurant landing with menu grid, gallery and team section.",
+        "ru": "Стильный ресторанный лендинг с сеткой меню, галереей и разделом команды."
+      }
     },
     {
       "id": "food_3",
-      "name": { "en": "Eat Restaurant", "ru": "Eat Ресторан" },
+      "name": {
+        "en": "Eat Restaurant",
+        "ru": "Eat Ресторан"
+      },
       "slug": "eat-restaurant",
-      "price": { "en": "from 10,000 ₽", "ru": "от 10 000 ₽" },
-      "image": "images/templates/eat-restaurant-bootstrap-html5-template.svg",
+      "price": {
+        "en": "from 10,000 ₽",
+        "ru": "от 10 000 ₽"
+      },
+      "image": "",
       "preview_url": "/templates-preview/eat-restaurant-bootstrap-html5-template/",
-      "desc": { "en": "Modern restaurant template with menu highlights, gallery and table booking.", "ru": "Современный шаблон ресторана с меню, галереей и бронью столиков." }
+      "desc": {
+        "en": "Modern restaurant template with menu highlights, gallery and table booking.",
+        "ru": "Современный шаблон ресторана с меню, галереей и бронью столиков."
+      }
     },
     {
       "id": "food_4",
-      "name": { "en": "Coffee House", "ru": "Кофейня" },
+      "name": {
+        "en": "Coffee House",
+        "ru": "Кофейня"
+      },
       "slug": "coffee-house",
-      "price": { "en": "from 8,000 ₽", "ru": "от 8 000 ₽" },
-      "image": "images/templates/coffee-shop-free-html5-template.svg",
+      "price": {
+        "en": "from 8,000 ₽",
+        "ru": "от 8 000 ₽"
+      },
+      "image": "",
       "preview_url": "/templates-preview/coffee-shop-free-html5-template/",
-      "desc": { "en": "Warm coffee shop landing with menu cards, gallery and contact information.", "ru": "Тёплый лендинг кофейни с карточками меню, галереей и контактной информацией." }
+      "desc": {
+        "en": "Warm coffee shop landing with menu cards, gallery and contact information.",
+        "ru": "Тёплый лендинг кофейни с карточками меню, галереей и контактной информацией."
+      }
     }
   ],
   "portfolio": [
     {
       "id": "portfolio_1",
-      "name": { "en": "Massively Narrative", "ru": "Massively Повествование" },
+      "name": {
+        "en": "Massively Narrative",
+        "ru": "Massively Повествование"
+      },
       "slug": "massively-narrative",
-      "price": { "en": "from 11,000 ₽", "ru": "от 11 000 ₽" },
-      "image": "images/templates/html5up-massively.svg",
+      "price": {
+        "en": "from 11,000 ₽",
+        "ru": "от 11 000 ₽"
+      },
+      "image": "",
       "preview_url": "/templates-preview/html5up-massively/",
-      "desc": { "en": "Scrolling narrative portfolio with bold typography and parallax effects. HTML5 UP.", "ru": "Портфолио с прокруткой-повествованием, жирной типографикой и параллаксом. HTML5 UP." }
+      "desc": {
+        "en": "Scrolling narrative portfolio with bold typography and parallax effects. HTML5 UP.",
+        "ru": "Портфолио с прокруткой-повествованием, жирной типографикой и параллаксом. HTML5 UP."
+      }
     },
     {
       "id": "portfolio_2",
-      "name": { "en": "Compression Dynamic", "ru": "Compression Динамика" },
+      "name": {
+        "en": "Compression Dynamic",
+        "ru": "Compression Динамика"
+      },
       "slug": "compression-dynamic",
-      "price": { "en": "from 10,000 ₽", "ru": "от 10 000 ₽" },
-      "image": "images/templates/tm-620.svg",
+      "price": {
+        "en": "from 10,000 ₽",
+        "ru": "от 10 000 ₽"
+      },
+      "image": "",
       "preview_url": "/templates-preview/tm-620/",
-      "desc": { "en": "Dynamic portfolio with CSS flexbox layouts and smooth hover transitions. Pure CSS.", "ru": "Динамичное портфолио с CSS flexbox макетами и плавными hover переходами." }
+      "desc": {
+        "en": "Dynamic portfolio with CSS flexbox layouts and smooth hover transitions. Pure CSS.",
+        "ru": "Динамичное портфолио с CSS flexbox макетами и плавными hover переходами."
+      }
     },
     {
       "id": "portfolio_3",
-      "name": { "en": "Hyperspace SPA", "ru": "Hyperspace SPA" },
+      "name": {
+        "en": "Hyperspace SPA",
+        "ru": "Hyperspace SPA"
+      },
       "slug": "hyperspace-spa",
-      "price": { "en": "from 13,000 ₽", "ru": "от 13 000 ₽" },
-      "image": "images/templates/html5up-hyperspace.svg",
+      "price": {
+        "en": "from 13,000 ₽",
+        "ru": "от 13 000 ₽"
+      },
+      "image": "",
       "preview_url": "/templates-preview/html5up-hyperspace/",
-      "desc": { "en": "Single page application style with gradient panels and side navigation. HTML5 UP.", "ru": "Одностраничное приложение с градиентными панелями и боковой навигацией. HTML5 UP." }
+      "desc": {
+        "en": "Single page application style with gradient panels and side navigation. HTML5 UP.",
+        "ru": "Одностраничное приложение с градиентными панелями и боковой навигацией. HTML5 UP."
+      }
     },
     {
       "id": "portfolio_4",
-      "name": { "en": "Rider Multi", "ru": "Rider Мульти" },
+      "name": {
+        "en": "Rider Multi",
+        "ru": "Rider Мульти"
+      },
       "slug": "rider-multi",
-      "price": { "en": "from 11,000 ₽", "ru": "от 11 000 ₽" },
-      "image": "images/templates/rider-free-multi-purpose-bootstrap-template.svg",
+      "price": {
+        "en": "from 11,000 ₽",
+        "ru": "от 11 000 ₽"
+      },
+      "image": "",
       "preview_url": "/templates-preview/rider-free-multi-purpose-bootstrap-template/",
-      "desc": { "en": "7-page multi-purpose template with portfolio grid and business sections.", "ru": "7-страничный многоцелевой шаблон с сеткой портфолио и бизнес-разделами." }
+      "desc": {
+        "en": "7-page multi-purpose template with portfolio grid and business sections.",
+        "ru": "7-страничный многоцелевой шаблон с сеткой портфолио и бизнес-разделами."
+      }
     }
   ]
 }

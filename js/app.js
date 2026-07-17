@@ -43,7 +43,7 @@ let customImages = (() => {
     const stored = JSON.parse(localStorage.getItem('customImages'));
     if (stored && stored._v === 2) return stored;
     localStorage.removeItem('customImages');
-    return { services: {}, portfolio: {}, blog: {}, templates: {}, _v: 2 };
+    return { services: {}, portfolio: {}, blog: {}, templates: {}, _v: 3 };
 })();
 const defaultImagePack = {
     services: {
