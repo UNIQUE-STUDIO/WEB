@@ -46,6 +46,9 @@ const defaultImagePack = {
         'Online Store': 'images/photos/services/ecommerce.jpg',
         'Corporate Website': 'images/photos/services/corporate.jpg',
         'Website Editing': 'images/photos/services/editing.jpg',
+        'Интернет-магазин': 'images/photos/services/ecommerce.jpg',
+        'Корпоративный сайт': 'images/photos/services/corporate.jpg',
+        'Редактирование сайта': 'images/photos/services/editing.jpg',
     },
     portfolio: {
         UNIDENT: 'images/photos/portfolio/beauty.jpg',
