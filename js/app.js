@@ -1,7 +1,7 @@
 // ==================== GLOBAL VARIABLES ====================
 // Register Service Worker for PWA
 if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/sw.js').catch(function () {});
+    navigator.serviceWorker.register('./sw.js').catch(function () {});
 }
 const DEFAULT_SCRIPT_URL =
     'https://script.google.com/macros/s/AKfycbw0eEHPeS5Ad2RxlRlErM8Ffbkw0NmfDkYiUCtzj6qieUnPBe3iCpgzq-teblsDeQnN/exec';
