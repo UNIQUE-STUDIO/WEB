@@ -1345,15 +1345,7 @@ body.dark section:nth-child(even) {
     min-height: 100vh;
     display: flex;
     align-items: center;
-    background:
-        linear-gradient(
-            110deg,
-            rgb(12, 15, 20, 0.92) 0%,
-            rgb(12, 15, 20, 0.75) 45%,
-            rgb(12, 15, 20, 0.5) 100%
-        ),
-        url("../images/photos/hero-bg.jpg")
-            center/cover no-repeat;
+    background: none;
     border-bottom: 3px solid transparent;
     border-image: linear-gradient(
             90deg,
@@ -1368,13 +1360,53 @@ body.dark section:nth-child(even) {
     overflow: hidden;
 }
 
+/* Slideshow container */
+.hero-slideshow {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+}
+
+.hero-slide {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0;
+    transition: opacity 2s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: opacity;
+}
+
+.hero-slide.active {
+    opacity: 1;
+}
+
+/* Constant gradient overlay for readability */
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background:
+        linear-gradient(
+            110deg,
+            rgb(12, 15, 20, 0.92) 0%,
+            rgb(12, 15, 20, 0.75) 45%,
+            rgb(12, 15, 20, 0.5) 100%
+        );
+    pointer-events: none;
+}
+
+.hero .container {
+    position: relative;
+    z-index: 2;
+}
+
 .hero::before {
     content: "";
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    inset: 0;
+    z-index: 1;
     background:
         radial-gradient(circle at 20% 30%, rgb(200, 169, 106, 0.15) 0%, transparent 50%),
         radial-gradient(circle at 80% 70%, rgb(166, 123, 90, 0.1) 0%, transparent 60%);
@@ -3057,15 +3089,15 @@ a:has(> .portfolio-card):hover .portfolio-card img {
         text-align: center;
         padding-top: 90px;
         padding-bottom: 40px;
+    }
+    .hero-overlay {
         background:
             linear-gradient(
                 110deg,
                 rgb(12, 15, 20, 0.95) 0%,
                 rgb(12, 15, 20, 0.85) 50%,
                 rgb(12, 15, 20, 0.65) 100%
-            ),
-            url("../images/photos/hero-bg.jpg")
-                center/cover no-repeat;
+            );
     }
     .hero .container {
         display: flex;
@@ -3508,15 +3540,15 @@ a:has(> .portfolio-card):hover .portfolio-card img {
     .hero {
         min-height: 65vh;
         padding-top: 80px;
+    }
+    .hero-overlay {
         background:
             linear-gradient(
                 110deg,
                 rgb(12, 15, 20, 0.96) 0%,
                 rgb(12, 15, 20, 0.90) 60%,
                 rgb(12, 15, 20, 0.75) 100%
-            ),
-            url("../images/photos/hero-bg.jpg")
-                center/cover no-repeat;
+            );
     }
     .hero-title {
         font-size: 1.8rem;

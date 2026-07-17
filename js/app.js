@@ -891,11 +891,9 @@ function renderTemplatesPage() {
                       : tmpl._category === 'corporate'
                         ? 'from 9,000 ₽'
                         : 'from 6,000 ₽';
-                const imgUrl = customImages.templates[tmpl.id] || tmpl.image || '';
+                const imgUrl = customImages.templates[tmpl.id] || tmpl.image || 'images/photos/templates/' + (tmpl._category || 'landing') + '.jpg';
                 const previewUrl = tmpl.preview_url || '';
-                const imgHtml = imgUrl
-                    ? `<img src="${imgUrl}" alt="${name}" style="width:100%; border-radius:20px; aspect-ratio:16/10; object-fit:cover;" loading="lazy">`
-                    : `<div class="template-img" style="height:150px; display:flex; align-items:center; justify-content:center; background:var(--beige); border-radius:20px;">${name}</div>`;
+                const imgHtml = `<img src="${imgUrl}" alt="${name}" style="width:100%; border-radius:20px; aspect-ratio:16/10; object-fit:cover;" loading="lazy">`;
                 return `
             <div class="template-card" data-template-id="${tmpl.id}">
                 ${imgHtml}
@@ -1677,6 +1675,29 @@ try {
 } catch (e) {
     console.log('VanillaTilt not loaded, skipping');
 }
+
+// ==================== HERO SLIDESHOW ====================
+(function initHeroSlideshow() {
+    var slideshow = document.getElementById('heroSlideshow');
+    if (!slideshow) return;
+    var slides = [];
+    for (var i = 0; i < 10; i++) {
+        var slide = document.createElement('div');
+        slide.className = 'hero-slide' + (i === 0 ? ' active' : '');
+        slide.style.backgroundImage = 'url("images/hero/slide-' + i + '.jpg")';
+        slideshow.appendChild(slide);
+        slides.push(slide);
+    }
+    var current = 0;
+    var interval = 120000; // 2 minutes
+    function nextSlide() {
+        slides[current].classList.remove('active');
+        current = (current + 1) % slides.length;
+        slides[current].classList.add('active');
+    }
+    setInterval(nextSlide, interval);
+})();
+
 document.querySelectorAll('.filter-btn').forEach((btn) => {
     btn.addEventListener('click', () => {
         document.querySelectorAll('.filter-btn').forEach((b) => b.classList.remove('active'));
