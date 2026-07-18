@@ -891,7 +891,7 @@ function renderTemplatesPage() {
                       : tmpl._category === 'corporate'
                         ? 'from 9,000 ₽'
                         : 'from 6,000 ₽';
-                const imgUrl = customImages.templates[tmpl.id] || tmpl.image || 'images/photos/templates/' + (tmpl._category || 'landing') + '.jpg';
+                const imgUrl = customImages.templates[tmpl.id] || tmpl.image || 'images/photos/templates/' + tmpl.id + '.jpg';
                 const previewUrl = tmpl.preview_url || '';
                 const imgHtml = `<img src="${imgUrl}" alt="${name}" style="width:100%; border-radius:20px; aspect-ratio:16/10; object-fit:cover;" loading="lazy">`;
                 return `
@@ -1021,7 +1021,7 @@ function openOrderServiceModal(serviceName, preselectedTemplateId = null) {
             .map((tmpl) => {
                 const name = tmpl.name[currentLang] || tmpl.name.en;
                 const price = tmpl.price[currentLang] || tmpl.price.en;
-                const imgUrl = customImages.templates[tmpl.id] || tmpl.image || '';
+                const imgUrl = customImages.templates[tmpl.id] || tmpl.image || 'images/photos/templates/' + tmpl.id + '.jpg';
                 const imgHtml = imgUrl
                     ? `<img src="${imgUrl}" alt="${name}" style="width:100%; border-radius:12px; aspect-ratio:16/10; object-fit:cover;">`
                     : `<div style="height:100px; background:var(--beige); display:flex; align-items:center; justify-content:center; border-radius:12px;">${name}</div>`;
@@ -1102,7 +1102,7 @@ function populateTemplateModal(category) {
     grid.innerHTML = templates
         .map(function (tmpl) {
             var name = tmpl.name[currentLang] || tmpl.name.en;
-            var imgUrl = customImages.templates[tmpl.id] || tmpl.image || '';
+            var imgUrl = customImages.templates[tmpl.id] || tmpl.image || 'images/photos/templates/' + tmpl.id + '.jpg';
             var imgHtml = imgUrl
                 ? '<img src="' + imgUrl + '" alt="' + name + '" loading="lazy">'
                 : '<div style="aspect-ratio:16/10; display:flex; align-items:center; justify-content:center; background:var(--beige); border-radius:12px; font-size:0.8rem; color:var(--text-light);">' +
@@ -1150,7 +1150,7 @@ function showTemplateSelectionDisplay(templateId, templateName) {
             return t.id === templateId;
         });
         if (found) {
-            imgUrl = customImages.templates[templateId] || found.image || '';
+            imgUrl = customImages.templates[templateId] || found.image || 'images/photos/templates/' + templateId + '.jpg';
             break;
         }
     }
