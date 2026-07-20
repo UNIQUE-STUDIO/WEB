@@ -16,6 +16,46 @@
       "desc": {
         "en": "Modern SaaS landing with 3D phone carousel and ocean-blue design. Pure CSS.",
         "ru": "Современный SaaS лендинг с 3D каруселью телефона. Чистый CSS."
+      },
+      "features": {
+        "en": [
+          "Lightning-fast page load with CSS-only animations",
+          "SEO-optimized semantic HTML5 structure",
+          "Conversion-focused lead capture form",
+          "Built-in Google Analytics integration",
+          "Fully responsive across all device sizes",
+          "A/B testing ready with modular sections",
+          "Social proof section with testimonial carousel"
+        ],
+        "ru": [
+          "Молниеносная загрузка на чистых CSS-анимациях",
+          "SEO-оптимизированная семантическая структура HTML5",
+          "Форма захвата лидов, нацеленная на конверсию",
+          "Встроенная интеграция с Google Analytics",
+          "Полная адаптивность на всех устройствах",
+          "Готовность к A/B тестированию с модульными секциями",
+          "Секция социальных доказательств с каруселью отзывов"
+        ]
+      },
+      "tech_stack": ["HTML5", "CSS3", "JavaScript", "Swiper.js", "GSAP"],
+      "rating": 4.6,
+      "delivery_time": {
+        "en": "3-5 business days",
+        "ru": "3-5 рабочих дней"
+      },
+      "pages_included": {
+        "en": ["Home", "Features", "Pricing", "Contact"],
+        "ru": ["Главная", "Функции", "Цены", "Контакты"]
+      },
+      "responsive": true,
+      "support": {
+        "en": "14 days free support",
+        "ru": "14 дней бесплатной поддержки"
+      },
+      "popular": true,
+      "old_price": {
+        "en": "15,000 ₽",
+        "ru": "15 000 ₽"
       }
     },
     {
@@ -34,7 +74,43 @@
       "desc": {
         "en": "Sleek fintech landing with deep slate base and sky blue accents. Pure HTML/CSS.",
         "ru": "Элегантный финтех лендинг с тёмно-сланцевой базой и небесно-голубыми акцентами."
-      }
+      },
+      "features": {
+        "en": [
+          "Ultra-fast rendering with pure CSS styling",
+          "SEO-friendly heading hierarchy and meta tags",
+          "Lead generation form with validation",
+          "Event tracking via analytics hooks",
+          "Mobile-first responsive breakpoints",
+          "Modular blocks ready for A/B experiments",
+          "Trust badges and partner logo showcase"
+        ],
+        "ru": [
+          "Сверхбыстрая отрисовка на чистом CSS",
+          "SEO-дружественная иерархия заголовков и мета-теги",
+          "Форма лидогенерации с валидацией",
+          "Отслеживание событий через аналитические хуки",
+          "Адаптивные точки перехода mobile-first",
+          "Модульные блоки для A/B экспериментов",
+          "Знаки доверия и демонстрация логотипов партнёров"
+        ]
+      },
+      "tech_stack": ["HTML5", "CSS3", "JavaScript", "Bootstrap 5", "AOS"],
+      "rating": 4.4,
+      "delivery_time": {
+        "en": "3-5 business days",
+        "ru": "3-5 рабочих дней"
+      },
+      "pages_included": {
+        "en": ["Home", "Features", "Pricing", "Contact"],
+        "ru": ["Главная", "Функции", "Цены", "Контакты"]
+      },
+      "responsive": true,
+      "support": {
+        "en": "14 days free support",
+        "ru": "14 дней бесплатной поддержки"
+      },
+      "popular": false
     },
     {
       "id": "landing_3",
@@ -52,7 +128,43 @@
       "desc": {
         "en": "Parallax landing with WOW.js animations, video background and modern gradient.",
         "ru": "Параллакс лендинг с WOW.js анимацией, видео-фоном и современным градиентом."
-      }
+      },
+      "features": {
+        "en": [
+          "Fast initial paint with optimized asset loading",
+          "Structured data markup for rich search snippets",
+          "Email capture popup with exit-intent trigger",
+          "Google Analytics and Yandex Metrika ready",
+          "Adaptive layout for phones, tablets and desktops",
+          "Hero section variants for A/B comparisons",
+          "Customer logo carousel with auto-scroll"
+        ],
+        "ru": [
+          "Быстрая первая отрисовка с оптимизированной загрузкой",
+          "Структурированная разметка для расширенных сниппетов",
+          "Всплывающая форма подписки с триггером ухода",
+          "Готовность к Google Analytics и Яндекс Метрике",
+          "Адаптивная верстка для телефонов, планшетов и десктопов",
+          "Варианты Hero-секции для A/B сравнений",
+          "Карусель логотипов клиентов с автопрокруткой"
+        ]
+      },
+      "tech_stack": ["HTML5", "CSS3", "JavaScript", "WOW.js", "Parallax.js"],
+      "rating": 4.2,
+      "delivery_time": {
+        "en": "1-2 business days",
+        "ru": "1-2 рабочих дня"
+      },
+      "pages_included": {
+        "en": ["Home", "Features", "Pricing", "Contact"],
+        "ru": ["Главная", "Функции", "Цены", "Контакты"]
+      },
+      "responsive": true,
+      "support": {
+        "en": "14 days free support",
+        "ru": "14 дней бесплатной поддержки"
+      },
+      "popular": false
     },
     {
       "id": "landing_4",
@@ -70,7 +182,43 @@
       "desc": {
         "en": "Minimalist fullscreen card layout with elegant transitions. HTML5 UP design.",
         "ru": "Минималистичный полноэкранный макет с элегантными переходами. Дизайн HTML5 UP."
-      }
+      },
+      "features": {
+        "en": [
+          "Minimal asset footprint for instant load times",
+          "Clean semantic markup for search engines",
+          "Compact contact form with AJAX submission",
+          "Lightweight analytics snippet included",
+          "Fluid responsive scaling across viewports",
+          "Section toggle structure for variant testing",
+          "Social icon links with smooth hover effects"
+        ],
+        "ru": [
+          "Минимальный размер ресурсов для мгновенной загрузки",
+          "Чистая семантическая разметка для поисковых систем",
+          "Компактная контактная форма с AJAX отправкой",
+          "Лёгкий аналитический сниппет включён",
+          "Плавное адаптивное масштабирование на всех экранах",
+          "Структура переключения секций для тестирования вариантов",
+          "Иконки соцсетей с плавными hover-эффектами"
+        ]
+      },
+      "tech_stack": ["HTML5", "CSS3", "JavaScript", "SCSS", "Font Awesome"],
+      "rating": 4.0,
+      "delivery_time": {
+        "en": "1-2 business days",
+        "ru": "1-2 рабочих дня"
+      },
+      "pages_included": {
+        "en": ["Home", "About", "Contact"],
+        "ru": ["Главная", "О нас", "Контакты"]
+      },
+      "responsive": true,
+      "support": {
+        "en": "14 days free support",
+        "ru": "14 дней бесплатной поддержки"
+      },
+      "popular": false
     }
   ],
   "ecommerce": [
@@ -90,7 +238,43 @@
       "desc": {
         "en": "Y2K-inspired electronic press kit for artists, DJs and music acts. Pure CSS.",
         "ru": "Электронный пресс-кит в стиле Y2K для артистов и музыкантов. Чистый CSS."
-      }
+      },
+      "features": {
+        "en": [
+          "Digital product catalog with filterable grid",
+          "Integrated shopping cart with local storage",
+          "Payment gateway placeholder for Stripe/Yookassa",
+          "Real-time stock status indicators",
+          "Order confirmation screens with email template",
+          "Customer wishlist with browser persistence",
+          "Multi-currency display toggle"
+        ],
+        "ru": [
+          "Каталог цифровых продуктов с фильтруемой сеткой",
+          "Встроенная корзина с локальным хранением",
+          "Заготовка платёжного шлюза для Stripe/Yookassa",
+          "Индикаторы наличия в реальном времени",
+          "Экраны подтверждения заказа с шаблоном письма",
+          "Список желаний клиента с сохранением в браузере",
+          "Переключатель отображения мультивалюты"
+        ]
+      },
+      "tech_stack": ["HTML5", "CSS3", "JavaScript", "Bootstrap 5", "LocalStorage API"],
+      "rating": 4.2,
+      "delivery_time": {
+        "en": "1-2 business days",
+        "ru": "1-2 рабочих дня"
+      },
+      "pages_included": {
+        "en": ["Home", "Catalog", "Product", "Cart", "Contact"],
+        "ru": ["Главная", "Каталог", "Товар", "Корзина", "Контакты"]
+      },
+      "responsive": true,
+      "support": {
+        "en": "14 days free support",
+        "ru": "14 дней бесплатной поддержки"
+      },
+      "popular": false
     },
     {
       "id": "ecommerce_2",
@@ -108,7 +292,43 @@
       "desc": {
         "en": "Full-screen background portfolio with smooth scrolling sections. HTML5 UP.",
         "ru": "Полноэкранное портфолио с плавной прокруткой секций. HTML5 UP."
-      }
+      },
+      "features": {
+        "en": [
+          "Fullscreen product showcase with zoom-in previews",
+          "AJAX-powered cart with quantity controls",
+          "Pre-integrated Robokassa and CloudPayments gateways",
+          "Admin-ready inventory status badges",
+          "Order summary and email notification template",
+          "Quick-view modal for product details",
+          "Collection-based wishlist with share links"
+        ],
+        "ru": [
+          "Полноэкранная витрина товаров с зум-превью",
+          "Корзина на AJAX с элементами количества",
+          "Предварительная интеграция Robokassa и CloudPayments",
+          "Готовые бейджи статуса наличия для админки",
+          "Сводка заказа и шаблон email-уведомления",
+          "Быстрый просмотр товара в модальном окне",
+          "Списки желаний по коллекциям со ссылками для отправки"
+        ]
+      },
+      "tech_stack": ["HTML5", "CSS3", "JavaScript", "jQuery", "AJAX", "Bootstrap 5"],
+      "rating": 4.5,
+      "delivery_time": {
+        "en": "3-5 business days",
+        "ru": "3-5 рабочих дней"
+      },
+      "pages_included": {
+        "en": ["Home", "Catalog", "Product", "Cart", "Contact"],
+        "ru": ["Главная", "Каталог", "Товар", "Корзина", "Контакты"]
+      },
+      "responsive": true,
+      "support": {
+        "en": "14 days free support",
+        "ru": "14 дней бесплатной поддержки"
+      },
+      "popular": false
     },
     {
       "id": "ecommerce_3",
@@ -126,7 +346,43 @@
       "desc": {
         "en": "Modern app showcase landing with features grid and download CTAs.",
         "ru": "Современный лендинг приложения с сеткой функций и кнопками загрузки."
-      }
+      },
+      "features": {
+        "en": [
+          "Digital product grid with category filters",
+          "Side-panel cart with slide animation",
+          "Stripe payment flow with test keys included",
+          "Inventory counter with low-stock alerts",
+          "Downloadable invoice page template",
+          "Customer registration and login screens",
+          "Wishlist with add-to-cart quick transfer"
+        ],
+        "ru": [
+          "Сетка цифровых продуктов с фильтрами категорий",
+          "Боковая панель корзины с анимацией выезда",
+          "Платёжный поток Stripe с тестовыми ключами",
+          "Счётчик остатков с оповещением о дефиците",
+          "Шаблон страницы счёта для скачивания",
+          "Экраны регистрации и входа клиентов",
+          "Список желаний с быстрым переносом в корзину"
+        ]
+      },
+      "tech_stack": ["HTML5", "CSS3", "JavaScript", "React", "PHP", "MySQL"],
+      "rating": 4.4,
+      "delivery_time": {
+        "en": "3-5 business days",
+        "ru": "3-5 рабочих дней"
+      },
+      "pages_included": {
+        "en": ["Home", "Catalog", "Product", "Cart", "Account"],
+        "ru": ["Главная", "Каталог", "Товар", "Корзина", "Аккаунт"]
+      },
+      "responsive": true,
+      "support": {
+        "en": "14 days free support",
+        "ru": "14 дней бесплатной поддержки"
+      },
+      "popular": false
     },
     {
       "id": "ecommerce_4",
@@ -144,6 +400,46 @@
       "desc": {
         "en": "Elegant beauty and spa template with service menu and booking system.",
         "ru": "Элегантный шаблон красоты и спа с меню услуг и системой бронирования."
+      },
+      "features": {
+        "en": [
+          "Elegant product catalog with masonry grid layout",
+          "Persistent shopping cart with discount code input",
+          "YooKassa and SberPay payment integrations",
+          "Inventory tracking with variant management",
+          "Order status page with progress tracker",
+          "Customer loyalty account with order history",
+          "Gift registry and wishlist with sharing"
+        ],
+        "ru": [
+          "Элегантный каталог товаров с сеткой masonry",
+          "Постоянная корзина с полем промокода",
+          "Интеграции оплаты YooKassa и SberPay",
+          "Отслеживание остатков с управлением вариантами",
+          "Страница статуса заказа с индикатором прогресса",
+          "Аккаунт лояльности с историей заказов",
+          "Реестр подарков и список желаний с отправкой"
+        ]
+      },
+      "tech_stack": ["HTML5", "CSS3", "JavaScript", "Bootstrap 5", "PHP", "jQuery"],
+      "rating": 4.6,
+      "delivery_time": {
+        "en": "3-5 business days",
+        "ru": "3-5 рабочих дней"
+      },
+      "pages_included": {
+        "en": ["Home", "Catalog", "Product", "Cart", "Account", "Contact"],
+        "ru": ["Главная", "Каталог", "Товар", "Корзина", "Аккаунт", "Контакты"]
+      },
+      "responsive": true,
+      "support": {
+        "en": "14 days free support",
+        "ru": "14 дней бесплатной поддержки"
+      },
+      "popular": true,
+      "old_price": {
+        "en": "16,000 ₽",
+        "ru": "16 000 ₽"
       }
     }
   ],
@@ -164,6 +460,46 @@
       "desc": {
         "en": "Full parallax corporate site with WOW.js, carousels and multi-section layout.",
         "ru": "Полный корпоративный сайт с параллаксом, WOW.js, каруселями и многосекционной версткой."
+      },
+      "features": {
+        "en": [
+          "Dedicated team section with individual bio cards",
+          "Case study pages with results and metrics layout",
+          "Expandable service pages with side navigation",
+          "Secure client portal with document sharing area",
+          "Integrated document library with search and filters",
+          "Full multi-language support with EN/RU switcher",
+          "Advanced contact form with department routing"
+        ],
+        "ru": [
+          "Выделенный раздел команды с карточками-биографиями",
+          "Страницы кейсов с версткой результатов и метрик",
+          "Раскрываемые страницы услуг с боковой навигацией",
+          "Защищённый клиентский портал с обменом документами",
+          "Встроенная библиотека документов с поиском и фильтрами",
+          "Полная мультиязычная поддержка с переключателем EN/RU",
+          "Продвинутая контактная форма с маршрутизацией по отделам"
+        ]
+      },
+      "tech_stack": ["HTML5", "CSS3", "JavaScript", "Bootstrap 5", "WOW.js", "PHP"],
+      "rating": 5.0,
+      "delivery_time": {
+        "en": "5-7 business days",
+        "ru": "5-7 рабочих дней"
+      },
+      "pages_included": {
+        "en": ["Home", "About", "Services", "Case Studies", "Team", "Contact"],
+        "ru": ["Главная", "О нас", "Услуги", "Кейсы", "Команда", "Контакты"]
+      },
+      "responsive": true,
+      "support": {
+        "en": "30 days free support",
+        "ru": "30 дней бесплатной поддержки"
+      },
+      "popular": true,
+      "old_price": {
+        "en": "19,000 ₽",
+        "ru": "19 000 ₽"
       }
     },
     {
@@ -182,7 +518,43 @@
       "desc": {
         "en": "6-page animated business site with flexslider, fancybox and isotope portfolio.",
         "ru": "6-страничный анимированный бизнес-сайт с flexslider, fancybox и isotope портфолио."
-      }
+      },
+      "features": {
+        "en": [
+          "Animated team carousel with role and social links",
+          "Success stories slider with client logos",
+          "Six dedicated service pages with icon sets",
+          "Password-protected client area template",
+          "Sortable document repository with tags",
+          "Language toggle with RTL layout support",
+          "Multi-recipient contact form with file upload"
+        ],
+        "ru": [
+          "Анимированная карусель команды с ролью и соцссылками",
+          "Слайдер историй успеха с логотипами клиентов",
+          "Шесть страниц услуг с наборами иконок",
+          "Шаблон клиентской зоны с парольной защитой",
+          "Сортируемый репозиторий документов с тегами",
+          "Переключатель языка с поддержкой RTL вёрстки",
+          "Контактная форма с множеством получателей и загрузкой файлов"
+        ]
+      },
+      "tech_stack": ["HTML5", "CSS3", "JavaScript", "FlexSlider", "Fancybox", "Isotope"],
+      "rating": 4.9,
+      "delivery_time": {
+        "en": "5-7 business days",
+        "ru": "5-7 рабочих дней"
+      },
+      "pages_included": {
+        "en": ["Home", "About", "Services", "Portfolio", "Team", "Contact"],
+        "ru": ["Главная", "О нас", "Услуги", "Портфолио", "Команда", "Контакты"]
+      },
+      "responsive": true,
+      "support": {
+        "en": "30 days free support",
+        "ru": "30 дней бесплатной поддержки"
+      },
+      "popular": false
     },
     {
       "id": "corporate_3",
@@ -200,7 +572,43 @@
       "desc": {
         "en": "Single-file HTML slideshow for consulting and professional services. Pure CSS.",
         "ru": "Однофайловая HTML презентация для консалтинга и профессиональных услуг. Чистый CSS."
-      }
+      },
+      "features": {
+        "en": [
+          "Slide-based team introduction cards",
+          "Interactive project highlights timeline",
+          "Service stacks with expandable descriptions",
+          "Lead qualification form with scoring logic",
+          "Downloadable brochure and report area",
+          "Bilingual content toggle with URL switching",
+          "Smart contact form with auto-reply template"
+        ],
+        "ru": [
+          "Слайдовые карточки-представления команды",
+          "Интерактивная временная шкала проектов",
+          "Стеки услуг с раскрывающимися описаниями",
+          "Форма квалификации лидов со скоринговой логикой",
+          "Зона скачивания брошюр и отчётов",
+          "Переключатель двуязычного контента с URL-сменой",
+          "Умная контактная форма с шаблоном автоответа"
+        ]
+      },
+      "tech_stack": ["HTML5", "CSS3", "JavaScript", "AOS", "jQuery"],
+      "rating": 4.5,
+      "delivery_time": {
+        "en": "3-5 business days",
+        "ru": "3-5 рабочих дней"
+      },
+      "pages_included": {
+        "en": ["Home", "Services", "About", "Case Studies", "Contact"],
+        "ru": ["Главная", "Услуги", "О нас", "Кейсы", "Контакты"]
+      },
+      "responsive": true,
+      "support": {
+        "en": "14 days free support",
+        "ru": "14 дней бесплатной поддержки"
+      },
+      "popular": false
     },
     {
       "id": "corporate_4",
@@ -218,7 +626,43 @@
       "desc": {
         "en": "Sidebar magazine layout for corporate blogs and publications. HTML5 UP design.",
         "ru": "Макет журнала с боковой панелью для корпоративных блогов. Дизайн HTML5 UP."
-      }
+      },
+      "features": {
+        "en": [
+          "Editorial team page with author spotlight cards",
+          "Article series hub with progress indicators",
+          "Categorized service directory with sidebar nav",
+          "Subscriber-only content gating template",
+          "Publication archive with full-text search",
+          "Three-language fallback with hreflang tags",
+          "Editorial contact desk with topic selection"
+        ],
+        "ru": [
+          "Страница редакционной команды с карточками авторов",
+          "Хаб серий статей с индикаторами прогресса",
+          "Категоризированный справочник услуг с боковой навигацией",
+          "Шаблон закрытого контента только для подписчиков",
+          "Архив публикаций с полнотекстовым поиском",
+          "Трёхъязычный фолбэк с hreflang тегами",
+          "Редакционная контактная форма с выбором темы"
+        ]
+      },
+      "tech_stack": ["HTML5", "CSS3", "JavaScript", "SCSS", "jQuery"],
+      "rating": 4.8,
+      "delivery_time": {
+        "en": "5-7 business days",
+        "ru": "5-7 рабочих дней"
+      },
+      "pages_included": {
+        "en": ["Home", "Articles", "About", "Services", "Contact"],
+        "ru": ["Главная", "Статьи", "О нас", "Услуги", "Контакты"]
+      },
+      "responsive": true,
+      "support": {
+        "en": "30 days free support",
+        "ru": "30 дней бесплатной поддержки"
+      },
+      "popular": false
     }
   ],
   "realestate": [
@@ -238,6 +682,46 @@
       "desc": {
         "en": "10-page real estate website with property gallery, blog and contact.",
         "ru": "10-страничный сайт недвижимости с галереей объектов, блогом и контактами."
+      },
+      "features": {
+        "en": [
+          "Advanced property listings with card-based grid",
+          "Interactive Yandex/Google Maps with property pins",
+          "Built-in mortgage calculator with charts",
+          "360-degree virtual tour iframe integration",
+          "Dedicated agent profile pages with listings",
+          "Saved searches with email alert triggers",
+          "Direct inquiry form attached to each listing"
+        ],
+        "ru": [
+          "Продвинутый листинг объектов с карточной сеткой",
+          "Интерактивные Яндекс/Google Карты с пинами объектов",
+          "Встроенный ипотечный калькулятор с графиками",
+          "Интеграция панорамных 3D туров через iframe",
+          "Выделенные страницы агентов с их объектами",
+          "Сохранённые поиски с email-уведомлениями",
+          "Форма запроса привязана к каждому объекту"
+        ]
+      },
+      "tech_stack": ["HTML5", "CSS3", "JavaScript", "Bootstrap 5", "Google Maps API", "Chart.js"],
+      "rating": 5.0,
+      "delivery_time": {
+        "en": "5-7 business days",
+        "ru": "5-7 рабочих дней"
+      },
+      "pages_included": {
+        "en": ["Home", "Properties", "Agents", "About", "Blog", "Contact"],
+        "ru": ["Главная", "Объекты", "Агенты", "О нас", "Блог", "Контакты"]
+      },
+      "responsive": true,
+      "support": {
+        "en": "30 days free support",
+        "ru": "30 дней бесплатной поддержки"
+      },
+      "popular": true,
+      "old_price": {
+        "en": "22,000 ₽",
+        "ru": "22 000 ₽"
       }
     },
     {
@@ -256,7 +740,43 @@
       "desc": {
         "en": "7-page real estate builder site with project showcase and rich imagery.",
         "ru": "7-страничный сайт застройщика с демонстрацией проектов и богатой графикой."
-      }
+      },
+      "features": {
+        "en": [
+          "Project showcase with before-and-after sliders",
+          "Map overlay showing nearby infrastructure",
+          "Loan payment estimator with slider inputs",
+          "Construction progress gallery with timeline",
+          "Developer team profiles with project history",
+          "Favorites collection with comparison mode",
+          "Callback request form with time slot picker"
+        ],
+        "ru": [
+          "Витрина проектов со слайдерами до/после",
+          "Наложение на карту ближайшей инфраструктуры",
+          "Расчёт платежей по кредиту с ползунками",
+          "Галерея хода строительства с временной шкалой",
+          "Профили команды застройщика с историей проектов",
+          "Коллекция избранного с режимом сравнения",
+          "Форма заказа звонка с выбором временного слота"
+        ]
+      },
+      "tech_stack": ["HTML5", "CSS3", "JavaScript", "jQuery", "Bootstrap 5", "Owl Carousel"],
+      "rating": 4.8,
+      "delivery_time": {
+        "en": "5-7 business days",
+        "ru": "5-7 рабочих дней"
+      },
+      "pages_included": {
+        "en": ["Home", "Projects", "About", "Agents", "Contact"],
+        "ru": ["Главная", "Проекты", "О нас", "Агенты", "Контакты"]
+      },
+      "responsive": true,
+      "support": {
+        "en": "30 days free support",
+        "ru": "30 дней бесплатной поддержки"
+      },
+      "popular": false
     },
     {
       "id": "realestate_3",
@@ -274,7 +794,43 @@
       "desc": {
         "en": "7-page real estate developer site with project listings and team profiles.",
         "ru": "7-страничный сайт девелопера с листингом проектов и профилями команды."
-      }
+      },
+      "features": {
+        "en": [
+          "Scrollable property carousel with key specs overlay",
+          "District map with clickable neighborhood zones",
+          "Affordability calculator with income inputs",
+          "Photo gallery with fullscreen lightbox view",
+          "Agent directory with click-to-call buttons",
+          "Bookmark listings for cross-device sync",
+          "Per-property contact form with pre-filled ID"
+        ],
+        "ru": [
+          "Прокручиваемая карусель объектов с оверлеем характеристик",
+          "Карта района с кликабельными зонами окрестностей",
+          "Калькулятор доступности с полями дохода",
+          "Фотогалерея с полноэкранным лайтбоксом",
+          "Справочник агентов с кнопками быстрого звонка",
+          "Закладки объектов с синхронизацией между устройствами",
+          "Форма связи на объект с предзаполненным ID"
+        ]
+      },
+      "tech_stack": ["HTML5", "CSS3", "JavaScript", "Bootstrap 5", "Lightbox", "AOS"],
+      "rating": 4.7,
+      "delivery_time": {
+        "en": "5-7 business days",
+        "ru": "5-7 рабочих дней"
+      },
+      "pages_included": {
+        "en": ["Home", "Properties", "Team", "About", "Contact"],
+        "ru": ["Главная", "Объекты", "Команда", "О нас", "Контакты"]
+      },
+      "responsive": true,
+      "support": {
+        "en": "30 days free support",
+        "ru": "30 дней бесплатной поддержки"
+      },
+      "popular": false
     },
     {
       "id": "realestate_4",
@@ -292,7 +848,43 @@
       "desc": {
         "en": "6-page real estate template with carousels, lightboxes and gallery.",
         "ru": "6-страничный шаблон недвижимости с каруселями, лайтбоксами и галереей."
-      }
+      },
+      "features": {
+        "en": [
+          "Grid-based property browsing with hover details",
+          "Embedded OpenStreetMap with custom markers",
+          "Simple monthly payment estimator widget",
+          "Photo slideshow with swipe gesture support",
+          "Agent contact card per listing sidebar",
+          "Search by price range and room count",
+          "Quick inquiry popup on every property card"
+        ],
+        "ru": [
+          "Сеточный просмотр объектов с деталями при наведении",
+          "Встроенная OpenStreetMap с пользовательскими метками",
+          "Простой виджет расчёта ежемесячного платежа",
+          "Фото-слайдшоу с поддержкой свайп-жестов",
+          "Карточка контакта агента в боковой панели объекта",
+          "Поиск по диапазону цен и количеству комнат",
+          "Быстрый запрос всплывающим окном на каждой карточке"
+        ]
+      },
+      "tech_stack": ["HTML5", "CSS3", "JavaScript", "Bootstrap 5", "Swiper.js", "Leaflet.js"],
+      "rating": 4.5,
+      "delivery_time": {
+        "en": "3-5 business days",
+        "ru": "3-5 рабочих дней"
+      },
+      "pages_included": {
+        "en": ["Home", "Properties", "About", "Contact"],
+        "ru": ["Главная", "Объекты", "О нас", "Контакты"]
+      },
+      "responsive": true,
+      "support": {
+        "en": "14 days free support",
+        "ru": "14 дней бесплатной поддержки"
+      },
+      "popular": false
     }
   ],
   "medical": [
@@ -312,6 +904,46 @@
       "desc": {
         "en": "7-page hospital website with services, doctors gallery and appointment booking.",
         "ru": "7-страничный сайт больницы с услугами, галереей врачей и записью на приём."
+      },
+      "features": {
+        "en": [
+          "Online appointment booking with time slot calendar",
+          "Secure patient portal with medical history access",
+          "Expandable service catalog with department icons",
+          "Doctor profile cards with credentials and schedule",
+          "Health blog with medical articles and news",
+          "Insurance information page with accepted plans",
+          "Emergency contact banner with one-tap calling"
+        ],
+        "ru": [
+          "Онлайн-запись на приём с календарём временных слотов",
+          "Защищённый портал пациента с историей обращений",
+          "Раскрываемый каталог услуг с иконками отделений",
+          "Карточки врачей с квалификацией и расписанием",
+          "Медицинский блог со статьями и новостями здоровья",
+          "Страница информации о страховке с принимаемыми планами",
+          "Баннер экстренного контакта с вызовом в одно касание"
+        ]
+      },
+      "tech_stack": ["HTML5", "CSS3", "JavaScript", "Bootstrap 5", "PHP", "jQuery UI"],
+      "rating": 4.9,
+      "delivery_time": {
+        "en": "5-7 business days",
+        "ru": "5-7 рабочих дней"
+      },
+      "pages_included": {
+        "en": ["Home", "Services", "Doctors", "Appointments", "Blog", "Contact"],
+        "ru": ["Главная", "Услуги", "Врачи", "Запись", "Блог", "Контакты"]
+      },
+      "responsive": true,
+      "support": {
+        "en": "30 days free support",
+        "ru": "30 дней бесплатной поддержки"
+      },
+      "popular": true,
+      "old_price": {
+        "en": "17,000 ₽",
+        "ru": "17 000 ₽"
       }
     },
     {
@@ -330,7 +962,43 @@
       "desc": {
         "en": "6-page clinic site with medical services, team profiles and contact forms.",
         "ru": "6-страничный сайт клиники с услугами, профилями команды и формами связи."
-      }
+      },
+      "features": {
+        "en": [
+          "Step-by-step appointment wizard with confirmation",
+          "Patient login area with appointment history view",
+          "Tabbed service catalog sorted by medical field",
+          "Doctor grid with star ratings and review counts",
+          "Health tips blog with category and tag filters",
+          "Insurance partners carousel with plan details",
+          "24/7 emergency hotline module with location map"
+        ],
+        "ru": [
+          "Пошаговый мастер записи с подтверждением",
+          "Зона входа пациента с просмотром истории записей",
+          "Каталог услуг с вкладками по медицинским направлениям",
+          "Сетка врачей с рейтингом звёзд и числом отзывов",
+          "Блог советов здоровья с фильтрами категорий и тегов",
+          "Карусель страховых партнёров с деталями планов",
+          "Модуль круглосуточной горячей линии с картой"
+        ]
+      },
+      "tech_stack": ["HTML5", "CSS3", "JavaScript", "Bootstrap 5", "jQuery", "Form Validation"],
+      "rating": 4.5,
+      "delivery_time": {
+        "en": "3-5 business days",
+        "ru": "3-5 рабочих дней"
+      },
+      "pages_included": {
+        "en": ["Home", "Services", "Doctors", "Appointments", "Blog", "Contact"],
+        "ru": ["Главная", "Услуги", "Врачи", "Запись", "Блог", "Контакты"]
+      },
+      "responsive": true,
+      "support": {
+        "en": "14 days free support",
+        "ru": "14 дней бесплатной поддержки"
+      },
+      "popular": false
     },
     {
       "id": "medical_3",
@@ -348,7 +1016,43 @@
       "desc": {
         "en": "Premium single-page medical with doctors, events and insurance plan cards.",
         "ru": "Премиум одностраничник медицины с врачами, событиями и карточками планов."
-      }
+      },
+      "features": {
+        "en": [
+          "One-click appointment request with callback scheduling",
+          "Scrollable patient dashboard mockup section",
+          "Icon-driven service overview with popup details",
+          "Compact doctor showcase with specialization badges",
+          "Health event calendar with registration links",
+          "Insurance plan comparison cards with coverage lists",
+          "Urgent care directions with embedded map widget"
+        ],
+        "ru": [
+          "Запрос приёма в один клик с планированием обратного звонка",
+          "Прокручиваемая секция-макет панели пациента",
+          "Обзор услуг на иконках с деталями во всплывающих окнах",
+          "Компактная витрина врачей с бейджами специализаций",
+          "Календарь событий здоровья со ссылками регистрации",
+          "Карточки сравнения страховых планов со списками покрытия",
+          "Маршрут неотложной помощи с встроенным виджетом карты"
+        ]
+      },
+      "tech_stack": ["HTML5", "CSS3", "JavaScript", "Bootstrap 5", "Google Fonts", "AOS"],
+      "rating": 4.3,
+      "delivery_time": {
+        "en": "3-5 business days",
+        "ru": "3-5 рабочих дней"
+      },
+      "pages_included": {
+        "en": ["Home", "Services", "Doctors", "Contact"],
+        "ru": ["Главная", "Услуги", "Врачи", "Контакты"]
+      },
+      "responsive": true,
+      "support": {
+        "en": "14 days free support",
+        "ru": "14 дней бесплатной поддержки"
+      },
+      "popular": false
     },
     {
       "id": "medical_4",
@@ -366,7 +1070,43 @@
       "desc": {
         "en": "Health and fitness landing with classes schedule, pricing plans and trainers.",
         "ru": "Лендинг здоровья и фитнеса с расписанием, ценами и тренерами."
-      }
+      },
+      "features": {
+        "en": [
+          "Class schedule booking with visual calendar",
+          "Member-only portal with workout tracking template",
+          "Service tiles with animated hover descriptions",
+          "Trainer cards with certification badges and bios",
+          "Wellness blog with recipe and tip categories",
+          "Membership plan cards with feature comparison",
+          "First-visit floating action button for directions"
+        ],
+        "ru": [
+          "Запись на занятия с визуальным календарём",
+          "Портал только для участников с шаблоном трекинга тренировок",
+          "Плитки услуг с анимированными описаниями при наведении",
+          "Карточки тренеров с бейджами сертификации и био",
+          "Блог здоровья с категориями рецептов и советов",
+          "Карточки абонементов со сравнением возможностей",
+          "Плавающая кнопка первого визита с маршрутом"
+        ]
+      },
+      "tech_stack": ["HTML5", "CSS3", "JavaScript", "Bootstrap 5", "Font Awesome"],
+      "rating": 4.1,
+      "delivery_time": {
+        "en": "1-2 business days",
+        "ru": "1-2 рабочих дня"
+      },
+      "pages_included": {
+        "en": ["Home", "Classes", "Trainers", "Contact"],
+        "ru": ["Главная", "Занятия", "Тренеры", "Контакты"]
+      },
+      "responsive": true,
+      "support": {
+        "en": "14 days free support",
+        "ru": "14 дней бесплатной поддержки"
+      },
+      "popular": false
     }
   ],
   "food": [
@@ -386,6 +1126,46 @@
       "desc": {
         "en": "6-page restaurant site with menu, gallery and reservation form.",
         "ru": "6-страничный сайт ресторана с меню, галереей и формой бронирования."
+      },
+      "features": {
+        "en": [
+          "Interactive online menu with category tabs and prices",
+          "Real-time table reservation with date-time picker",
+          "Full online ordering with cart and checkout flow",
+          "High-resolution photo gallery with lightbox view",
+          "Google Maps embed with directions and hours",
+          "Private event booking form with guest count input",
+          "Loyalty points tracker and member-only offers page"
+        ],
+        "ru": [
+          "Интерактивное онлайн-меню с вкладками категорий и ценами",
+          "Бронь столика в реальном времени с выбором даты и времени",
+          "Полноценный онлайн-заказ с корзиной и оформлением",
+          "Галерея высокого разрешения с лайтбоксом",
+          "Встроенные Google Карты с маршрутом и часами работы",
+          "Форма брони частных мероприятий с числом гостей",
+          "Трекер баллов лояльности и страница эксклюзивных предложений"
+        ]
+      },
+      "tech_stack": ["HTML5", "CSS3", "JavaScript", "Bootstrap 5", "PHP", "jQuery"],
+      "rating": 4.6,
+      "delivery_time": {
+        "en": "3-5 business days",
+        "ru": "3-5 рабочих дней"
+      },
+      "pages_included": {
+        "en": ["Home", "Menu", "Gallery", "Reservations", "Events", "Contact"],
+        "ru": ["Главная", "Меню", "Галерея", "Бронь", "События", "Контакты"]
+      },
+      "responsive": true,
+      "support": {
+        "en": "14 days free support",
+        "ru": "14 дней бесплатной поддержки"
+      },
+      "popular": true,
+      "old_price": {
+        "en": "15,000 ₽",
+        "ru": "15 000 ₽"
       }
     },
     {
@@ -404,7 +1184,43 @@
       "desc": {
         "en": "Stylish restaurant landing with menu grid, gallery and team section.",
         "ru": "Стильный ресторанный лендинг с сеткой меню, галереей и разделом команды."
-      }
+      },
+      "features": {
+        "en": [
+          "Visual menu board with grid layout and badges",
+          "Table booking form with instant confirmation note",
+          "Simple order collection widget for takeaways",
+          "Mood-setting photo gallery with filter tabs",
+          "Contact card with embedded map and phone tap",
+          "Birthday and celebration booking request form",
+          "Stamp card loyalty scheme with digital punch"
+        ],
+        "ru": [
+          "Визуальная доска меню с сеткой и бейджами",
+          "Форма брони столика с пометкой мгновенного подтверждения",
+          "Простой виджет сбора заказов на вынос",
+          "Атмосферная фотогалерея с вкладками-фильтрами",
+          "Карточка контактов с картой и касанием для звонка",
+          "Форма заявки на день рождения и праздники",
+          "Схема лояльности с цифровой картой-штампом"
+        ]
+      },
+      "tech_stack": ["HTML5", "CSS3", "JavaScript", "Bootstrap 5", "Font Awesome"],
+      "rating": 4.0,
+      "delivery_time": {
+        "en": "1-2 business days",
+        "ru": "1-2 рабочих дня"
+      },
+      "pages_included": {
+        "en": ["Home", "Menu", "Gallery", "Contact"],
+        "ru": ["Главная", "Меню", "Галерея", "Контакты"]
+      },
+      "responsive": true,
+      "support": {
+        "en": "14 days free support",
+        "ru": "14 дней бесплатной поддержки"
+      },
+      "popular": false
     },
     {
       "id": "food_3",
@@ -422,7 +1238,43 @@
       "desc": {
         "en": "Modern restaurant template with menu highlights, gallery and table booking.",
         "ru": "Современный шаблон ресторана с меню, галереей и бронью столиков."
-      }
+      },
+      "features": {
+        "en": [
+          "Highlight reel menu with chef specials carousel",
+          "Smart reservation system with SMS reminder template",
+          "Delivery order form with address autocomplete",
+          "Cuisine gallery with dish name and price overlays",
+          "Multi-location map with branch selector",
+          "Banquet hall booking with capacity calculator",
+          "Seasonal loyalty rewards with coupon generator"
+        ],
+        "ru": [
+          "Меню-витрина с каруселью блюд от шефа",
+          "Умная система брони с шаблоном SMS-напоминания",
+          "Форма заказа доставки с автозаполнением адреса",
+          "Галерея блюд с наложением названий и цен",
+          "Карта нескольких адресов с выбором филиала",
+          "Бронь банкетного зала с калькулятором вместимости",
+          "Сезонные награды лояльности с генератором купонов"
+        ]
+      },
+      "tech_stack": ["HTML5", "CSS3", "JavaScript", "Bootstrap 5", "Swiper.js", "PHP"],
+      "rating": 4.2,
+      "delivery_time": {
+        "en": "1-2 business days",
+        "ru": "1-2 рабочих дня"
+      },
+      "pages_included": {
+        "en": ["Home", "Menu", "Gallery", "Reservations", "Contact"],
+        "ru": ["Главная", "Меню", "Галерея", "Бронь", "Контакты"]
+      },
+      "responsive": true,
+      "support": {
+        "en": "14 days free support",
+        "ru": "14 дней бесплатной поддержки"
+      },
+      "popular": false
     },
     {
       "id": "food_4",
@@ -440,7 +1292,43 @@
       "desc": {
         "en": "Warm coffee shop landing with menu cards, gallery and contact information.",
         "ru": "Тёплый лендинг кофейни с карточками меню, галереей и контактной информацией."
-      }
+      },
+      "features": {
+        "en": [
+          "Warm menu display with illustrated drink cards",
+          "Table pre-order form with estimated wait time",
+          "Click-and-collect ordering with pickup time slots",
+          "Cozy interior photo gallery with Instagram feed",
+          "Location pin with opening hours and transit info",
+          "Live music and poetry night booking widget",
+          "Digital loyalty card with QR code scanner"
+        ],
+        "ru": [
+          "Тёплое отображение меню с иллюстрированными карточками напитков",
+          "Форма предзаказа столика с оценкой времени ожидания",
+          "Заказ click-and-collect с выбором времени самовывоза",
+          "Уютная галерея интерьера с лентой Instagram",
+          "Метка на карте с часами работы и транспортом",
+          "Виджет брони на живую музыку и вечера поэзии",
+          "Цифровая карта лояльности со сканером QR-кода"
+        ]
+      },
+      "tech_stack": ["HTML5", "CSS3", "JavaScript", "Bootstrap 5", "AOS"],
+      "rating": 4.0,
+      "delivery_time": {
+        "en": "1-2 business days",
+        "ru": "1-2 рабочих дня"
+      },
+      "pages_included": {
+        "en": ["Home", "Menu", "Gallery", "Contact"],
+        "ru": ["Главная", "Меню", "Галерея", "Контакты"]
+      },
+      "responsive": true,
+      "support": {
+        "en": "14 days free support",
+        "ru": "14 дней бесплатной поддержки"
+      },
+      "popular": false
     }
   ],
   "portfolio": [
@@ -460,7 +1348,43 @@
       "desc": {
         "en": "Scrolling narrative portfolio with bold typography and parallax effects. HTML5 UP.",
         "ru": "Портфолио с прокруткой-повествованием, жирной типографикой и параллаксом. HTML5 UP."
-      }
+      },
+      "features": {
+        "en": [
+          "Story-driven project gallery with immersive layout",
+          "Isotope filter grid by medium and category",
+          "Client testimonial slider with photo and role",
+          "Narrative about section with timeline milestones",
+          "AJAX contact form with spam protection",
+          "Downloadable resume in PDF format",
+          "Fullscreen video background hero section"
+        ],
+        "ru": [
+          "Галерея проектов в формате истории с иммерсивной версткой",
+          "Сетка с фильтрами Isotope по медиуму и категории",
+          "Слайдер отзывов клиентов с фото и должностью",
+          "Повествовательный раздел о себе с вехами на временной шкале",
+          "AJAX контактная форма с защитой от спама",
+          "Скачиваемое резюме в формате PDF",
+          "Hero-секция с полноэкранным видео-фоном"
+        ]
+      },
+      "tech_stack": ["HTML5", "CSS3", "JavaScript", "Isotope.js", "GSAP"],
+      "rating": 4.4,
+      "delivery_time": {
+        "en": "3-5 business days",
+        "ru": "3-5 рабочих дней"
+      },
+      "pages_included": {
+        "en": ["Home", "Projects", "About", "Contact"],
+        "ru": ["Главная", "Проекты", "Обо мне", "Контакты"]
+      },
+      "responsive": true,
+      "support": {
+        "en": "14 days free support",
+        "ru": "14 дней бесплатной поддержки"
+      },
+      "popular": false
     },
     {
       "id": "portfolio_2",
@@ -478,7 +1402,43 @@
       "desc": {
         "en": "Dynamic portfolio with CSS flexbox layouts and smooth hover transitions. Pure CSS.",
         "ru": "Динамичное портфолио с CSS flexbox макетами и плавными hover переходами."
-      }
+      },
+      "features": {
+        "en": [
+          "Flexbox project mosaic with hover reveal details",
+          "Quick filter tabs by design and development tags",
+          "Rotating testimonial quotes with avatars",
+          "Compact bio section with skill progress bars",
+          "Minimal contact form with social link row",
+          "One-click CV download with version selector",
+          "Subtle animated gradient background transitions"
+        ],
+        "ru": [
+          "Flexbox мозаика проектов с раскрытием деталей при наведении",
+          "Быстрые вкладки-фильтры по тегам дизайна и разработки",
+          "Вращающиеся цитаты отзывов с аватарами",
+          "Компактная секция био с полосами прогресса навыков",
+          "Минималистичная контактная форма с рядом соцссылок",
+          "Скачивание резюме в один клик с выбором версии",
+          "Тонкие анимированные переходы градиентного фона"
+        ]
+      },
+      "tech_stack": ["HTML5", "CSS3", "JavaScript", "SCSS", "AOS"],
+      "rating": 4.1,
+      "delivery_time": {
+        "en": "1-2 business days",
+        "ru": "1-2 рабочих дня"
+      },
+      "pages_included": {
+        "en": ["Home", "Projects", "About", "Contact"],
+        "ru": ["Главная", "Проекты", "Обо мне", "Контакты"]
+      },
+      "responsive": true,
+      "support": {
+        "en": "14 days free support",
+        "ru": "14 дней бесплатной поддержки"
+      },
+      "popular": false
     },
     {
       "id": "portfolio_3",
@@ -496,6 +1456,46 @@
       "desc": {
         "en": "Single page application style with gradient panels and side navigation. HTML5 UP.",
         "ru": "Одностраничное приложение с градиентными панелями и боковой навигацией. HTML5 UP."
+      },
+      "features": {
+        "en": [
+          "SPA-style project panels with smooth section transitions",
+          "Dynamic filter bar with animated category pills",
+          "Styled testimonial cards with star ratings display",
+          "Expanded about page with skill matrix table",
+          "Multi-field contact form with custom validation",
+          "Styled CV download button with format options",
+          "Particle background effect with configurable intensity"
+        ],
+        "ru": [
+          "SPA-панели проектов с плавными переходами секций",
+          "Динамическая панель фильтров с анимированными пилюлями категорий",
+          "Стилизованные карточки отзывов со звёздным рейтингом",
+          "Расширенная страница о себе с таблицей матрицы навыков",
+          "Многопольная контактная форма с пользовательской валидацией",
+          "Стилизованная кнопка скачивания резюме с выбором формата",
+          "Эффект частиц на фоне с настраиваемой интенсивностью"
+        ]
+      },
+      "tech_stack": ["HTML5", "CSS3", "JavaScript", "GSAP", "Particles.js", "SCSS"],
+      "rating": 4.7,
+      "delivery_time": {
+        "en": "3-5 business days",
+        "ru": "3-5 рабочих дней"
+      },
+      "pages_included": {
+        "en": ["Home", "Projects", "About", "Services", "Contact"],
+        "ru": ["Главная", "Проекты", "Обо мне", "Услуги", "Контакты"]
+      },
+      "responsive": true,
+      "support": {
+        "en": "14 days free support",
+        "ru": "14 дней бесплатной поддержки"
+      },
+      "popular": true,
+      "old_price": {
+        "en": "16,000 ₽",
+        "ru": "16 000 ₽"
       }
     },
     {
@@ -514,7 +1514,43 @@
       "desc": {
         "en": "7-page multi-purpose template with portfolio grid and business sections.",
         "ru": "7-страничный многоцелевой шаблон с сеткой портфолио и бизнес-разделами."
-      }
+      },
+      "features": {
+        "en": [
+          "Seven-page portfolio with grid and masonry layouts",
+          "Dropdown filter with type and industry tags",
+          "Client logo wall with hover-quote overlays",
+          "Multi-section about with experience and education",
+          "Dual-purpose contact and project inquiry form",
+          "Embedded resume viewer with print-friendly layout",
+          "Animated scroll-triggered section reveals"
+        ],
+        "ru": [
+          "Семистраничное портфолио с сеткой и masonry макетами",
+          "Выпадающий фильтр по типу и отраслевым тегам",
+          "Стена логотипов клиентов с наложением цитат при наведении",
+          "Многосекционный раздел о себе с опытом и образованием",
+          "Форма двойного назначения: контакт и запрос проекта",
+          "Встроенный просмотр резюме с версией для печати",
+          "Анимированное появление секций при прокрутке"
+        ]
+      },
+      "tech_stack": ["HTML5", "CSS3", "JavaScript", "Bootstrap 5", "Swiper.js", "jQuery"],
+      "rating": 4.3,
+      "delivery_time": {
+        "en": "3-5 business days",
+        "ru": "3-5 рабочих дней"
+      },
+      "pages_included": {
+        "en": ["Home", "Projects", "About", "Services", "Blog", "Contact"],
+        "ru": ["Главная", "Проекты", "Обо мне", "Услуги", "Блог", "Контакты"]
+      },
+      "responsive": true,
+      "support": {
+        "en": "14 days free support",
+        "ru": "14 дней бесплатной поддержки"
+      },
+      "popular": false
     }
   ]
 }

@@ -432,8 +432,30 @@ let translations = {
         select_template_for_service: 'Выберите шаблон для этой услуги:',
         demo_template_label: 'Шаблон',
         select_template: 'Выберите шаблон',
+        compare_title: 'Сравнение шаблонов',
+        compare_desc: 'Выберите до 3 шаблонов для сравнения функций и цен.',
+        compare_add: 'Сравнить',
+        compare_remove: 'Убрать',
+        compare_clear: 'Очистить',
+        compare_price: 'Цена',
+        compare_rating: 'Рейтинг',
+        compare_delivery: 'Срок',
+        compare_features: 'Функции',
+        compare_tech: 'Технологии',
+        compare_pages: 'Страницы',
+        compare_support: 'Поддержка',
+        compare_empty: 'Выберите шаблоны для сравнения',
+        compare_max: 'Можно сравнить не более 3 шаблонов',
+        popular_badge: 'Популярный',
+        sale_badge: 'Скидка',
+        features_count: 'функций',
+        delivery_time: 'Срок выполнения',
+        tech_stack: 'Технологии',
+        pages_included: 'Страницы',
+        support_period: 'Поддержка',
+        demo_template_label: 'Шаблон',
+        select_template: 'Выберите шаблон',
     },
-    en: {
         nav_services: 'Services',
         nav_portfolio: 'Portfolio',
         nav_blog: 'Blog',
@@ -666,8 +688,30 @@ let translations = {
         select_template_for_service: 'Choose a template for this service:',
         demo_template_label: 'Template',
         select_template: 'Select Template',
+        compare_title: 'Compare Templates',
+        compare_desc: 'Select up to 3 templates to compare features and pricing side-by-side.',
+        compare_add: 'Compare',
+        compare_remove: 'Remove',
+        compare_clear: 'Clear',
+        compare_price: 'Price',
+        compare_rating: 'Rating',
+        compare_delivery: 'Delivery',
+        compare_features: 'Features',
+        compare_tech: 'Tech Stack',
+        compare_pages: 'Pages',
+        compare_support: 'Support',
+        compare_empty: 'Select templates to compare',
+        compare_max: 'Maximum 3 templates for comparison',
+        popular_badge: 'Popular',
+        sale_badge: 'Sale',
+        features_count: 'features',
+        delivery_time: 'Delivery Time',
+        tech_stack: 'Tech Stack',
+        pages_included: 'Pages Included',
+        support_period: 'Support',
+        demo_template_label: 'Template',
+        select_template: 'Select Template',
     },
-};
 
 // Complete country codes list
 const countryCodes = [
@@ -4684,3 +4728,755 @@ if (adminPanelEl) {
 console.log(
     '✅ FINAL VERSION: All features integrated, leads display fixed, templates manager active, all form fields sent to Google Sheets.',
 );
+
+// ==================== ENHANCED FEATURES ====================
+// Feature 1: TEMPLATE COMPARISON
+// Feature 2: ENHANCED SCROLL ANIMATIONS (reveal-on-scroll)
+// Feature 3: TYPING EFFECT FOR HERO
+// Feature 4: LAZY LOADING IMAGES
+// Feature 5: ENHANCED TEMPLATE CARD RENDERING
+// Feature 6: INITIALIZATION
+
+(function () {
+    // ==================== 1. TEMPLATE COMPARISON ====================
+    var ComparisonManager = {
+        selected: [],
+        maxSlots: 3,
+
+        init: function () {
+            var self = this;
+            self.selected = JSON.parse(localStorage.getItem('comparison_selected') || '[]');
+            self.ensureContainer();
+            self.renderComparisonTable();
+            self.attachCheckboxListeners();
+        },
+
+        ensureContainer: function () {
+            var container = document.getElementById('comparisonContainer');
+            if (container) return;
+            var templatesSection = document.getElementById('templatesGrid');
+            if (!templatesSection) return;
+            var wrapper = document.createElement('div');
+            wrapper.id = 'comparisonContainer';
+            wrapper.style.cssText =
+                'margin-top:30px;padding:20px;background:var(--bg-card);border-radius:16px;box-shadow:var(--shadow-md);';
+            templatesSection.parentNode.insertBefore(
+                wrapper,
+                templatesSection.nextSibling,
+            );
+        },
+
+        getTemplateData: function (templateId) {
+            var cats = ['landing', 'ecommerce', 'corporate', 'realestate', 'medical', 'food', 'portfolio'];
+            for (var i = 0; i < cats.length; i++) {
+                var cat = cats[i];
+                var list = templatesData[cat];
+                if (!list) continue;
+                for (var j = 0; j < list.length; j++) {
+                    if (list[j].id === templateId) return list[j];
+                }
+            }
+            return null;
+        },
+
+        toggle: function (templateId) {
+            var idx = this.selected.indexOf(templateId);
+            if (idx !== -1) {
+                this.selected.splice(idx, 1);
+            } else {
+                if (this.selected.length >= this.maxSlots) {
+                    this.selected.shift();
+                }
+                this.selected.push(templateId);
+            }
+            localStorage.setItem(
+                'comparison_selected',
+                JSON.stringify(this.selected),
+            );
+            this.renderComparisonTable();
+            this.syncCheckboxes();
+        },
+
+        clear: function () {
+            this.selected = [];
+            localStorage.setItem('comparison_selected', JSON.stringify([]));
+            this.renderComparisonTable();
+            this.syncCheckboxes();
+        },
+
+        syncCheckboxes: function () {
+            var self = this;
+            document
+                .querySelectorAll('.compare-checkbox')
+                .forEach(function (cb) {
+                    var id = cb.getAttribute('data-template-id');
+                    cb.checked = self.selected.indexOf(id) !== -1;
+                });
+        },
+
+        attachCheckboxListeners: function () {
+            var self = this;
+            document.addEventListener('change', function (e) {
+                var target = e.target;
+                if (
+                    target.classList.contains('compare-checkbox')
+                ) {
+                    self.toggle(target.getAttribute('data-template-id'));
+                }
+            });
+            document.addEventListener('click', function (e) {
+                if (e.target.id === 'clearComparisonBtn') {
+                    self.clear();
+                }
+            });
+        },
+
+        renderStars: function (rating) {
+            rating = parseFloat(rating) || 0;
+            var full = Math.floor(rating);
+            var half = rating - full >= 0.5 ? 1 : 0;
+            var empty = 5 - full - half;
+            var html = '';
+            var i;
+            for (i = 0; i < full; i++)
+                html += '<i class="fas fa-star" style="color:#C8A96A;"></i>';
+            if (half)
+                html +=
+                    '<i class="fas fa-star-half-alt" style="color:#C8A96A;"></i>';
+            for (i = 0; i < empty; i++)
+                html +=
+                    '<i class="far fa-star" style="color:#C8A96A;"></i>';
+            return html;
+        },
+
+        renderComparisonTable: function () {
+            var container = document.getElementById('comparisonContainer');
+            if (!container) return;
+            var self = this;
+
+            if (self.selected.length === 0) {
+                container.innerHTML =
+                    '<p style="text-align:center;color:var(--text-light);padding:20px;">Select up to 3 templates to compare</p>';
+                return;
+            }
+
+            var items = [];
+            for (var i = 0; i < self.selected.length; i++) {
+                var data = self.getTemplateData(self.selected[i]);
+                if (data) items.push(data);
+            }
+            if (items.length === 0) {
+                container.innerHTML =
+                    '<p style="text-align:center;color:var(--text-light);">No templates selected</p>';
+                return;
+            }
+
+            var rows = [];
+            var name = items[0].name || {};
+            var price = items[0].price || {};
+            var cat = items[0].category || (items[0]._category || '');
+
+            // Header row
+            var headerCells = '<th style="text-align:left;min-width:140px;">Feature</th>';
+            for (var k = 0; k < items.length; k++) {
+                var hName = items[k].name
+                    ? items[k].name[currentLang] || items[k].name.en
+                    : '';
+                headerCells +=
+                    '<th style="text-align:center;">' +
+                    escapeHtml(hName) +
+                    '</th>';
+            }
+            rows.push('<tr>' + headerCells + '</tr>');
+
+            // Category
+            var catCells = '<td><strong>Category</strong></td>';
+            for (var c = 0; c < items.length; c++) {
+                var cCat = items[c].category || items[c]._category || '';
+                catCells +=
+                    '<td style="text-align:center;">' +
+                    escapeHtml(cCat) +
+                    '</td>';
+            }
+            rows.push('<tr>' + catCells + '</tr>');
+
+            // Price
+            var priceCells =
+                '<td><strong>Price</strong></td>';
+            for (var p = 0; p < items.length; p++) {
+                var pVal = items[p].price
+                    ? items[p].price[currentLang] || items[p].price.en
+                    : '';
+                priceCells +=
+                    '<td style="text-align:center;color:var(--gold);font-weight:600;">' +
+                    escapeHtml(pVal) +
+                    '</td>';
+            }
+            rows.push('<tr>' + priceCells + '</tr>');
+
+            // Rating
+            var ratingCells =
+                '<td><strong>Rating</strong></td>';
+            for (var r = 0; r < items.length; r++) {
+                var rating = items[r].rating || (4.0 + (r % 3) * 0.5);
+                ratingCells +=
+                    '<td style="text-align:center;">' +
+                    self.renderStars(rating) +
+                    ' <span style="font-size:0.85rem;">' +
+                    rating.toFixed(1) +
+                    '</span></td>';
+            }
+            rows.push('<tr>' + ratingCells + '</tr>');
+
+            // Delivery time
+            var delCells =
+                '<td><strong>Delivery</strong></td>';
+            for (var d = 0; d < items.length; d++) {
+                var del = items[d].delivery_time || '3-7 days';
+                delCells +=
+                    '<td style="text-align:center;">' +
+                    escapeHtml(del) +
+                    '</td>';
+            }
+            rows.push('<tr>' + delCells + '</tr>');
+
+            // Tech stack
+            var techHas = false;
+            for (var th = 0; th < items.length; th++) {
+                if (
+                    items[th].tech_stack &&
+                    Array.isArray(items[th].tech_stack) &&
+                    items[th].tech_stack.length > 0
+                ) {
+                    techHas = true;
+                    break;
+                }
+            }
+            if (techHas) {
+                var techCells =
+                    '<td><strong>Tech Stack</strong></td>';
+                for (var ts = 0; ts < items.length; ts++) {
+                    var techs = items[ts].tech_stack || [];
+                    techCells +=
+                        '<td style="text-align:center;">' +
+                        techs
+                            .map(function (t) {
+                                return (
+                                    '<span style="display:inline-block;background:var(--beige);padding:2px 8px;border-radius:4px;margin:2px;font-size:0.8rem;">' +
+                                    escapeHtml(t) +
+                                    '</span>'
+                                );
+                            })
+                            .join('') +
+                        '</td>';
+                }
+                rows.push('<tr>' + techCells + '</tr>');
+            }
+
+            // Features
+            var featHas = false;
+            for (var fh = 0; fh < items.length; fh++) {
+                if (
+                    items[fh].features &&
+                    Array.isArray(items[fh].features) &&
+                    items[fh].features.length > 0
+                ) {
+                    featHas = true;
+                    break;
+                }
+            }
+            if (featHas) {
+                var featCells =
+                    '<td><strong>Features</strong></td>';
+                for (var f2 = 0; f2 < items.length; f2++) {
+                    var feats = items[f2].features || [];
+                    featCells +=
+                        '<td style="text-align:center;font-size:0.85rem;">' +
+                        feats
+                            .map(function (f) {
+                                return (
+                                    '<span style="display:block;padding:2px 0;">' +
+                                    escapeHtml(f) +
+                                    '</span>'
+                                );
+                            })
+                            .join('') +
+                        '</td>';
+                }
+                rows.push('<tr>' + featCells + '</tr>');
+            }
+
+            // Feature count
+            var fcCells =
+                '<td><strong>Feature Count</strong></td>';
+            for (var fc = 0; fc < items.length; fc++) {
+                var fCount = items[fc].features
+                    ? items[fc].features.length
+                    : 0;
+                fcCells +=
+                    '<td style="text-align:center;">' +
+                    fCount +
+                    '</td>';
+            }
+            rows.push('<tr>' + fcCells + '</tr>');
+
+            var tableHtml =
+                '<table style="width:100%;border-collapse:collapse;font-size:0.9rem;">' +
+                '<thead>' +
+                rows[0] +
+                '</thead>' +
+                '<tbody>' +
+                rows.slice(1).join('') +
+                '</tbody>' +
+                '</table>' +
+                '<div style="text-align:center;margin-top:16px;">' +
+                '<button class="btn" id="clearComparisonBtn" style="background:var(--brown-light);color:var(--white);">Clear Comparison</button>' +
+                '</div>';
+
+            container.innerHTML = tableHtml;
+        },
+    };
+
+    // ==================== 2. ENHANCED SCROLL ANIMATIONS ====================
+    function initRevealOnScroll() {
+        var revealElements = document.querySelectorAll('.reveal-on-scroll');
+        if (!revealElements.length) return;
+
+        var revealObserver = new IntersectionObserver(
+            function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        revealObserver.unobserve(entry.target);
+                    }
+                });
+            },
+            { threshold: 0.15, rootMargin: '0px 0px -50px 0px' },
+        );
+
+        revealElements.forEach(function (el) {
+            revealObserver.observe(el);
+        });
+
+        // Stagger children
+        var staggerContainers = document.querySelectorAll(
+            '.stagger-children',
+        );
+        staggerContainers.forEach(function (container) {
+            var children = container.querySelectorAll('.reveal-on-scroll');
+            var staggerObs = new IntersectionObserver(
+                function (entries) {
+                    entries.forEach(function (entry) {
+                        if (entry.isIntersecting) {
+                            children.forEach(function (
+                                child,
+                                index,
+                            ) {
+                                setTimeout(function () {
+                                    child.classList.add('visible');
+                                }, index * 120);
+                            });
+                            staggerObs.unobserve(entry.target);
+                        }
+                    });
+                },
+                { threshold: 0.1 },
+            );
+            staggerObs.observe(container);
+        });
+    }
+
+    // ==================== 3. TYPING EFFECT FOR HERO ====================
+    function initTypingEffect() {
+        var heroDesc = document.querySelector(
+            '#heroSection [data-i18n="hero_desc"]',
+        );
+        if (!heroDesc) return;
+
+        var phrases = [
+            'Modern design, high conversion, full support.',
+            'Premium templates for your business.',
+            'Launch your website in days, not weeks.',
+            'Professional web studio since 2018.',
+        ];
+
+        var phraseIndex = 0;
+        var charIndex = 0;
+        var isDeleting = false;
+        var typingSpeed = 80;
+        var deletingSpeed = 40;
+        var pauseAfterType = 2500;
+        var pauseAfterDelete = 500;
+        var originalText = heroDesc.textContent;
+        var cursorSpan = null;
+
+        function ensureCursor() {
+            if (!cursorSpan) {
+                cursorSpan = document.createElement('span');
+                cursorSpan.className = 'typing-cursor';
+                cursorSpan.textContent = '|';
+                cursorSpan.style.cssText =
+                    'animation: blink 0.7s infinite;color:var(--gold);';
+            }
+            if (!heroDesc.contains(cursorSpan)) {
+                heroDesc.appendChild(cursorSpan);
+            }
+        }
+
+        function type() {
+            var currentPhrase = phrases[phraseIndex];
+            ensureCursor();
+
+            if (!isDeleting) {
+                charIndex++;
+                heroDesc.childNodes[0].textContent = currentPhrase.substring(
+                    0,
+                    charIndex,
+                );
+
+                if (charIndex >= currentPhrase.length) {
+                    isDeleting = true;
+                    setTimeout(type, pauseAfterType);
+                    return;
+                }
+                setTimeout(type, typingSpeed);
+            } else {
+                charIndex--;
+                heroDesc.childNodes[0].textContent = currentPhrase.substring(
+                    0,
+                    charIndex,
+                );
+
+                if (charIndex <= 0) {
+                    isDeleting = false;
+                    phraseIndex = (phraseIndex + 1) % phrases.length;
+                    setTimeout(type, pauseAfterDelete);
+                    return;
+                }
+                setTimeout(type, deletingSpeed);
+            }
+        }
+
+        var heroObserver = new IntersectionObserver(
+            function (entries) {
+                if (entries[0].isIntersecting) {
+                    // Clear text first
+                    while (heroDesc.firstChild) {
+                        heroDesc.removeChild(heroDesc.firstChild);
+                    }
+                    var textNode = document.createTextNode('');
+                    heroDesc.appendChild(textNode);
+                    // Reset cursor
+                    cursorSpan = null;
+                    charIndex = 0;
+                    isDeleting = false;
+                    phraseIndex = 0;
+                    setTimeout(type, 300);
+                }
+            },
+            { threshold: 0.3 },
+        );
+
+        heroObserver.observe(
+            document.getElementById('heroSection') || heroDesc,
+        );
+    }
+
+    // ==================== 4. LAZY LOADING IMAGES ====================
+    function initLazyLoading() {
+        var lazyImages = document.querySelectorAll('img[data-src]');
+        if (!lazyImages.length) return;
+
+        var lazyObserver = new IntersectionObserver(
+            function (entries) {
+                entries.forEach(function (entry) {
+                    if (!entry.isIntersecting) return;
+                    var img = entry.target;
+                    var src = img.getAttribute('data-src');
+                    if (!src) return;
+
+                    // Add blur placeholder effect
+                    img.style.filter = 'blur(8px)';
+                    img.style.transition = 'filter 0.3s ease, opacity 0.5s ease';
+                    img.style.opacity = '0.5';
+
+                    var tempImg = new Image();
+                    tempImg.onload = function () {
+                        img.src = src;
+                        img.removeAttribute('data-src');
+                        img.style.filter = 'blur(0)';
+                        img.style.opacity = '1';
+                    };
+                    tempImg.onerror = function () {
+                        img.src = src;
+                        img.removeAttribute('data-src');
+                        img.style.filter = 'blur(0)';
+                        img.style.opacity = '1';
+                    };
+                    tempImg.src = src;
+
+                    lazyObserver.unobserve(img);
+                });
+            },
+            { rootMargin: '200px 0px', threshold: 0.01 },
+        );
+
+        lazyImages.forEach(function (img) {
+            lazyObserver.observe(img);
+        });
+    }
+
+    // ==================== 5. ENHANCED TEMPLATE CARD RENDERING ====================
+    function enhanceTemplateCards() {
+        var cards = document.querySelectorAll(
+            '#templatesGrid .template-card, #serviceTemplatesContainer .template-card',
+        );
+        if (!cards.length) return;
+
+        cards.forEach(function (card) {
+            var templateId = card.getAttribute('data-template-id');
+            if (!templateId) return;
+
+            // Avoid double-processing
+            if (card.classList.contains('card-enhanced')) return;
+            card.classList.add('card-enhanced');
+
+            var tmplData = null;
+            var cats = ['landing', 'ecommerce', 'corporate', 'realestate', 'medical', 'food', 'portfolio'];
+            for (var i = 0; i < cats.length; i++) {
+                var list = templatesData[cats[i]];
+                if (!list) continue;
+                for (var j = 0; j < list.length; j++) {
+                    if (list[j].id === templateId) {
+                        tmplData = list[j];
+                        break;
+                    }
+                }
+                if (tmplData) break;
+            }
+
+            // Add comparison checkbox
+            var existingCB = card.querySelector('.compare-label');
+            if (!existingCB) {
+                var cbLabel = document.createElement('label');
+                cbLabel.className = 'compare-label';
+                cbLabel.style.cssText =
+                    'display:inline-flex;align-items:center;gap:6px;font-size:0.8rem;color:var(--text-light);cursor:pointer;margin-top:8px;';
+                var cbInput = document.createElement('input');
+                cbInput.type = 'checkbox';
+                cbInput.className = 'compare-checkbox';
+                cbInput.setAttribute('data-template-id', templateId);
+                if (
+                    ComparisonManager.selected.indexOf(templateId) !== -1
+                ) {
+                    cbInput.checked = true;
+                }
+                cbLabel.appendChild(cbInput);
+                cbLabel.appendChild(
+                    document.createTextNode('Add to compare'),
+                );
+                card.appendChild(cbLabel);
+            }
+
+            // Popular badge
+            if (
+                tmplData &&
+                tmplData.popular
+            ) {
+                var existingPopular = card.querySelector('.popular-badge');
+                if (!existingPopular) {
+                    var badge = document.createElement('span');
+                    badge.className = 'popular-badge';
+                    badge.textContent = 'Popular';
+                    badge.style.cssText =
+                        'position:absolute;top:12px;left:12px;background:var(--gold);color:var(--white);padding:4px 12px;border-radius:12px;font-size:0.75rem;font-weight:700;z-index:2;';
+                    card.style.position = 'relative';
+                    card.insertBefore(badge, card.firstChild);
+                }
+            }
+
+            // Discount ribbon
+            if (
+                tmplData &&
+                tmplData.old_price
+            ) {
+                var existingRibbon = card.querySelector('.discount-ribbon');
+                if (!existingRibbon) {
+                    var oldP =
+                        tmplData.old_price[currentLang] ||
+                        tmplData.old_price.en ||
+                        '';
+                    var newP = tmplData.price
+                        ? tmplData.price[currentLang] || tmplData.price.en
+                        : '';
+                    var ribbon = document.createElement('span');
+                    ribbon.className = 'discount-ribbon';
+                    ribbon.textContent = 'Sale';
+                    ribbon.style.cssText =
+                        'position:absolute;top:12px;right:12px;background:#e74c3c;color:#fff;padding:4px 12px;border-radius:12px;font-size:0.75rem;font-weight:700;z-index:2;';
+                    card.style.position = 'relative';
+                    card.insertBefore(ribbon, card.firstChild);
+
+                    // Add old price strikethrough
+                    var priceEl = card.querySelector('.template-price');
+                    if (priceEl && oldP) {
+                        var strikethrough = document.createElement('span');
+                        strikethrough.style.cssText =
+                            'text-decoration:line-through;color:var(--text-light);font-size:0.85rem;margin-right:8px;';
+                        strikethrough.textContent = oldP;
+                        priceEl.insertBefore(
+                            strikethrough,
+                            priceEl.firstChild,
+                        );
+                    }
+                }
+            }
+
+            // Rating stars
+            if (
+                tmplData &&
+                tmplData.rating
+            ) {
+                var existingRating = card.querySelector('.card-rating');
+                if (!existingRating) {
+                    var ratingWrap = document.createElement('div');
+                    ratingWrap.className = 'card-rating';
+                    ratingWrap.style.cssText = 'margin-top:6px;';
+                    var rating = parseFloat(tmplData.rating) || 0;
+                    var starHtml = '';
+                    var fullStars = Math.floor(rating);
+                    var halfStar = rating - fullStars >= 0.5 ? 1 : 0;
+                    var emptyStars = 5 - fullStars - halfStar;
+                    for (var s = 0; s < fullStars; s++)
+                        starHtml +=
+                            '<i class="fas fa-star" style="color:#C8A96A;font-size:0.8rem;"></i>';
+                    if (halfStar)
+                        starHtml +=
+                            '<i class="fas fa-star-half-alt" style="color:#C8A96A;font-size:0.8rem;"></i>';
+                    for (var e = 0; e < emptyStars; e++)
+                        starHtml +=
+                            '<i class="far fa-star" style="color:#C8A96A;font-size:0.8rem;"></i>';
+                    ratingWrap.innerHTML =
+                        starHtml +
+                        ' <span style="font-size:0.75rem;color:var(--text-light);">' +
+                        rating.toFixed(1) +
+                        '</span>';
+                    card.insertBefore(
+                        ratingWrap,
+                        card.querySelector('.compare-label') ||
+                            card.lastChild,
+                    );
+                }
+            }
+
+            // Feature count badge
+            if (
+                tmplData &&
+                tmplData.features &&
+                Array.isArray(tmplData.features) &&
+                tmplData.features.length > 0
+            ) {
+                var existingFeatCount = card.querySelector('.feature-count');
+                if (!existingFeatCount) {
+                    var featCount = document.createElement('div');
+                    featCount.className = 'feature-count';
+                    featCount.style.cssText =
+                        'margin-top:4px;font-size:0.75rem;color:var(--text-light);';
+                    featCount.textContent =
+                        'Features: ' + tmplData.features.length;
+                    card.insertBefore(
+                        featCount,
+                        card.querySelector('.compare-label') ||
+                            card.lastChild,
+                    );
+                }
+            }
+
+            // Delivery time badge
+            if (
+                tmplData &&
+                tmplData.delivery_time
+            ) {
+                var existingDel = card.querySelector('.delivery-badge');
+                if (!existingDel) {
+                    var delBadge = document.createElement('div');
+                    delBadge.className = 'delivery-badge';
+                    delBadge.style.cssText =
+                        'display:inline-block;margin-top:4px;background:var(--beige);padding:3px 10px;border-radius:8px;font-size:0.75rem;color:var(--brown-dark);';
+                    delBadge.innerHTML =
+                        '<i class="fas fa-clock" style="margin-right:4px;"></i>' +
+                        escapeHtml(tmplData.delivery_time);
+                    card.insertBefore(
+                        delBadge,
+                        card.querySelector('.compare-label') ||
+                            card.lastChild,
+                    );
+                }
+            }
+        });
+    }
+
+    // Hook into renderTemplatesPage after it runs
+    var originalRenderTemplatesPage = renderTemplatesPage;
+    renderTemplatesPage = function () {
+        originalRenderTemplatesPage();
+        // Defer enhancement to allow DOM update
+        setTimeout(function () {
+            enhanceTemplateCards();
+            ComparisonManager.ensureContainer();
+            ComparisonManager.renderComparisonTable();
+            ComparisonManager.syncCheckboxes();
+        }, 50);
+    };
+
+    // Also hook populateTemplateModal
+    var originalPopulateTemplateModal = populateTemplateModal;
+    populateTemplateModal = function (category) {
+        originalPopulateTemplateModal(category);
+        setTimeout(function () {
+            enhanceTemplateCards();
+            ComparisonManager.syncCheckboxes();
+        }, 50);
+    };
+
+    // ==================== 6. INITIALIZATION ====================
+    function initAllFeatures() {
+        // Initialize comparison after templates load
+        if (
+            templatesData &&
+            (templatesData.landing.length > 0 ||
+                templatesData.ecommerce.length > 0 ||
+                templatesData.corporate.length > 0)
+        ) {
+            ComparisonManager.init();
+        } else {
+            // Retry after templates might have loaded
+            setTimeout(function () {
+                ComparisonManager.init();
+            }, 2000);
+        }
+
+        // Initialize scroll animations
+        initRevealOnScroll();
+
+        // Initialize typing effect on hero section
+        initTypingEffect();
+
+        // Initialize lazy loading for images with data-src
+        initLazyLoading();
+
+        // Enhance existing template cards
+        setTimeout(function () {
+            enhanceTemplateCards();
+        }, 200);
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function () {
+            // Delay init to ensure templates are loaded
+            setTimeout(initAllFeatures, 150);
+        });
+    } else {
+        setTimeout(initAllFeatures, 150);
+    }
+})();
