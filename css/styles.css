@@ -4693,3 +4693,577 @@ body.dark .skeleton {
         transform: none;
     }
 }
+
+/* ============================================================
+   SECTION 1 — CLIENT MARQUEE (infinite horizontal scroll)
+   ============================================================ */
+
+.client-marquee {
+    overflow: hidden;
+    padding: 2rem 0;
+    position: relative;
+    background: var(--bg-body);
+}
+
+.client-marquee .marquee-label {
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: var(--text-small);
+    color: var(--text-light);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-bottom: 1.5rem;
+    opacity: 0.7;
+}
+
+.client-marquee .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee-scroll 30s linear infinite;
+}
+
+.client-marquee .marquee-track:hover {
+    animation-play-state: paused;
+}
+
+.client-marquee .marquee-group {
+    display: flex;
+    gap: 1.5rem;
+    padding: 0 0.75rem;
+}
+
+.client-marquee .marquee-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1.4rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border-light);
+    border-radius: 50px;
+    white-space: nowrap;
+    font-family: var(--font-body);
+    font-size: var(--text-small);
+    color: var(--text-primary);
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+}
+
+.client-marquee .marquee-item:hover {
+    box-shadow: var(--shadow-md);
+    border-color: var(--gold);
+    transform: translateY(-2px);
+}
+
+.client-marquee .marquee-item .marquee-icon {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    color: var(--gold);
+}
+
+@keyframes marquee-scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+
+/* ============================================================
+   SECTION 2 — PROCESS TIMELINE (vertical steps, alternating)
+   ============================================================ */
+
+.process-timeline {
+    position: relative;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 3rem 0;
+}
+
+/* Vertical connecting line */
+.process-timeline::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(
+        to bottom,
+        transparent,
+        var(--gold),
+        var(--gold),
+        transparent
+    );
+    transform: translateX(-50%);
+    opacity: 0.5;
+}
+
+.process-step {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 4rem;
+    gap: 2rem;
+}
+
+.process-step:last-child {
+    margin-bottom: 0;
+}
+
+/* Alternating left/right layout on desktop */
+.process-step:nth-child(odd) {
+    flex-direction: row;
+    padding-right: calc(50% + 2.5rem);
+}
+
+.process-step:nth-child(even) {
+    flex-direction: row-reverse;
+    padding-left: calc(50% + 2.5rem);
+}
+
+.process-step .process-icon {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    color: var(--white);
+    box-shadow: 0 0 24px rgb(200, 169, 106, 0.45);
+    z-index: 2;
+    flex-shrink: 0;
+}
+
+.process-step .process-content {
+    position: relative;
+    background: var(--bg-card);
+    border: 1px solid var(--border-light);
+    border-radius: 12px;
+    padding: 1.6rem 2rem;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+    flex: 1;
+}
+
+.process-step .process-content:hover {
+    box-shadow: var(--shadow-md);
+    border-color: var(--gold);
+    transform: translateY(-3px);
+}
+
+.process-step .process-content h4 {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    color: var(--text-primary);
+    margin-bottom: 0.4rem;
+}
+
+.process-step .process-content p {
+    font-family: var(--font-body);
+    font-size: var(--text-small);
+    color: var(--text-light);
+    line-height: 1.6;
+    margin: 0;
+}
+
+.process-step .process-number {
+    position: absolute;
+    font-family: var(--font-heading);
+    font-size: 7rem;
+    font-weight: 700;
+    color: var(--gold);
+    opacity: 0.08;
+    line-height: 1;
+    pointer-events: none;
+}
+
+/* Numbers positioned on opposite sides */
+.process-step:nth-child(odd) .process-number {
+    top: -1.5rem;
+    right: -0.5rem;
+}
+
+.process-step:nth-child(even) .process-number {
+    top: -1.5rem;
+    left: -0.5rem;
+}
+
+/* Responsive: stack vertically on mobile */
+@media (max-width: 768px) {
+    .process-timeline::before {
+        left: 28px;
+    }
+
+    .process-step,
+    .process-step:nth-child(odd),
+    .process-step:nth-child(even) {
+        flex-direction: row;
+        padding-left: 0;
+        padding-right: 0;
+        gap: 1rem;
+    }
+
+    .process-step .process-icon {
+        position: relative;
+        left: 0;
+        transform: none;
+        margin-left: 0;
+    }
+
+    .process-step .process-number {
+        display: none;
+    }
+}
+
+/* ============================================================
+   SECTION 3 — CORE VALUES GRID
+   ============================================================ */
+
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    padding: 2rem 0;
+}
+
+.value-card {
+    position: relative;
+    background: var(--bg-card);
+    border: 1px solid var(--border-light);
+    border-radius: 16px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1),
+                box-shadow 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1),
+                border-color 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    cursor: default;
+}
+
+.value-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-md), 0 0 30px rgb(200, 169, 106, 0.15);
+    border-color: var(--gold);
+}
+
+.value-card .value-icon {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 1.2rem;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgb(200, 169, 106, 0.15), rgb(200, 169, 106, 0.25));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    color: var(--gold-dark);
+    transition: transform 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+}
+
+.value-card:hover .value-icon {
+    animation: value-icon-pulse 0.6s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+}
+
+@keyframes value-icon-pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.12); }
+}
+
+.value-card .value-title {
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+}
+
+.value-card .value-desc {
+    font-family: var(--font-body);
+    font-size: var(--text-small);
+    color: var(--text-light);
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Tablet: 2 columns */
+@media (max-width: 1024px) {
+    .values-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Mobile: 1 column */
+@media (max-width: 600px) {
+    .values-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ============================================================
+   SECTION 4 — ACHIEVEMENTS GRID
+   ============================================================ */
+
+.achievements-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    padding: 2rem 0;
+}
+
+.achievement-card {
+    position: relative;
+    text-align: center;
+    padding: 2rem 1.5rem;
+    border-radius: 16px;
+    background: linear-gradient(
+        145deg,
+        var(--bg-card) 0%,
+        rgb(245, 237, 224, 0.6) 100%
+    );
+    border: 1px solid var(--border-light);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+.achievement-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+}
+
+.achievement-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        135deg,
+        rgb(200, 169, 106, 0.06),
+        transparent 60%
+    );
+    pointer-events: none;
+}
+
+.achievement-card .achievement-number {
+    font-family: var(--font-heading);
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1.1;
+    margin-bottom: 0.4rem;
+}
+
+.achievement-card .achievement-label {
+    font-family: var(--font-body);
+    font-size: var(--text-small);
+    color: var(--text-light);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+@media (max-width: 768px) {
+    .achievements-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .achievements-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ============================================================
+   SECTION 5 — FAQ ACCORDION
+   ============================================================ */
+
+.faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 0;
+}
+
+.faq-item {
+    background: var(--bg-card);
+    border: 1px solid var(--border-light);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+.faq-item:hover {
+    box-shadow: var(--shadow-sm);
+}
+
+.faq-item.active {
+    border-color: var(--gold);
+    box-shadow: var(--shadow-md), var(--glow);
+}
+
+.faq-question {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 1.2rem 1.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: var(--font-heading);
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    text-align: left;
+    transition: color 0.3s ease;
+}
+
+.faq-question:hover {
+    color: var(--gold-dark);
+}
+
+.faq-question .faq-chevron {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    margin-left: 1rem;
+    color: var(--gold);
+    transition: transform 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+}
+
+.faq-item.active .faq-chevron {
+    transform: rotate(180deg);
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+                padding 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.faq-item.active .faq-answer {
+    max-height: 300px;
+}
+
+.faq-answer .faq-answer-inner {
+    padding: 0 1.5rem 1.2rem;
+    font-family: var(--font-body);
+    font-size: var(--text-small);
+    color: var(--text-light);
+    line-height: 1.7;
+}
+
+/* ============================================================
+   SECTION 6 — ENHANCED TESTIMONIALS
+   ============================================================ */
+
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 1.5rem;
+    padding: 2rem 0;
+}
+
+.testimonial-card {
+    position: relative;
+    background: var(--bg-card);
+    border: 1px solid var(--border-light);
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+}
+
+.testimonial-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--gold);
+}
+
+.testimonial-card .testimonial-stars {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 1rem;
+}
+
+.testimonial-card .testimonial-stars .star {
+    color: var(--gold);
+    font-size: 1.1rem;
+}
+
+.testimonial-card .testimonial-quote {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    color: var(--text-primary);
+    line-height: 1.7;
+    font-style: italic;
+    margin-bottom: 1.5rem;
+    flex: 1;
+    position: relative;
+    padding-top: 0.5rem;
+}
+
+.testimonial-card .testimonial-quote::before {
+    content: "\201C";
+    position: absolute;
+    top: -0.8rem;
+    left: -0.15rem;
+    font-family: var(--font-heading);
+    font-size: 3.5rem;
+    color: var(--gold);
+    opacity: 0.35;
+    line-height: 1;
+}
+
+.testimonial-card .testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    border-top: 1px solid var(--border-light);
+    padding-top: 1rem;
+}
+
+.testimonial-card .testimonial-photo {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--brown-light), var(--brown));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    color: var(--white);
+    flex-shrink: 0;
+}
+
+.testimonial-card .testimonial-info .testimonial-name {
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.testimonial-card .testimonial-info .testimonial-role {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    color: var(--text-light);
+    margin-top: 2px;
+}
+
+@media (max-width: 480px) {
+    .testimonials-grid {
+        grid-template-columns: 1fr;
+    }
+}

@@ -432,6 +432,42 @@ let translations = {
         select_template_for_service: 'Выберите шаблон для этой услуги:',
         demo_template_label: 'Шаблон',
         select_template: 'Выберите шаблон',
+        trusted_by: 'Нам доверяют компании по всей России',
+        process_title: 'Как мы работаем',
+        process_desc: 'От первого контакта до запуска — прозрачно и быстро.',
+        process_step1_title: 'Знакомство',
+        process_step1_desc: 'Обсуждаем цели, аудиторию и пожелания. Бесплатная консультация.',
+        process_step2_title: 'Дизайн',
+        process_step2_desc: 'Создаем уникальный дизайн или адаптируем шаблон. Вы утверждаете каждую деталь.',
+        process_step3_title: 'Разработка',
+        process_step3_desc: 'Чистый код, адаптивная верстка, SEO-оптимизация и быстрая загрузка.',
+        process_step4_title: 'Запуск и поддержка',
+        process_step4_desc: 'Размещаем сайт, обучаем и предоставляем 30 дней бесплатной поддержки.',
+        values_title: 'Наши ценности',
+        value1_title: 'Качество без компромиссов',
+        value1_desc: 'Каждый пиксель, каждая строка кода — сделаны с точностью. Мы не срезаем углы.',
+        value2_title: 'Партнерство, а не услуга',
+        value2_desc: 'Мы растем вместе с клиентами. Ваш успех — это наш успех.',
+        value3_title: 'Скорость и качество',
+        value3_desc: 'Быстрая работа без ущерба качеству. Современные инструменты, эффективный процесс.',
+        value4_title: 'Сделано с душой',
+        value4_desc: 'Мы искренне заботимся о каждом проекте. Настоящие люди, настоящая страсть.',
+        achievements_title: 'Наши достижения',
+        ach_projects: 'Проектов выполнено',
+        ach_satisfaction: 'Довольных клиентов',
+        ach_cities: 'Городов по России',
+        ach_support: 'Бесплатная поддержка',
+        faq_title: 'Часто задаваемые вопросы',
+        faq1_q: 'Сколько времени занимает создание сайта?',
+        faq1_a: 'Лендинг: 3-5 дней. Интернет-магазин: 7-14 дней. Корпоративный сайт: 10-21 день. Срок зависит от сложности и вашей оперативности.',
+        faq2_q: 'Нужно ли платить заранее?',
+        faq2_a: 'Предоплата не требуется. Вы платите только после завершения проекта и полного согласования.',
+        faq3_q: 'Смогу ли я редактировать сайт после запуска?',
+        faq3_a: 'Да! Мы строим сайты на современных платформах. Предоставляем видеоинструкции и документацию.',
+        faq4_q: 'Что если мне не понравится дизайн?',
+        faq4_a: 'Мы предлагаем неограниченное количество правок на этапе дизайна. Ваше удовлетворение гарантировано.',
+        faq5_q: 'Предоставляете ли вы хостинг и домен?',
+        faq5_a: 'Мы поможем с покупкой домена и настройкой хостинга. Рекомендуем надежных российских провайдеров.',
         compare_title: 'Сравнение шаблонов',
         compare_desc: 'Выберите до 3 шаблонов для сравнения функций и цен.',
         compare_add: 'Сравнить',
@@ -688,6 +724,42 @@ let translations = {
         select_template_for_service: 'Choose a template for this service:',
         demo_template_label: 'Template',
         select_template: 'Select Template',
+        trusted_by: 'Trusted by businesses across Russia',
+        process_title: 'How We Work',
+        process_desc: 'From first contact to launch — transparent and fast.',
+        process_step1_title: 'Discovery',
+        process_step1_desc: 'We discuss your goals, audience, and preferences. Free consultation, no obligations.',
+        process_step2_title: 'Design',
+        process_step2_desc: 'We create a unique design or adapt a template to your brand. You approve every detail.',
+        process_step3_title: 'Development',
+        process_step3_desc: 'Clean code, mobile-first responsive layout, SEO optimization, and fast loading speed.',
+        process_step4_title: 'Launch & Support',
+        process_step4_desc: 'We deploy your site, provide training, and offer 30 days of free support after launch.',
+        values_title: 'What We Stand For',
+        value1_title: 'Quality Without Compromise',
+        value1_desc: 'Every pixel, every line of code — crafted with precision. We never cut corners.',
+        value2_title: 'Partnership, Not Just Service',
+        value2_desc: 'We grow with our clients. Your success is our success — always.',
+        value3_title: 'Speed Meets Quality',
+        value3_desc: 'Fast delivery without sacrificing excellence. Modern tools, efficient process.',
+        value4_title: 'Made With Care',
+        value4_desc: 'We genuinely care about every project. Real people, real passion, real results.',
+        achievements_title: 'Our Achievements',
+        ach_projects: 'Projects Delivered',
+        ach_satisfaction: 'Client Satisfaction',
+        ach_cities: 'Cities Across Russia',
+        ach_support: 'Free Post-Launch Support',
+        faq_title: 'Frequently Asked Questions',
+        faq1_q: 'How long does it take to build a website?',
+        faq1_a: 'Standard landing page: 3-5 days. Online store: 7-14 days. Corporate website: 10-21 days. Timeline depends on complexity and your responsiveness.',
+        faq2_q: 'Do I need to pay upfront?',
+        faq2_a: 'No prepayment required. You pay only after the site is complete and you are 100% satisfied with the result.',
+        faq3_q: 'Can I edit the website myself after launch?',
+        faq3_a: 'Yes! We build sites on modern platforms that allow easy editing. We also provide video tutorials and documentation.',
+        faq4_q: 'What if I don\'t like the design?',
+        faq4_a: 'We offer unlimited revisions during the design phase. Your satisfaction is guaranteed before we proceed to development.',
+        faq5_q: 'Do you provide hosting and domain?',
+        faq5_a: 'We can help you purchase a domain and set up hosting. We recommend reliable Russian providers with excellent support.',
         compare_title: 'Compare Templates',
         compare_desc: 'Select up to 3 templates to compare features and pricing side-by-side.',
         compare_add: 'Compare',
@@ -5478,5 +5550,172 @@ console.log(
         });
     } else {
         setTimeout(initAllFeatures, 150);
+    }
+})();
+
+(function () {
+    'use strict';
+
+    // ==================== 1. FAQ ACCORDION TOGGLE ====================
+    function initFaqAccordion() {
+        var faqItems = document.querySelectorAll('.faq-item');
+        if (!faqItems.length) return;
+
+        faqItems.forEach(function (item) {
+            var question = item.querySelector('.faq-question');
+            if (!question) return;
+
+            var answer = item.querySelector('.faq-answer');
+            var isActive = item.classList.contains('active');
+
+            if (answer) {
+                if (isActive) {
+                    answer.style.maxHeight = answer.scrollHeight + 'px';
+                } else {
+                    answer.style.maxHeight = '0px';
+                }
+            }
+
+            question.setAttribute('aria-expanded', isActive ? 'true' : 'false');
+
+            question.addEventListener('click', function () {
+                var wasActive = item.classList.contains('active');
+
+                faqItems.forEach(function (sibling) {
+                    sibling.classList.remove('active');
+                    var siblingAnswer = sibling.querySelector('.faq-answer');
+                    var siblingQuestion = sibling.querySelector('.faq-question');
+                    if (siblingAnswer) {
+                        siblingAnswer.style.maxHeight = '0px';
+                    }
+                    if (siblingQuestion) {
+                        siblingQuestion.setAttribute('aria-expanded', 'false');
+                    }
+                });
+
+                if (!wasActive) {
+                    item.classList.add('active');
+                    if (answer) {
+                        answer.style.maxHeight = answer.scrollHeight + 'px';
+                    }
+                    question.setAttribute('aria-expanded', 'true');
+                }
+            });
+        });
+    }
+
+    // ==================== 2. CLIENT MARQUEE PAUSE ON HOVER ====================
+    function initMarqueePause() {
+        var marqueeTrack = document.querySelector('.marquee-track');
+        if (!marqueeTrack) return;
+
+        marqueeTrack.addEventListener('mouseenter', function () {
+            marqueeTrack.style.animationPlayState = 'paused';
+        });
+
+        marqueeTrack.addEventListener('mouseleave', function () {
+            marqueeTrack.style.animationPlayState = 'running';
+        });
+    }
+
+    // ==================== 3. ACHIEVEMENT COUNTER ANIMATION ====================
+    function initAchievementCounters() {
+        var grid = document.querySelector('.achievements-grid');
+        if (!grid) return;
+
+        var counters = grid.querySelectorAll('.achievement-number');
+        if (!counters.length) return;
+
+        counters.forEach(function (counter) {
+            counter._animated = false;
+        });
+
+        var observer = new IntersectionObserver(
+            function (entries) {
+                entries.forEach(function (entry) {
+                    if (!entry.isIntersecting) return;
+                    var el = entry.target;
+                    if (el._animated) return;
+                    el._animated = true;
+
+                    var text = el.textContent.trim();
+                    var suffix = '';
+                    var prefix = '';
+
+                    if (text.indexOf('%') !== -1) suffix = '%';
+                    if (text.indexOf('+') !== -1) suffix = suffix || '+';
+
+                    var raw = text.replace(/[%+\s]/g, '');
+                    var target = parseInt(raw, 10);
+                    if (isNaN(target)) {
+                        observer.unobserve(el);
+                        return;
+                    }
+
+                    var start = null;
+                    var duration = 2000;
+
+                    function step(timestamp) {
+                        if (!start) start = timestamp;
+                        var progress = Math.min((timestamp - start) / duration, 1);
+                        var eased = 1 - Math.pow(1 - progress, 3);
+                        var current = Math.round(eased * target);
+
+                        el.textContent = current + suffix;
+
+                        if (progress < 1) {
+                            requestAnimationFrame(step);
+                        } else {
+                            el.textContent = target + suffix;
+                            observer.unobserve(el);
+                        }
+                    }
+
+                    requestAnimationFrame(step);
+                });
+            },
+            { threshold: 0.3 },
+        );
+
+        counters.forEach(function (counter) {
+            observer.observe(counter);
+        });
+    }
+
+    // ==================== 4. PROCESS TIMELINE SCROLL REVEAL ====================
+    function initProcessTimeline() {
+        var steps = document.querySelectorAll('.process-step');
+        if (!steps.length) return;
+
+        var observer = new IntersectionObserver(
+            function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('revealed');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            },
+            { threshold: 0.2 },
+        );
+
+        steps.forEach(function (step, index) {
+            step.style.transitionDelay = index * 0.15 + 's';
+            observer.observe(step);
+        });
+    }
+
+    // ==================== INITIALIZATION ====================
+    function init() {
+        initFaqAccordion();
+        initMarqueePause();
+        initAchievementCounters();
+        initProcessTimeline();
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+    } else {
+        init();
     }
 })();
