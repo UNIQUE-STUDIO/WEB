@@ -491,7 +491,56 @@ let translations = {
         support_period: 'Поддержка',
         demo_template_label: 'Шаблон',
         select_template: 'Выберите шаблон',
+        pricing_title: 'Пакеты услуг',
+        pricing_desc: 'Прозрачные цены. Без скрытых платежей. Платите только после утверждения результата.',
+        pricing_starter: 'Стартовый',
+        pricing_pro: 'Профессиональный',
+        pricing_enterprise: 'Корпоративный',
+        pricing_popular: 'Самый популярный',
+        pricing_starter_desc: 'Идеально для новых компаний, которым нужно быстрое присутствие в сети.',
+        pricing_pro_desc: 'Для растущих бизнесов, которым нужен продвинутый функционал и уникальный дизайн.',
+        pricing_enterprise_desc: 'Полноценное решение для компаний со сложными требованиями.',
+        pricing_order_btn: 'Начать',
+        pricing_feat_landing: 'Лендинг (1 страница)',
+        pricing_feat_mobile: 'Адаптивный дизайн',
+        pricing_feat_seo: 'Базовая SEO-оптимизация',
+        pricing_feat_form: 'Форма обратной связи',
+        pricing_feat_hosting: 'Помощь с хостингом',
+        pricing_feat_support7: '7 дней техподдержки',
+        pricing_feat_multi: 'Многостраничный сайт (до 5)',
+        pricing_feat_custom: 'Уникальный дизайн',
+        pricing_feat_seo_adv: 'Расширенное SEO + аналитика',
+        pricing_feat_cms: 'CMS для редактирования',
+        pricing_feat_blog: 'Блог / Новости',
+        pricing_feat_speed: 'Оптимизация скорости',
+        pricing_feat_support30: '30 дней приоритетной поддержки',
+        pricing_feat_revisions: 'Неограниченные правки',
+        pricing_feat_unlimited: 'Неограниченное количество страниц',
+        pricing_feat_bespoke: 'Эксклюзивный дизайн + брендинг',
+        pricing_feat_shop: 'Интернет-магазин',
+        pricing_feat_api: 'API и интеграции',
+        pricing_feat_multilang: 'Мультиязычность',
+        pricing_feat_admin: 'Админ-панель',
+        pricing_feat_support90: '90 дней VIP поддержки',
+        pricing_feat_training: 'Обучение сотрудников',
+        pricing_feat_maintenance: 'Ежемесячное обслуживание',
+        ba_title: 'До и После',
+        ba_desc: 'Увидьте трансформацию. Реальные проекты, реальные результаты.',
+        ba_before: 'До',
+        ba_after: 'После',
+        ba_card1_title: 'Адаптивный редизайн',
+        ba_card1_desc: 'Старые декстопные дизайны превращены в быстрые адаптивные сайты.',
+        ba_card2_title: 'Рост конверсии',
+        ba_card2_desc: 'Устаревшие макеты заменены на современные паттерны с высокой конверсией.',
+        ba_card3_title: 'Оптимизация скорости',
+        ba_card3_desc: 'Медленные устаревшие сайты перестроены для мгновенной загрузки.',
+        guarantee_title: '100% Гарантия возврата',
+        guarantee_desc: 'Платите только после утверждения. Без риска.',
+        social_proof_bought: 'только что заказал(а)',
+        social_proof_template: 'шаблон',
+        social_proof_minutes: 'мин. назад',
     },
+    en: {
         nav_services: 'Services',
         nav_portfolio: 'Portfolio',
         nav_blog: 'Blog',
@@ -783,7 +832,56 @@ let translations = {
         support_period: 'Support',
         demo_template_label: 'Template',
         select_template: 'Select Template',
+        pricing_title: 'Pricing Packages',
+        pricing_desc: 'Transparent pricing. No hidden fees. Pay only after you approve the result.',
+        pricing_starter: 'Starter',
+        pricing_pro: 'Professional',
+        pricing_enterprise: 'Enterprise',
+        pricing_popular: 'Most Popular',
+        pricing_starter_desc: 'Perfect for new businesses that need a strong online presence fast.',
+        pricing_pro_desc: 'For growing businesses that need advanced functionality and custom design.',
+        pricing_enterprise_desc: 'Full-scale solution for established businesses with complex requirements.',
+        pricing_order_btn: 'Get Started',
+        pricing_feat_landing: 'Landing Page (1 page)',
+        pricing_feat_mobile: 'Mobile-first responsive design',
+        pricing_feat_seo: 'Basic SEO optimization',
+        pricing_feat_form: 'Contact form integration',
+        pricing_feat_hosting: 'Hosting setup assistance',
+        pricing_feat_support7: '7 days tech support',
+        pricing_feat_multi: 'Multi-page website (up to 5)',
+        pricing_feat_custom: 'Custom UI/UX design',
+        pricing_feat_seo_adv: 'Advanced SEO + analytics',
+        pricing_feat_cms: 'CMS integration (easy editing)',
+        pricing_feat_blog: 'Blog / News section',
+        pricing_feat_speed: 'Performance optimization',
+        pricing_feat_support30: '30 days priority support',
+        pricing_feat_revisions: 'Unlimited revisions',
+        pricing_feat_unlimited: 'Unlimited pages',
+        pricing_feat_bespoke: 'Bespoke design + branding',
+        pricing_feat_shop: 'E-commerce / Online store',
+        pricing_feat_api: 'API & third-party integrations',
+        pricing_feat_multilang: 'Multi-language support',
+        pricing_feat_admin: 'Custom admin dashboard',
+        pricing_feat_support90: '90 days VIP support',
+        pricing_feat_training: 'Staff training session',
+        pricing_feat_maintenance: 'Monthly maintenance plan',
+        ba_title: 'Before & After',
+        ba_desc: 'See the transformation. Real projects, real results.',
+        ba_before: 'Before',
+        ba_after: 'After',
+        ba_card1_title: 'Mobile-First Redesign',
+        ba_card1_desc: 'Old desktop-only designs transformed into fast, responsive experiences.',
+        ba_card2_title: 'Conversion Boost',
+        ba_card2_desc: 'Outdated layouts replaced with high-converting, modern UI patterns.',
+        ba_card3_title: 'Speed Optimized',
+        ba_card3_desc: 'Slow legacy sites rebuilt for near-instant load times.',
+        guarantee_title: '100% Money-Back Guarantee',
+        guarantee_desc: 'Pay only after you approve. Risk-free.',
+        social_proof_bought: 'just ordered',
+        social_proof_template: 'template',
+        social_proof_minutes: 'min ago',
     },
+};
 
 // Complete country codes list
 const countryCodes = [
@@ -1604,16 +1702,26 @@ function applyLanguage(lang) {
         if (t[key]) el.placeholder = t[key];
     });
     const isRu = lang === 'ru';
-    document.querySelector('.consent-title-ru').style.display = isRu ? 'block' : 'none';
-    document.querySelector('.consent-title-en').style.display = isRu ? 'none' : 'block';
-    document.querySelector('.consent-desc-ru').style.display = isRu ? 'block' : 'none';
-    document.querySelector('.consent-desc-en').style.display = isRu ? 'none' : 'block';
-    document.querySelector('.consent-checkbox-ru').style.display = isRu ? 'inline' : 'none';
-    document.querySelector('.consent-checkbox-en').style.display = isRu ? 'none' : 'inline';
-    document.getElementById('acceptConsent').style.display = isRu ? 'inline-flex' : 'none';
-    document.getElementById('acceptConsentEn').style.display = isRu ? 'none' : 'inline-flex';
-    document.querySelector('.consent-warning-ru').style.display = isRu ? 'block' : 'none';
-    document.querySelector('.consent-warning-en').style.display = isRu ? 'none' : 'block';
+    const consentTitleRu = document.querySelector('.consent-title-ru');
+    const consentTitleEn = document.querySelector('.consent-title-en');
+    const consentDescRu = document.querySelector('.consent-desc-ru');
+    const consentDescEn = document.querySelector('.consent-desc-en');
+    const consentCbRu = document.querySelector('.consent-checkbox-ru');
+    const consentCbEn = document.querySelector('.consent-checkbox-en');
+    const acceptConsent = document.getElementById('acceptConsent');
+    const acceptConsentEn = document.getElementById('acceptConsentEn');
+    if (consentTitleRu) consentTitleRu.style.display = isRu ? 'block' : 'none';
+    if (consentTitleEn) consentTitleEn.style.display = isRu ? 'none' : 'block';
+    if (consentDescRu) consentDescRu.style.display = isRu ? 'block' : 'none';
+    if (consentDescEn) consentDescEn.style.display = isRu ? 'none' : 'block';
+    if (consentCbRu) consentCbRu.style.display = isRu ? 'inline' : 'none';
+    if (consentCbEn) consentCbEn.style.display = isRu ? 'none' : 'inline';
+    if (acceptConsent) acceptConsent.style.display = isRu ? 'inline-flex' : 'none';
+    if (acceptConsentEn) acceptConsentEn.style.display = isRu ? 'none' : 'inline-flex';
+    const warnRu = document.querySelector('.consent-warning-ru');
+    const warnEn = document.querySelector('.consent-warning-en');
+    if (warnRu) warnRu.style.display = isRu ? 'block' : 'none';
+    if (warnEn) warnEn.style.display = isRu ? 'none' : 'block';
     const policyLink = document.getElementById('policyLink');
     const refundLink = document.getElementById('refundLink');
     if (policyLink) policyLink.innerText = t.footer_policy;
@@ -5711,11 +5819,155 @@ console.log(
         initMarqueePause();
         initAchievementCounters();
         initProcessTimeline();
+        initBeforeAfterSlider();
+        initSocialProof();
+        initPricingButtons();
     }
 
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', init);
     } else {
         init();
+    }
+
+    // ==================== 5. BEFORE / AFTER SLIDER ====================
+    function initBeforeAfterSlider() {
+        var slider = document.getElementById('baSlider');
+        var handle = document.getElementById('baHandle');
+        var before = slider ? slider.querySelector('.ba-before') : null;
+        if (!slider || !handle || !before) return;
+
+        var dragging = false;
+
+        function updateClip(clientX) {
+            var rect = slider.getBoundingClientRect();
+            var x = clientX - rect.left;
+            var pct = Math.max(0, Math.min(100, (x / rect.width) * 100));
+            before.style.clipPath = 'inset(0 ' + (100 - pct) + '% 0 0)';
+            handle.style.left = pct + '%';
+        }
+
+        handle.addEventListener('mousedown', function (e) {
+            dragging = true;
+            slider.style.cursor = 'ew-resize';
+            e.preventDefault();
+        });
+
+        document.addEventListener('mousemove', function (e) {
+            if (!dragging) return;
+            updateClip(e.clientX);
+        });
+
+        document.addEventListener('mouseup', function () {
+            if (dragging) {
+                dragging = false;
+                slider.style.cursor = 'ew-resize';
+            }
+        });
+
+        handle.addEventListener('touchstart', function (e) {
+            dragging = true;
+            e.preventDefault();
+        });
+
+        document.addEventListener('touchmove', function (e) {
+            if (!dragging) return;
+            updateClip(e.touches[0].clientX);
+        });
+
+        document.addEventListener('touchend', function () {
+            dragging = false;
+        });
+
+        slider.addEventListener('click', function (e) {
+            if (e.target === handle || handle.contains(e.target)) return;
+            updateClip(e.clientX);
+        });
+    }
+
+    // ==================== 6. SOCIAL PROOF TOASTS ====================
+    function initSocialProof() {
+        var container = document.getElementById('socialProofToasts');
+        if (!container) return;
+
+        var names = ['Alex M.', 'Dmitry K.', 'Elena S.', 'Sergei P.', 'Olga V.', 'Andrei N.', 'Maria L.', 'Ivan R.',
+            'Anna T.', 'Pavel G.'
+        ];
+        var templates = ['Vibe', 'Urban', 'Flux', 'Pulse', 'Aura', 'Nova', 'Edge', 'Onyx', 'Lux', 'Core'];
+
+        var running = true;
+        var timer = null;
+
+        function createToast() {
+            if (!running) return;
+
+            var name = names[Math.floor(Math.random() * names.length)];
+            var template = templates[Math.floor(Math.random() * templates.length)];
+            var minutes = Math.floor(Math.random() * 10) + 1;
+
+            var toast = document.createElement('div');
+            toast.className = 'social-toast';
+
+            var lang = currentLang || 'en';
+            var boughtText = translations[lang] && translations[lang].social_proof_bought ?
+                translations[lang].social_proof_bought : 'just ordered';
+            var templateText = translations[lang] && translations[lang].social_proof_template ?
+                translations[lang].social_proof_template : 'template';
+            var minText = translations[lang] && translations[lang].social_proof_minutes ?
+                translations[lang].social_proof_minutes : 'min ago';
+
+            toast.innerHTML =
+                '<div class="social-toast-icon"><i class="fas fa-shopping-cart"></i></div>' +
+                '<div class="social-toast-body">' +
+                '<div class="social-toast-name">' + name + '</div>' +
+                '<div class="social-toast-action">' + boughtText + ' <strong>' + template +
+                '</strong> ' + templateText + '</div>' +
+                '</div>' +
+                '<div class="social-toast-time">' + minutes + ' ' + minText + '</div>';
+
+            container.appendChild(toast);
+
+            setTimeout(function () {
+                if (toast.parentNode) {
+                    toast.remove();
+                }
+            }, 5200);
+
+            scheduleNext();
+        }
+
+        function scheduleNext() {
+            if (!running) return;
+            var delay = 15000 + Math.floor(Math.random() * 25000);
+            timer = setTimeout(createToast, delay);
+        }
+
+        // start first toast after 8 seconds
+        timer = setTimeout(createToast, 8000);
+
+        // cleanup on page unload
+        window.addEventListener('beforeunload', function () {
+            running = false;
+            if (timer) clearTimeout(timer);
+        });
+    }
+
+    // ==================== 7. PRICING BUTTONS ====================
+    function initPricingButtons() {
+        var buttons = document.querySelectorAll('.order-pricing-btn');
+        if (!buttons.length) return;
+
+        buttons.forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                var plan = btn.getAttribute('data-plan');
+                var consultBtn = document.getElementById('consultBtn');
+                if (consultBtn) {
+                    // set service name in consult modal if possible
+                    var consultName = document.getElementById('consultName');
+                    if (consultName) consultName.focus();
+                    consultBtn.click();
+                }
+            });
+        });
     }
 })();
