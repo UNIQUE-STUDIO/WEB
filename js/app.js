@@ -883,6 +883,8 @@ let translations = {
     },
 };
 
+};
+
 // Complete country codes list
 const countryCodes = [
     { code: '+93', name: 'Afghanistan', flag: '🇦🇫' },

@@ -3526,6 +3526,295 @@ a:has(> .portfolio-card):hover .portfolio-card img {
         padding: 4px 10px;
         font-size: 0.8rem;
     }
+
+    /* ===== MOBILE COMPACT LAYOUT IMPROVEMENTS ===== */
+    section {
+        padding: 32px 0;
+    }
+    section + section {
+        margin-top: 0;
+    }
+    #stats.container,
+    .container[id] {
+        padding-top: 24px;
+        padding-bottom: 24px;
+    }
+
+    /* Hero - tighter */
+    .hero {
+        min-height: 55vh;
+        padding-top: 80px;
+        padding-bottom: 24px;
+    }
+    .hero-title {
+        font-size: clamp(1.6rem, 5vw, 2rem);
+        margin-bottom: 0.5rem;
+    }
+    .hero p {
+        font-size: 0.9rem;
+        margin-bottom: 0.75rem;
+    }
+    .hero-badges {
+        gap: 6px;
+        margin-bottom: 0.75rem;
+    }
+    .hero-badge {
+        font-size: 0.72rem;
+        padding: 4px 10px;
+    }
+    .hero .scroll-indicator {
+        display: none;
+    }
+
+    /* Stats - compact */
+    .stats-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 8px;
+    }
+    .stat-item {
+        padding: 12px 6px;
+    }
+    .stat-number {
+        font-size: 1.5rem;
+    }
+    .stat-label {
+        font-size: 0.7rem;
+    }
+
+    /* Client marquee - compact */
+    .client-marquee {
+        padding: 8px 0;
+    }
+    .marquee-label {
+        font-size: 0.75rem;
+        margin-bottom: 4px;
+    }
+    .marquee-item {
+        font-size: 0.75rem;
+        padding: 0 10px;
+    }
+
+    /* Process timeline - compact */
+    .process-step {
+        margin-bottom: 1.5rem;
+        gap: 0.75rem;
+    }
+    .process-step .process-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+    .process-step .process-content h3 {
+        font-size: 1rem;
+        margin-bottom: 2px;
+    }
+    .process-step .process-content p {
+        font-size: 0.8rem;
+    }
+    .process-timeline::before {
+        left: 20px;
+    }
+
+    /* Pricing - compact cards */
+    .pricing-card {
+        padding: 20px 16px;
+    }
+    .pricing-header h3 {
+        font-size: 1.1rem;
+    }
+    .pricing-price {
+        font-size: 0.9rem;
+    }
+    .pricing-amount {
+        font-size: 2rem;
+    }
+    .pricing-features li {
+        padding: 5px 0;
+        font-size: 0.85rem;
+    }
+
+    /* Values - 2 columns */
+    .values-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+    .value-card {
+        padding: 16px 12px;
+    }
+    .value-card .value-icon {
+        font-size: 1.4rem;
+        margin-bottom: 8px;
+    }
+    .value-card h3 {
+        font-size: 0.9rem;
+        margin-bottom: 4px;
+    }
+    .value-card p {
+        font-size: 0.78rem;
+    }
+
+    /* Achievements - 2 columns */
+    .achievements-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+    .achievement-card {
+        padding: 16px 12px;
+    }
+    .ach-number {
+        font-size: 1.5rem;
+    }
+    .ach-label {
+        font-size: 0.78rem;
+    }
+
+    /* Before & After - compact */
+    #beforeAfter .section-subtitle {
+        margin-bottom: 16px;
+    }
+    .ba-slider-wrap {
+        margin-bottom: 16px;
+    }
+    .ba-cards {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    .ba-card {
+        padding: 16px 14px;
+    }
+    .ba-card h4 {
+        font-size: 0.95rem;
+    }
+    .ba-card p {
+        font-size: 0.8rem;
+    }
+
+    /* FAQ - compact */
+    .faq-question {
+        padding: 14px 16px;
+        font-size: 0.9rem;
+    }
+    .faq-answer p {
+        padding: 10px 16px;
+        font-size: 0.85rem;
+    }
+
+    /* Comparison section - hide on mobile */
+    #comparisonSection {
+        display: none;
+    }
+
+    /* Templates - 2 columns on wider phones */
+    .templates-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+    .template-card img {
+        max-height: 100px;
+    }
+    .template-card .content h3 {
+        font-size: 0.85rem;
+    }
+
+    /* Services grid - tighter */
+    .service-card {
+        padding: 18px 14px;
+    }
+    .service-card .content h3 {
+        font-size: 1rem;
+    }
+    .service-card .content p {
+        font-size: 0.85rem;
+    }
+
+    /* Blog - 2 columns on wider phones */
+    .blog-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+    .blog-card .blog-title {
+        font-size: 0.9rem;
+    }
+
+    /* Newsletter - compact */
+    .newsletter-section {
+        padding: 20px 16px;
+    }
+    .newsletter-section h3 {
+        font-size: 1rem;
+        margin-bottom: 6px;
+    }
+    .newsletter-section p {
+        font-size: 0.85rem;
+        margin-bottom: 10px;
+    }
+
+    /* Trust bar - compact */
+    .trust-bar .stats-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 6px;
+    }
+    .trust-bar .stat-item {
+        padding: 10px 4px;
+    }
+    .trust-bar .stat-number {
+        font-size: 1.2rem;
+    }
+    .trust-bar .stat-label {
+        font-size: 0.7rem;
+    }
+    .trust-bar-top {
+        margin-top: 8px;
+    }
+
+    /* Edit request - compact */
+    #edit-request form {
+        max-width: 100%;
+    }
+
+    /* Reviews button spacing */
+    .reviews-btn-wrap {
+        margin-top: 12px;
+    }
+
+    /* Section titles more compact */
+    .section-subtitle {
+        font-size: 0.85rem;
+        margin-bottom: 16px;
+    }
+    h2 {
+        margin-bottom: 8px;
+    }
+
+    /* Footer padding */
+    footer {
+        padding: 24px 0 80px;
+    }
+
+    /* Scroll top button position */
+    .scroll-top {
+        bottom: 80px;
+    }
+
+    /* Buttons compact */
+    .btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+        min-height: 42px;
+    }
+    .btn-outline {
+        padding: 10px 20px;
+    }
+
+    /* Guarantee badge smaller */
+    .guarantee-badge {
+        padding: 8px 14px;
+        font-size: 0.7rem;
+        bottom: 70px;
+    }
+    .guarantee-icon {
+        font-size: 1rem;
+    }
 }
 
 /* ============================================================
@@ -3537,7 +3826,7 @@ a:has(> .portfolio-card):hover .portfolio-card img {
         padding-right: 16px;
     }
     section {
-        padding: 40px 0;
+        padding: 28px 0;
     }
     h1 {
         font-size: clamp(1.8rem, 7vw, 2.2rem);
@@ -3546,22 +3835,25 @@ a:has(> .portfolio-card):hover .portfolio-card img {
         font-size: clamp(1.4rem, 5.5vw, 1.8rem);
     }
 
-    /* Stats - could go single column for very small screens */
+    /* Stats - 2 columns compact */
     .stats-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
+        gap: 8px;
     }
     .stat-item {
-        padding: 16px 8px;
+        padding: 12px 6px;
     }
     .stat-number {
-        font-size: 1.8rem;
+        font-size: 1.6rem;
+    }
+    .stat-label {
+        font-size: 0.7rem;
     }
 
     /* Hero tighter */
     .hero {
-        min-height: 65vh;
-        padding-top: 80px;
+        min-height: 55vh;
+        padding-bottom: 20px;
     }
     .hero-overlay {
         background:
@@ -3647,7 +3939,24 @@ a:has(> .portfolio-card):hover .portfolio-card img {
 
     /* Newsletter */
     .newsletter-section {
-        padding: 24px 16px;
+        padding: 20px 14px;
+    }
+
+    /* Footer */
+    footer {
+        padding: 20px 0 70px;
+    }
+
+    /* Values/Achievements single on tiny */
+    .values-grid,
+    .achievements-grid {
+        gap: 8px;
+    }
+
+    /* FAQ compact */
+    .faq-question {
+        padding: 12px 14px;
+        font-size: 0.85rem;
     }
 }
 
