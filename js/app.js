@@ -492,6 +492,7 @@ let translations = {
         demo_template_label: 'Шаблон',
         select_template: 'Выберите шаблон',
     },
+    en: {
         nav_services: 'Services',
         nav_portfolio: 'Portfolio',
         nav_blog: 'Blog',
@@ -784,6 +785,8 @@ let translations = {
         demo_template_label: 'Template',
         select_template: 'Select Template',
     },
+
+};
 
 // Complete country codes list
 const countryCodes = [
@@ -2860,7 +2863,7 @@ async function renderDashboard() {
                     {
                         label: 'Count',
                         data: [total, newLeads, sent, paid, customers],
-                        backgroundColor: ['#C8A96A', '#3498db', '#e67e22', '#2ecc71', '#9b59b6'],
+                        backgroundColor: ['#C8A96A', '#3498db', '#e67e22', '#2ecc71', '#8B7355'],
                     },
                 ],
             },
@@ -3133,7 +3136,7 @@ async function renderAnalytics() {
         demoRequested +
         '</strong><br>Demo Requests</div>';
     html +=
-        '<div class="admin-stat-box" style="flex:1;min-width:140px;padding:15px;background:var(--bg-card);border-radius:10px;text-align:center;"><strong style="font-size:28px;color:#9b59b6;">' +
+        '<div class="admin-stat-box" style="flex:1;min-width:140px;padding:15px;background:var(--bg-card);border-radius:10px;text-align:center;"><strong style="font-size:28px;color:#C8A96A;">' +
         revenue.toLocaleString() +
         ' &#8381;</strong><br>Est. Revenue</div>';
     html += '</div>';
