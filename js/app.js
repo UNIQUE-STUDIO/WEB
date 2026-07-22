@@ -492,6 +492,7 @@ let translations = {
         demo_template_label: 'Шаблон',
         select_template: 'Выберите шаблон',
     },
+    en: {
         nav_services: 'Services',
         nav_portfolio: 'Portfolio',
         nav_blog: 'Blog',
@@ -784,6 +785,8 @@ let translations = {
         demo_template_label: 'Template',
         select_template: 'Select Template',
     },
+
+};
 
 // Complete country codes list
 const countryCodes = [
