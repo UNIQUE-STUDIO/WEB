@@ -1012,15 +1012,24 @@ function renderTemplatesPage() {
                         : 'from 6,000 ₽';
                 const imgUrl = customImages.templates[tmpl.id] || tmpl.image || 'images/photos/templates/' + tmpl.id + '.jpg';
                 const previewUrl = tmpl.preview_url || '';
-                const imgHtml = `<img src="${imgUrl}" alt="${name}" style="width:100%; border-radius:20px; aspect-ratio:16/10; object-fit:cover;" loading="lazy">`;
+                const mockupHtml = `<div class="template-preview-mockup" style="background-image:url('${imgUrl}')">
+                    <div class="template-mockup-bar">
+                        <span class="template-mockup-dot"></span>
+                        <span class="template-mockup-dot"></span>
+                        <span class="template-mockup-dot"></span>
+                        <span class="template-mockup-address">${previewUrl ? previewUrl.replace(/^\/templates-preview\//,'').replace(/\/$/,'') : 'preview'}</span>
+                    </div>
+                </div>`;
                 return `
             <div class="template-card" data-template-id="${tmpl.id}">
-                ${imgHtml}
-                <h3>${escapeHtml(name)}</h3>
-                <div class="template-price">${escapeHtml(price)}</div>
-                <div class="template-actions">
-                    <button class="btn order-template-btn" data-template-id="${escapeHtml(tmpl.id)}" data-template-name="${escapeHtml(name)}" data-template-category="${escapeHtml(tmpl._category || '')}">${t.order_btn || 'Order'}</button>
-                    ${previewUrl ? `<a class="template-preview-btn" href="${previewUrl}" target="_blank" rel="noopener">${t.preview_btn || 'Preview'}</a>` : ''}
+                ${mockupHtml}
+                <div class="card-body">
+                    <h3>${escapeHtml(name)}</h3>
+                    <div class="template-price">${escapeHtml(price)}</div>
+                    <div class="template-actions">
+                        <button class="btn order-template-btn" data-template-id="${escapeHtml(tmpl.id)}" data-template-name="${escapeHtml(name)}" data-template-category="${escapeHtml(tmpl._category || '')}">${t.order_btn || 'Order'}</button>
+                        ${previewUrl ? `<a class="template-preview-btn" href="${previewUrl}" target="_blank" rel="noopener">${t.preview_btn || 'Preview'}</a>` : ''}
+                    </div>
                 </div>
             </div>
         `;
@@ -1141,11 +1150,9 @@ function openOrderServiceModal(serviceName, preselectedTemplateId = null) {
                 const name = tmpl.name[currentLang] || tmpl.name.en;
                 const price = tmpl.price[currentLang] || tmpl.price.en;
                 const imgUrl = customImages.templates[tmpl.id] || tmpl.image || 'images/photos/templates/' + tmpl.id + '.jpg';
-                const imgHtml = imgUrl
-                    ? `<img src="${imgUrl}" alt="${name}" style="width:100%; border-radius:12px; aspect-ratio:16/10; object-fit:cover;">`
-                    : `<div style="height:100px; background:var(--beige); display:flex; align-items:center; justify-content:center; border-radius:12px;">${name}</div>`;
+                const mockupHtml = `<div class="template-preview-mockup" style="background-image:url('${imgUrl}')"><div class="template-mockup-bar"><span class="template-mockup-dot"></span><span class="template-mockup-dot"></span><span class="template-mockup-dot"></span></div></div>`;
                 const selectedAttr = preselectedTemplateId === tmpl.id ? 'selected' : '';
-                return `<div class="template-card ${selectedAttr}" data-template-id="${tmpl.id}" style="cursor:pointer; padding:12px; text-align:center;">${imgHtml}<strong style="display:block; margin-top:6px;">${escapeHtml(name)}</strong><div style="font-size:0.9rem; color:var(--gold);">${escapeHtml(price)}</div></div>`;
+                return `<div class="template-card ${selectedAttr}" data-template-id="${tmpl.id}" style="cursor:pointer; padding:12px; text-align:center;">${mockupHtml}<strong style="display:block; margin-top:6px;">${escapeHtml(name)}</strong><div style="font-size:0.9rem; color:var(--gold);">${escapeHtml(price)}</div></div>`;
             })
             .join('');
     }
@@ -1222,11 +1229,12 @@ function populateTemplateModal(category) {
         .map(function (tmpl) {
             var name = tmpl.name[currentLang] || tmpl.name.en;
             var imgUrl = customImages.templates[tmpl.id] || tmpl.image || 'images/photos/templates/' + tmpl.id + '.jpg';
-            var imgHtml = imgUrl
-                ? '<img src="' + imgUrl + '" alt="' + name + '" loading="lazy">'
-                : '<div style="aspect-ratio:16/10; display:flex; align-items:center; justify-content:center; background:var(--beige); border-radius:12px; font-size:0.8rem; color:var(--text-light);">' +
-                  name +
-                  '</div>';
+            var mockupHtml = '<div class="template-preview-mockup" style="background-image:url(\'' + imgUrl + '\')">' +
+                '<div class="template-mockup-bar">' +
+                '<span class="template-mockup-dot"></span>' +
+                '<span class="template-mockup-dot"></span>' +
+                '<span class="template-mockup-dot"></span>' +
+                '</div></div>';
             return (
                 '<div class="template-card" data-template-id="' +
                 tmpl.id +
@@ -1237,7 +1245,7 @@ function populateTemplateModal(category) {
                 "', '" +
                 escapeHtml(name) +
                 '\')">' +
-                imgHtml +
+                mockupHtml +
                 '<strong>' +
                 escapeHtml(name) +
                 '</strong>' +
@@ -1273,12 +1281,8 @@ function showTemplateSelectionDisplay(templateId, templateName) {
             break;
         }
     }
-    var imgHtml = imgUrl
-        ? '<img src="' + imgUrl + '" alt="' + templateName + '">'
-        : '<div style="width:70px;height:46px;border-radius:8px;background:var(--beige);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:0.7rem;color:var(--text-light);">' +
-          templateName.substring(0, 10) +
-          '</div>';
-    display.innerHTML = imgHtml + '<span>' + escapeHtml(templateName) + '</span>';
+    var mockupHtml = '<div class="template-preview-mockup" style="background-image:url(\'' + imgUrl + '\');width:70px;height:46px;border-radius:8px;flex-shrink:0;"><div class="template-mockup-bar" style="height:10px;padding:0 4px;"><span class="template-mockup-dot" style="width:3px;height:3px;"></span><span class="template-mockup-dot" style="width:3px;height:3px;"></span><span class="template-mockup-dot" style="width:3px;height:3px;"></span></div></div>';
+    display.innerHTML = mockupHtml + '<span>' + escapeHtml(templateName) + '</span>';
 }
 
 // ==================== SERVICE CARDS (with template selection) ====================
